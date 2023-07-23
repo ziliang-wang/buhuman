@@ -1,0 +1,86 @@
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(0, 0, 0, .2);
+    /* 29, 191, 115 */
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius:10px;
+    background-color:#F5F5F5;
+    /* 29, 191, 115 */
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius:10px;
+    -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #6f4627;
+    /* 29, 191, 115 */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    color: #545c63;
+    background-color: #f3f5f6;
+}
+
+a {
+    color: #545c63;
+    text-decoration: none;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+li {
+    list-style-type: none;
+} 
+
+i, em {
+    font-style: normal;
+}
+
+img {
+    border: none;
+    vertical-align: middle;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+/* .clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+} */
+
+.center-wrap {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.new-article-center-wrap {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.flex-r {
+    display: flex;
+}
+
+.flex-c {
+    display: flex;
+    flex-direction: column;
+}
+

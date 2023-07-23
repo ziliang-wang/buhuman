@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>發佈文章</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/new_article.css">
+    <script src="/plugins/ueditor-plus/ueditor.config.js"></script>
+    <script src="/plugins/ueditor-plus/ueditor.all.js"></script>
+    <script src="/plugins/ueditor-plus/lang/zh-cn/zh-cn.js"></script>
+    <script>
+        window.onload = () => {
+            var ue = UE.getEditor('editor', {
+                // ... 更多配置
+                shortcutMenu: false,
+                elementPathEnabled: false,
+                wordCount: false,
+                autoHeightEnabled: false,
+                // 初始化编辑器宽度,默认 1000
+                // initialFrameWidth: 800,
+                initialFrameWidth: '100%',
+                // 初始化编辑器高度,默认 320
+                initialFrameHeight: 500,
+                toolbars: [
+                    [
+                        // "source",
+                        "insertcode",
+                        "bold",
+                        "italic",
+                        "insertimage",
+                        "link",
+                        "insertorderedlist",
+                        "insertunorderedlist",
+                        "blockquote",
+                        "undo",
+                        "redo",
+                        "emotion"
+                    ]
+                ]
+            });
+        };
+    </script>
+</head>
+<body>
+    <div class="header new-article-center-wrap">
+        <div class="left">
+            <span class="draft">
+                <i class="iconfont icon-caogao05"></i>
+                <span>我的草稿</span>
+            </span>
+            <span class="draft-desc">文章將自動保存至草稿箱</span>
+        </div>
+        <div class="middle">
+            <span class="ueditor">Ueditor</span>
+        </div>
+        <div class="right">
+            <span class="publish">發佈</span>
+        </div>
+    </div>
+    <div class="main">
+        <div class="article-head">
+            <input class="article-title" type="text" placeholder="請在此輸入標題">
+        </div>
+        <div class="ueditor">
+            <script id="editor" type="text/plain" style="height:300px;"></script>
+        </div>
+    </div>
+</body>
+</html>

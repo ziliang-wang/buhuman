@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不良人互動社群</title>
+    <!-- <link rel="stylesheet" href="bs/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/index.css">
+    <!-- <script src="bs/js/bootstrap.min.js"></script> -->
+    <script src="js/index.js"></script>
+</head>
+<body>
+    <header class="header-container">
+        <div class="header center-wrap">
+            <div class="header-left">
+                <span class="logo">
+                    <img src="images/logo.png" alt="logo">
+                    <!-- <img src="images/article-logo.png" alt=""> -->
+                </span>
+                <span class="logo-desc">
+                    自由分享互動社群
+                    <!-- <img src="images/article-desc.png" alt=""> -->
+                </span>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <input id="search" type="text" placeholder="搜索感興趣的文章或知識">
+                    <i class="iconfont icon-Magnifier"></i>
+                </div>
+                <button class="write" id="writeArticle">寫文章</button>
+                <span class="login" id="login">
+                    <a href="javascript:;">
+                        登入
+                    </a>
+                </span>
+                <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <span class="register" id="register">
+                    <a href="javascript:;">
+                        注冊
+                    </a>
+                </span>
+            </div>
+        </div>
+    </header>
+    <section class="content-wrapper center-wrap">
+    {% block user_center_content %}
+    {% endblock %}
+    {% block index %}
+    {% endblock %}
+    </section>
+</body>
+</html>

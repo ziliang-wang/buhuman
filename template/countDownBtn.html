@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">发送</button>
+    <script>
+        const $btn = document.getElementById('btn');
+
+        let timer;
+
+        $btn.onclick = function() {
+            this.disabled = true;
+            let count = 59;
+            this.innerText = `重新发送 (${count})`;
+            timer = setInterval(() => {
+                count -= 1;
+                this.innerText = `重新发送 (${count})`;
+                if (count == 0) {
+                    this.innerText = `重新发送`;
+                    this.disabled = false;
+                    count = 5;
+                    clearInterval(timer);
+                }
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
