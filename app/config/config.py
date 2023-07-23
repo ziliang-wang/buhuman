@@ -9,10 +9,12 @@ class Config(object):
 
 class TestConfig(Config):
     is_echo = True
+    LOG_LEVEL = 'DEBUG'
 
 
 class ProductionConfig(Config):
     is_echo = False
+    LOG_LEVEL = 'INFO'
 
 
 config = {
