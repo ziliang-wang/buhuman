@@ -189,12 +189,23 @@
     width: 78%;
     /*height: calc(100vh - 115px);*/
     /* height: 1500px; */
-    text-align: left;
-    background-color: #fff;
-    border-radius: 5px;
+    /*text-align: left;*/
+    /*background-color: #fff;*/
     /*margin-bottom: 20px;*/
     /* padding: 20px 0; */
     /*flex-shrink: 1;*/
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.content-wrapper .article-wrapper .search-result {
+    justify-content: space-between;
+    padding: 20px 20px 0 20px;
+    font-weight: bold;
+}
+
+.content-wrapper .article-wrapper .search-result > div > span {
+    color: #6f4627;
 }
 
 .content-wrapper .article-wrapper .article-list {

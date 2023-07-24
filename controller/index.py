@@ -70,17 +70,16 @@ def home():
 
     if keyword:
         db_result = article.search_article(spage, keyword)
-        if db_result:
-            is_search = True
+        is_search = True
     else:
         is_search = False
         db_result = article.find_article(page, article_type)
 
-    total_page = article.calc_total_page(article_type)
+    total_page, total_rows = article.calc_total_page(article_type)
     if page > total_page:
         page = 1
 
-    search_total_page = article.calc_search_total_page(keyword)
+    search_total_page, search_total_rows = article.calc_search_total_page(keyword)
     if spage > search_total_page:
         spage = 1
 
@@ -113,5 +112,7 @@ def home():
         search_total_page=search_total_page,
         is_search=is_search,
         spage=spage,
-        keyword=keyword
+        keyword=keyword,
+        search_count=len(search_total_rows),
+        article_count=len(total_rows)
     )

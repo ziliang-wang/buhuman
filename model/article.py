@@ -26,11 +26,12 @@ class Article(Base):
             ).all()
 
             search_total_page = len(search_total_rows) // count
-            print('search rows:', keyword, len(search_total_rows))
+            # print('search rows:', keyword, len(search_total_rows))
         else:
+            search_total_rows = []
             search_total_page = 0
 
-        return search_total_page + 1
+        return search_total_page + 1, search_total_rows
 
     def calc_total_page(self, article_type):
 
@@ -51,7 +52,7 @@ class Article(Base):
 
             total_page = len(total_rows) // config[env].page_count
 
-        return total_page + 1
+        return total_page + 1, total_rows
 
     def find_article(self, page, article_type='recommend'):
         if page < 1:

@@ -51,7 +51,7 @@
     {% endblock %}
 </section>
 <section class="pagenation flex-r">
-    {% if not is_search %}
+    {% if not is_search and article_count > 10 %}
         {% if current_page != 1 %}
             <a href="?type={{ type }}&page={{ current_page - 1 }}">上一頁</a>
         {% endif %}
@@ -61,7 +61,7 @@
         {% endif %}
     {% endif %}
 
-    {% if is_search %}
+    {% if is_search and search_count > 10 %}
         {% if spage != 1 %}
             <a href="?keyword={{ keyword }}&spage={{ spage - 1 }}">上一頁</a>
         {% endif %}
