@@ -6,46 +6,50 @@
         </div>
     {% endif %}
     <div class="article-list">
-        {% for article, nickname in result %}
-        <div class="article-row flex-r">
-            <div class="row-avatar">
-                <img src="{{ article.article_image }}" alt="">
-            </div>
-            <div class="row-desc flex-c">
-                <div class="article-title flex-r">
-                            <span>
-                                {{ article.title }}
-                            </span>
-                    <span class="collection">
-                                收藏
-                            </span>
-                </div>
-                <div class="article-info flex-r">
-                    <div class="info-left">
-                        <span class="label">
-                            {{ article.label }}
-                        </span>
-                        <span class="views">
-                                    <i class="iconfont icon-yanjing"></i>
+        {% if result %}
+            {% for article, nickname in result %}
+                <div class="article-row flex-r">
+                    <div class="row-avatar">
+                        <img src="{{ article.article_image }}" alt="">
+                    </div>
+                    <div class="row-desc flex-c">
+                        <div class="article-title flex-r">
                                     <span>
-                                        {{ article.browse_num }}
+                                        {{ article.title }}
                                     </span>
+                            <span class="collection">
+                                        收藏
+                                    </span>
+                        </div>
+                        <div class="article-info flex-r">
+                            <div class="info-left">
+                                <span class="label">
+                                    {{ article.label }}
                                 </span>
-                        <span>
-                            {{ nickname }}
-                        </span>
-                        <span>
-                            {{ article.article_tag }}
-                        </span>
-                    </div>
-                    <div class="info-right">
-                        <span>
-                            {{ article.create_time }}
-                        </span>
+                                <span class="views">
+                                            <i class="iconfont icon-yanjing"></i>
+                                            <span>
+                                                {{ article.browse_num }}
+                                            </span>
+                                        </span>
+                                <span>
+                                    {{ nickname }}
+                                </span>
+                                <span>
+                                    {{ article.article_tag }}
+                                </span>
+                            </div>
+                            <div class="info-right">
+                                <span>
+                                    {{ article.create_time }}
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <p>什麼都沒有，寫個文章吧</p>
+        {% endif %}
     </div>
 </main>
