@@ -1,5 +1,7 @@
 window.onload = () => {
     const $search = document.getElementById('search');
+    const $searchBtn = document.getElementById('searchBtn');
+
     const $leftMenuList = document.getElementById('leftMenuList');
     const $leftMenuListItems = $leftMenuList.querySelectorAll('li a');
 
@@ -23,6 +25,12 @@ window.onload = () => {
     const $backReg = document.getElementById('backReg');
 
     const $writeArticle = document.getElementById('writeArticle');
+
+
+    $searchBtn.onclick = () => {
+        const keyword = $search.value.trim();
+        location.href = `?keyword=${keyword}`;
+    };
 
     $register.onclick = (e) => {
         e.stopPropagation();

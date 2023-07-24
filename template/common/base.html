@@ -12,45 +12,46 @@
     <script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
-    <header class="header-container">
-        <div class="header center-wrap">
-            <div class="header-left">
+<header class="header-container">
+    <div class="header center-wrap">
+        <div class="header-left">
                 <span class="logo">
                     <img src="images/logo.png" alt="logo">
                     <!-- <img src="images/article-logo.png" alt=""> -->
                 </span>
-                <span class="logo-desc">
+            <span class="logo-desc">
                     自由分享互動社群
-                    <!-- <img src="images/article-desc.png" alt=""> -->
+                <!-- <img src="images/article-desc.png" alt=""> -->
                 </span>
+        </div>
+        <div class="header-right">
+            <div class="search-box">
+                <input id="search" type="text" placeholder="搜索感興趣的文章或知識">
+                <i class="iconfont icon-Magnifier" id="searchBtn"></i>
             </div>
-            <div class="header-right">
-                <div class="search-box">
-                    <input id="search" type="text" placeholder="搜索感興趣的文章或知識">
-                    <i class="iconfont icon-Magnifier"></i>
-                </div>
-                <button class="write" id="writeArticle">寫文章</button>
-                <span class="login" id="login">
+            <button class="write" id="writeArticle">寫文章</button>
+            <span class="login" id="login">
                     <a href="javascript:;">
                         登入
                     </a>
                 </span>
-                <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                <span class="register" id="register">
+            <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            <span class="register" id="register">
                     <a href="javascript:;">
                         注冊
                     </a>
                 </span>
-            </div>
         </div>
-    </header>
-    <section class="content-wrapper center-wrap">
-        {% block test %}
-        {% endblock %}
-        {% block index %}
-        {% endblock %}
-    </section>
-    <section class="pagenation flex-r">
+    </div>
+</header>
+<section class="content-wrapper center-wrap">
+    {% block test %}
+    {% endblock %}
+    {% block index %}
+    {% endblock %}
+</section>
+<section class="pagenation flex-r">
+    {% if not is_search %}
         {% if current_page != 1 %}
             <a href="?type={{ type }}&page={{ current_page - 1 }}">上一頁</a>
         {% endif %}
@@ -58,53 +59,64 @@
         {% if current_page < total_page %}
             <a href="?type={{ type }}&page={{ current_page + 1 }}">下一頁</a>
         {% endif %}
-    </section>
-    <!-- register modal -->
-    <div class="mask-reg-modal" id="maskRegModal">
-        <div class="reg-form" id="regForm">
-            <h1 class="reg-title">帳號註册</h1>
-            <input type="text" class="user-input" placeholder="請輸入您的Email">
-            <div class="validate-notice"></div>
-            <input type="text" class="user-input" placeholder="請輸入您的密碼">
-            <div class="validate-notice"></div>
-            <input type="text" class="user-input" placeholder="再次輸入您的密碼">
-            <div class="validate-notice"></div>
-            <div class="validate flex-r">
-                <input type="text" class="email-code" placeholder="請輸入您的郵箱驗證碼">
-                <button class="send-code" id="sendCode">發送</button>
-            </div>
-            <div class="validate-notice"></div>
-            <a href="javascript:;" class="reg-btn" id="regBtn">立即註冊</a>
-            <a href="javascript:;" class="back-login" id="backLogin">帳號登入</a>
-            <!-- close -->
-            <span id="regClose" class="reg-close">×</span>
+    {% endif %}
+
+    {% if is_search %}
+        {% if spage != 1 %}
+            <a href="?keyword={{ keyword }}&spage={{ spage - 1 }}">上一頁</a>
+        {% endif %}
+        <div class="paging">{{ spage }} / {{ search_total_page }}</div>
+        {% if spage < search_total_page %}
+            <a href="?keyword={{ keyword }}&spage={{ spage + 1 }}">下一頁</a>
+        {% endif %}
+    {% endif %}
+</section>
+<!-- register modal -->
+<div class="mask-reg-modal" id="maskRegModal">
+    <div class="reg-form" id="regForm">
+        <h1 class="reg-title">帳號註册</h1>
+        <input type="text" class="user-input" placeholder="請輸入您的Email">
+        <div class="validate-notice"></div>
+        <input type="text" class="user-input" placeholder="請輸入您的密碼">
+        <div class="validate-notice"></div>
+        <input type="text" class="user-input" placeholder="再次輸入您的密碼">
+        <div class="validate-notice"></div>
+        <div class="validate flex-r">
+            <input type="text" class="email-code" placeholder="請輸入您的郵箱驗證碼">
+            <button class="send-code" id="sendCode">發送</button>
         </div>
+        <div class="validate-notice"></div>
+        <a href="javascript:;" class="reg-btn" id="regBtn">立即註冊</a>
+        <a href="javascript:;" class="back-login" id="backLogin">帳號登入</a>
+        <!-- close -->
+        <span id="regClose" class="reg-close">×</span>
     </div>
-    <!-- login modal -->
-    <div class="mask-login-modal" id="maskLoginModal">
-        <div class="reg-form" id="loginForm">
-            <h1 class="reg-title">帳號登錄</h1>
-            <input type="text" class="user-input" placeholder="請輸入您的Email">
-            <div class="validate-notice"></div>
-            <input type="text" class="user-input" placeholder="請輸入您的密碼">
-            <div class="validate-notice"></div>
-            <!-- <input type="text" class="user-input" placeholder="再次輸入您的密碼"> -->
-            <div class="validate flex-r">
-                <div class="val-code" id="valCode">6688</div>
-                <input type="text" class="email-code" placeholder="請輸入圖片驗證碼">
-            </div>
-            <div class="validate-notice"></div>
-            <div class="login-help flex-r">
-                <label>
-                    <input type="checkbox" class="check" id="check7">7天免登錄
-                </label>
-                <span>忘記密碼</span>
-            </div>
-            <a href="javascript:;" class="login-btn" id="doreg">登錄</a>
-            <a href="javascript:;" class="back-reg" id="backReg">立即註冊</a>
-            <!-- close -->
-            <span id="loginClose" class="reg-close">×</span>
+</div>
+<!-- login modal -->
+<div class="mask-login-modal" id="maskLoginModal">
+    <div class="reg-form" id="loginForm">
+        <h1 class="reg-title">帳號登錄</h1>
+        <input type="text" class="user-input" placeholder="請輸入您的Email">
+        <div class="validate-notice"></div>
+        <input type="text" class="user-input" placeholder="請輸入您的密碼">
+        <div class="validate-notice"></div>
+        <!-- <input type="text" class="user-input" placeholder="再次輸入您的密碼"> -->
+        <div class="validate flex-r">
+            <div class="val-code" id="valCode">6688</div>
+            <input type="text" class="email-code" placeholder="請輸入圖片驗證碼">
         </div>
+        <div class="validate-notice"></div>
+        <div class="login-help flex-r">
+            <label>
+                <input type="checkbox" class="check" id="check7">7天免登錄
+            </label>
+            <span>忘記密碼</span>
+        </div>
+        <a href="javascript:;" class="login-btn" id="doreg">登錄</a>
+        <a href="javascript:;" class="back-reg" id="backReg">立即註冊</a>
+        <!-- close -->
+        <span id="loginClose" class="reg-close">×</span>
     </div>
+</div>
 </body>
 </html>

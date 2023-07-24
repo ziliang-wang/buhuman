@@ -40,13 +40,23 @@ label_types = {
 @index.route('/')
 def home():
     page = request.args.get('page', None)
+    spage = request.args.get('spage', None)
+
     if not page:
         page = 1
+
+    if not spage:
+        spage = 1
 
     try:
         page = int(page)
     except Exception as e:
         page = 1
+
+    try:
+        spage = int(spage)
+    except Exception as e:
+        spage = 1
 
     article_type = request.args.get('type', None)
 
@@ -55,11 +65,26 @@ def home():
 
     article = Article()
 
+    keyword = request.args.get('keyword', '')
+    is_search = False
+
+    if keyword:
+        db_result = article.search_article(spage, keyword)
+        if db_result:
+            is_search = True
+    else:
+        is_search = False
+        db_result = article.find_article(page, article_type)
+
     total_page = article.calc_total_page(article_type)
     if page > total_page:
         page = 1
 
-    db_result = article.find_article(page, article_type)
+    search_total_page = article.calc_search_total_page(keyword)
+    if spage > search_total_page:
+        spage = 1
+
+    # db_result = article.find_article(page, article_type)
 
     for article, nickname in db_result:
         # article label name
@@ -84,5 +109,9 @@ def home():
         total_page=total_page,
         current_page=page,
         label_types=label_types,
-        type=article_type
+        type=article_type,
+        search_total_page=search_total_page,
+        is_search=is_search,
+        spage=spage,
+        keyword=keyword
     )
