@@ -1,76 +1,77 @@
 <aside class="left-menu">
     <ul id="leftMenuList">
-        <li>
-            <a class="selected" href="javascript:;">
-                推薦
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                自動化測試
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                Python開發
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                Java開發
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                功能測試
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                性能測試
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                幽默段子
-            </a>
-        </li>
-        <!--  -->
-        <li>
-            <a href="javascript:;">
-                推薦
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                自動化測試
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                Python開發
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                Java開發
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                功能測試
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                性能測試
-            </a>
-        </li>
-        <li>
-            <a href="javascript:;">
-                幽默段子
-            </a>
-        </li>
-
+        {% for label_name, label_value in label_types.items() %}
+            <li>
+                <a href="?type={{ label_name }}&page=1" class="{{ label_value.selected }}">
+                    {{ label_value.name }}
+                </a>
+            </li>
+        {% endfor %}
+<!--        <li>-->
+<!--            <a href="javascript:;">-->
+<!--                自動化測試-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="javascript:;">-->
+<!--                Python開發-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="javascript:;">-->
+<!--                Java開發-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="javascript:;">-->
+<!--                功能測試-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="javascript:;">-->
+<!--                性能測試-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="javascript:;">-->
+<!--                幽默段子-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        &lt;!&ndash;  &ndash;&gt;-->
+<!--        <li>-->
+<!--            <a href="javascript:;">-->
+<!--                推薦-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="javascript:;">-->
+<!--                自動化測試-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="javascript:;">-->
+<!--                Python開發-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="javascript:;">-->
+<!--                Java開發-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="javascript:;">-->
+<!--                功能測試-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="javascript:;">-->
+<!--                性能測試-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="javascript:;">-->
+<!--                幽默段子-->
+<!--            </a>-->
+<!--        </li>-->
     </ul>
 </aside>

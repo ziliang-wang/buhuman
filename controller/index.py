@@ -12,27 +12,27 @@ label_types = {
     },
     'auto_test': {
         'name': '自動化測試',
-        'selected': 'selected'
+        'selected': 'no-selected'
     },
     'python': {
         'name': 'Python開發',
-        'selected': 'selected'
+        'selected': 'no-selected'
     },
     'java': {
         'name': 'java開發',
-        'selected': 'selected'
+        'selected': 'no-selected'
     },
-    'func_test': {
+    'function_test': {
         'name': '功能測試',
-        'selected': 'selected'
+        'selected': 'no-selected'
     },
     'perf_test': {
         'name': '性能測試',
-        'selected': 'selected'
+        'selected': 'no-selected'
     },
     'funny': {
         'name': '幽默段子',
-        'selected': 'selected'
+        'selected': 'no-selected'
     },
 }
 
@@ -55,7 +55,7 @@ def home():
 
     article = Article()
 
-    total_page = article.calc_total_page()
+    total_page = article.calc_total_page(article_type)
     if page > total_page:
         page = 1
 
@@ -71,4 +71,18 @@ def home():
         # tag formatter
         article.article_tag = article.article_tag.replace(',', ' · ')
 
-    return render_template('index.html', result=db_result, total_page=total_page, current_page=page)
+    # left menu category
+    for k, v in label_types.items():
+        if article_type == k:
+            v['selected'] = 'selected'
+        else:
+            v['selected'] = 'no-selected'
+
+    return render_template(
+        'index.html',
+        result=db_result,
+        total_page=total_page,
+        current_page=page,
+        label_types=label_types,
+        type=article_type
+    )

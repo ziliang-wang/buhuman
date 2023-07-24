@@ -10,13 +10,23 @@ engine, db_session, Base = db_connect()
 class Article(Base):
     __table__ = Table('article', Base.metadata, autoload_with=engine)
 
-    def calc_total_page(self):
-        total_rows = db_session.query(Article, User.nickname).join(
-            User, User.uid == Article.uid
-        ).filter(
-            Article.drafted == 1,
-            Article.is_valid == 1).all()
-        total_page = len(total_rows) // config[env].page_count
+    def calc_total_page(self, article_type):
+
+        if article_type == 'recommend':
+            total_rows = db_session.query(Article, User.nickname).join(
+                User, User.uid == Article.uid
+            ).filter(
+                Article.drafted == 1,
+                Article.is_valid == 1).all()
+            total_page = len(total_rows) // config[env].page_count
+        else:
+            total_rows = db_session.query(Article, User.nickname).join(
+                User, User.uid == Article.uid
+            ).filter(
+                Article.label_name == article_type,
+                Article.drafted == 1,
+                Article.is_valid == 1).all()
+            total_page = len(total_rows) // config[env].page_count
 
         return total_page + 1
 
