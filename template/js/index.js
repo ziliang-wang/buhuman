@@ -38,7 +38,14 @@ window.onload = () => {
 
     const $regPwdErrMsg = document.getElementById('regPwdErrMsg');
 
-    const $regCodeErrMsg = document.getElementById('regCodeErrMsg')
+    const $regCode = document.getElementById('regCode');
+
+    const $regCodeErrMsg = document.getElementById('regCodeErrMsg');
+
+    const passwdReg = /.{6}/;
+
+    const regCodeReg = /^[0-9a-zA-Z]{6}$/;
+
 
     $imageCode.onclick = function (e) {
         this.src = '/vcode?' + Math.random();
@@ -46,6 +53,7 @@ window.onload = () => {
 
     $searchBtn.onclick = () => {
         const keyword = $search.value.trim();
+        if (keyword === '') return false;
         location.href = `?keyword=${keyword}`;
     };
 
@@ -107,6 +115,7 @@ window.onload = () => {
         const targetEmail = $regEmail.value.trim()
         const firstPassword = $regPassword.value.trim()
         const secondPassword = $regRePassword.value.trim()
+        const regCode = $regCode.value.trim()
 
         $regCodeErrMsg.innerHTML = '';
 
@@ -120,6 +129,14 @@ window.onload = () => {
             $regEmailErrMsg.innerHTML = '';
         }
 
+        if (!passwdReg.test(firstPassword)) {
+            $regPwdErrMsg.innerHTML = '密碼至少要6位以上喔';
+            $regPassword.focus()
+            return false;
+        } else {
+            $regPwdErrMsg.innerHTML = '';
+        }
+
         if (firstPassword !== secondPassword) {
             $regPwdErrMsg.innerHTML = '兩次數入的密碼不一致'
             $regPassword.focus()
@@ -128,18 +145,27 @@ window.onload = () => {
             $regEmailErrMsg.innerHTML = ''
         }
 
+        // if (!regCodeReg.test(regCode)) {
+        //     $regCodeErrMsg.innerHTML = '請輸入正確的驗證碼';
+        //     $regCode.focus();
+        //     return false;
+        // } else {
+        //     $regCodeErrMsg.innerHTML = '';
+        // }
+
         axios.post('/ecode', {
             email: targetEmail
         }).then(res => {
-            console.log(res.data)
             if (res.data.status !== 1000) {
                 $regCodeErrMsg.innerHTML = '獲取驗證碼失敗，請重新獲取';
+                this.innerText = `重新獲取`;
+                this.disabled = false;
+                count = 5;
+                clearInterval(timer);
             } else {
                 $regCodeErrMsg.innerHTML = '';
             }
-        }).catch(err => {
-            console.log(err);
-        });
+        })
 
 
         this.disabled = true;
@@ -148,7 +174,7 @@ window.onload = () => {
         timer = setInterval(() => {
             count -= 1;
             this.innerText = `重新獲取 (${count})`;
-            if (count == 0) {
+            if (count === 0) {
                 this.innerText = `重新獲取`;
                 this.disabled = false;
                 count = 5;
