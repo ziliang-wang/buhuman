@@ -391,6 +391,7 @@
     border-radius: 8px;
     width: 28%;
     cursor: pointer;
+    letter-spacing: .5px;
 }
 
 .mask-reg-modal .reg-form .reg-btn,
@@ -415,6 +416,7 @@
 .mask-reg-modal .reg-form .validate-notice {
     height: 20px;
     font-size: 14px;
+    color: #ef1300;
 }
 /* login */
 .mask-login-modal .reg-form {
@@ -526,6 +528,7 @@
 .mask-login-modal .reg-form .validate-notice {
     height: 20px;
     font-size: 14px;
+    color: #ef1300;
 }
 
 .mask-login-modal .reg-form .login-help {

@@ -28,7 +28,19 @@ window.onload = () => {
 
     const $imageCode = document.getElementById('imageCode');
 
-    $imageCode.onclick = function(e) {
+    const $regEmail = document.getElementById('regEmail')
+
+    const $regPassword = document.getElementById('regPassword')
+
+    const $regRePassword = document.getElementById('regRePassword')
+
+    const $regEmailErrMsg = document.getElementById('regEmailErrMsg');
+
+    const $regPwdErrMsg = document.getElementById('regPwdErrMsg');
+
+    const $regCodeErrMsg = document.getElementById('regCodeErrMsg')
+
+    $imageCode.onclick = function (e) {
         this.src = '/vcode?' + Math.random();
     };
 
@@ -40,10 +52,12 @@ window.onload = () => {
     $register.onclick = (e) => {
         e.stopPropagation();
         $maskRegModal.style.display = 'block';
-        $sendCode.innerText = '發送';
+        $sendCode.innerText = '獲取驗證碼';
         clearInterval(timer);
         count = 60;
         $sendCode.disabled = false;
+        $regEmailErrMsg.innerHTML = '';
+        $regPwdErrMsg.innerHTML = ''
     };
 
     $regForm.onclick = (e) => {
@@ -87,17 +101,55 @@ window.onload = () => {
     };
 
     let timer;
-    let count = 60;
+    // let count = 5;
 
     $sendCode.onclick = function () {
+        const targetEmail = $regEmail.value.trim()
+        const firstPassword = $regPassword.value.trim()
+        const secondPassword = $regRePassword.value.trim()
+
+        $regCodeErrMsg.innerHTML = '';
+
+
+        if (!targetEmail.match('.+@.+\..+')) {
+            // alert('Email格式錯誤');
+            $regEmailErrMsg.innerHTML = 'Email格式錯誤';
+            $regEmail.focus()
+            return false;
+        } else {
+            $regEmailErrMsg.innerHTML = '';
+        }
+
+        if (firstPassword !== secondPassword) {
+            $regPwdErrMsg.innerHTML = '兩次數入的密碼不一致'
+            $regPassword.focus()
+            return false;
+        } else {
+            $regEmailErrMsg.innerHTML = ''
+        }
+
+        axios.post('/ecode', {
+            email: targetEmail
+        }).then(res => {
+            console.log(res.data)
+            if (res.data.status !== 1000) {
+                $regCodeErrMsg.innerHTML = '獲取驗證碼失敗，請重新獲取';
+            } else {
+                $regCodeErrMsg.innerHTML = '';
+            }
+        }).catch(err => {
+            console.log(err);
+        });
+
+
         this.disabled = true;
-        // count = 59;
-        this.innerText = `重新發送 (${count})`;
+        let count = 5;
+        this.innerText = `重新獲取 (${count})`;
         timer = setInterval(() => {
             count -= 1;
-            this.innerText = `重新發送 (${count})`;
+            this.innerText = `重新獲取 (${count})`;
             if (count == 0) {
-                this.innerText = `重新發送`;
+                this.innerText = `重新獲取`;
                 this.disabled = false;
                 count = 5;
                 clearInterval(timer);

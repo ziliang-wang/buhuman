@@ -1,3 +1,4 @@
+import json
 import re
 from flask import Blueprint, make_response, session, request
 from common.email_utils import gen_email_code, send_email
@@ -20,7 +21,8 @@ def vcode():
 
 @user.route('/ecode', methods=['POST'])
 def email_code():
-    email = request.form.get('email')
+    # email = request.form.get('email')
+    email = json.loads(request.data).get('email')
     if not re.match('.+@.+\..+', email):
         return UserMessage.other('無效的Email')
     email_code = gen_email_code()
