@@ -26,6 +26,11 @@ window.onload = () => {
 
     const $writeArticle = document.getElementById('writeArticle');
 
+    const $imageCode = document.getElementById('imageCode');
+
+    $imageCode.onclick = function(e) {
+        this.src = '/vcode?' + Math.random();
+    };
 
     $searchBtn.onclick = () => {
         const keyword = $search.value.trim();
@@ -55,6 +60,7 @@ window.onload = () => {
     $login.onclick = (e) => {
         e.stopPropagation();
         $maskLoginModal.style.display = 'block';
+        $imageCode.src = '/vcode?' + Math.random();
     };
 
     $loginForm.onclick = (e) => {
