@@ -43,7 +43,7 @@ window.onload = () => {
     const $regCodeErrMsg = document.getElementById('regCodeErrMsg');
     const $regBtn = document.getElementById('regBtn');
     // 註冊/登入表單 正則表達式
-    const emailReg = /^\w{2,}\@\w{2,}\.[a-z]{2,4}(\.[a-z]{2,4})?$/;
+    const emailReg = /^\w{2,}\@\w{2,}\.[a-zA-Z]{2,4}(\.[a-zA-Z]{2,4})?$/;
     const passwdReg = /^\w{6,}/;
     const regCodeReg = /^[0-9a-zA-Z]{6}$/;
     // flags
@@ -228,6 +228,18 @@ window.onload = () => {
         console.log(regPassword);
         console.log(regCode);
         // axios
+        axios.post('/reg', {
+            username: regEmail.toLowerCase(),
+            password: regPassword,
+            ecode: regCode.toLowerCase()
+        }).then(res => {
+            console.log(res.data);
+            if (res.data.data === 'exist') {
+                $regEmailErrMsg.innerHTML = '此帳號已存在';
+            } else {
+                $regEmailErrMsg.innerHTML = '';
+            }
+        })
     };
 
     $sendCode.onclick = function () {
@@ -270,7 +282,7 @@ window.onload = () => {
         }
 
         axios.post('/ecode', {
-            email: regEmail
+            email: regEmail.toLowerCase()
         }).then(res => {
             if (res.data.status !== 1000) {
                 $regCodeErrMsg.innerHTML = '獲取驗證碼失敗，請重新獲取';

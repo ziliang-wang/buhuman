@@ -1,9 +1,11 @@
+import hashlib
 import json
 import re
 from flask import Blueprint, make_response, session, request
 from common.email_utils import gen_email_code, send_email
 from common.response_message import UserMessage
 from common.utils import ImageCode
+from model.user import User
 
 user = Blueprint('user', __name__)
 
@@ -15,7 +17,7 @@ def vcode():
     response.headers['Content-Type'] = 'image/jpeg'
     # 存起來，暫存到session里
     session['vcode'] = code.lower()
-    print(code.lower())
+    # print('圖片驗證碼', code.lower())
     return response
 
 
@@ -35,5 +37,43 @@ def email_code():
         return UserMessage.success('Email驗證碼發送成功')
     except:
         return UserMessage.fail('Email驗證碼發送失敗')
+
+
+@user.route('/reg', methods=['POST'])
+def register():
+    request_data = json.loads(request.data)
+    username = request_data.get('username')
+    password = request_data.get('password')
+    ecode = request_data.get('ecode')
+    # 數據驗證
+    if ecode != session.get('ecode'):
+        print(ecode, session.get('ecode'))
+        return UserMessage.fail('Email驗證碼錯誤')
+
+    # username / password
+    emailReg = '^\w{2,}\@\w{2,}\.[a-z]{2,4}(\.[a-z]{2,4})?$'
+    if not re.match(emailReg, username):
+        return UserMessage.other('無效的Email')
+
+    pwdReg = '^\w{6,}'
+    if not re.match(pwdReg, password):
+        return UserMessage.fail('密碼不合法')
+
+    # username是否已存在
+    user = User()
+    user_find_result = user.find_by_username(username)
+    # print('user:', user_result)
+    if user_find_result:
+        return UserMessage.fail('exist')
+
+    # 註冊功能
+    password = hashlib.md5(password.encode()).hexdigest()
+    result = user.do_register(username, password)
+    return UserMessage.success('帳號註冊成功')
+
+
+
+
+
 
 
