@@ -178,12 +178,55 @@ window.onload = () => {
     $regBtn.onclick = () => {
         const regEmail = $regEmail.value;
         const regPassword = $regPassword.value.trim();
+        const regRePassword = $regRePassword.value.trim();
         const regCode = $regCode.value;
 
+        if (!emailReg.test(regEmail)) {
+            $regEmailErrMsg.innerHTML = 'Email格式錯誤';
+            // $regEmail.focus()
+            isRegEmail = false;
+            return false;
+        } else {
+            $regEmailErrMsg.innerHTML = '';
+            isRegEmail = true;
+        }
+
+        if (!passwdReg.test(regPassword)) {
+            $regPwdErrMsg.innerHTML = '密碼必須為至少6位的英文字母和數字';
+            // $regPassword.focus()
+            isRegPwd = false;
+            return false;
+        } else {
+            $regPwdErrMsg.innerHTML = '';
+            isRegPwd = true;
+        }
+
+        if (regPassword !== regRePassword) {
+            $regPwdErrMsg.innerHTML = '兩次數入的密碼不一致';
+            // $regPassword.focus()
+            isRegRePwd = false;
+            return false;
+        } else {
+            $regEmailErrMsg.innerHTML = '';
+            isRegRePwd = true;
+        }
+
+        if (!regCodeReg.test(regCode)) {
+            $regCodeErrMsg.innerHTML = '請輸入正確的Email驗證碼';
+            // $regCode.focus();
+            isRegCode = false;
+            return false;
+        } else {
+            $regCodeErrMsg.innerHTML = '';
+            isRegCode = true;
+        }
+
         if (!isRegEmail || !isRegPwd || !isRegRePwd || !isRegCode) {
-            // alert('資料缺失');
             return false;
         }
+        console.log(regEmail);
+        console.log(regPassword);
+        console.log(regCode);
         // axios
     };
 
