@@ -23,10 +23,11 @@ def vcode():
 def email_code():
     # email = request.form.get('email')
     email = json.loads(request.data).get('email')
-    if not re.match('.+@.+\..+', email):
+    emailReg = '^\w{2,}\@\w{2,}\.[a-z]{2,4}(\.[a-z]{2,4})?$'
+    if not re.match(emailReg, email):
         return UserMessage.other('無效的Email')
     email_code = gen_email_code()
-    print(email_code)
+    print('ecode:', email_code)
     # 發送郵件
     try:
         send_email(email, email_code)

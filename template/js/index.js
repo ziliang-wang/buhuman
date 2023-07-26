@@ -41,11 +41,16 @@ window.onload = () => {
     const $regCode = document.getElementById('regCode');
 
     const $regCodeErrMsg = document.getElementById('regCodeErrMsg');
-
-    const passwdReg = /.{6}/;
-
+    const $regBtn = document.getElementById('regBtn');
+    // 註冊/登入表單 正則表達式
+    const emailReg = /^\w{2,}\@\w{2,}\.[a-z]{2,4}(\.[a-z]{2,4})?$/;
+    const passwdReg = /^\w{6,}/;
     const regCodeReg = /^[0-9a-zA-Z]{6}$/;
-
+    // flags
+    let isRegEmail = false;
+    let isRegPwd = false;
+    let isRegRePwd = false;
+    let isRegCode = false;
 
     $imageCode.onclick = function (e) {
         this.src = '/vcode?' + Math.random();
@@ -60,12 +65,18 @@ window.onload = () => {
     $register.onclick = (e) => {
         e.stopPropagation();
         $maskRegModal.style.display = 'block';
+        // isRegEmail = false;
+        // isRegPwd = false;
+        // isRegRePwd = false;
+        // isRegCode = false;
+        $regEmail.focus();
         $sendCode.innerText = '獲取驗證碼';
         clearInterval(timer);
-        count = 60;
+        // count = 60;
         $sendCode.disabled = false;
         $regEmailErrMsg.innerHTML = '';
-        $regPwdErrMsg.innerHTML = ''
+        $regPwdErrMsg.innerHTML = '';
+        $regCodeErrMsg.innerHTML = '';
     };
 
     $regForm.onclick = (e) => {
@@ -111,50 +122,112 @@ window.onload = () => {
     let timer;
     // let count = 5;
 
+    $regEmail.onblur = function (){
+        const regEmail = this.value;
+        if (!emailReg.test(regEmail)) {
+            $regEmailErrMsg.innerHTML = 'Email格式錯誤';
+            // $regEmail.focus()
+            isRegEmail = false;
+            return false;
+        } else {
+            $regEmailErrMsg.innerHTML = '';
+            isRegEmail = true;
+        }
+    };
+
+    $regPassword.onblur = function () {
+        const firstPassword = this.value.trim();
+        if (!passwdReg.test(firstPassword)) {
+            $regPwdErrMsg.innerHTML = '密碼必須為至少6位的英文字母和數字';
+            // $regPassword.focus()
+            isRegPwd = false;
+            return false;
+        } else {
+            $regPwdErrMsg.innerHTML = '';
+            isRegPwd = true;
+        }
+    };
+
+    $regRePassword.onblur = function () {
+        const firstPassword = $regPassword.value.trim();
+        const secondPassword = this.value.trim();
+        if (firstPassword !== secondPassword) {
+            $regPwdErrMsg.innerHTML = '兩次數入的密碼不一致';
+            // $regPassword.focus()
+            isRegRePwd = false;
+            return false;
+        } else {
+            $regEmailErrMsg.innerHTML = '';
+            isRegRePwd = true;
+        }
+    };
+
+    $regCode.onblur = function () {
+        const regCode = this.value;
+        if (!regCodeReg.test(regCode)) {
+            $regCodeErrMsg.innerHTML = '請輸入正確的Email驗證碼';
+            // $regCode.focus();
+            isRegCode = false;
+            return false;
+        } else {
+            $regCodeErrMsg.innerHTML = '';
+            isRegCode = true;
+        }
+    };
+    // do 註冊
+    $regBtn.onclick = () => {
+        const regEmail = $regEmail.value;
+        const regPassword = $regPassword.value.trim();
+        const regCode = $regCode.value;
+
+        if (!isRegEmail || !isRegPwd || !isRegRePwd || !isRegCode) {
+            // alert('資料缺失');
+            return false;
+        }
+        // axios
+    };
+
     $sendCode.onclick = function () {
-        const targetEmail = $regEmail.value.trim()
-        const firstPassword = $regPassword.value.trim()
-        const secondPassword = $regRePassword.value.trim()
-        const regCode = $regCode.value.trim()
+        const regEmail = $regEmail.value.trim();
+        const firstPassword = $regPassword.value;
+        const secondPassword = $regRePassword.value.trim();
+        // const regCode = $regCode.value.trim()
 
         $regCodeErrMsg.innerHTML = '';
 
 
-        if (!targetEmail.match('.+@.+\..+')) {
-            // alert('Email格式錯誤');
+        if (!emailReg.test(regEmail)) {
             $regEmailErrMsg.innerHTML = 'Email格式錯誤';
-            $regEmail.focus()
+            $regEmail.focus();
+            isRegEmail = false;
             return false;
         } else {
             $regEmailErrMsg.innerHTML = '';
+            isRegEmail = true;
         }
 
         if (!passwdReg.test(firstPassword)) {
-            $regPwdErrMsg.innerHTML = '密碼至少要6位以上喔';
-            $regPassword.focus()
+            $regPwdErrMsg.innerHTML = '密碼必須為至少6位的英文字母和數字';
+            $regPassword.focus();
+            isRegPwd = false;
             return false;
         } else {
             $regPwdErrMsg.innerHTML = '';
+            isRegPwd = true;
         }
 
         if (firstPassword !== secondPassword) {
             $regPwdErrMsg.innerHTML = '兩次數入的密碼不一致'
-            $regPassword.focus()
+            $regPassword.focus();
+            isRegRePwd = false;
             return false;
         } else {
-            $regEmailErrMsg.innerHTML = ''
+            $regEmailErrMsg.innerHTML = '';
+            isRegRePwd = true;
         }
 
-        // if (!regCodeReg.test(regCode)) {
-        //     $regCodeErrMsg.innerHTML = '請輸入正確的驗證碼';
-        //     $regCode.focus();
-        //     return false;
-        // } else {
-        //     $regCodeErrMsg.innerHTML = '';
-        // }
-
         axios.post('/ecode', {
-            email: targetEmail
+            email: regEmail
         }).then(res => {
             if (res.data.status !== 1000) {
                 $regCodeErrMsg.innerHTML = '獲取驗證碼失敗，請重新獲取';
@@ -164,6 +237,7 @@ window.onload = () => {
                 clearInterval(timer);
             } else {
                 $regCodeErrMsg.innerHTML = '';
+                // console.log(res.data);
             }
         })
 
@@ -191,6 +265,9 @@ window.onload = () => {
     $backReg.onclick = () => {
         $maskLoginModal.style.display = 'none';
         $maskRegModal.style.display = 'block';
+        $regEmailErrMsg.innerHTML = '';
+        $regPwdErrMsg.innerHTML = '';
+        $regCodeErrMsg.innerHTML = '';
     };
 
     $writeArticle.onclick = () => {
