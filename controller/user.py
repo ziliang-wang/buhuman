@@ -36,7 +36,7 @@ def email_code():
         session['ecode'] = email_code.lower()
         return UserMessage.success('Email驗證碼發送成功')
     except:
-        return UserMessage.fail('Email驗證碼發送失敗')
+        return UserMessage.fail('ecodefail')
 
 
 @user.route('/reg', methods=['POST'])
@@ -48,7 +48,7 @@ def register():
     # 數據驗證
     if ecode != session.get('ecode'):
         print(ecode, session.get('ecode'))
-        return UserMessage.fail('Email驗證碼錯誤')
+        return UserMessage.fail('ecodefail')
 
     # username / password
     emailReg = '^\w{2,}\@\w{2,}\.[a-z]{2,4}(\.[a-z]{2,4})?$'
@@ -68,10 +68,29 @@ def register():
 
     # 註冊功能
     password = hashlib.md5(password.encode()).hexdigest()
-    result = user.do_register(username, password)
-    return UserMessage.success('added')
+    try:
+        user.do_register(username, password)
+        return UserMessage.success('added')
+    except:
+        return UserMessage.fail('fail')
 
 
+@user.route('/chkuser', methods=['POST'])
+def chkuser():
+    request_data = json.loads(request.data)
+    username = request_data.get('username')
+    # username
+    emailReg = '^\w{2,}\@\w{2,}\.[a-z]{2,4}(\.[a-z]{2,4})?$'
+    if not re.match(emailReg, username):
+        return UserMessage.other('無效的Email')
+
+    # username是否已存在
+    user = User()
+    user_find_result = user.find_by_username(username)
+    # print('user:', user_result)
+    if user_find_result:
+        return UserMessage.fail('exist')
+    return UserMessage.success('ok')
 
 
 

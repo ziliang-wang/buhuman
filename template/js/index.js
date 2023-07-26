@@ -122,7 +122,7 @@ window.onload = () => {
     let timer;
     // let count = 5;
 
-    $regEmail.onblur = function (){
+    $regEmail.onblur = function () {
         const regEmail = this.value;
         if (!emailReg.test(regEmail)) {
             $regEmailErrMsg.innerHTML = 'Email格式錯誤';
@@ -132,6 +132,16 @@ window.onload = () => {
         } else {
             $regEmailErrMsg.innerHTML = '';
             isRegEmail = true;
+            axios.post('/chkuser', {
+                username: regEmail.toLowerCase()
+            }).then(res => {
+                if (res.data.data === 'exist') {
+                    $regEmailErrMsg.innerHTML = '此帳號已存在';
+                    isRegEmail = false;
+                } else {
+                    isRegEmail = true;
+                }
+            })
         }
     };
 
@@ -181,14 +191,17 @@ window.onload = () => {
         const regRePassword = $regRePassword.value.trim();
         const regCode = $regCode.value;
 
-        if (!emailReg.test(regEmail)) {
-            $regEmailErrMsg.innerHTML = 'Email格式錯誤';
-            // $regEmail.focus()
-            isRegEmail = false;
+        // if (!emailReg.test(regEmail)) {
+        //     $regEmailErrMsg.innerHTML = 'Email格式錯誤';
+        //     // $regEmail.focus()
+        //     isRegEmail = false;
+        //     return false;
+        // } else {
+        //     $regEmailErrMsg.innerHTML = '';
+        //     isRegEmail = true;
+        // }
+        if (!isRegEmail) {
             return false;
-        } else {
-            $regEmailErrMsg.innerHTML = '';
-            isRegEmail = true;
         }
 
         if (!passwdReg.test(regPassword)) {
@@ -234,7 +247,14 @@ window.onload = () => {
             ecode: regCode.toLowerCase()
         }).then(res => {
             console.log(res.data);
+
+            if (res.data.data === 'ecodefail') {
+                $regCodeErrMsg.style.color = '#ef1300';
+                $regCodeErrMsg.innerHTML = '驗證碼錯誤，請重新獲取';
+            }
+
             if (res.data.data === 'exist') {
+                $regCodeErrMsg.style.color = '#ef1300';
                 $regEmailErrMsg.innerHTML = '此帳號已存在';
             } else {
                 $regEmailErrMsg.innerHTML = '';
@@ -243,8 +263,11 @@ window.onload = () => {
             if (res.data.data === 'added') {
                 $regCodeErrMsg.style.color = 'blue';
                 $regCodeErrMsg.innerHTML = '帳號註冊成功';
-            } else {
-                $regCodeErrMsg.innerHTML = '';
+            }
+
+            if (res.data.data === 'fail') {
+                $regCodeErrMsg.style.color = '#ef1300';
+                $regCodeErrMsg.innerHTML = '帳號註冊失敗';
             }
         })
     };
