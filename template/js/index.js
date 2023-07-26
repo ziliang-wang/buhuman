@@ -239,6 +239,13 @@ window.onload = () => {
             } else {
                 $regEmailErrMsg.innerHTML = '';
             }
+
+            if (res.data.data === 'added') {
+                $regCodeErrMsg.style.color = 'blue';
+                $regCodeErrMsg.innerHTML = '帳號註冊成功';
+            } else {
+                $regCodeErrMsg.innerHTML = '';
+            }
         })
     };
 

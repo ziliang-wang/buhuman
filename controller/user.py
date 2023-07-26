@@ -69,7 +69,7 @@ def register():
     # 註冊功能
     password = hashlib.md5(password.encode()).hexdigest()
     result = user.do_register(username, password)
-    return UserMessage.success('帳號註冊成功')
+    return UserMessage.success('added')
 
 
 
