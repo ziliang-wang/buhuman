@@ -6,6 +6,8 @@ from common.email_utils import gen_email_code, send_email, send_registed_email
 from common.response_message import UserMessage
 from common.utils import ImageCode
 from model.user import User
+from app.config.config import config
+from app.settings import env
 
 user = Blueprint('user', __name__)
 
@@ -97,6 +99,34 @@ def chkuser():
     if user_find_result:
         return UserMessage.fail('exist')
     return UserMessage.success('ok')
+
+
+@user.route('/login', methods=['POST'])
+def login():
+    request_data = json.loads(request.data)
+    username = request_data.get('username')
+    password = request_data.get('password')
+    vcode = request_data.get('vcode')
+    keep_days = request_data.get('keepdays')
+
+    if vcode.lower() != session.get('vcode'):
+        return UserMessage.fail('vcodeErr')
+    # 登錄功能
+    password = hashlib.md5(password.encode()).hexdigest()
+    user = User()
+    result = user.find_by_username(username)
+    if result.username == username and result.password == password:
+        # 登錄狀態管理
+        session['is_login'] = 'true'
+        session['uid'] = result.uid
+        session['username'] = username
+        session['nickname'] = result.nickname
+        session['avatar'] = config[env].user_avatar_path + result.avatar
+
+        response = make_response(UserMessage.success('loginok'))
+        # response.set_cookie('uid', result.uid, expires=str(keep_days))
+        return response
+    return UserMessage.fail('loginfail')
 
 
 

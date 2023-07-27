@@ -65,7 +65,7 @@ window.onload = () => {
     let isLoginAccount = false;
     let isLoginPwd = false;
     let isVcode = false;
-    let isKeepLogin = false;
+    let keepDays = 0;
 
     $loginAccount.onblur = function () {
         const loginAccount = this.value;
@@ -107,14 +107,14 @@ window.onload = () => {
     };
 
     $keepLogin.onclick = function () {
-        isKeepLogin = this.checked ? true : false;
-        console.log(isKeepLogin);
+        keepDays = this.checked ? 7 : 0;
+        console.log(keepDays);
     };
 
 
     $loginBtn.onclick = () => {
 
-        const loginAccount = this.value;
+        const loginAccount = $loginAccount.value;
         if (!emailReg.test(loginAccount)) {
             $loginAccountMsg.innerHTML = 'Email格式錯誤';
             // $regEmail.focus()
@@ -125,7 +125,7 @@ window.onload = () => {
             isLoginAccount = true;
         }
 
-        const loginPwd = this.value.trim();
+        const loginPwd = $loginPwd.value.trim();
         if (!passwdReg.test(loginPwd)) {
             $loginPwdMsg.innerHTML = '密碼格式錯誤';
             // this.focus();
@@ -136,7 +136,7 @@ window.onload = () => {
             isLoginPwd = true;
         }
 
-        const vcode = this.value;
+        const vcode = $vcode.value;
         if (!vcodeReg.test(vcode)) {
             $vcodeMsg.innerHTML = '請輸入圖片驗證碼';
             // $regCode.focus();
@@ -152,12 +152,26 @@ window.onload = () => {
         }
 
         data = {
-            loginAccount,
-            loginPwd,
-            vcode
+            username: loginAccount,
+            password: loginPwd,
+            vcode: vcode,
+            keepdays: keepDays
         }
+        $loginBtn.innerHTML = '登錄中.....';
         // axios
-        alert('sent');
+        axios.post('/login', data).then(res => {
+            console.log(res.data.data);
+            if (res.data.data === 'loginok') {
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
+            } else if (res.data.data === 'vcodeErr') {
+                $vcodeMsg.innerHTML = '請輸入正確的圖片驗證碼';
+            } else {
+                $loginPwdMsg.innerHTML = '帳號或密碼錯誤';
+            }
+            $loginBtn.innerHTML = '登錄';
+        });
     };
 
     $imageCode.onclick = function (e) {
@@ -440,7 +454,7 @@ window.onload = () => {
 
             } else if (res.data.data === 'sentcode') {
                 $regCodeErrMsg.style.color = 'blue';
-                $regCodeErrMsg.innerHTML = 'Email驗證碼發送成功';
+                $regCodeErrMsg.innerHTML = '驗證碼發送成功，請至您的Email收取驗證碼';
             } else {
                 $regCodeErrMsg.innerHTML = '';
                 // console.log(res.data);
