@@ -237,9 +237,9 @@ window.onload = () => {
         if (!isRegEmail || !isRegPwd || !isRegRePwd || !isRegCode) {
             return false;
         }
-        console.log(regEmail);
-        console.log(regPassword);
-        console.log(regCode);
+        // console.log(regEmail);
+        // console.log(regPassword);
+        // console.log(regCode);
         // axios
         axios.post('/reg', {
             username: regEmail.toLowerCase(),
@@ -248,17 +248,18 @@ window.onload = () => {
         }).then(res => {
             console.log(res.data);
 
-            if (res.data.data === 'ecodefail') {
-                $regCodeErrMsg.style.color = '#ef1300';
-                $regCodeErrMsg.innerHTML = '驗證碼錯誤，請重新獲取';
-            }
-
             if (res.data.data === 'exist') {
                 $regCodeErrMsg.style.color = '#ef1300';
                 $regEmailErrMsg.innerHTML = '此帳號已存在';
             } else {
                 $regEmailErrMsg.innerHTML = '';
             }
+
+            if (res.data.data === 'ecodefail') {
+                $regCodeErrMsg.style.color = '#ef1300';
+                $regCodeErrMsg.innerHTML = '驗證碼錯誤，請重新獲取';
+            }
+
 
             if (res.data.data === 'added') {
                 $regCodeErrMsg.style.color = 'blue';
@@ -315,11 +316,16 @@ window.onload = () => {
             email: regEmail.toLowerCase()
         }).then(res => {
             if (res.data.status !== 1000) {
+                $regCodeErrMsg.style.color = '#ef1300';
                 $regCodeErrMsg.innerHTML = '獲取驗證碼失敗，請重新獲取';
                 this.innerText = `重新獲取`;
                 this.disabled = false;
                 count = 5;
                 clearInterval(timer);
+
+            } else if (res.data.data === 'sentcode') {
+                $regCodeErrMsg.style.color = 'blue';
+                $regCodeErrMsg.innerHTML = 'Email驗證碼發送成功';
             } else {
                 $regCodeErrMsg.innerHTML = '';
                 // console.log(res.data);

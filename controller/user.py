@@ -2,7 +2,7 @@ import hashlib
 import json
 import re
 from flask import Blueprint, make_response, session, request
-from common.email_utils import gen_email_code, send_email
+from common.email_utils import gen_email_code, send_email, send_registed_email
 from common.response_message import UserMessage
 from common.utils import ImageCode
 from model.user import User
@@ -34,7 +34,7 @@ def email_code():
     try:
         send_email(email, email_code)
         session['ecode'] = email_code.lower()
-        return UserMessage.success('Email驗證碼發送成功')
+        return UserMessage.success('sentcode')
     except:
         return UserMessage.fail('ecodefail')
 
@@ -45,6 +45,15 @@ def register():
     username = request_data.get('username')
     password = request_data.get('password')
     ecode = request_data.get('ecode')
+
+    # username是否已存在
+    user = User()
+    user_find_result = user.find_by_username(username)
+    # print('user:', user_result)
+    if user_find_result:
+        return UserMessage.fail('exist')
+
+
     # 數據驗證
     if ecode != session.get('ecode'):
         print(ecode, session.get('ecode'))
@@ -59,17 +68,14 @@ def register():
     if not re.match(pwdReg, password):
         return UserMessage.fail('密碼不合法')
 
-    # username是否已存在
-    user = User()
-    user_find_result = user.find_by_username(username)
-    # print('user:', user_result)
-    if user_find_result:
-        return UserMessage.fail('exist')
-
     # 註冊功能
     password = hashlib.md5(password.encode()).hexdigest()
     try:
-        user.do_register(username, password)
+        new_user = user.do_register(username, password)
+        if new_user:
+            registed_username = new_user.username
+            # 發註冊成功信給registed_user
+            send_registed_email(registed_username)
         return UserMessage.success('added')
     except:
         return UserMessage.fail('fail')
