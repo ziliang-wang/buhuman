@@ -42,15 +42,123 @@ window.onload = () => {
 
     const $regCodeErrMsg = document.getElementById('regCodeErrMsg');
     const $regBtn = document.getElementById('regBtn');
+    const $loginBtn = document.getElementById('loginBtn')
+    const $loginAccount = document.getElementById('loginAccount');
+    const $loginAccountMsg = document.getElementById('loginAccountMsg');
+    const $loginPwd = document.getElementById('loginPwd');
+    const $loginPwdMsg = document.getElementById('loginPwdMsg');
+    const $vcode = document.getElementById('vcode');
+    const $vcodeMsg = document.getElementById('vcodeMsg');
+    const $keepLogin = document.getElementById('keepLogin');
+
     // 註冊/登入表單 正則表達式
     const emailReg = /^\w{2,}\@\w{2,}\.[a-zA-Z]{2,4}(\.[a-zA-Z]{2,4})?$/;
     const passwdReg = /^\w{6,}/;
     const regCodeReg = /^[0-9a-zA-Z]{6}$/;
+    const vcodeReg = /^[0-9a-zA-Z]{4}$/;
     // flags
     let isRegEmail = false;
     let isRegPwd = false;
     let isRegRePwd = false;
     let isRegCode = false;
+
+    let isLoginAccount = false;
+    let isLoginPwd = false;
+    let isVcode = false;
+    let isKeepLogin = false;
+
+    $loginAccount.onblur = function () {
+        const loginAccount = this.value;
+        if (!emailReg.test(loginAccount)) {
+            $loginAccountMsg.innerHTML = 'Email格式錯誤';
+            // $regEmail.focus()
+            isLoginAccount = false;
+            return false;
+        } else {
+            $loginAccountMsg.innerHTML = '';
+            isLoginAccount = true;
+        }
+    };
+
+    $loginPwd.onblur = function () {
+        const loginPwd = this.value.trim();
+        if (!passwdReg.test(loginPwd)) {
+            $loginPwdMsg.innerHTML = '密碼格式錯誤';
+            // this.focus();
+            isLoginPwd = false;
+            return false;
+        } else {
+            $loginPwdMsg.innerHTML = '';
+            isLoginPwd = true;
+        }
+    };
+
+    $vcode.onblur = function () {
+        const vcode = this.value;
+        if (!vcodeReg.test(vcode)) {
+            $vcodeMsg.innerHTML = '請輸入圖片驗證碼';
+            // $regCode.focus();
+            isVcode = false;
+            return false;
+        } else {
+            $vcodeMsg.innerHTML = '';
+            isVcode = true;
+        }
+    };
+
+    $keepLogin.onclick = function () {
+        isKeepLogin = this.checked ? true : false;
+        console.log(isKeepLogin);
+    };
+
+
+    $loginBtn.onclick = () => {
+
+        const loginAccount = this.value;
+        if (!emailReg.test(loginAccount)) {
+            $loginAccountMsg.innerHTML = 'Email格式錯誤';
+            // $regEmail.focus()
+            isLoginAccount = false;
+            return false;
+        } else {
+            $loginAccountMsg.innerHTML = '';
+            isLoginAccount = true;
+        }
+
+        const loginPwd = this.value.trim();
+        if (!passwdReg.test(loginPwd)) {
+            $loginPwdMsg.innerHTML = '密碼格式錯誤';
+            // this.focus();
+            isLoginPwd = false;
+            return false;
+        } else {
+            $loginPwdMsg.innerHTML = '';
+            isLoginPwd = true;
+        }
+
+        const vcode = this.value;
+        if (!vcodeReg.test(vcode)) {
+            $vcodeMsg.innerHTML = '請輸入圖片驗證碼';
+            // $regCode.focus();
+            isVcode = false;
+            return false;
+        } else {
+            $vcodeMsg.innerHTML = '';
+            isVcode = true;
+        }
+
+        if (!isLoginAccount || !isLoginPwd || !isVcode) {
+            return false;
+        }
+
+        data = {
+            loginAccount,
+            loginPwd,
+            vcode
+        }
+        // axios
+        alert('sent');
+    };
 
     $imageCode.onclick = function (e) {
         this.src = '/vcode?' + Math.random();
@@ -93,6 +201,9 @@ window.onload = () => {
     $login.onclick = (e) => {
         e.stopPropagation();
         $maskLoginModal.style.display = 'block';
+        $loginAccountMsg.innerHTML = '';
+        $loginPwdMsg.innerHTML = '';
+        $vcodeMsg.innerHTML = '';
         $imageCode.src = '/vcode?' + Math.random();
     };
 
@@ -237,6 +348,8 @@ window.onload = () => {
         if (!isRegEmail || !isRegPwd || !isRegRePwd || !isRegCode) {
             return false;
         }
+
+        $regBtn.innerHTML = '帳號註冊中.....';
         // console.log(regEmail);
         // console.log(regPassword);
         // console.log(regCode);
@@ -270,6 +383,8 @@ window.onload = () => {
                 $regCodeErrMsg.style.color = '#ef1300';
                 $regCodeErrMsg.innerHTML = '帳號註冊失敗';
             }
+
+            $regBtn.innerHTML = '立即註冊';
         })
     };
 
@@ -351,6 +466,10 @@ window.onload = () => {
     $backLogin.onclick = () => {
         $maskRegModal.style.display = 'none';
         $maskLoginModal.style.display = 'block';
+        $loginAccountMsg.innerHTML = '';
+        $loginPwdMsg.innerHTML = '';
+        $vcodeMsg.innerHTML = '';
+        $imageCode.src = '/vcode?' + Math.random();
     };
 
     $backReg.onclick = () => {

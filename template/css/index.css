@@ -407,10 +407,19 @@
     letter-spacing: 1px;
 }
 
+.mask-reg-modal .reg-form .reg-btn {
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+}
+
 .mask-reg-modal .reg-form .back-login {
     color: #6f4627;
     background-color: #fff;
     margin-top: 10px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .mask-reg-modal .reg-form .validate-notice {
@@ -513,6 +522,22 @@
     letter-spacing: 1px;
 }
 
+.mask-login-modal .reg-form .login-btn {
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: -10px;
+    border: none;
+}
+
+.mask-login-modal .reg-form .back-reg {
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+
+
 .mask-login-modal .reg-form .back-login {
     color: #6f4627;
     background-color: #fff;
@@ -525,7 +550,7 @@
     margin-top: 10px;
 }
 
-.mask-login-modal .reg-form .validate-notice {
+.mask-login-modal .reg-form .login-notice {
     height: 20px;
     font-size: 14px;
     color: #ef1300;
