@@ -1,3 +1,4 @@
+import datetime
 import hashlib
 import json
 import re
@@ -122,9 +123,9 @@ def login():
         session['username'] = username
         session['nickname'] = result.nickname
         session['avatar'] = config[env].user_avatar_path + result.avatar
-
+        expires_time = datetime.datetime.now() + datetime.timedelta(days=keep_days)
         response = make_response(UserMessage.success('loginok'))
-        # response.set_cookie('uid', result.uid, expires=str(keep_days))
+        response.set_cookie('uid', str(result.uid), expires=expires_time)
         return response
     return UserMessage.fail('loginfail')
 
