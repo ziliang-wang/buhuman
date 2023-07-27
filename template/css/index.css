@@ -111,11 +111,30 @@
     /* line-height: 75px; */
 }
 
-.header-container .header .header-right span {
+.header-container .header .header-right .account .login.nickname {
+    display: inline-block;
+    margin-left: -12px;
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+}
+
+.header-container .header .header-right .account .avatar {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.header-container .header .header-right .account .avatar img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.header-container .header .header-right .account span {
+    /*display: block;*/
     font-weight: bold;
 }
 
-.header-container .header .header-right a {
+.header-container .header .header-right .account a {
     color: #6f4627;
 }
 

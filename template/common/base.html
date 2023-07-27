@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/index.css">
     <!-- <script src="bs/js/bootstrap.min.js"></script> -->
     <script src="js/index.js"></script>
-<!--    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+    <!--    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
     <script src="js/axios.min.js"></script>
 </head>
 <body>
@@ -32,17 +32,38 @@
                 <i class="iconfont icon-Magnifier" id="searchBtn"></i>
             </div>
             <button class="write" id="writeArticle">寫文章</button>
-            <span class="login" id="login">
+            {% if session.get('is_login') == 'true' %}
+            <div class="account">
+                <span class="login nickname" id="nickname">
+                    <a href="javascript:;">
+                        {{ session.get('nickname') }}
+                    </a>
+                </span>
+                <span class="avatar">
+<!--                    <img src="images/headers/1.jpg" alt="">-->
+                    <img src="{{ session.get('avatar') }}" alt="">
+                </span>
+                <span class="register" id="logout">
+                    <a href="/logout">
+                        登出
+                    </a>
+                </span>
+            </div>
+            {% else %}
+            <div class="account">
+                <span class="login" id="login">
                     <a href="javascript:;">
                         登入
                     </a>
                 </span>
-            <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-            <span class="register" id="register">
+                <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <span class="register" id="register">
                     <a href="javascript:;">
                         注冊
                     </a>
                 </span>
+            </div>
+            {% endif %}
         </div>
     </div>
 </header>
@@ -54,23 +75,23 @@
 </section>
 <section class="pagenation flex-r">
     {% if not is_search and article_count > 10 %}
-        {% if current_page != 1 %}
-            <a href="?type={{ type }}&page={{ current_page - 1 }}">上一頁</a>
-        {% endif %}
-        <div class="paging">{{ current_page }} / {{ total_page }}</div>
-        {% if current_page < total_page %}
-            <a href="?type={{ type }}&page={{ current_page + 1 }}">下一頁</a>
-        {% endif %}
+    {% if current_page != 1 %}
+    <a href="?type={{ type }}&page={{ current_page - 1 }}">上一頁</a>
+    {% endif %}
+    <div class="paging">{{ current_page }} / {{ total_page }}</div>
+    {% if current_page < total_page %}
+    <a href="?type={{ type }}&page={{ current_page + 1 }}">下一頁</a>
+    {% endif %}
     {% endif %}
 
     {% if is_search and search_count > 10 %}
-        {% if spage != 1 %}
-            <a href="?keyword={{ keyword }}&spage={{ spage - 1 }}">上一頁</a>
-        {% endif %}
-        <div class="paging">{{ spage }} / {{ search_total_page }}</div>
-        {% if spage < search_total_page %}
-            <a href="?keyword={{ keyword }}&spage={{ spage + 1 }}">下一頁</a>
-        {% endif %}
+    {% if spage != 1 %}
+    <a href="?keyword={{ keyword }}&spage={{ spage - 1 }}">上一頁</a>
+    {% endif %}
+    <div class="paging">{{ spage }} / {{ search_total_page }}</div>
+    {% if spage < search_total_page %}
+    <a href="?keyword={{ keyword }}&spage={{ spage + 1 }}">下一頁</a>
+    {% endif %}
     {% endif %}
 </section>
 <!-- register modal -->
@@ -88,9 +109,9 @@
             <input type="text" class="email-code" placeholder="請輸入您的Email驗證碼" id="regCode">
         </div>
         <div class="validate-notice" id="regCodeErrMsg"></div>
-<!--        <a href="javascript:;" class="reg-btn" id="regBtn">立即註冊</a>-->
+        <!--        <a href="javascript:;" class="reg-btn" id="regBtn">立即註冊</a>-->
         <button class="reg-btn" id="regBtn">立即註冊</button>
-<!--        <a href="javascript:;" class="back-login" id="backLogin">已有帳號，立即登入</a>-->
+        <!--        <a href="javascript:;" class="back-login" id="backLogin">已有帳號，立即登入</a>-->
         <button class="back-login" id="backLogin">已有帳號，立即登入</button>
         <!-- close -->
         <span id="regClose" class="reg-close">×</span>
@@ -116,9 +137,9 @@
             </label>
             <span>忘記密碼</span>
         </div>
-<!--        <a href="javascript:;" class="login-btn" id="loginBtn">登錄</a>-->
+        <!--        <a href="javascript:;" class="login-btn" id="loginBtn">登錄</a>-->
         <button class="login-btn" id="loginBtn">登錄</button>
-<!--        <a href="javascript:;" class="back-reg" id="backReg">立即註冊</a>-->
+        <!--        <a href="javascript:;" class="back-reg" id="backReg">立即註冊</a>-->
         <button class="back-reg" id="backReg">沒有帳號？立即註冊</button>
         <!-- close -->
         <span id="loginClose" class="reg-close">×</span>

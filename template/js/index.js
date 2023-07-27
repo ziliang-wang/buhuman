@@ -168,9 +168,9 @@ window.onload = () => {
             } else if (res.data.data === 'vcodeErr') {
                 $vcodeMsg.innerHTML = '請輸入正確的圖片驗證碼';
             } else {
-                $loginPwdMsg.innerHTML = '帳號或密碼錯誤';
+                $loginAccountMsg.innerHTML = '帳號或密碼錯誤';
+                $loginBtn.innerHTML = '登錄';
             }
-            $loginBtn.innerHTML = '登錄';
         });
     };
 

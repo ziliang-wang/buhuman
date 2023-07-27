@@ -2,7 +2,7 @@ import datetime
 import hashlib
 import json
 import re
-from flask import Blueprint, make_response, session, request
+from flask import Blueprint, make_response, session, request, url_for
 from common.email_utils import gen_email_code, send_email, send_registed_email
 from common.response_message import UserMessage
 from common.utils import ImageCode
@@ -116,20 +116,28 @@ def login():
     password = hashlib.md5(password.encode()).hexdigest()
     user = User()
     result = user.find_by_username(username)
-    if result.username == username and result.password == password:
-        # 登錄狀態管理
-        session['is_login'] = 'true'
-        session['uid'] = result.uid
-        session['username'] = username
-        session['nickname'] = result.nickname
-        session['avatar'] = config[env].user_avatar_path + result.avatar
-        expires_time = datetime.datetime.now() + datetime.timedelta(days=keep_days)
-        response = make_response(UserMessage.success('loginok'))
-        response.set_cookie('uid', str(result.uid), expires=expires_time)
-        return response
+    if result:
+        if result.username == username and result.password == password:
+            # 登錄狀態管理
+            session['is_login'] = 'true'
+            session['uid'] = result.uid
+            session['username'] = username
+            session['nickname'] = result.nickname
+            session['avatar'] = config[env].user_avatar_path + result.avatar
+            expires_time = datetime.datetime.now() + datetime.timedelta(days=keep_days)
+            response = make_response(UserMessage.success('loginok'))
+            response.set_cookie('uid', str(result.uid), expires=expires_time)
+            return response
     return UserMessage.fail('loginfail')
 
 
+@user.route('/logout')
+def logout():
+    session.clear()
+    response = make_response('Logout....', 302)
+    response.headers['Location'] = url_for('index.home')
+    response.delete_cookie('uid')
+    return response
 
 
 
