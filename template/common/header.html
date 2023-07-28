@@ -1,0 +1,53 @@
+<header class="header-container">
+    <div class="header center-wrap">
+        <div class="header-left">
+                <span class="logo">
+                    <img src="images/logo.png" alt="logo">
+                    <!-- <img src="images/article-logo.png" alt=""> -->
+                </span>
+            <span class="logo-desc">
+                    自由分享互動社群
+                <!-- <img src="images/article-desc.png" alt=""> -->
+                </span>
+        </div>
+        <div class="header-right">
+            <div class="search-box">
+                <input id="search" type="text" placeholder="搜索感興趣的文章或知識">
+                <i class="iconfont icon-Magnifier" id="searchBtn"></i>
+            </div>
+            <button class="write" id="writeArticle">寫文章</button>
+            {% if session.get('is_login') == 'true' %}
+            <div class="account">
+                <span class="login nickname" id="nickname">
+                    <a href="javascript:;">
+                        {{ session.get('nickname') }}
+                    </a>
+                </span>
+                <span class="avatar">
+<!--                    <img src="images/headers/1.jpg" alt="">-->
+                    <img src="{{ session.get('avatar') }}" alt="">
+                </span>
+                <span class="register" id="logout">
+                    <a href="/logout">
+                        登出
+                    </a>
+                </span>
+            </div>
+            {% else %}
+            <div class="account">
+                <span class="login" id="login">
+                    <a href="javascript:;">
+                        登入
+                    </a>
+                </span>
+                <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <span class="register" id="register">
+                    <a href="javascript:;">
+                        注冊
+                    </a>
+                </span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</header>

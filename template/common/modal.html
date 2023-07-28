@@ -1,0 +1,51 @@
+<!-- register modal -->
+<div class="mask-reg-modal" id="maskRegModal">
+    <div class="reg-form" id="regForm">
+        <h1 class="reg-title">帳號註册</h1>
+        <input type="text" class="user-input" placeholder="請輸入您的Email" id="regEmail">
+        <div id="regEmailErrMsg" class="validate-notice"></div>
+        <input type="text" class="user-input" placeholder="請輸入您的密碼" id="regPassword">
+        <div id="regPwdErrMsg" class="validate-notice"></div>
+        <input type="text" class="user-input" placeholder="再次輸入您的密碼" id="regRePassword">
+        <div class="validate-notice"></div>
+        <div class="validate flex-r">
+            <button class="send-code" id="sendCode">獲取驗證碼</button>
+            <input type="text" class="email-code" placeholder="請輸入您的Email驗證碼" id="regCode">
+        </div>
+        <div class="validate-notice" id="regCodeErrMsg"></div>
+        <!--        <a href="javascript:;" class="reg-btn" id="regBtn">立即註冊</a>-->
+        <button class="reg-btn" id="regBtn">立即註冊</button>
+        <!--        <a href="javascript:;" class="back-login" id="backLogin">已有帳號，立即登入</a>-->
+        <button class="back-login" id="backLogin">已有帳號，立即登入</button>
+        <!-- close -->
+        <span id="regClose" class="reg-close">×</span>
+    </div>
+</div>
+<!-- login modal -->
+<div class="mask-login-modal" id="maskLoginModal">
+    <div class="reg-form" id="loginForm">
+        <h1 class="reg-title">帳號登錄</h1>
+        <input type="text" class="user-input" placeholder="請輸入您的Email" id="loginAccount">
+        <div class="login-notice" id="loginAccountMsg"></div>
+        <input type="text" class="user-input" placeholder="請輸入您的密碼" id="loginPwd">
+        <div class="login-notice" id="loginPwdMsg"></div>
+        <!-- <input type="text" class="user-input" placeholder="再次輸入您的密碼"> -->
+        <div class="validate flex-r">
+            <img src="/vcode" class="image-code" id="imageCode">
+            <input type="text" class="email-code" placeholder="請輸入圖片驗證碼" id="vcode">
+        </div>
+        <div class="login-notice" id="vcodeMsg"></div>
+        <div class="login-help flex-r">
+            <label>
+                <input type="checkbox" class="check" id="keepLogin">7天免登錄
+            </label>
+            <span>忘記密碼</span>
+        </div>
+        <!--        <a href="javascript:;" class="login-btn" id="loginBtn">登錄</a>-->
+        <button class="login-btn" id="loginBtn">登錄</button>
+        <!--        <a href="javascript:;" class="back-reg" id="backReg">立即註冊</a>-->
+        <button class="back-reg" id="backReg">沒有帳號？立即註冊</button>
+        <!-- close -->
+        <span id="loginClose" class="reg-close">×</span>
+    </div>
+</div>

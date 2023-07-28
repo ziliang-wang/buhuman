@@ -1,0 +1,28 @@
+.detail-container {
+    margin-top: 75px;
+}
+
+.detail-container .detail-wrap {
+    /*border: 1px solid black;*/
+}
+
+.detail-container .detail-wrap .detail-path {
+    height: 50px;
+    line-height: 50px;
+    /*border: 1px solid red;*/
+}
+
+.detail-container .detail-wrap .detail-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left {
+    width: 68%;
+    background-color: #fff;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-right {
+    width: 29%;
+    background-color: #fff;
+}

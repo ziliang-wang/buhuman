@@ -1,10 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/detail.css">
+    <script src="js/header.js"></script>
+    <script src="js/axios.min.js"></script>
 </head>
 <body>
-
+    {% include 'common/header.html' %}
+    <section class="detail-container">
+        <div class="detail-wrap center-wrap">
+            <div class="detail-path">
+                <span>首頁 > 分類 > 文章標題</span>
+            </div>
+            <div class="detail-main">
+                <div class="detail-main-left">
+                    left
+                </div>
+                <div class="detail-main-right">
+                    right
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include 'common/modal.html' %}
 </body>
 </html>
+
