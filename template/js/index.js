@@ -215,6 +215,7 @@ window.onload = () => {
     $login.onclick = (e) => {
         e.stopPropagation();
         $maskLoginModal.style.display = 'block';
+        $loginAccount.focus();
         $loginAccountMsg.innerHTML = '';
         $loginPwdMsg.innerHTML = '';
         $vcodeMsg.innerHTML = '';
