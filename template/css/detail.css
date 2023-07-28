@@ -80,6 +80,11 @@
     background-color: #f5f8ff;
     padding: 0 6px;
     border-radius: 12px;
+    margin-right: 10px;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .detail-left-info .detail-info-tag .tag-value:last-child {
+    margin-right: 0;
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-left .detail-left-info .detail-info-collection {

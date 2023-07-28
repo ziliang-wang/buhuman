@@ -19,37 +19,39 @@
         <div class="detail-wrap center-wrap">
             <div class="detail-path">
                 <span class="detail-path-title">
-                    首頁&nbsp;&nbsp;>&nbsp;&nbsp;分類&nbsp;&nbsp;>&nbsp;&nbsp;使用 AI 开发 Vue3 项目，ChatGPT 和 Copilot 能写出 90% 代码
+                    首頁&nbsp;&nbsp;>&nbsp;&nbsp;{{ article.label_name }}&nbsp;&nbsp;>&nbsp;&nbsp;{{ article.title }}
                 </span>
             </div>
             <div class="detail-main">
                 <div class="detail-main-left">
                     <div class="detail-left-title">
                         <span>
-                            使用 AI 开发 Vue3 项目，ChatGPT 和 Copilot 能写出 90% 代码
+                            {{ article.title }}
                         </span>
                     </div>
                     <div class="detail-left-info flex-r">
                         <div class="detail-info-tag">
                             <span class="tag-name">標籤:</span>
+                            {% for tag_name in tags_list %}
                             <span class="tag-value">
-                                Vue.js
+                                {{ tag_name }}
                             </span>
+                            {% endfor %}
                         </div>
                         <div class="detail-info-collection">收藏</div>
                     </div>
                     <div class="detail-content-wrapper">
-                        文章正文
+                        {{ article.article_content | safe }}
                     </div>
                 </div>
                 <div class="detail-main-right">
                     <div class="detail-right-top flex-r">
                         <div class="author-avatar">
-                            <img src="images/headers/2.jpg" alt="">
+                            <img src="{{ user.avatar }}" alt="">
                         </div>
                         <div class="author-desc">
-                            <div class="author-name">Jonas</div>
-                            <div class="author-title">獨立開發者</div>
+                            <div class="author-name">{{ user.nickname }}</div>
+                            <div class="author-title">{{ user.job }}</div>
                         </div>
                     </div>
                     <div class="detail-right-bottom">
