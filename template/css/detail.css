@@ -1,5 +1,6 @@
 .detail-container {
     margin-top: 75px;
+    background-color: #f8fafc;
 }
 
 .detail-container .detail-wrap {
@@ -9,7 +10,6 @@
 .detail-container .detail-wrap .detail-path {
     height: 50px;
     line-height: 50px;
-    font-size: 14px;
     /*border: 1px solid red;*/
     width: 36%;
     overflow: hidden;
@@ -18,7 +18,8 @@
 }
 
 .detail-container .detail-wrap .detail-path .detail-path-title {
-
+    font-size: 14px;
+    color: #1c1f21;
 }
 
 .detail-container .detail-wrap .detail-main {
@@ -33,21 +34,59 @@
 
 .detail-container .detail-wrap .detail-main .detail-main-left {
     background-color: #fff;
-    width: 68%;
+    width: 70%;
     padding: 20px;
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-right {
-    width: 29%;
+    width: 27%;
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-left .detail-left-title {
     margin-bottom: 15px;
+    font-size: 32px;
+    color: #1c1f21;
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-left .detail-left-info {
     justify-content: space-between;
     margin-bottom: 15px;
+    align-items: center;
+    line-height: 30px;
+    height: 30px;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .detail-left-info .detail-info-tag {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .detail-left-info .detail-info-tag .tag-name {
+    margin-right: 10px;
+    font-size: 12px;
+    color: #9199a1;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .detail-left-info .detail-info-tag .tag-value {
+    font-size: 12px;
+    color: #69f;
+    background-color: #f5f8ff;
+    padding: 0 6px;
+    border-radius: 12px;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .detail-left-info .detail-info-collection {
+    width: 58px;
+    height: 36px;
+    font-size: 12px;
+    /*padding: 12px 17px;*/
+    background-color: #3377ff;
+    color: #fff;
+    line-height: 36px;
+    text-align: center;
+    border-radius: 25px;
+    cursor: pointer;
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-left .detail-content-wrapper {
