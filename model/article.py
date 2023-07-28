@@ -102,3 +102,6 @@ class Article(Base):
         ).offset((page - 1) * count).limit(count).all()
 
         return result
+
+    def get_article_detail(self, aid):
+        return db_session.query(Article).filter_by(aid=aid).first()

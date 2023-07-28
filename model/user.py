@@ -1,9 +1,9 @@
 import random
-
 from sqlalchemy import Table
 from common.database import db_connect
-
 engine, db_session, Base = db_connect()
+from app.config.config import config
+from app.settings import env
 
 
 class User(Base):
@@ -33,3 +33,7 @@ class User(Base):
         db_session.commit()
         return user
 
+    def find_by_uid(self, uid):
+        user_info = db_session.query(User).filter_by(uid=uid).first()
+        user_info.avatar = config[env].user_avatar_path + user_info.avatar
+        return user_info
