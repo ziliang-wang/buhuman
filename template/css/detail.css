@@ -9,7 +9,16 @@
 .detail-container .detail-wrap .detail-path {
     height: 50px;
     line-height: 50px;
+    font-size: 14px;
     /*border: 1px solid red;*/
+    width: 36%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.detail-container .detail-wrap .detail-path .detail-path-title {
+
 }
 
 .detail-container .detail-wrap .detail-main {
@@ -17,12 +26,50 @@
     justify-content: space-between;
 }
 
+.detail-container .detail-wrap .detail-main .detail-main-left,
+.detail-container .detail-wrap .detail-main .detail-main-right {
+    border-radius: 12px;
+}
+
 .detail-container .detail-wrap .detail-main .detail-main-left {
-    width: 68%;
     background-color: #fff;
+    width: 68%;
+    padding: 20px;
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-right {
     width: 29%;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .detail-left-title {
+    margin-bottom: 15px;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .detail-left-info {
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .detail-content-wrapper {
+
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top,
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-bottom{
+    margin-bottom: 20px;
     background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top {
+    align-items: center;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-avatar {
+    margin-right: 10px;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-bottom {
+    margin-bottom: 0;
 }

@@ -261,6 +261,9 @@
     font-weight: bold;
     margin-bottom: 7px;
     justify-content: space-between;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .content-wrapper .article-wrapper .article-list .article-row .row-desc .article-title a:first-child:hover {
