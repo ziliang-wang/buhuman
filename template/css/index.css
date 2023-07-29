@@ -125,9 +125,11 @@
 }
 
 .header-container .header .header-right .account .avatar img {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    position: relative;
+    top: -3px;
 }
 
 .header-container .header .header-right .account span {
@@ -260,7 +262,7 @@
     font-weight: bold;
     margin-bottom: 7px;
     justify-content: space-between;
-    width: ;
+    /*width: ;*/
     height: 22px;
     line-height: 22px;
 }
