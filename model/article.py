@@ -104,4 +104,7 @@ class Article(Base):
         return result
 
     def get_article_detail(self, aid):
-        return db_session.query(Article).filter_by(aid=aid).first()
+        row = db_session.query(Article).filter_by(aid=aid).first()
+        row.browse_num += 1
+        db_session.commit()
+        return row
