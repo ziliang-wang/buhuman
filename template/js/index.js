@@ -182,7 +182,8 @@ window.onload = () => {
     $searchBtn.onclick = () => {
         const keyword = $search.value.trim();
         if (keyword === '') return false;
-        location.href = `?keyword=${keyword}`;
+        // location.href = `?keyword=${keyword}`;
+        location.href = `/?keyword=${keyword}`;
     };
 
     $register.onclick = (e) => {
