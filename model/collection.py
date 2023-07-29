@@ -29,3 +29,10 @@ class Collection(Base):
             row.collected = collected
         db_session.commit()
 
+    def get_collection_status(self, uid, aid):
+        row = db_session.query(Collection).filter_by(uid=uid, aid=aid).first()
+        if not row:
+            return 1
+        return row.collected
+
+

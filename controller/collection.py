@@ -12,7 +12,7 @@ from model.user import User
 collect = Blueprint('collect', __name__)
 
 
-@collect.route('/collect/update', method=['POST'])
+@collect.route('/collect/update', methods=['POST'])
 def update_collection_status():
     request_data = json.loads(request.data)
     uid = session.get('uid')

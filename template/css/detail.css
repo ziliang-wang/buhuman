@@ -98,10 +98,12 @@
     text-align: center;
     border-radius: 25px;
     cursor: pointer;
+    position: relative;
+    top: -3px;
 }
 
-.detail-container .detail-wrap .detail-main .detail-main-left .detail-content-wrapper {
-
+.detail-container .detail-wrap .detail-main .detail-main-left .detail-content-wrapper img {
+    width: 100%;
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top,

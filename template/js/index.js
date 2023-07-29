@@ -163,10 +163,11 @@ window.onload = () => {
             console.log(res.data.data);
             if (res.data.data === 'loginok') {
                 setTimeout(() => {
-                    location.reload();
+                    location.reload(true);
                 }, 1000);
             } else if (res.data.data === 'vcodeErr') {
                 $vcodeMsg.innerHTML = '請輸入正確的圖片驗證碼';
+                $loginBtn.innerHTML = '登錄';
             } else {
                 $loginAccountMsg.innerHTML = '帳號或密碼錯誤';
                 $loginBtn.innerHTML = '登錄';
@@ -498,4 +499,24 @@ window.onload = () => {
     $writeArticle.onclick = () => {
         location.href = './new_article.html';
     };
+
+    // $doCollect = document.getElementById('doCollect');
+    //
+    // $doCollect.onclick = function (e) {
+    //     e.stopPropagation();
+    //     const isLogin = this.getAttribute('data-isLogin');
+    //
+    //     if (isLogin !== 'true') {
+    //         console.log('未登入')
+    //         $maskLoginModal.style.display = 'block';
+    //         $loginAccount.focus();
+    //         $loginAccountMsg.innerHTML = '';
+    //         $loginPwdMsg.innerHTML = '';
+    //         $vcodeMsg.innerHTML = '';
+    //         $imageCode.src = '/vcode?' + Math.random();
+    //     } else {
+    //         console.log('已登入');
+    //     //     axios
+    //     }
+    // };
 };

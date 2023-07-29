@@ -6,6 +6,7 @@ window.onload = () => {
     // const $leftMenuListItems = $leftMenuList.querySelectorAll('li a');
 
     const $register = document.getElementById('register');
+
     const $maskRegModal = document.getElementById('maskRegModal');
     const $regForm = document.getElementById('regForm');
 
@@ -96,7 +97,7 @@ window.onload = () => {
     $vcode.onblur = function () {
         const vcode = this.value;
         if (!vcodeReg.test(vcode)) {
-            $vcodeMsg.innerHTML = '請輸入圖片驗證碼';
+            $vcodeMsg.innerHTML = '請輸入正確的圖片驗證碼';
             // $regCode.focus();
             isVcode = false;
             return false;
@@ -138,7 +139,7 @@ window.onload = () => {
 
         const vcode = $vcode.value;
         if (!vcodeReg.test(vcode)) {
-            $vcodeMsg.innerHTML = '請輸入圖片驗證碼';
+            $vcodeMsg.innerHTML = '請輸入正確的圖片驗證碼';
             // $regCode.focus();
             isVcode = false;
             return false;
@@ -163,10 +164,11 @@ window.onload = () => {
             console.log(res.data.data);
             if (res.data.data === 'loginok') {
                 setTimeout(() => {
-                    location.reload();
+                    location.reload(true);
                 }, 1000);
             } else if (res.data.data === 'vcodeErr') {
                 $vcodeMsg.innerHTML = '請輸入正確的圖片驗證碼';
+                $loginBtn.innerHTML = '登錄';
             } else {
                 $loginAccountMsg.innerHTML = '帳號或密碼錯誤';
                 $loginBtn.innerHTML = '登錄';
@@ -498,4 +500,53 @@ window.onload = () => {
     $writeArticle.onclick = () => {
         location.href = './new_article.html';
     };
+
+    const $doCollect = document.getElementById('doCollect');
+
+    $doCollect.onclick = function (e) {
+        // console.log('test')
+        e.stopPropagation();
+        // console.log('test')
+
+        const isLogin = this.getAttribute('data-isLogin');
+        console.log('isLogin', isLogin);
+
+        if (isLogin !== 'true') {
+            console.log('未登入')
+            $maskLoginModal.style.display = 'block';
+            $loginAccount.focus();
+            $loginAccountMsg.innerHTML = '';
+            $loginPwdMsg.innerHTML = '';
+            $vcodeMsg.innerHTML = '';
+            $imageCode.src = '/vcode?' + Math.random();
+        }
+
+        if (isLogin === 'true') {
+            console.log('已登入');
+        }
+    };
+
+    // const $doCollect2 = document.getElementById('doCollect2');
+    //
+    // $doCollect2.onclick = function (e) {
+    //     console.log('test')
+    //     e.stopPropagation();
+    //     console.log('test')
+    //
+    //     const isLogin = this.getAttribute('data-isLogin');
+    //     console.log('isLogin', isLogin);
+    //
+    //     if (isLogin !== 'true') {
+    //         console.log('未登入')
+    //         $maskLoginModal.style.display = 'block';
+    //         $loginAccount.focus();
+    //         $loginAccountMsg.innerHTML = '';
+    //         $loginPwdMsg.innerHTML = '';
+    //         $vcodeMsg.innerHTML = '';
+    //         $imageCode.src = '/vcode?' + Math.random();
+    //     } else if (isLogin === 'true') {
+    //         console.log('已登入');
+    //     //     axios
+    //     }
+    // };
 };
