@@ -14,114 +14,138 @@
     <script src="js/axios.min.js"></script>
 </head>
 <body>
-    {% include 'common/header.html' %}
-    <section class="detail-container">
-        <div class="detail-wrap center-wrap">
-            <div class="detail-path">
+{% include 'common/header.html' %}
+<section class="detail-container">
+    <div class="detail-wrap center-wrap">
+        <div class="detail-path">
                 <span class="detail-path-title">
                     首頁&nbsp;&nbsp;>&nbsp;&nbsp;{{ article.label_name }}&nbsp;&nbsp;>&nbsp;&nbsp;{{ article.title }}
                 </span>
-            </div>
-            <div class="detail-main">
-                <div class="detail-main-left">
-                    <div class="detail-left-title">
+        </div>
+        <div class="detail-main">
+            <div class="detail-main-left">
+                <div class="detail-left-title">
                         <span>
                             {{ article.title }}
                         </span>
-                    </div>
-                    <div class="detail-left-info flex-r">
-                        <div class="detail-info-tag">
-                            <span class="tag-name">標籤:</span>
-                            {% for tag_name in tags_list %}
-                            <span class="tag-value">
+                </div>
+                <div class="detail-left-info flex-r">
+                    <div class="detail-info-tag">
+                        <span class="tag-name">標籤:</span>
+                        {% for tag_name in tags_list %}
+                        <span class="tag-value">
                                 {{ tag_name }}
                             </span>
-                            {% endfor %}
-                        </div>
-                        <div class="detail-info-collection" data-isLogin="{{ session.get('is_login') }}" id="doCollect">收藏</div>
-                        <script>
-                            const $doCollect = document.getElementById('doCollect');
-
-                            $doCollect.onclick = function (e) {
-                                // console.log('test')
-                                e.stopPropagation();
-                                // console.log('test')
-
-                                const isLogin = this.getAttribute('data-isLogin');
-                                console.log('isLogin', isLogin);
-
-                                // if (isLogin !== 'true') {
-                                //     console.log('未登入')
-                                //     $maskLoginModal.style.display = 'block';
-                                //     $loginAccount.focus();
-                                //     $loginAccountMsg.innerHTML = '';
-                                //     $loginPwdMsg.innerHTML = '';
-                                //     $vcodeMsg.innerHTML = '';
-                                //     $imageCode.src = '/vcode?' + Math.random();
-                                // }
-
-                                if (isLogin === 'true') {
-                                    console.log('已登入');
-                                }
-                            };
-                        </script>
+                        {% endfor %}
                     </div>
-                    <div class="detail-content-wrapper">
-                        {{ article.article_content | safe }}
+                    <div class="detail-info-collection" data-isLogin="{{ session.get('is_login') }}"
+                         data-aid="{{ article.aid }}" id="doCollect">收藏
+                    </div>
+                    <script>
+                        const $doCollect = document.getElementById('doCollect');
+                        let collected = 0;
+                        const isLogin = $doCollect.getAttribute('data-isLogin');
+                        const aid = $doCollect.getAttribute('data-aid');
+                        // console.log('isLogin', isLogin);
+                        // mounted
+                        if (isLogin === 'true') {
+                            axios.get('/collect/status', {
+                                params: {
+                                    aid: aid
+                                }
+                            }).then(res => {
+                                if (res.data.status === 3000) {
+                                    collected = res.data.collected;
+                                    if (collected) {
+                                        $doCollect.innerHTML = '已收藏';
+                                    } else {
+                                        $doCollect.innerHTML = '收藏';
+                                    }
+                                }
+                            });
+                        }
+                        // click
+                        $doCollect.onclick = function () {
+                            if (collected) {
+                                collected = 0;
+                                axios.post('/collect/update', {
+                                    aid: aid,
+                                    collected: collected
+                                }).then(res => {
+                                    if (res.data.status === 3000) {
+                                        this.innerHTML = '收藏';
+                                    }
+                                });
+                            } else {
+                                collected = 1;
+                                axios.post('/collect/update', {
+                                    aid: aid,
+                                    collected: collected
+                                }).then(res => {
+                                    if (res.data.status === 3000) {
+                                        this.innerHTML = '已收藏';
+                                    }
+                                });
+                            }
+                        };
+                    </script>
+                </div>
+                <div class="detail-content-wrapper">
+                    {{ article.article_content | safe }}
+                </div>
+            </div>
+            <div class="detail-main-right">
+                <div class="detail-right-top flex-r">
+                    <div class="author-avatar">
+                        <img src="{{ user.avatar }}" alt="">
+                    </div>
+                    <div class="author-desc">
+                        <div class="author-name">{{ user.nickname }}</div>
+                        <div class="author-title">{{ user.job }}</div>
                     </div>
                 </div>
-                <div class="detail-main-right">
-                    <div class="detail-right-top flex-r">
-                        <div class="author-avatar">
-                            <img src="{{ user.avatar }}" alt="">
-                        </div>
-                        <div class="author-desc">
-                            <div class="author-name">{{ user.nickname }}</div>
-                            <div class="author-title">{{ user.job }}</div>
-                        </div>
+                <div class="detail-right-bottom">
+                    <div class="recommend-title">
+                        相關文章推薦
                     </div>
-                    <div class="detail-right-bottom">
-                        <div class="recommend-title">
-                            相關文章推薦
-                        </div>
-                        <ul class="recommend-list">
-                            <li class="recommend-item flex-r">
-                                <span class="iconfont icon-caogao05"></span>
-                                <span class="recommend-item-content">
+                    <ul class="recommend-list">
+                        <li class="recommend-item flex-r">
+                            <span class="iconfont icon-caogao05"></span>
+                            <span class="recommend-item-content">
                                     使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
                                 </span>
-                            </li>
-                             <li class="recommend-item flex-r">
-                                <span class="iconfont icon-caogao05"></span>
-                                <span class="recommend-item-content">
+                        </li>
+                        <li class="recommend-item flex-r">
+                            <span class="iconfont icon-caogao05"></span>
+                            <span class="recommend-item-content">
                                     使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
                                 </span>
-                            </li>
-                             <li class="recommend-item flex-r">
-                                <span class="iconfont icon-caogao05"></span>
-                                <span class="recommend-item-content">
+                        </li>
+                        <li class="recommend-item flex-r">
+                            <span class="iconfont icon-caogao05"></span>
+                            <span class="recommend-item-content">
                                     使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
                                 </span>
-                            </li>
-                             <li class="recommend-item flex-r">
-                                <span class="iconfont icon-caogao05"></span>
-                                <span class="recommend-item-content">
+                        </li>
+                        <li class="recommend-item flex-r">
+                            <span class="iconfont icon-caogao05"></span>
+                            <span class="recommend-item-content">
                                     使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
                                 </span>
-                            </li>
-                             <li class="recommend-item flex-r">
-                                <span class="iconfont icon-caogao05"></span>
-                                <span class="recommend-item-content">
+                        </li>
+                        <li class="recommend-item flex-r">
+                            <span class="iconfont icon-caogao05"></span>
+                            <span class="recommend-item-content">
                                     使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
                                 </span>
-                            </li>
-                        </ul>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section>
-    {% include 'common/modal.html' %}
+    </div>
+</section>
+{% include 'common/modal.html' %}
 </body>
 </html>
 

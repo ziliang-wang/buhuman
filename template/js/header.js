@@ -504,9 +504,7 @@ window.onload = () => {
     const $doCollect = document.getElementById('doCollect');
 
     $doCollect.onclick = function (e) {
-        // console.log('test')
         e.stopPropagation();
-        // console.log('test')
 
         const isLogin = this.getAttribute('data-isLogin');
         console.log('isLogin', isLogin);
@@ -519,10 +517,6 @@ window.onload = () => {
             $loginPwdMsg.innerHTML = '';
             $vcodeMsg.innerHTML = '';
             $imageCode.src = '/vcode?' + Math.random();
-        }
-
-        if (isLogin === 'true') {
-            console.log('已登入');
         }
     };
 

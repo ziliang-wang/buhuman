@@ -30,9 +30,9 @@ class Collection(Base):
         db_session.commit()
 
     def get_collection_status(self, uid, aid):
-        row = db_session.query(Collection).filter_by(uid=uid, aid=aid).first()
-        if not row:
-            return 1
-        return row.collected
+        collected = db_session.query(Collection.collected).filter_by(uid=uid, aid=aid).first()
+        if not collected:
+            return 0
+        return collected
 
 
