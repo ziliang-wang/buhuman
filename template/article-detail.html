@@ -44,8 +44,8 @@
                     <script>
                         const $doCollect = document.getElementById('doCollect');
                         let collected = 0;
-                        const isLogin = $doCollect.getAttribute('data-isLogin');
-                        const aid = $doCollect.getAttribute('data-aid');
+                        let isLogin = $doCollect.getAttribute('data-isLogin');
+                        let aid = $doCollect.getAttribute('data-aid');
                         // console.log('isLogin', isLogin);
                         // mounted
                         if (isLogin === 'true') {
@@ -100,13 +100,72 @@
                     本文發布于"不良人" ，分享請註明出處，謝謝合作
                 </div>
                 <div class="praise-container">
-                    <div class="praise-wrapper" id="praise" data-isLogin="{{ session.get('is_login') }}" data-aid="{{ article.aid }}">
+                    <div class="praise-wrapper" id="praise" data-isLogin="{{ session.get('is_login') }}"
+                         data-aid="{{ article.aid }}">
                         <i class="iconfont icon-dianzan" id="praiseIcon"></i>
                     </div>
                 </div>
                 <div class="forta" id="forta">
                     為 TA 點讚
                 </div>
+                <!-- 點讚 script -->
+                <script>
+                    const $praise = document.getElementById('praise');
+                    const $praiseIcon = document.getElementById('praiseIcon');
+                    let praised = 0;
+                    isLogin = $praise.getAttribute('data-isLogin');
+                    aid = $praise.getAttribute('data-aid');
+                    // console.log('isLogin', isLogin);
+                    // mounted
+                    if (isLogin === 'true') {
+                        axios.get('/praise/status', {
+                            params: {
+                                aid: aid
+                            }
+                        }).then(res => {
+                            if (res.data.status === 4000) {
+                                praised = res.data.praised;
+                                if (praised) {
+                                    $praise.classList.add('praise-alter');
+                                    $praiseIcon.classList.add('i-alter');
+                                    // $doCollect.innerHTML = '已收藏';
+                                } else {
+                                    $praise.classList.remove('praise-alter');
+                                    $praiseIcon.classList.remove('i-alter');
+                                    // $doCollect.innerHTML = '收藏';
+                                }
+                            }
+                        });
+                    }
+                    // click
+                    $praise.onclick = function () {
+                        if (praised) {
+                            praised = 0;
+                            axios.post('/praise/update', {
+                                aid: aid,
+                                praised: praised
+                            }).then(res => {
+                                if (res.data.status === 4000) {
+                                    $praise.classList.remove('praise-alter');
+                                    $praiseIcon.classList.remove('i-alter');
+                                    // this.innerHTML = '收藏';
+                                }
+                            });
+                        } else {
+                            praised = 1;
+                            axios.post('/praise/update', {
+                                aid: aid,
+                                praised: praised
+                            }).then(res => {
+                                if (res.data.status === 4000) {
+                                    $praise.classList.add('praise-alter');
+                                    $praiseIcon.classList.add('i-alter');
+                                    // this.innerHTML = '已收藏';
+                                }
+                            });
+                        }
+                    };
+                </script>
             </div>
             <div class="detail-main-right">
                 <div class="detail-right-top flex-r">
@@ -124,49 +183,49 @@
                     </div>
                     <ul class="recommend-list">
                         {% if not relation_list %}
-                            <li class="recommend-item flex-r">
-<!--                                <span class="iconfont icon-caogao05"></span>-->
-                                <span class="recommend-item-content">
+                        <li class="recommend-item flex-r">
+                            <!--                                <span class="iconfont icon-caogao05"></span>-->
+                            <span class="recommend-item-content">
                                     暫無相關文章
                                 </span>
-                            </li>
+                        </li>
                         {% else %}
-                            {% for item in relation_list %}
-                                <li class="recommend-item flex-r">
-                                    <span class="iconfont icon-caogao05"></span>
-                                    <span class="recommend-item-content">
+                        {% for item in relation_list %}
+                        <li class="recommend-item flex-r">
+                            <span class="iconfont icon-caogao05"></span>
+                            <span class="recommend-item-content">
                                         <a href="/detail?aid={{ item.aid }}">
                                             {{ item.title }}
                                         </a>
                                     </span>
-                                </li>
-                            {% endfor %}
+                        </li>
+                        {% endfor %}
                         {% endif %}
 
-<!--                        <li class="recommend-item flex-r">-->
-<!--                            <span class="iconfont icon-caogao05"></span>-->
-<!--                            <span class="recommend-item-content">-->
-<!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-<!--                                </span>-->
-<!--                        </li>-->
-<!--                        <li class="recommend-item flex-r">-->
-<!--                            <span class="iconfont icon-caogao05"></span>-->
-<!--                            <span class="recommend-item-content">-->
-<!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-<!--                                </span>-->
-<!--                        </li>-->
-<!--                        <li class="recommend-item flex-r">-->
-<!--                            <span class="iconfont icon-caogao05"></span>-->
-<!--                            <span class="recommend-item-content">-->
-<!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-<!--                                </span>-->
-<!--                        </li>-->
-<!--                        <li class="recommend-item flex-r">-->
-<!--                            <span class="iconfont icon-caogao05"></span>-->
-<!--                            <span class="recommend-item-content">-->
-<!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-<!--                                </span>-->
-<!--                        </li>-->
+                        <!--                        <li class="recommend-item flex-r">-->
+                        <!--                            <span class="iconfont icon-caogao05"></span>-->
+                        <!--                            <span class="recommend-item-content">-->
+                        <!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+                        <!--                                </span>-->
+                        <!--                        </li>-->
+                        <!--                        <li class="recommend-item flex-r">-->
+                        <!--                            <span class="iconfont icon-caogao05"></span>-->
+                        <!--                            <span class="recommend-item-content">-->
+                        <!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+                        <!--                                </span>-->
+                        <!--                        </li>-->
+                        <!--                        <li class="recommend-item flex-r">-->
+                        <!--                            <span class="iconfont icon-caogao05"></span>-->
+                        <!--                            <span class="recommend-item-content">-->
+                        <!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+                        <!--                                </span>-->
+                        <!--                        </li>-->
+                        <!--                        <li class="recommend-item flex-r">-->
+                        <!--                            <span class="iconfont icon-caogao05"></span>-->
+                        <!--                            <span class="recommend-item-content">-->
+                        <!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+                        <!--                                </span>-->
+                        <!--                        </li>-->
                     </ul>
                 </div>
             </div>

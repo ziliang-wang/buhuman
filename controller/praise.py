@@ -36,6 +36,6 @@ def get_status():
     praised = praise_obj.get_praise_status(uid, aid)[0]
 
     return {
-        'status': 3000,
-        'collected': praised
+        'status': 4000,
+        'praised': praised
     }
