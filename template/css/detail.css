@@ -225,3 +225,41 @@
     font-size: 14px;
     color: #9199a1;
 }
+
+.detail-container .detail-wrap .detail-main .detail-main-left .praise-container {
+    /*margin: 20px auto;*/
+    /*text-align: center;*/
+    /*width: 100%;*/
+    margin: 20px 0 7px 0;
+    display: flex;
+    justify-content: center;
+    /*margin-bottom: 7px;*/
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .praise-container .praise-wrapper {
+    width: 72px;
+    height: 72px;
+    /*border: 1px solid #000;*/
+    text-align: center;
+    line-height: 72px;
+    border-radius: 50%;
+    background-color: #fff6e5;
+    /*text-align: center;*/
+    /*text-align: center;*/
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .praise-container .praise-wrapper i {
+    color: #ffaa00;
+    font-size: 36px;
+    position: relative;
+    top: -2px;
+    font-weight: bold;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .forta {
+    text-align: center;
+    font-size: 14px;
+    color: #545c63;
+}
+
+/*#ffaa00*/

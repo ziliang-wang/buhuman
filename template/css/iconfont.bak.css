@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('../fonts/iconfont.ttf?t=1690695362660') format('truetype');
+  src: url('../fonts/iconfont.ttf?t=1689508961955') format('truetype');
 }
 
 .iconfont {
@@ -17,10 +17,6 @@
 
 .icon-Magnifier:before {
   content: "\e62d";
-}
-
-.icon-dianzan:before {
-  content: "\e510";
 }
 
 .icon-caogao05:before {
