@@ -3,6 +3,7 @@ from flask import Flask
 
 from controller.article import article
 from controller.index import index
+from controller.praise import praise
 from controller.user import user
 from controller.collection import collect
 
@@ -20,3 +21,4 @@ def init_blueprint(app):
     app.register_blueprint(index)
     app.register_blueprint(article)
     app.register_blueprint(collect)
+    app.register_blueprint(praise)

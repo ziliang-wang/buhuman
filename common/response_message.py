@@ -71,3 +71,26 @@ class CollectionMessage(object):
             'status': 3001,
             'data': data
         }
+
+
+class PraiseMessage(object):
+    @staticmethod
+    def success(data):
+        return {
+            'status': 4000,
+            'data': data
+        }
+
+    @staticmethod
+    def fail(data):
+        return {
+            'status': 4002,
+            'data': data
+        }
+
+    @staticmethod
+    def other(data):
+        return {
+            'status': 4001,
+            'data': data
+        }
