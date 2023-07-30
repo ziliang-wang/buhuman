@@ -32,7 +32,7 @@ def get_collect_status():
     uid = session.get('uid')
     aid = request.args.get('aid')
     collection = Collection()
-    collected = collection.get_collection_status(uid, aid)[0]
+    collected = collection.get_collection_status(uid, aid)
 
     return {
         'status': 3000,

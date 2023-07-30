@@ -33,6 +33,6 @@ class Collection(Base):
         collected = db_session.query(Collection.collected).filter_by(uid=uid, aid=aid).first()
         if not collected:
             return 0
-        return collected
+        return collected[0]
 
 

@@ -21,8 +21,8 @@ def update_status():
     praised = request_data.get('praised')
     praise_obj = Praise()
     try:
-        praise_obj.update_status(uid, aid, praised)
-        return PraiseMessage.success('點讚成功')
+        praised_num = praise_obj.update_status(uid, aid, praised)
+        return PraiseMessage.success(praised_num)
     except Exception as e:
         return PraiseMessage.fail('點讚失败')
 
@@ -33,9 +33,11 @@ def get_status():
     uid = session.get('uid')
     aid = request.args.get('aid')
     praise_obj = Praise()
-    praised = praise_obj.get_praise_status(uid, aid)[0]
+    praised = praise_obj.get_praise_status(uid, aid)
+    praised_num = praise_obj.calc_praised_num(aid)
 
     return {
         'status': 4000,
-        'praised': praised
+        'praised': praised,
+        'praisedNum': praised_num
     }

@@ -78,7 +78,7 @@ class PraiseMessage(object):
     def success(data):
         return {
             'status': 4000,
-            'data': data
+            'praisedNum': data
         }
 
     @staticmethod
