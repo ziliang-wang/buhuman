@@ -248,12 +248,20 @@
     /*text-align: center;*/
 }
 
+.detail-container .detail-wrap .detail-main .detail-main-left .praise-container .praise-wrapper.praise-alter {
+    background-color: #ffaa00;
+}
+
 .detail-container .detail-wrap .detail-main .detail-main-left .praise-container .praise-wrapper i {
     color: #ffaa00;
     font-size: 36px;
     position: relative;
     top: -2px;
     font-weight: bold;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .praise-container .praise-wrapper i.i-alter {
+    color: #fff;
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-left .forta {
