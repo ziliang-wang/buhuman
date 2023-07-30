@@ -108,3 +108,24 @@ class Article(Base):
         row.browse_num += 1
         db_session.commit()
         return row
+
+    # def get_relation_articles(self, label_name):
+    #     result = db_session.query(Article).filter_by(label_name=label_name).order_by(
+    #         Article.browse_num.desc()
+    #     ).limit(5).all()
+    #     return result
+
+    def get_relation_articles(self, tag_list):
+        result_list = []
+        for tag_name in tag_list:
+            row = db_session.query(Article).filter(
+                or_(Article.article_tag == tag_name)
+            ).order_by(
+                Article.browse_num.desc()
+            ).all()
+
+            result_list.append(row)
+
+        print(result_list)
+
+        return result_list[0][:5]

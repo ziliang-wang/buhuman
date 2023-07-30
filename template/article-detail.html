@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>不良人互動社群</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/index.css">
@@ -109,36 +109,50 @@
                         相關文章推薦
                     </div>
                     <ul class="recommend-list">
-                        <li class="recommend-item flex-r">
-                            <span class="iconfont icon-caogao05"></span>
-                            <span class="recommend-item-content">
-                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                        {% if not relation_list %}
+                            <li class="recommend-item flex-r">
+<!--                                <span class="iconfont icon-caogao05"></span>-->
+                                <span class="recommend-item-content">
+                                    暫無相關文章
                                 </span>
-                        </li>
-                        <li class="recommend-item flex-r">
-                            <span class="iconfont icon-caogao05"></span>
-                            <span class="recommend-item-content">
-                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                </span>
-                        </li>
-                        <li class="recommend-item flex-r">
-                            <span class="iconfont icon-caogao05"></span>
-                            <span class="recommend-item-content">
-                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                </span>
-                        </li>
-                        <li class="recommend-item flex-r">
-                            <span class="iconfont icon-caogao05"></span>
-                            <span class="recommend-item-content">
-                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                </span>
-                        </li>
-                        <li class="recommend-item flex-r">
-                            <span class="iconfont icon-caogao05"></span>
-                            <span class="recommend-item-content">
-                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                                </span>
-                        </li>
+                            </li>
+                        {% else %}
+                            {% for item in relation_list %}
+                                <li class="recommend-item flex-r">
+                                    <span class="iconfont icon-caogao05"></span>
+                                    <span class="recommend-item-content">
+                                        <a href="/detail?aid={{ item.aid }}">
+                                            {{ item.title }}
+                                        </a>
+                                    </span>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+
+<!--                        <li class="recommend-item flex-r">-->
+<!--                            <span class="iconfont icon-caogao05"></span>-->
+<!--                            <span class="recommend-item-content">-->
+<!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+<!--                                </span>-->
+<!--                        </li>-->
+<!--                        <li class="recommend-item flex-r">-->
+<!--                            <span class="iconfont icon-caogao05"></span>-->
+<!--                            <span class="recommend-item-content">-->
+<!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+<!--                                </span>-->
+<!--                        </li>-->
+<!--                        <li class="recommend-item flex-r">-->
+<!--                            <span class="iconfont icon-caogao05"></span>-->
+<!--                            <span class="recommend-item-content">-->
+<!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+<!--                                </span>-->
+<!--                        </li>-->
+<!--                        <li class="recommend-item flex-r">-->
+<!--                            <span class="iconfont icon-caogao05"></span>-->
+<!--                            <span class="recommend-item-content">-->
+<!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+<!--                                </span>-->
+<!--                        </li>-->
                     </ul>
                 </div>
             </div>
