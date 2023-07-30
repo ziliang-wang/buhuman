@@ -520,28 +520,23 @@ window.onload = () => {
             $imageCode.src = '/vcode?' + Math.random();
         }
     };
+    // praise
+    const $praise = document.getElementById('praise');
 
-    // const $doCollect2 = document.getElementById('doCollect2');
-    //
-    // $doCollect2.onclick = function (e) {
-    //     console.log('test')
-    //     e.stopPropagation();
-    //     console.log('test')
-    //
-    //     const isLogin = this.getAttribute('data-isLogin');
-    //     console.log('isLogin', isLogin);
-    //
-    //     if (isLogin !== 'true') {
-    //         console.log('未登入')
-    //         $maskLoginModal.style.display = 'block';
-    //         $loginAccount.focus();
-    //         $loginAccountMsg.innerHTML = '';
-    //         $loginPwdMsg.innerHTML = '';
-    //         $vcodeMsg.innerHTML = '';
-    //         $imageCode.src = '/vcode?' + Math.random();
-    //     } else if (isLogin === 'true') {
-    //         console.log('已登入');
-    //     //     axios
-    //     }
-    // };
+    $praise.onclick = function (e) {
+        e.stopPropagation();
+
+        const isLogin = this.getAttribute('data-isLogin');
+        console.log('isLogin', isLogin);
+
+        if (isLogin !== 'true') {
+            console.log('未登入')
+            $maskLoginModal.style.display = 'block';
+            $loginAccount.focus();
+            $loginAccountMsg.innerHTML = '';
+            $loginPwdMsg.innerHTML = '';
+            $vcodeMsg.innerHTML = '';
+            $imageCode.src = '/vcode?' + Math.random();
+        }
+    };
 };

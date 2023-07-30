@@ -100,8 +100,8 @@
                     本文發布于"不良人" ，分享請註明出處，謝謝合作
                 </div>
                 <div class="praise-container">
-                    <div class="praise-wrapper">
-                        <i class="iconfont icon-dianzan" id="praise"></i>
+                    <div class="praise-wrapper" id="praise" data-isLogin="{{ session.get('is_login') }}" data-aid="{{ article.aid }}">
+                        <i class="iconfont icon-dianzan" id="praiseIcon"></i>
                     </div>
                 </div>
                 <div class="forta" id="forta">
