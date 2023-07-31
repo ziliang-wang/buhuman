@@ -18,7 +18,7 @@
                         {{ article.title }}
                     </a>
                     {% if session.get('is_login') == 'true' %}
-                        <span class="collection" id="collection{{ article.aid }}" data-collected="{{ article.is_collected }}" data-aid="{{ article.aid }}">{{ '取消收藏' if article.is_collected else '收藏' }}</span>
+                        <span class="collection" id="collection" data-collected="{{ article.is_collected }}" data-aid="{{ article.aid }}">{{ '取消收藏' if article.is_collected else '收藏' }}</span>
                     {% else %}
                         <span class="collection">收藏</span>
                     {% endif %}
@@ -56,7 +56,7 @@
     </div>
     <script>
         // 登入後
-        const $collection = document.getElementById('collection' + '{{ article.aid }}');
+        const $collection = document.getElementById('collection');
         // collection
         let collected = $collection.getAttribute('data-collected');
         const $articleList = document.getElementById('articleList');
