@@ -12,7 +12,7 @@ class Collection(Base):
     __table__ = Table('collection', Base.metadata, autoload_with=engine)
 
     def update_status(self, uid, aid, collected=0):
-        article_row = db_session.query(Article).filter_by(uid=uid, aid=aid).first()
+        # article_row = db_session.query(Article).filter_by(aid=aid).first()
         # collected 0 收藏 1取消收藏
         row = db_session.query(Collection).filter_by(
             uid=uid,
@@ -29,7 +29,12 @@ class Collection(Base):
             db_session.add(collection)
         else:
             row.collected = collected
-        article_row.collected = collected
+        # if row.collected == 0:
+        #     if article_row.collected < 0:
+        #         article_row.collected = 0
+        #     article_row.collected -= 1
+        # else:
+        # article_row.collected = 1
         db_session.commit()
 
     def get_collection_status(self, uid, aid):

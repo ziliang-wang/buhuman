@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session
 from model.article import Article
 from app.config.config import config
 from app.settings import env
