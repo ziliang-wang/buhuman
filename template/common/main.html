@@ -18,7 +18,7 @@
                         {{ article.title }}
                     </a>
                     {% if session.get('is_login') == 'true' %}
-                        <span class="collection" id="collection" data-collected="{{ article.is_collected }}" data-aid="{{ article.aid }}">{{ '取消收藏' if article.is_collected else '收藏' }}</span>
+                        <span class="collection" data-collected="{{ article.is_collected }}" data-aid="{{ article.aid }}">{{ '取消收藏' if article.is_collected else '收藏' }}</span>
                     {% else %}
                         <span class="collection" data-aid="{{ article.aid }}">收藏</span>
                     {% endif %}
@@ -56,31 +56,15 @@
     </div>
     <script>
         // 登入後
-        // const $collection = document.getElementById('collection');
-        const loops = parseInt('{{ result | length }}');
-        console.log(loops);
+        const loops = '{{ result | length }}';
+
         const $collection = document.getElementsByClassName('collection')[0];
-        // collection
         let collected = $collection.getAttribute('data-collected');
-
-
-
         const $articleList = document.getElementById('articleList');
-        // const isLogin = $articleList.getAttribute('data-isLogin');
-        // const coll = document.getElementById('coll' + //);
-        // let collected = 0;
-        // click
-        $articleList.onclick = (e) => {
-            // let collected = e.target.getAttribute('data-collected');
-            // console.log(collected);
-            // let collected = e.target.getAttribute('data-collected');
-            const aid = e.target.getAttribute('data-aid');
-            // let collected = $collection.getAttribute('data-collected');
-            const $currCollection = e.target;
 
-            // if (collected) {
-            //     console.log('aid:', aid, 'collected:', collected);
-            // }
+        $articleList.onclick = function (e) {
+            const aid = e.target.getAttribute('data-aid');
+            const $currCollection = e.target;
 
             if (aid) {
                 if (collected) {
