@@ -4,6 +4,7 @@ from sqlalchemy.sql.functions import sum
 from common.database import db_connect
 from app.config.config import config
 from app.settings import env
+from model.article import Article
 from model.user import User
 
 engine, db_session, Base = db_connect()
@@ -19,6 +20,7 @@ class Praise(Base):
         return praised_num[0]
 
     def update_status(self, uid, aid, praised=0):
+        article_row = db_session.query(Article).filter_by(aid=aid).first()
         # collected 0 收藏 1取消收藏
         row = db_session.query(Praise).filter_by(
             uid=uid,
@@ -35,6 +37,7 @@ class Praise(Base):
             db_session.add(praise)
         else:
             row.praised = praised
+        article_row.praised = praised
         db_session.commit()
         # 計算獲讚數
         praised_num = self.calc_praised_num(aid)

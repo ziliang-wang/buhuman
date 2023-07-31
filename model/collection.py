@@ -2,6 +2,7 @@ from sqlalchemy import Table, or_
 from common.database import db_connect
 from app.config.config import config
 from app.settings import env
+from model.article import Article
 from model.user import User
 
 engine, db_session, Base = db_connect()
@@ -11,6 +12,7 @@ class Collection(Base):
     __table__ = Table('collection', Base.metadata, autoload_with=engine)
 
     def update_status(self, uid, aid, collected=0):
+        article_row = db_session.query(Article).filter_by(aid=aid).first()
         # collected 0 收藏 1取消收藏
         row = db_session.query(Collection).filter_by(
             uid=uid,
@@ -27,6 +29,7 @@ class Collection(Base):
             db_session.add(collection)
         else:
             row.collected = collected
+        article_row.collected = collected
         db_session.commit()
 
     def get_collection_status(self, uid, aid):
