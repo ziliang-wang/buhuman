@@ -17,7 +17,11 @@
                     <a href="/detail?aid={{ article.aid }}">
                         {{ article.title }}
                     </a>
-                    <span class="collection" id="collection{{ article.aid }}" data-collected="{{ article.collected }}" data-aid="{{ article.aid }}">{{ '取消收藏' if article.collected else '收藏' }}</span>
+                    {% if session.get('is_login') == 'true' %}
+                        <span class="collection" id="collection" data-collected="{{ article.collected }}" data-aid="{{ article.aid }}">{{ '取消收藏' if article.collected else '收藏' }}</span>
+                    {% else %}
+                        <span class="collection" data-collected="{{ article.collected }}" data-aid="{{ article.aid }}">收藏</span>
+                    {% endif %}
                 </div>
                 <div class="article-info flex-r">
                     <div class="info-left">
@@ -52,7 +56,7 @@
     </div>
     <script>
         // 登入後
-        const $collection = document.getElementById('collection59');
+        const $collection = document.getElementById('collection');
         // collection
         let collected = $collection.getAttribute('data-collected');
         const $articleList = document.getElementById('articleList');
@@ -67,9 +71,9 @@
             const aid = e.target.getAttribute('data-aid');
             const $currCollection = e.target;
 
-            if (collected) {
-                console.log('aid:', aid, 'collected:', collected);
-            }
+            // if (collected) {
+            //     console.log('aid:', aid, 'collected:', collected);
+            // }
 
             if (aid) {
                 if (collected) {
