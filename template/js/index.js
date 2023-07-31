@@ -487,37 +487,42 @@ window.onload = () => {
         $loginPwdMsg.innerHTML = '';
         $vcodeMsg.innerHTML = '';
         $imageCode.src = '/vcode?' + Math.random();
+        $loginAccount.focus();
     };
 
-    $backReg.onclick = () => {
+    $backReg.onclick = (e) => {
+        // $loginPwdMsg.innerHTML = '';
+        // e.stopPropagation();
+        // $loginAccountMsg.innerHTML = '';
+        // $loginAccount.onblur = null;
         $maskLoginModal.style.display = 'none';
         $maskRegModal.style.display = 'block';
         $regEmailErrMsg.innerHTML = '';
         $regPwdErrMsg.innerHTML = '';
         $regCodeErrMsg.innerHTML = '';
+        $regEmail.focus();
     };
 
     $writeArticle.onclick = () => {
         location.href = './new_article.html';
     };
 
-    // $doCollect = document.getElementById('doCollect');
-    //
-    // $doCollect.onclick = function (e) {
-    //     e.stopPropagation();
-    //     const isLogin = this.getAttribute('data-isLogin');
-    //
-    //     if (isLogin !== 'true') {
-    //         console.log('未登入')
-    //         $maskLoginModal.style.display = 'block';
-    //         $loginAccount.focus();
-    //         $loginAccountMsg.innerHTML = '';
-    //         $loginPwdMsg.innerHTML = '';
-    //         $vcodeMsg.innerHTML = '';
-    //         $imageCode.src = '/vcode?' + Math.random();
-    //     } else {
-    //         console.log('已登入');
-    //     //     axios
-    //     }
-    // };
+    const $articleList = document.getElementById('articleList');
+    const isLogin = $articleList.getAttribute('data-isLogin');
+
+    // 登入前
+    $articleList.onclick = (e) => {
+        e.stopPropagation();
+        const isLogin = e.currentTarget.getAttribute('data-isLogin');
+        const aid = e.target.getAttribute('data-aid');
+        if (isLogin !== 'true') {
+            console.log(isLogin, aid);
+            $maskLoginModal.style.display = 'block';
+            $loginAccount.focus();
+            $loginAccountMsg.innerHTML = '';
+            $loginPwdMsg.innerHTML = '';
+            $vcodeMsg.innerHTML = '';
+            $imageCode.src = '/vcode?' + Math.random();
+        }
+    };
 };
