@@ -507,8 +507,7 @@ window.onload = () => {
         location.href = './new_article.html';
     };
 
-    // const $articleList = document.getElementById('articleList');
-    // const isLogin = $articleList.getAttribute('data-isLogin');
+    const $articleList = document.getElementById('articleList');
 
     // 登入前
     $articleList.onclick = (e) => {
