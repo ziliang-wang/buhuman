@@ -511,20 +511,20 @@ window.onload = () => {
     // const isLogin = $articleList.getAttribute('data-isLogin');
 
     // 登入前
-    // $articleList.onclick = (e) => {
-    //     e.stopPropagation();
-    //     const isLogin = e.currentTarget.getAttribute('data-isLogin');
-    //     const aid = e.target.getAttribute('data-aid');
-    //     if (aid) {
-    //         if (isLogin !== 'true') {
-    //             console.log(isLogin, aid);
-    //             $maskLoginModal.style.display = 'block';
-    //             $loginAccount.focus();
-    //             $loginAccountMsg.innerHTML = '';
-    //             $loginPwdMsg.innerHTML = '';
-    //             $vcodeMsg.innerHTML = '';
-    //             $imageCode.src = '/vcode?' + Math.random();
-    //         }
-    //     }
-    // };
+    $articleList.onclick = (e) => {
+        e.stopPropagation();
+        const isLogin = e.currentTarget.getAttribute('data-isLogin');
+        const aid = e.target.getAttribute('data-aid');
+        if (aid) {
+            if (isLogin !== 'true') {
+                console.log(isLogin, aid);
+                $maskLoginModal.style.display = 'block';
+                $loginAccount.focus();
+                $loginAccountMsg.innerHTML = '';
+                $loginPwdMsg.innerHTML = '';
+                $vcodeMsg.innerHTML = '';
+                $imageCode.src = '/vcode?' + Math.random();
+            }
+        }
+    };
 };

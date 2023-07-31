@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, session
 from model.article import Article
 from app.config.config import config
 from app.settings import env
+from model.collection import Collection
 
 index = Blueprint('index', __name__)
 
@@ -84,6 +85,20 @@ def home():
         spage = 1
 
     # db_result = article.find_article(page, article_type)
+    collection = Collection()
+
+    if session.get('is_login') == 'true':
+        curr_uid = session.get('uid')
+    else:
+        curr_uid = None
+    print(curr_uid)
+
+    for article, nickname in db_result:
+        if curr_uid:
+            collected = collection.get_collection_status(curr_uid, article.aid)
+            article.is_collected = collected
+        else:
+            article.is_collected = 0
 
     for article, nickname in db_result:
         # article label name
