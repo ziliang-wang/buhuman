@@ -114,35 +114,75 @@
     border-radius: 12px;
 }
 
-.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top {
-    align-items: center;
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-info {
+    /*align-items: center;*/
+    /*justify-content: space-between;*/
+    margin-bottom: 15px;
 }
 
-.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-avatar {
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-info .author-avatar {
     margin-right: 10px;
+    /*flex-shrink: 1;*/
+    /*flex: 1;*/
 }
 
-.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-avatar img {
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-info .author-avatar img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
 
-.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-desc {
-
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-info .author-desc {
+    /*flex-shrink: 1;*/
+    /*flex: 1;*/
 }
 
-.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-desc .author-name {
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-info .author-desc .author-name {
     font-weight: bold;
     color: #1c1f21;
     font-size: 16px;
     margin-bottom: 5px;
 }
 
-.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-desc .author-title {
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-info .author-desc .author-title {
     margin-top: 5px;
     font-size: 12px;
     color: #545c63;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement {
+    /*justify-content: space-between;*/
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement .aleft,
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement .aright {
+    font-size: 14px;
+    color: #1c1f21;
+    flex: 1;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement .aright {
+    flex: 2;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement-grade {
+    margin-top: 10px;
+    /*justify-content: space-evenly;*/
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement-grade .grade-left,
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement-grade .grade-right {
+    font-size: 14px;
+    color: #1c1f21;
+    flex: 1;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement-grade .grade-right {
+    flex: 2;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement-grade .grade-right {
+    /*text-align: center;*/
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-right .detail-right-bottom {

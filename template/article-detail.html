@@ -5,6 +5,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="不良人互動社群"/>
+    <meta property="og:image" content="images/logo.png"/>
+    <meta property="og:description" content="挺有意思的社群-不良人互動社群"/>
+    <meta property="og:url" content="https://www.baidu.com"/>
     <title>不良人互動社群</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/iconfont.css">
@@ -179,14 +183,25 @@
                     };
                 </script>
             </div>
+            <!--  detail right  -->
             <div class="detail-main-right">
-                <div class="detail-right-top flex-r">
-                    <div class="author-avatar">
-                        <img src="{{ user.avatar }}" alt="">
+                <div class="detail-right-top">
+                    <div class="author-info flex-r">
+                        <div class="author-avatar">
+                            <img src="{{ user.avatar }}" alt="">
+                        </div>
+                        <div class="author-desc">
+                            <div class="author-name">{{ user.nickname }}</div>
+                            <div class="author-title">{{ user.job }}</div>
+                        </div>
                     </div>
-                    <div class="author-desc">
-                        <div class="author-name">{{ user.nickname }}</div>
-                        <div class="author-title">{{ user.job }}</div>
+                    <div class="author-achievement flex-r">
+                        <div class="aleft">文章</div>
+                        <div class="aright">獲讚與收藏</div>
+                    </div>
+                    <div class="author-achievement-grade flex-r">
+                        <div class="grade-left">24篇</div>
+                        <div class="grade-right">2023</div>
                     </div>
                 </div>
                 <div class="detail-right-bottom">

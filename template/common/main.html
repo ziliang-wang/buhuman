@@ -18,9 +18,9 @@
                         {{ article.title }}
                     </a>
                     {% if session.get('is_login') == 'true' %}
-                        <span class="collection" data-collected="{{ article.is_collected }}" data-aid="{{ article.aid }}">{{ '取消收藏' if article.is_collected else '收藏' }}</span>
+                    <span class="collection" data-collected="{{ article.is_collected }}" data-aid="{{ article.aid }}">{{ '取消收藏' if article.is_collected else '收藏' }}</span>
                     {% else %}
-                        <span class="collection" data-aid="{{ article.aid }}">收藏</span>
+                    <span class="collection" data-aid="{{ article.aid }}">收藏</span>
                     {% endif %}
                 </div>
                 <div class="article-info flex-r">
@@ -56,39 +56,41 @@
     </div>
     <script>
         // 登入後
-        const loops = '{{ result | length }}';
+        // const loops = '{{ result | length }}';
 
         const $collection = document.getElementsByClassName('collection')[0];
         let collected = $collection.getAttribute('data-collected');
         const $articleList = document.getElementById('articleList');
 
         $articleList.onclick = function (e) {
-            const aid = e.target.getAttribute('data-aid');
-            const $currCollection = e.target;
+            setTimeout(() => {
+                const aid = e.target.getAttribute('data-aid');
+                const $currCollection = e.target;
 
-            if (aid) {
-                if (collected) {
-                    collected = 0;
-                    axios.post('/collect/update', {
-                        aid: aid,
-                        collected: collected
-                    }).then(res => {
-                        if (res.data.status === 3000) {
-                            $currCollection.innerHTML = '收藏';
-                        }
-                    });
-                } else {
-                    collected = 1;
-                    axios.post('/collect/update', {
-                        aid: aid,
-                        collected: collected
-                    }).then(res => {
-                        if (res.data.status === 3000) {
-                            $currCollection.innerHTML = '取消收藏';
-                        }
-                    });
+                if (aid) {
+                    if (collected) {
+                        collected = 0;
+                        axios.post('/collect/update', {
+                            aid: aid,
+                            collected: collected
+                        }).then(res => {
+                            if (res.data.status === 3000) {
+                                $currCollection.innerHTML = '收藏';
+                            }
+                        });
+                    } else {
+                        collected = 1;
+                        axios.post('/collect/update', {
+                            aid: aid,
+                            collected: collected
+                        }).then(res => {
+                            if (res.data.status === 3000) {
+                                $currCollection.innerHTML = '取消收藏';
+                            }
+                        });
+                    }
                 }
-            }
+            }, 0);
         };
     </script>
 </main>
