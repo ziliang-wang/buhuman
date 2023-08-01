@@ -193,6 +193,7 @@
     font-size: 14px;
     line-height: 45px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-right .detail-right-bottom {
