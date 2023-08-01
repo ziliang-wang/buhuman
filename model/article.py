@@ -146,12 +146,20 @@ class Article(Base):
             Collection, Article.aid == Collection.aid).filter(
             Article.uid == uid, Collection.collected == 1).first()
 
+        praise = db_session.query(count(Article.uid)).join(
+            Praise, Article.aid == Praise.aid).filter(
+            Article.uid == uid, Praise.praised == 1).first()
+
         collection_result = 0
+        praise_result = 0
 
         if collection:
             collection_result = collection[0] or 0
 
-        result = collection_result
+        if praise:
+            praise_result = praise[0] or 0
+
+        result = collection_result + praise_result
 
         return result
 
