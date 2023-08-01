@@ -3,6 +3,7 @@ from model.article import Article
 from app.config.config import config
 from app.settings import env
 from model.collection import Collection
+from model.concern import Concern
 from model.user import User
 
 article = Blueprint('article', __name__)
@@ -24,6 +25,10 @@ def article_detail():
     user_articles = article.get_user_articles(user_info.uid)
     # 獲讚與點讚
     collection_and_praise = article.get_collection_and_praise(user_info.uid)
+    # 作者粉絲數
+    concern_obj = Concern()
+    fans_num = concern_obj.calc_concerned_num(tid=article_content.uid)
+    # print(fans_num)
 
 
     # todo 查看評論的信息
@@ -44,5 +49,6 @@ def article_detail():
         tags_list=tags_list,
         relation_list=relation_list,
         user_articles=user_articles,
-        collection_and_praise=collection_and_praise
+        collection_and_praise=collection_and_praise,
+        fans_num=fans_num
     )

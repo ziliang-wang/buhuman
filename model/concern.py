@@ -16,7 +16,7 @@ class Concern(Base):
     def calc_concerned_num(self, tid):
         concerned_num = db_session.query(sum(Concern.concerned)).filter_by(tid=tid, concerned=1, is_valid=1).first()
         # print(praised_num, type(praised_num))
-        # print('點讚數:', praised_num[0])
+        # print('粉絲數:', concerned_num[0])
         return concerned_num[0]
 
     def update_status(self, fid, tid, concerned=0):

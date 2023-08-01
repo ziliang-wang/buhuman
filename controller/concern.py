@@ -35,10 +35,10 @@ def get_status():
     tid = request.args.get('tid')
     concern_obj = Concern()
     concerned = concern_obj.get_concern_status(fid, tid)
-    concerned_num = concern_obj.calc_concerned_num(tid)
+    # concerned_num = concern_obj.calc_concerned_num(tid)
 
     return {
         'status': 5000,
         'concerned': concerned,
-        'concernedNum': concerned_num
+        # 'concernedNum': concerned_num
     }
