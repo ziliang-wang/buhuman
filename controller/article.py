@@ -19,6 +19,11 @@ def article_detail():
 
     # relation_list = article.get_relation_articles(article_content.label_name)
     relation_list = article.get_relation_articles(tags_list)
+    # print('author uid', user_info.uid)
+    # 作者文章數
+    user_articles = article.get_user_articles(user_info.uid)
+    # 獲讚與點讚
+    # collection_and_praise = article.get_collection_and_praise(aid)
 
 
     # todo 查看評論的信息
@@ -37,5 +42,7 @@ def article_detail():
         user=user_info,
         # is_collected=is_collected,
         tags_list=tags_list,
-        relation_list=relation_list
+        relation_list=relation_list,
+        user_articles=user_articles
+        # collection_and_praise=collection_and_praise
     )

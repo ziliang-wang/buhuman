@@ -2,7 +2,7 @@ from sqlalchemy import Table, or_
 from common.database import db_connect
 from app.config.config import config
 from app.settings import env
-from model.article import Article
+# from model.article import Article
 from model.user import User
 
 engine, db_session, Base = db_connect()

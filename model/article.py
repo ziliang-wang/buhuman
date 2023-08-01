@@ -2,7 +2,10 @@ from sqlalchemy import Table, or_
 from common.database import db_connect
 from app.config.config import config
 from app.settings import env
+from model.collection import Collection
+from model.praise import Praise
 from model.user import User
+from sqlalchemy.sql.functions import sum, count
 
 engine, db_session, Base = db_connect()
 
@@ -129,3 +132,31 @@ class Article(Base):
         print(result_list)
 
         return result_list[0][:5]
+
+    def get_user_articles(self, uid):
+        user_articles = db_session.query(count(Article.uid)).filter_by(uid=uid).first()
+        # print(user_articles)
+        if not user_articles:
+            return 0
+        # print(user_articles)
+        return user_articles[0]
+
+
+    def get_collection_and_praise(self, aid):
+        collection = db_session.query(sum(Collection.collected)).filter_by(aid=aid).first()
+        praised = db_session.query(sum(Praise.praised)).filter_by(aid=aid).first()
+
+        collection_result = 0
+        praised_result = 0
+
+        if collection:
+            collection_result = collection[0] or 0
+
+        if praised:
+            praised_result = praised[0] or 0
+
+        result = collection_result + praised_result
+
+        return result
+
+
