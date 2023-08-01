@@ -155,15 +155,16 @@
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement .aleft,
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement .fans,
 .detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement .aright {
     font-size: 14px;
     color: #1c1f21;
     flex: 1;
 }
 
-.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement .aright {
-    flex: 2;
-}
+/*.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement .aright {*/
+/*    flex: 2;*/
+/*}*/
 
 .detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement-grade {
     margin-top: 10px;
@@ -171,18 +172,27 @@
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement-grade .grade-left,
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement-grade .grade-middle,
 .detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement-grade .grade-right {
     font-size: 14px;
     color: #1c1f21;
     flex: 1;
 }
 
-.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement-grade .grade-right {
-    flex: 2;
-}
+/*.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement-grade .grade-right {*/
+/*    flex: 1;*/
+/*}*/
 
-.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-achievement-grade .grade-right {
-    /*text-align: center;*/
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .concern {
+    margin-top: 15px;
+    width: 100%;
+    height: 45px;
+    background-color: #6f4627;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    line-height: 45px;
+    border-radius: 10px;
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-right .detail-right-bottom {

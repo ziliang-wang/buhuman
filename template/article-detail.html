@@ -197,11 +197,16 @@
                     </div>
                     <div class="author-achievement flex-r">
                         <div class="aleft">文章</div>
+                        <div class="fans">粉絲</div>
                         <div class="aright">獲讚與收藏</div>
                     </div>
                     <div class="author-achievement-grade flex-r">
                         <div class="grade-left">{{ user_articles }}篇</div>
+                        <div class="grade-middle">0</div>
                         <div class="grade-right">{{ collection_and_praise }}</div>
+                    </div>
+                    <div class="concern" id="concern">
+                        關注作者，訂閱最新文章
                     </div>
                 </div>
                 <div class="detail-right-bottom">
@@ -217,42 +222,17 @@
                                 </span>
                         </li>
                         {% else %}
-                        {% for item in relation_list %}
-                        <li class="recommend-item flex-r">
-                            <span class="iconfont icon-caogao05"></span>
-                            <span class="recommend-item-content">
-                                        <a href="/detail?aid={{ item.aid }}">
-                                            {{ item.title }}
-                                        </a>
-                                    </span>
-                        </li>
-                        {% endfor %}
+                            {% for item in relation_list %}
+                                <li class="recommend-item flex-r">
+                                    <span class="iconfont icon-caogao05"></span>
+                                    <span class="recommend-item-content">
+                                                <a href="/detail?aid={{ item.aid }}">
+                                                    {{ item.title }}
+                                                </a>
+                                            </span>
+                                </li>
+                            {% endfor %}
                         {% endif %}
-
-                        <!--                        <li class="recommend-item flex-r">-->
-                        <!--                            <span class="iconfont icon-caogao05"></span>-->
-                        <!--                            <span class="recommend-item-content">-->
-                        <!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-                        <!--                                </span>-->
-                        <!--                        </li>-->
-                        <!--                        <li class="recommend-item flex-r">-->
-                        <!--                            <span class="iconfont icon-caogao05"></span>-->
-                        <!--                            <span class="recommend-item-content">-->
-                        <!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-                        <!--                                </span>-->
-                        <!--                        </li>-->
-                        <!--                        <li class="recommend-item flex-r">-->
-                        <!--                            <span class="iconfont icon-caogao05"></span>-->
-                        <!--                            <span class="recommend-item-content">-->
-                        <!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-                        <!--                                </span>-->
-                        <!--                        </li>-->
-                        <!--                        <li class="recommend-item flex-r">-->
-                        <!--                            <span class="iconfont icon-caogao05"></span>-->
-                        <!--                            <span class="recommend-item-content">-->
-                        <!--                                    使用开源项目Robolectric测试Android代码xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-                        <!--                                </span>-->
-                        <!--                        </li>-->
                     </ul>
                 </div>
             </div>
