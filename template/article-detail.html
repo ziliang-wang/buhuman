@@ -205,9 +205,82 @@
                         <div class="grade-middle">0</div>
                         <div class="grade-right">{{ collection_and_praise }}</div>
                     </div>
-                    <div class="concern" id="concern" data-isLogin="{{ session.get('is_login') }}" data-tid="{{ article.uid }}">
+                    <div class="concern" id="concern" data-isLogin="{{ session.get('is_login') }}"
+                         data-tid="{{ article.uid }}">
                         關注作者，訂閱最新文章
                     </div>
+                    <!-- 點讚 script -->
+                    <script>
+                        const $concern = document.getElementById('concern');
+                        // const $praiseIcon = document.getElementById('praiseIcon');
+                        // const $forta = document.getElementById('forta');
+                        let concerned = 0;
+                        isLogin = $concern.getAttribute('data-isLogin');
+                        tid = $concern.getAttribute('data-tid');
+                        // console.log('isLogin', isLogin);
+                        // mounted
+                        axios.get('/concern/status', {
+                            params: {
+                                tid: tid
+                            }
+                        }).then(res => {
+                            if (res.data.status === 5000) {
+                                concerned = res.data.concerned;
+                                if (concerned) {
+                                    // $praise.classList.add('praise-alter');
+                                    // $praiseIcon.classList.add('i-alter');
+                                    $concern.innerHTML = '已關注';
+                                } else {
+                                    // $praise.classList.remove('praise-alter');
+                                    // $praiseIcon.classList.remove('i-alter');
+                                    $doCollect.innerHTML = '關注作者，訂閱最新文章';
+                                }
+                                // if (!res.data.praisedNum) {
+                                //     $forta.innerHTML = `為 TA 點讚`;
+                                // } else {
+                                //     $forta.innerHTML = `${res.data.concernedNum}人點讚`;
+                                // }
+                            }
+                        });
+                        // click
+                        $concern.onclick = function () {
+                            if (concerned) {
+                                concerned = 0;
+                                axios.post('/concern/update', {
+                                    tid: tid,
+                                    concerned: concerned
+                                }).then(res => {
+                                    if (res.data.status === 5000) {
+                                        // $praise.classList.remove('praise-alter');
+                                        // $praiseIcon.classList.remove('i-alter');
+                                        $concern.innerHTML = '關注作者，訂閱最新文章';
+                                        // if (!res.data.concernedNum) {
+                                        //     $forta.innerHTML = `為 TA 點讚`;
+                                        // } else {
+                                        //     $forta.innerHTML = `${res.data.concernedNum}人點讚`;
+                                        // }
+                                    }
+                                });
+                            } else {
+                                concerned = 1;
+                                axios.post('/concern/update', {
+                                    tid: tid,
+                                    concerned: concerned
+                                }).then(res => {
+                                    if (res.data.status === 5000) {
+                                        // $praise.classList.add('praise-alter');
+                                        // $praiseIcon.classList.add('i-alter');
+                                        $concern.innerHTML = '已關注';
+                                        // if (!res.data.concernedNum) {
+                                        //     $forta.innerHTML = `為 TA 點讚`;
+                                        // } else {
+                                        //     $forta.innerHTML = `${res.data.concernedNum}人點讚`;
+                                        // }
+                                    }
+                                });
+                            }
+                        };
+                    </script>
                 </div>
                 <div class="detail-right-bottom">
                     <div class="recommend-title">
@@ -222,16 +295,16 @@
                                 </span>
                         </li>
                         {% else %}
-                            {% for item in relation_list %}
-                                <li class="recommend-item flex-r">
-                                    <span class="iconfont icon-caogao05"></span>
-                                    <span class="recommend-item-content">
+                        {% for item in relation_list %}
+                        <li class="recommend-item flex-r">
+                            <span class="iconfont icon-caogao05"></span>
+                            <span class="recommend-item-content">
                                                 <a href="/detail?aid={{ item.aid }}">
                                                     {{ item.title }}
                                                 </a>
                                             </span>
-                                </li>
-                            {% endfor %}
+                        </li>
+                        {% endfor %}
                         {% endif %}
                     </ul>
                 </div>

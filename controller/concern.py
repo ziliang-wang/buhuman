@@ -38,7 +38,7 @@ def get_status():
     concerned_num = concern_obj.calc_concerned_num(tid)
 
     return {
-        'status': 4000,
+        'status': 5000,
         'concerned': concerned,
         'concernedNum': concerned_num
     }
