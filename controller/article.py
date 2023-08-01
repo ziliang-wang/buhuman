@@ -23,7 +23,7 @@ def article_detail():
     # 作者文章數
     user_articles = article.get_user_articles(user_info.uid)
     # 獲讚與點讚
-    # collection_and_praise = article.get_collection_and_praise(aid)
+    collection_and_praise = article.get_collection_and_praise(user_info.uid)
 
 
     # todo 查看評論的信息
@@ -43,6 +43,6 @@ def article_detail():
         # is_collected=is_collected,
         tags_list=tags_list,
         relation_list=relation_list,
-        user_articles=user_articles
-        # collection_and_praise=collection_and_praise
+        user_articles=user_articles,
+        collection_and_praise=collection_and_praise
     )

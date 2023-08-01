@@ -141,22 +141,28 @@ class Article(Base):
         # print(user_articles)
         return user_articles[0]
 
-
-    def get_collection_and_praise(self, aid):
-        collection = db_session.query(sum(Collection.collected)).filter_by(aid=aid).first()
-        praised = db_session.query(sum(Praise.praised)).filter_by(aid=aid).first()
+    def get_collection_and_praise(self, uid):
+        collection = db_session.query(count(Article.uid)).join(
+            Collection, Article.aid == Collection.aid).filter(
+            Article.uid == uid, Collection.collected == 1).first()
 
         collection_result = 0
-        praised_result = 0
 
         if collection:
             collection_result = collection[0] or 0
 
-        if praised:
-            praised_result = praised[0] or 0
-
-        result = collection_result + praised_result
+        result = collection_result
 
         return result
 
-
+        # print('獲得的收藏數:', collection)
+        # SELECT
+        # count(article.uid)
+        # FROM
+        # article
+        # join
+        # collection
+        # on
+        # article.aid = collection.aid
+        # WHERE
+        # article.uid = 19 and collection.collected = 1;
