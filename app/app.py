@@ -2,6 +2,7 @@ import os
 from flask import Flask
 
 from controller.article import article
+from controller.concern import concern
 from controller.index import index
 from controller.praise import praise
 from controller.user import user
@@ -22,3 +23,4 @@ def init_blueprint(app):
     app.register_blueprint(article)
     app.register_blueprint(collect)
     app.register_blueprint(praise)
+    app.register_blueprint(concern)

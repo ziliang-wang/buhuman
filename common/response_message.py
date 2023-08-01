@@ -94,3 +94,26 @@ class PraiseMessage(object):
             'status': 4001,
             'data': data
         }
+
+
+class ConcernMessage(object):
+    @staticmethod
+    def success(data):
+        return {
+            'status': 5000,
+            'praisedNum': data
+        }
+
+    @staticmethod
+    def fail(data):
+        return {
+            'status': 5002,
+            'data': data
+        }
+
+    @staticmethod
+    def other(data):
+        return {
+            'status': 5001,
+            'data': data
+        }

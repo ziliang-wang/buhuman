@@ -205,7 +205,7 @@
                         <div class="grade-middle">0</div>
                         <div class="grade-right">{{ collection_and_praise }}</div>
                     </div>
-                    <div class="concern" id="concern">
+                    <div class="concern" id="concern" data-isLogin="{{ session.get('is_login') }}" data-tid="{{ article.uid }}">
                         關注作者，訂閱最新文章
                     </div>
                 </div>
