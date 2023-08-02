@@ -19,7 +19,8 @@
                     </a>
                     {% if session.get('is_login') == 'true' %}
                     <span class="collection" data-collected="{{ article.is_collected }}"
-                          data-aid="{{ article.aid }}">{{ '取消收藏' if article.is_collected else '收藏' }}</span>
+                          data-aid="{{ article.aid }}">{{ '取消收藏' if article.is_collected else '收藏' }}
+                    </span>
                     {% else %}
                     <span class="collection" data-aid="{{ article.aid }}">收藏</span>
                     {% endif %}
@@ -74,6 +75,7 @@
                          if (res.data.status === 3000) {
                              self.setAttribute('data-collected', collected);
                              self.innerHTML = '收藏';
+                             self.style.width = '5%';
                          }
                      });
                  } else {
@@ -85,6 +87,7 @@
                          if (res.data.status === 3000) {
                              self.setAttribute('data-collected', collected);
                              self.innerHTML = '取消收藏';
+                             self.style.width = '10%';
                          }
                      });
                  }
