@@ -114,73 +114,7 @@
                 </div>
                 <!-- 點讚 script -->
                 <script>
-                    const $praise = document.getElementById('praise');
-                    const $praiseIcon = document.getElementById('praiseIcon');
-                    const $forta = document.getElementById('forta');
-                    let praised = 0;
-                    isLogin = $praise.getAttribute('data-isLogin');
-                    aid = $praise.getAttribute('data-aid');
-                    // console.log('isLogin', isLogin);
-                    // mounted
-                    axios.get('/praise/status', {
-                        params: {
-                            aid: aid
-                        }
-                    }).then(res => {
-                        if (res.data.status === 4000) {
-                            praised = res.data.praised;
-                            if (praised) {
-                                $praise.classList.add('praise-alter');
-                                $praiseIcon.classList.add('i-alter');
-                                // $doCollect.innerHTML = '已收藏';
-                            } else {
-                                $praise.classList.remove('praise-alter');
-                                $praiseIcon.classList.remove('i-alter');
-                                // $doCollect.innerHTML = '收藏';
-                            }
-                            if (!res.data.praisedNum) {
-                                $forta.innerHTML = `為 TA 點讚`;
-                            } else {
-                                $forta.innerHTML = `${res.data.praisedNum}人點讚`;
-                            }
-                        }
-                    });
-                    // click
-                    $praise.onclick = function () {
-                        if (praised) {
-                            praised = 0;
-                            axios.post('/praise/update', {
-                                aid: aid,
-                                praised: praised
-                            }).then(res => {
-                                if (res.data.status === 4000) {
-                                    $praise.classList.remove('praise-alter');
-                                    $praiseIcon.classList.remove('i-alter');
-                                    if (!res.data.praisedNum) {
-                                        $forta.innerHTML = `為 TA 點讚`;
-                                    } else {
-                                        $forta.innerHTML = `${res.data.praisedNum}人點讚`;
-                                    }
-                                }
-                            });
-                        } else {
-                            praised = 1;
-                            axios.post('/praise/update', {
-                                aid: aid,
-                                praised: praised
-                            }).then(res => {
-                                if (res.data.status === 4000) {
-                                    $praise.classList.add('praise-alter');
-                                    $praiseIcon.classList.add('i-alter');
-                                    if (!res.data.praisedNum) {
-                                        $forta.innerHTML = `為 TA 點讚`;
-                                    } else {
-                                        $forta.innerHTML = `${res.data.praisedNum}人點讚`;
-                                    }
-                                }
-                            });
-                        }
-                    };
+
                 </script>
             </div>
             <!--  detail right  -->
@@ -209,7 +143,7 @@
                          data-tid="{{ article.uid }}">
                         <span id="concernAuthor">關注作者，訂閱最新文章</span>
                     </div>
-                    <!-- 點讚 script -->
+                    <!-- 關注 script -->
                     <script>
                         const $concern = document.getElementById('concern');
                         // const $praiseIcon = document.getElementById('praiseIcon');
@@ -336,10 +270,103 @@
                     推薦
                 </div>
             </li>
-<!--            <li>收藏</li>-->
-<!--            <li>評論</li>-->
+            <!--            <li>收藏</li>-->
+            <!--            <li>評論</li>-->
         </ul>
     </div>
+    <script>
+        // side praise mounted
+        const $praise = document.getElementById('praise');
+        const $praiseIcon = document.getElementById('praiseIcon');
+        const $forta = document.getElementById('forta');
+        let praised = 0;
+        const $sidePraise = document.getElementById('sidePraise');
+        const $sidePraiseIcon = document.getElementById('sidePraiseIcon');
+        const $sideRecommend = document.getElementById('sideRecommend');
+        sideAid = $sidePraise.getAttribute('data-aid');
+        axios.get('/praise/status', {
+            params: {
+                aid: sideAid
+            }
+        }).then(res => {
+            if (res.data.status === 4000) {
+                praised = res.data.praised;
+                if (praised) {
+                    $sidePraise.classList.add('praise-alter');
+                    $sidePraiseIcon.classList.add('i-alter');
+                } else {
+                    $sidePraise.classList.remove('praise-alter');
+                    $sidePraiseIcon.classList.remove('i-alter');
+                }
+                if (!res.data.praisedNum) {
+                    $sideRecommend.innerHTML = `推薦`;
+                } else {
+                    $sideRecommend.innerHTML = `${res.data.praisedNum}`;
+                }
+            }
+        });
+        // praise
+        isLogin = $praise.getAttribute('data-isLogin');
+        aid = $praise.getAttribute('data-aid');
+        // mounted
+        axios.get('/praise/status', {
+            params: {
+                aid: aid
+            }
+        }).then(res => {
+            if (res.data.status === 4000) {
+                praised = res.data.praised;
+                if (praised) {
+                    $praise.classList.add('praise-alter');
+                    $praiseIcon.classList.add('i-alter');
+                } else {
+                    $praise.classList.remove('praise-alter');
+                    $praiseIcon.classList.remove('i-alter');
+                }
+                if (!res.data.praisedNum) {
+                    $forta.innerHTML = `為 TA 點讚`;
+                } else {
+                    $forta.innerHTML = `${res.data.praisedNum}人點讚`;
+                }
+            }
+        });
+        // click
+        $praise.onclick = function () {
+            if (praised) {
+                praised = 0;
+                axios.post('/praise/update', {
+                    aid: aid,
+                    praised: praised
+                }).then(res => {
+                    if (res.data.status === 4000) {
+                        $praise.classList.remove('praise-alter');
+                        $praiseIcon.classList.remove('i-alter');
+                        if (!res.data.praisedNum) {
+                            $forta.innerHTML = `為 TA 點讚`;
+                        } else {
+                            $forta.innerHTML = `${res.data.praisedNum}人點讚`;
+                        }
+                    }
+                });
+            } else {
+                praised = 1;
+                axios.post('/praise/update', {
+                    aid: aid,
+                    praised: praised
+                }).then(res => {
+                    if (res.data.status === 4000) {
+                        $praise.classList.add('praise-alter');
+                        $praiseIcon.classList.add('i-alter');
+                        if (!res.data.praisedNum) {
+                            $forta.innerHTML = `為 TA 點讚`;
+                        } else {
+                            $forta.innerHTML = `${res.data.praisedNum}人點讚`;
+                        }
+                    }
+                });
+            }
+        };
+    </script>
 </section>
 {% include 'common/modal.html' %}
 </body>

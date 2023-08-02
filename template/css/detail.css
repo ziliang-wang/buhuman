@@ -35,6 +35,10 @@
     cursor: pointer;
 }
 
+.detail-container .side-menu .side-praise-container .side-praise-wrapper.praise-alter {
+    background-color: #ffaa00;
+}
+
 .detail-container .side-menu .side-praise-container .side-praise-wrapper i {
     color: #ffaa00;
     font-size: 24px;
@@ -43,7 +47,12 @@
     font-weight: bold;
 }
 
+.detail-container .side-menu .side-praise-container .side-praise-wrapper i.i-alter {
+    color: #fff;
+}
+
 .detail-container .detail-wrap {
+    /*position: relative;*/
     /*border: 1px solid black;*/
 }
 
