@@ -526,4 +526,14 @@ window.onload = () => {
             }
         }
     };
+
+    const $collection = document.getElementsByClassName('collection');
+
+    for (item of $collection) {
+        if (item.getAttribute('data-collected') === '0') {
+            item.style.width = '5%';
+        } else {
+            item.style.width = '10%';
+        }
+    }
 };

@@ -22,7 +22,8 @@
                           data-aid="{{ article.aid }}">{{ '取消收藏' if article.is_collected else '收藏' }}
                     </span>
                     {% else %}
-                    <span class="collection" data-aid="{{ article.aid }}">收藏</span>
+                    <span class="collection" data-collected="{{ article.is_collected }}"
+                          data-aid="{{ article.aid }}">收藏</span>
                     {% endif %}
                 </div>
                 <div class="article-info flex-r">
@@ -58,6 +59,16 @@
     </div>
     <script>
         // 登入後
+        const $collection = document.getElementsByClassName('collection');
+
+        for (item of $collection) {
+            if (item.getAttribute('data-collected') === '0') {
+                item.style.width = '5%';
+            } else {
+                item.style.width = '10%';
+            }
+        }
+
         const $articleList = document.getElementById('articleList');
 
         $articleList.onclick = (e) => {
@@ -66,31 +77,31 @@
             let collected = parseInt(self.getAttribute('data-collected'));
 
             if (aid) {
-                 if (collected) {
-                     collected = 0;
-                     axios.post('/collect/update', {
-                         aid: aid,
-                         collected: collected
-                     }).then(res => {
-                         if (res.data.status === 3000) {
-                             self.setAttribute('data-collected', collected);
-                             self.innerHTML = '收藏';
-                             self.style.width = '5%';
-                         }
-                     });
-                 } else {
-                     collected = 1;
-                     axios.post('/collect/update', {
-                         aid: aid,
-                         collected: collected
-                     }).then(res => {
-                         if (res.data.status === 3000) {
-                             self.setAttribute('data-collected', collected);
-                             self.innerHTML = '取消收藏';
-                             self.style.width = '10%';
-                         }
-                     });
-                 }
+                if (collected) {
+                    collected = 0;
+                    axios.post('/collect/update', {
+                        aid: aid,
+                        collected: collected
+                    }).then(res => {
+                        if (res.data.status === 3000) {
+                            self.setAttribute('data-collected', collected);
+                            self.innerHTML = '收藏';
+                            self.style.width = '5%';
+                        }
+                    });
+                } else {
+                    collected = 1;
+                    axios.post('/collect/update', {
+                        aid: aid,
+                        collected: collected
+                    }).then(res => {
+                        if (res.data.status === 3000) {
+                            self.setAttribute('data-collected', collected);
+                            self.innerHTML = '取消收藏';
+                            self.style.width = '10%';
+                        }
+                    });
+                }
             }
         };
         // const alterCollect = (self) => {
