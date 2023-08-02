@@ -305,10 +305,53 @@
                 }
             }
         });
+        // side praise click
+        $sidePraise.onclick = function () {
+            if (praised) {
+                praised = 0;
+                axios.post('/praise/update', {
+                    aid: sideAid,
+                    praised: praised
+                }).then(res => {
+                    if (res.data.status === 4000) {
+                        $praise.classList.remove('praise-alter');
+                        $praiseIcon.classList.remove('i-alter');
+                        $sidePraise.classList.remove('praise-alter');
+                        $sidePraiseIcon.classList.remove('i-alter');
+                        if (!res.data.praisedNum) {
+                            $forta.innerHTML = `為 TA 點讚`;
+                            $sideRecommend.innerHTML = `推薦`;
+                        } else {
+                            $forta.innerHTML = `${res.data.praisedNum}人點讚`;
+                            $sideRecommend.innerHTML = `${res.data.praisedNum}`;
+                        }
+                    }
+                });
+            } else {
+                praised = 1;
+                axios.post('/praise/update', {
+                    aid: sideAid,
+                    praised: praised
+                }).then(res => {
+                    if (res.data.status === 4000) {
+                        $praise.classList.add('praise-alter');
+                        $praiseIcon.classList.add('i-alter');
+                        $sidePraise.classList.add('praise-alter');
+                        $sidePraiseIcon.classList.add('i-alter');
+                        if (!res.data.praisedNum) {
+                            $forta.innerHTML = `為 TA 點讚`;
+                            $sideRecommend.innerHTML = `推薦`;
+                        } else {
+                            $forta.innerHTML = `${res.data.praisedNum}人點讚`;
+                            $sideRecommend.innerHTML = `${res.data.praisedNum}`;
+                        }
+                    }
+                });
+            }
+        };
         // praise mounted
         isLogin = $praise.getAttribute('data-isLogin');
         aid = $praise.getAttribute('data-aid');
-        // mounted
         axios.get('/praise/status', {
             params: {
                 aid: aid
@@ -330,7 +373,7 @@
                 }
             }
         });
-        // click
+        // praise click
         $praise.onclick = function () {
             if (praised) {
                 praised = 0;
