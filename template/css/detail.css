@@ -1,6 +1,46 @@
 .detail-container {
     margin-top: 75px;
     background-color: #f8fafc;
+    position: relative;
+}
+
+.detail-container .side-menu {
+    position: fixed;
+    top: 125px;
+    left: 0;
+    width: 5%;
+    height: 300px;
+    background-color: transparent;
+    text-align: center;
+}
+
+.detail-container .side-menu .side-praise-container {
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.detail-container .side-menu .side-recommend {
+    /*text-align: center;*/
+    font-size: 14px;
+    color: #9199a1;
+}
+
+.detail-container .side-menu .side-praise-container .side-praise-wrapper {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    background-color: #fff6e5;
+    cursor: pointer;
+}
+
+.detail-container .side-menu .side-praise-container .side-praise-wrapper i {
+    color: #ffaa00;
+    font-size: 24px;
+    position: relative;
+    top: -2px;
+    font-weight: bold;
 }
 
 .detail-container .detail-wrap {

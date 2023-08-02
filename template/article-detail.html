@@ -323,6 +323,23 @@
             </div>
         </div>
     </div>
+    <div class="side-menu">
+        <ul class="side-menu-list">
+            <li>
+                <div class="side-praise-container flex-r">
+                    <div class="side-praise-wrapper" id="sidePraise" data-isLogin="{{ session.get('is_login') }}"
+                         data-aid="{{ article.aid }}">
+                        <i class="iconfont icon-dianzan" id="sidePraiseIcon"></i>
+                    </div>
+                </div>
+                <div class="side-recommend" id="sideRecommend">
+                    推薦
+                </div>
+            </li>
+<!--            <li>收藏</li>-->
+<!--            <li>評論</li>-->
+        </ul>
+    </div>
 </section>
 {% include 'common/modal.html' %}
 </body>
