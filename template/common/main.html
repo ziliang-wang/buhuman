@@ -18,7 +18,7 @@
                         {{ article.title }}
                     </a>
                     {% if session.get('is_login') == 'true' %}
-                    <span onclick="alterCollect(this)" class="collection" data-collected="{{ article.is_collected }}"
+                    <span class="collection" data-collected="{{ article.is_collected }}"
                           data-aid="{{ article.aid }}">{{ '取消收藏' if article.is_collected else '收藏' }}</span>
                     {% else %}
                     <span class="collection" data-aid="{{ article.aid }}">收藏</span>
@@ -57,32 +57,65 @@
     </div>
     <script>
         // 登入後
-        const alterCollect = (self) => {
-            let collected = parseInt(self.getAttribute('data-collected'));
+        const $articleList = document.getElementById('articleList');
+
+        $articleList.onclick = (e) => {
+            const self = e.target;
             const aid = self.getAttribute('data-aid');
-            if (collected) {
-                collected = 0;
-                axios.post('/collect/update', {
-                    aid: aid,
-                    collected: collected
-                }).then(res => {
-                    if (res.data.status === 3000) {
-                        self.setAttribute('data-collected', collected);
-                        self.innerHTML = '收藏';
-                    }
-                });
-            } else {
-                collected = 1;
-                axios.post('/collect/update', {
-                    aid: aid,
-                    collected: collected
-                }).then(res => {
-                    if (res.data.status === 3000) {
-                        self.setAttribute('data-collected', collected);
-                        self.innerHTML = '取消收藏';
-                    }
-                });
+            let collected = parseInt(self.getAttribute('data-collected'));
+
+            if (aid) {
+                 if (collected) {
+                     collected = 0;
+                     axios.post('/collect/update', {
+                         aid: aid,
+                         collected: collected
+                     }).then(res => {
+                         if (res.data.status === 3000) {
+                             self.setAttribute('data-collected', collected);
+                             self.innerHTML = '收藏';
+                         }
+                     });
+                 } else {
+                     collected = 1;
+                     axios.post('/collect/update', {
+                         aid: aid,
+                         collected: collected
+                     }).then(res => {
+                         if (res.data.status === 3000) {
+                             self.setAttribute('data-collected', collected);
+                             self.innerHTML = '取消收藏';
+                         }
+                     });
+                 }
             }
         };
+        // const alterCollect = (self) => {
+        //     let collected = parseInt(self.getAttribute('data-collected'));
+        //     const aid = self.getAttribute('data-aid');
+        //     if (collected) {
+        //         collected = 0;
+        //         axios.post('/collect/update', {
+        //             aid: aid,
+        //             collected: collected
+        //         }).then(res => {
+        //             if (res.data.status === 3000) {
+        //                 self.setAttribute('data-collected', collected);
+        //                 self.innerHTML = '收藏';
+        //             }
+        //         });
+        //     } else {
+        //         collected = 1;
+        //         axios.post('/collect/update', {
+        //             aid: aid,
+        //             collected: collected
+        //         }).then(res => {
+        //             if (res.data.status === 3000) {
+        //                 self.setAttribute('data-collected', collected);
+        //                 self.innerHTML = '取消收藏';
+        //             }
+        //         });
+        //     }
+        // };
     </script>
 </main>
