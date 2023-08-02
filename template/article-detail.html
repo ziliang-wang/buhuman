@@ -283,7 +283,7 @@
         const $sidePraise = document.getElementById('sidePraise');
         const $sidePraiseIcon = document.getElementById('sidePraiseIcon');
         const $sideRecommend = document.getElementById('sideRecommend');
-        sideAid = $sidePraise.getAttribute('data-aid');
+        const sideAid = $sidePraise.getAttribute('data-aid');
         axios.get('/praise/status', {
             params: {
                 aid: sideAid
@@ -305,7 +305,7 @@
                 }
             }
         });
-        // praise
+        // praise mounted
         isLogin = $praise.getAttribute('data-isLogin');
         aid = $praise.getAttribute('data-aid');
         // mounted
@@ -341,10 +341,14 @@
                     if (res.data.status === 4000) {
                         $praise.classList.remove('praise-alter');
                         $praiseIcon.classList.remove('i-alter');
+                        $sidePraise.classList.remove('praise-alter');
+                        $sidePraiseIcon.classList.remove('i-alter');
                         if (!res.data.praisedNum) {
                             $forta.innerHTML = `為 TA 點讚`;
+                            $sideRecommend.innerHTML = `推薦`;
                         } else {
                             $forta.innerHTML = `${res.data.praisedNum}人點讚`;
+                            $sideRecommend.innerHTML = `${res.data.praisedNum}`;
                         }
                     }
                 });
@@ -357,10 +361,14 @@
                     if (res.data.status === 4000) {
                         $praise.classList.add('praise-alter');
                         $praiseIcon.classList.add('i-alter');
+                        $sidePraise.classList.add('praise-alter');
+                        $sidePraiseIcon.classList.add('i-alter');
                         if (!res.data.praisedNum) {
                             $forta.innerHTML = `為 TA 點讚`;
+                            $sideRecommend.innerHTML = `推薦`;
                         } else {
                             $forta.innerHTML = `${res.data.praisedNum}人點讚`;
+                            $sideRecommend.innerHTML = `${res.data.praisedNum}`;
                         }
                     }
                 });
