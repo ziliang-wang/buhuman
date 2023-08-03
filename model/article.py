@@ -108,8 +108,9 @@ class Article(Base):
 
     def get_article_detail(self, aid):
         row = db_session.query(Article).filter_by(aid=aid).first()
-        row.browse_num += 1
-        db_session.commit()
+        if row:
+            row.browse_num += 1
+            db_session.commit()
         return row
 
     # def get_relation_articles(self, label_name):

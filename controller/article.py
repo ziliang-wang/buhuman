@@ -3,6 +3,7 @@ from model.article import Article
 from app.config.config import config
 from app.settings import env
 from model.collection import Collection
+from model.comment import Comment
 from model.concern import Concern
 from model.user import User
 
@@ -29,17 +30,9 @@ def article_detail():
     concern_obj = Concern()
     fans_num = concern_obj.calc_concerned_num(tid=article_content.uid)
     # print(fans_num)
-
-
-    # todo 查看評論的信息
-    # todo 文章收藏數量
-    # todo "我"是否收藏
-    # is_collected 取自db
-    # is_collected = 1
-    #
-    # if session.get('is_login') == 'true':
-    #     uid = session.get('uid')
-    #     is_collected = Collection().get_collection_status(uid, article_content.aid)
+    # comment
+    comment_list = Comment().get_comment_list(aid)
+    print('評論列表:', comment_list)
 
     return render_template(
         'article-detail.html',
@@ -50,5 +43,6 @@ def article_detail():
         relation_list=relation_list,
         user_articles=user_articles,
         collection_and_praise=collection_and_praise,
-        fans_num=fans_num
+        fans_num=fans_num,
+        comment_list=comment_list
     )
