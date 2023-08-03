@@ -88,7 +88,7 @@
                             self.innerHTML = '收藏';
                             self.style.width = '5%';
                         }
-                    });
+                    })
                 } else {
                     collected = 1;
                     axios.post('/collect/update', {
@@ -100,7 +100,7 @@
                             self.innerHTML = '取消收藏';
                             self.style.width = '10%';
                         }
-                    });
+                    })
                 }
             }
         };
