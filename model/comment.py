@@ -31,11 +31,12 @@ class Comment(Base):
         # 一級評論 帶有樓層的新開評論
         comment_floor_list = self.find_comment_by_aid(aid)
         for comment in comment_floor_list:
-            reply_list = []
             user = User()
-            all_reply = self.find_base_by_comment_id(base_reply_id=Comment.id)
+            all_reply = self.find_base_by_comment_id(base_reply_id=comment.id)
+            # print('all reply:', all_reply)
             comment_user = user.find_by_uid(comment.uid)
             # 每一個回覆的評論
+            reply_list = []
             for reply in all_reply:
                 # 當前這條評論的所有回覆評論
                 reply_content_with_user = {}
@@ -45,7 +46,7 @@ class Comment(Base):
 
                 reply_content_with_user['from'] = model_to_json(from_user)
                 reply_content_with_user['to'] = model_to_json(to_user)
-                reply_content_with_user['content'] = model_to_json(reply.content)
+                reply_content_with_user['content'] = model_to_json(reply)
                 reply_list.append(reply_content_with_user)
 
             each_comment_data = model_to_json(comment)
@@ -70,7 +71,8 @@ class Comment(Base):
 
     def find_base_by_comment_id(self, base_reply_id):
         result = db_session.query(Comment).filter_by(
-            base_reply_id=base_reply_id
+            base_reply_id=base_reply_id,
+            is_valid=1
         ).order_by(
             Comment.id.desc()
         ).all()
@@ -79,7 +81,8 @@ class Comment(Base):
 
     def find_reply_by_reply_id(self, reply_id):
         result = db_session.query(Comment).filter_by(
-            id=reply_id
+            id=reply_id,
+            is_valid=1
         ).order_by(
             Comment.id.desc()
         ).all()

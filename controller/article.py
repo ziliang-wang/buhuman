@@ -31,8 +31,9 @@ def article_detail():
     fans_num = concern_obj.calc_concerned_num(tid=article_content.uid)
     # print(fans_num)
     # comment
-    comment_list = Comment().get_comment_list(aid)
-    print('評論列表:', comment_list)
+    common_obj = Comment()
+    comment_list = common_obj.get_comment_list(aid)
+    # print('評論列表:', comment_list)
 
     return render_template(
         'article-detail.html',

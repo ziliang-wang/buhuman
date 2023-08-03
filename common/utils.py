@@ -56,12 +56,12 @@ class ImageCode(object):
 # image_code = ImageCode()
 # image_code.gen_image_code()
 def model_to_json(result):
-    dict = {}
+    result_dict = {}
 
     for k, v in result.__dict__.items():
         if not k.startswith('_sa_'):
             if isinstance(v, datetime):
                 v = v.strftime('%Y-%m-%d %H:%M:%S')
-            dict[k] = v
+            result_dict[k] = v
 
-    return dict
+    return result_dict
