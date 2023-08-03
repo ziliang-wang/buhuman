@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('../fonts/iconfont.ttf?t=1690695362660') format('truetype');
+  src: url('../fonts/iconfont.ttf?t=1691024483735') format('truetype');
 }
 
 .iconfont {
@@ -11,8 +11,32 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-facebook:before {
+  content: "\e650";
+}
+
 .icon-yanjing:before {
   content: "\e661";
+}
+
+.icon-weibo:before {
+  content: "\e62e";
+}
+
+.icon-shoucang:before {
+  content: "\e62a";
+}
+
+.icon-shoucangxuanzhong:before {
+  content: "\e62b";
+}
+
+.icon-twitterB:before {
+  content: "\e9fc";
+}
+
+.icon-line:before {
+  content: "\f1e6";
 }
 
 .icon-Magnifier:before {
@@ -21,6 +45,10 @@
 
 .icon-dianzan:before {
   content: "\e510";
+}
+
+.icon-tuite:before {
+  content: "\ee49";
 }
 
 .icon-caogao05:before {

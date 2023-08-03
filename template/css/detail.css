@@ -59,16 +59,48 @@
 .detail-container .detail-wrap .detail-path {
     height: 50px;
     line-height: 50px;
-    /*border: 1px solid red;*/
-    width: 36%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+    /*width: 72%;*/
 }
 
 .detail-container .detail-wrap .detail-path .detail-path-title {
     font-size: 14px;
     color: #1c1f21;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 60%;
+    /*margin-right: 200px;*/
+}
+
+.detail-container .detail-wrap .detail-path .share > i {
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 30px;
+}
+
+.detail-container .detail-wrap .detail-path .share > i:last-child {
+    margin-right: 0;
+}
+
+.detail-container .detail-wrap .detail-path .share .facebook {
+    color: #4267b2;
+}
+
+.detail-container .detail-wrap .detail-path .share .line {
+    color: #00c300;
+}
+
+.detail-container .detail-wrap .detail-path .share .twitter {
+    color: #2ca8d2;
+}
+
+.detail-container .detail-wrap .detail-path .share .weibo {
+    color: #d6283d;
+    font-size: 26px;
+    position: relative;
+    top: -2px;
 }
 
 .detail-container .detail-wrap .detail-main {
