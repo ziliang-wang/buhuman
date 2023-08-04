@@ -1,3 +1,7 @@
+body {
+    background-color: #f8fafc;
+}
+
 .detail-container {
     margin-top: 75px;
     background-color: #f8fafc;
@@ -413,12 +417,19 @@
 .detail-container .detail-wrap .detail-comment {
     /*margin-top: 20px;*/
     width: 72%;
-    height: 500px;
+    /*height: 500px;*/
     /*background-color: orange;*/
     border-radius: 12px;
     padding: 30px;
     background-color: #fff;
 }
+
+/*.detail-container .detail-wrap .useless-detail-comment {*/
+/*    width: 20%;*/
+/*    background-color: orange;*/
+/*    height: 200px;*/
+/*    !*float: right;*!*/
+/*}*/
 
 .detail-container .detail-wrap .detail-comment .write-comment {
     align-items: center;
@@ -447,11 +458,23 @@
 .detail-container .detail-wrap .detail-comment .comment-item {
     padding: 30px 0;
     border-bottom: 1px solid #ebebec;
+    /*clear: both;*/
+    /*width: 100%;*/
+    flex-wrap: wrap;
+    /*overflow: hidden;*/
+    /*width: 70%;*/
+    /*display: inline-flex;*/
+    /*flex-wrap: wrap;*/
+    /*width: 100%;*/
+}
 
+.detail-container .detail-wrap .detail-comment .comment-item:last-child {
+    border-bottom: none;
 }
 
 .detail-container .detail-wrap .detail-comment .comment-item .comment-item-left {
     width: 48px;
+    flex-shrink: 1;
 }
 .detail-container .detail-wrap .detail-comment .comment-item .comment-item-left-avatar img {
     width: 48px;
@@ -473,7 +496,9 @@
 
 .detail-container .detail-wrap .detail-comment .comment-item .comment-item-right {
     flex: 1;
+    /*width: 100%;*/
     margin-left: 20px;
+    /*flex-shrink: 1;*/
 }
 
 .detail-container .detail-wrap .detail-comment .comment-item .comment-item-right .comment-item-right-author {
@@ -484,20 +509,25 @@
 
 .detail-container .detail-wrap .detail-comment .comment-item .comment-item-right .comment-item-right-content {
     margin: 20px 0;
+    /*flex: 1;*/
 }
 
 .comment-item-right-info {
     justify-content: space-between;
+    /*flex-wrap: wrap;*/
+    /*flex-shrink: 1;*/
 }
 
 .detail-container .detail-wrap .detail-comment .comment-item .comment-item-right .comment-item-right-action {
     /*height: 32px;*/
     align-items: center;
+    /*flex-shrink: 1;*/
 }
 
 .detail-container .detail-wrap .detail-comment .comment-item .comment-item-right .comment-date {
     font-size: 12px;
     color: #9199a1;
+    /*flex-shrink: 1;*/
 }
 
 .detail-container .detail-wrap .detail-comment .comment-item .comment-item-right .comment-item-right-action .action-praise {
@@ -533,3 +563,28 @@
     color: #9199a1;
     cursor: pointer;
 }
+
+.detail-container .detail-wrap .detail-comment .comment-item > .comment-reply {
+    /*padding: 30px 0 30px 10%;*/
+    padding: 30px 0 0 66px;
+    width: 100%;
+    /*padding-left: 10%;*/
+    /*margin-top: 100px;*/
+    /*border-bottom: 1px solid #ebebec;*/
+    /*width: 200px;*/
+    /*flex-wrap: wrap;*/
+}
+
+.detail-container .detail-wrap .detail-comment .comment-item > .comment-reply .reply-author {
+    color: #9199a1;
+    font-weight: normal;
+    /*margin-right: 2px;*/
+}
+
+.detail-container .detail-wrap .detail-comment .comment-item > .comment-reply .reply-content {
+    margin: 5px 0 15px 0;
+}
+
+/*.detail-container .detail-wrap .detail-comment .comment-item > .comment-reply .reply-reply {*/
+/*    */
+/*}*/
