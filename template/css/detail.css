@@ -486,31 +486,42 @@
     margin: 20px 0;
 }
 
+.comment-item-right-info {
+    justify-content: space-between;
+}
+
 .detail-container .detail-wrap .detail-comment .comment-item .comment-item-right .comment-item-right-action {
-    height: 32px;
+    /*height: 32px;*/
     align-items: center;
+}
+
+.detail-container .detail-wrap .detail-comment .comment-item .comment-item-right .comment-date {
+    font-size: 12px;
+    color: #9199a1;
 }
 
 .detail-container .detail-wrap .detail-comment .comment-item .comment-item-right .comment-item-right-action .action-praise {
     margin-right: 24px;
-    background-color: #ededee;
-    padding: 0 16px;
-    height: 32px;
-    border-radius: 16px;
-    line-height: 32px;
+    /*background-color: #ededee;*/
+    /*padding: 0 16px;*/
+    /*height: 32px;*/
+    /*border-radius: 16px;*/
+    /*line-height: 32px;*/
     /*align-items: flex-end;*/
     /*height: 32px;*/
 }
 
 .detail-container .detail-wrap .detail-comment .comment-item .comment-item-right .comment-item-right-action .action-praise i {
-    margin-right: 5px;
+    /*margin-right: 5px;*/
+    font-size: 19px;
 }
 
 .detail-container .detail-wrap .detail-comment .comment-item .comment-item-right .comment-item-right-action .action-praise .dianzan-num {
-    font-size: 12px;
+    font-size: 10px;
     color: #545c63;
-    line-height: 32px;
-    padding-top: 2px;
+
+    /*line-height: 32px;*/
+    /*padding-top: 2px;*/
     /*line-height: 32px;*/
     /*display: inline-block;*/
     /*padding-bottom: 30px;*/
