@@ -120,19 +120,21 @@ class Article(Base):
     #     return result
 
     def get_relation_articles(self, tag_list):
-        result_list = []
-        for tag_name in tag_list:
-            row = db_session.query(Article).filter(
-                or_(Article.article_tag == tag_name)
-            ).order_by(
-                Article.browse_num.desc()
-            ).all()
+        result_list = set()
 
-            result_list.append(row)
+        rows = db_session.query(Article).filter_by(
+            is_valid=1
+        ).order_by(
+            Article.browse_num.desc()
+        ).all()
 
-        print(result_list)
+        for row in rows:
+            row_tag = row.article_tag.split(',')
+            for tag_name in tag_list:
+                if tag_name in row_tag:
+                    result_list.add(row)
 
-        return result_list[0][:5]
+        return list(result_list)[:5]
 
     def get_user_articles(self, uid):
         user_articles = db_session.query(count(Article.uid)).filter_by(uid=uid).first()

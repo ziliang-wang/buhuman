@@ -403,4 +403,18 @@
     color: #545c63;
 }
 
+.detail-container .detail-wrap .detail-comment-num {
+    margin: 20px 0;
+    color: #07111b;
+    line-height: 24px;
+    font-weight: bold;
+}
+
+.detail-container .detail-wrap .detail-comment {
+    /*margin-top: 20px;*/
+    width: 72%;
+    height: 500px;
+    background-color: orange;
+    border-radius: 12px;
+}
 /*#ffaa00*/
