@@ -414,7 +414,31 @@
     /*margin-top: 20px;*/
     width: 72%;
     height: 500px;
-    background-color: orange;
+    /*background-color: orange;*/
     border-radius: 12px;
+    padding: 30px;
+    background-color: #fff;
 }
-/*#ffaa00*/
+
+.detail-container .detail-wrap .detail-comment .write-comment {
+    align-items: center;
+    border-bottom: 1px solid #ebebec;
+    padding-bottom: 30px;
+}
+
+.detail-container .detail-wrap .detail-comment .write-comment .write-left {
+    color: #1c1f21;
+    font-weight: bold;
+    /*margin-right: 20px;*/
+    width: 48px;
+}
+
+.detail-container .detail-wrap .detail-comment .write-comment .write-right {
+    height: 48px;
+    padding: 12px 16px;
+    background-color: #f3f5f6;
+    border-radius: 6px;
+    color: #9199a1;
+    /*flex: 1;*/
+    width: 80%;
+}

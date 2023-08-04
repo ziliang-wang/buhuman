@@ -6,7 +6,7 @@ from app.settings import env
 
 def db_connect():
     engine = create_engine(config[env].db_url, echo=config[env].is_echo, pool_size=10, max_overflow=30)
-    session = sessionmaker(engine)
+    session = sessionmaker(engine, autoflush=False)
     db_session = scoped_session(session)
     Base = declarative_base()
 
