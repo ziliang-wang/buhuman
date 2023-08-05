@@ -117,3 +117,26 @@ class ConcernMessage(object):
             'status': 5001,
             'data': data
         }
+
+
+class CommentMessage(object):
+    @staticmethod
+    def success(data):
+        return {
+            'status': 6000,
+            'data': data
+        }
+
+    @staticmethod
+    def fail(data):
+        return {
+            'status': 6002,
+            'data': data
+        }
+
+    @staticmethod
+    def other(data):
+        return {
+            'status': 6001,
+            'data': data
+        }

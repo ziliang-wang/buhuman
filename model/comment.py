@@ -6,7 +6,7 @@ from common.utils import model_to_json
 from model.collection import Collection
 from model.praise import Praise
 from model.user import User
-from sqlalchemy.sql.functions import sum, count
+from sqlalchemy.sql.functions import sum, count, func
 
 engine, db_session, Base = db_connect()
 
@@ -99,3 +99,41 @@ class Comment(Base):
         ).all()
 
         return result
+
+    # 一級評論
+    def insert_comment(self, uid, aid, content, ipaddr):
+        comment_max_floor = db_session.query(
+            func.max(Comment.floor_number).label('max_floor')
+        ).filter_by(
+            aid=aid,
+            is_valid=1
+        ).first()
+
+        if comment_max_floor.max_floor == 0 or not comment_max_floor.max_floor:
+            comment = Comment(
+                uid=uid,
+                aid=aid,
+                base_reply_id=0,
+                reply_id=0,
+                floor_number=1,
+                content=content,
+                ipaddr=ipaddr
+            )
+        else:
+            comment = Comment(
+                uid=uid,
+                aid=aid,
+                base_reply_id=0,
+                reply_id=0,
+                floor_number=int(comment_max_floor.max_floor) + 1,
+                content=content,
+                ipaddr=ipaddr
+            )
+
+        db_session.add(comment)
+        db_session.commit()
+        db_session.refresh()
+
+        return comment
+
+

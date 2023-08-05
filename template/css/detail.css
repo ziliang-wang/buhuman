@@ -644,6 +644,7 @@ body {
 }
 
 .detail-container .comment-mask-modal > .comment-window .comment-editor {
+    /*z-index: 9999999;*/
     /*overflow: hidden;*/
     /*height: 200px;*/
 }
@@ -670,6 +671,7 @@ body {
     /*border: none;*/
     /*outline: none;*/
 }
+
 /*.detail-container .detail-wrap .detail-comment .comment-item > .comment-reply .reply-reply {*/
 /*    */
 /*}*/
