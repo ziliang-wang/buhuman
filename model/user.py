@@ -35,5 +35,7 @@ class User(Base):
 
     def find_by_uid(self, uid):
         user_info = db_session.query(User).filter_by(uid=uid).first()
+        if user_info.avatar.startswith(config[env].user_avatar_path):
+            return user_info
         user_info.avatar = config[env].user_avatar_path + user_info.avatar
         return user_info

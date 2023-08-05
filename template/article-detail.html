@@ -262,96 +262,75 @@
                 </div>
             </div>
         </div>
-        <div class="detail-comment-num">2 評論</div>
+        <div class="detail-comment-num">{{ 0 if not comment_list else comment_num }} 評論</div>
         <div class="detail-comment">
             <div class="write-comment flex-r">
                 <div class="write-left">評論</div>
                 <div class="write-right">寫下您的評論</div>
             </div>
-            {% for comment_item in comment_list %}
-            <div class="comment-item flex-r">
-                <div class="comment-item-left">
-                    <div class="comment-item-left-avatar">
-                        <img src="{{ comment_item.avatar }}" alt="">
-                    </div>
-                    <div class="comment-item-left-floor">
-                        {{ comment_item.floor_number }}樓
-                    </div>
-                </div>
-                <div class="comment-item-right">
-                    <div class="comment-item-right-author">
-                        {{ comment_item.nickname }}
-                    </div>
-                    <div class="comment-item-right-content">
-                        <span>{{ comment_item.content | safe }}</span>
-                    </div>
-                    <div class="comment-item-right-info flex-r">
-                        <div class="comment-item-right-action flex-r">
-                            <div class="action-praise">
-                                <i class="iconfont icon-dianzan"></i>
-                                <span class="dianzan-num">4</span>
-                            </div>
-                            <div class="action-reply">回覆</div>
-                        </div>
-                        <div class="comment-date">
-                            {{ comment_item.create_time }}
-                        </div>
-                    </div>
-                </div>
-                {% for reply_item in comment_item.reply_list %}
-                <div class="comment-reply flex-r">
+            {% if not comment_list %}
+                <div class="no-comment">暫無評論</div>
+            {% else %}
+                {% for comment_item in comment_list %}
+                <div class="comment-item flex-r">
                     <div class="comment-item-left">
                         <div class="comment-item-left-avatar">
-                            <img src="{{ reply_item.from.avatar }}" alt="">
+                            <img src="{{ comment_item.avatar }}" alt="">
+                        </div>
+                        <div class="comment-item-left-floor">
+                            {{ comment_item.floor_number }}樓
                         </div>
                     </div>
                     <div class="comment-item-right">
-                            <div class="comment-item-right-author">
-                                <span>{{ reply_item.from.nickname }}</span>
-                                <span class="reply-author"> 回覆 </span>
-                                <span>{{ reply_item.to.nickname }}</span>
-                            </div>
-                            <div class="comment-item-right-content reply-content">
-                                <span>{{ reply_item.content.content | safe }}</span>
-                            </div>
-                            <div class="comment-item-right-info flex-r">
-                                <div class="comment-item-right-action flex-r">
-                                    <div class="action-reply">回覆</div>
+                        <div class="comment-item-right-author">
+                            {{ comment_item.nickname }}
+                        </div>
+                        <div class="comment-item-right-content">
+                            <span>{{ comment_item.content | safe }}</span>
+                        </div>
+                        <div class="comment-item-right-info flex-r">
+                            <div class="comment-item-right-action flex-r">
+                                <div class="action-praise">
+                                    <i class="iconfont icon-dianzan"></i>
+                                    <span class="dianzan-num">4</span>
                                 </div>
-                                <div class="comment-date">
-                                    {{ reply_item.content.create_time }}
-                                </div>
+                                <div class="action-reply">回覆</div>
                             </div>
+                            <div class="comment-date">
+                                {{ comment_item.create_time }}
+                            </div>
+                        </div>
                     </div>
+                    {% for reply_item in comment_item.reply_list %}
+                    <div class="comment-reply flex-r">
+                        <div class="comment-item-left">
+                            <div class="comment-item-left-avatar">
+                                <img src="{{ reply_item.from.avatar }}" alt="">
+                            </div>
+                        </div>
+                        <div class="comment-item-right">
+                                <div class="comment-item-right-author">
+                                    <span>{{ reply_item.from.nickname }}</span>
+                                    <span class="reply-author"> 回覆 </span>
+                                    <span>{{ reply_item.to.nickname }}</span>
+                                </div>
+                                <div class="comment-item-right-content reply-content">
+                                    <span>{{ reply_item.content.content | safe }}</span>
+                                </div>
+                                <div class="comment-item-right-info flex-r">
+                                    <div class="comment-item-right-action flex-r">
+                                        <div class="action-reply">回覆</div>
+                                    </div>
+                                    <div class="comment-date">
+                                        {{ reply_item.content.create_time }}
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
                 {% endfor %}
-<!--                <div class="comment-reply flex-r">-->
-<!--                    <div class="comment-item-left">-->
-<!--                        <div class="comment-item-left-avatar">-->
-<!--                            <img src="images/headers/5.jpg" alt="">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="comment-item-right">-->
-<!--                            <div class="comment-item-right-author">-->
-<!--                                <span>Test2</span>-->
-<!--                                <span class="reply-author"> 回覆 </span>-->
-<!--                                <span>Test</span>-->
-<!--                            </div>-->
-<!--                            <div class="comment-item-right-content reply-content">-->
-<!--                                <span>smile</span>-->
-<!--                            </div>-->
-<!--                            <div class="comment-item-right-info flex-r">-->
-<!--                                <div class="comment-item-right-action flex-r">-->
-<!--                                    <div class="action-reply">回覆</div>-->
-<!--                                </div>-->
-<!--                                <div class="comment-date">-->
-<!--                                    2022.11.14-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-            </div>
-            {% endfor %}
+            {% endif %}
         </div>
     </div>
     <div class="side-menu">

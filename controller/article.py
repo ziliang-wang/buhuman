@@ -33,6 +33,8 @@ def article_detail():
     # comment
     common_obj = Comment()
     comment_list = common_obj.get_comment_list(aid)
+    # comment num
+    comment_num = common_obj.get_comment_list_total(aid)
     # print('評論列表:', comment_list)
 
     return render_template(
@@ -45,5 +47,6 @@ def article_detail():
         user_articles=user_articles,
         collection_and_praise=collection_and_praise,
         fans_num=fans_num,
-        comment_list=comment_list
+        comment_list=comment_list,
+        comment_num=comment_num
     )

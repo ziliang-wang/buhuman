@@ -1,5 +1,6 @@
 body {
     background-color: #f8fafc;
+    padding-bottom: 40px;
 }
 
 .detail-container {
@@ -453,6 +454,13 @@ body {
     color: #9199a1;
     /*flex: 1;*/
     width: 80%;
+}
+
+.detail-container .detail-wrap .detail-comment .no-comment {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: #1c1f21;
 }
 
 .detail-container .detail-wrap .detail-comment .comment-item {

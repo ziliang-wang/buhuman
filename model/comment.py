@@ -25,6 +25,17 @@ class Comment(Base):
     #     {},
     #     {}
     # ]
+    def get_comment_list_total(self, aid):
+        rows = db_session.query(Comment).filter_by(
+            aid=aid,
+            base_reply_id=0,
+            reply_id=0,
+            is_valid=1
+        ).all()
+
+        if not rows:
+            return 0
+        return len(rows)
 
     def get_comment_list(self, aid):
         final_data_list = []
