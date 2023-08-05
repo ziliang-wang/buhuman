@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/detail.css">
+    <script src="plugins/ueditor-plus/ueditor.config.js"></script>
+    <script src="plugins/ueditor-plus/ueditor.all.js"></script>
+    <script src="plugins/ueditor-plus/lang/zh-cn/zh-cn.js"></script>
     <script src="js/header.js"></script>
     <script src="js/axios.min.js"></script>
 </head>
@@ -269,67 +272,67 @@
                 <div class="write-right" id="writeComment">寫下您的評論</div>
             </div>
             {% if not comment_list %}
-                <div class="no-comment">暫無評論</div>
+            <div class="no-comment">暫無評論</div>
             {% else %}
-                {% for comment_item in comment_list %}
-                <div class="comment-item flex-r">
+            {% for comment_item in comment_list %}
+            <div class="comment-item flex-r">
+                <div class="comment-item-left">
+                    <div class="comment-item-left-avatar">
+                        <img src="{{ comment_item.avatar }}" alt="">
+                    </div>
+                    <div class="comment-item-left-floor">
+                        {{ comment_item.floor_number }}樓
+                    </div>
+                </div>
+                <div class="comment-item-right">
+                    <div class="comment-item-right-author">
+                        {{ comment_item.nickname }}
+                    </div>
+                    <div class="comment-item-right-content">
+                        <span>{{ comment_item.content | safe }}</span>
+                    </div>
+                    <div class="comment-item-right-info flex-r">
+                        <div class="comment-item-right-action flex-r">
+                            <div class="action-praise">
+                                <i class="iconfont icon-dianzan"></i>
+                                <span class="dianzan-num">4</span>
+                            </div>
+                            <div class="action-reply">回覆</div>
+                        </div>
+                        <div class="comment-date">
+                            {{ comment_item.create_time }}
+                        </div>
+                    </div>
+                </div>
+                {% for reply_item in comment_item.reply_list %}
+                <div class="comment-reply flex-r">
                     <div class="comment-item-left">
                         <div class="comment-item-left-avatar">
-                            <img src="{{ comment_item.avatar }}" alt="">
-                        </div>
-                        <div class="comment-item-left-floor">
-                            {{ comment_item.floor_number }}樓
+                            <img src="{{ reply_item.from.avatar }}" alt="">
                         </div>
                     </div>
                     <div class="comment-item-right">
                         <div class="comment-item-right-author">
-                            {{ comment_item.nickname }}
+                            <span>{{ reply_item.from.nickname }}</span>
+                            <span class="reply-author"> 回覆 </span>
+                            <span>{{ reply_item.to.nickname }}</span>
                         </div>
-                        <div class="comment-item-right-content">
-                            <span>{{ comment_item.content | safe }}</span>
+                        <div class="comment-item-right-content reply-content">
+                            <span>{{ reply_item.content.content | safe }}</span>
                         </div>
                         <div class="comment-item-right-info flex-r">
                             <div class="comment-item-right-action flex-r">
-                                <div class="action-praise">
-                                    <i class="iconfont icon-dianzan"></i>
-                                    <span class="dianzan-num">4</span>
-                                </div>
                                 <div class="action-reply">回覆</div>
                             </div>
                             <div class="comment-date">
-                                {{ comment_item.create_time }}
+                                {{ reply_item.content.create_time }}
                             </div>
                         </div>
                     </div>
-                    {% for reply_item in comment_item.reply_list %}
-                    <div class="comment-reply flex-r">
-                        <div class="comment-item-left">
-                            <div class="comment-item-left-avatar">
-                                <img src="{{ reply_item.from.avatar }}" alt="">
-                            </div>
-                        </div>
-                        <div class="comment-item-right">
-                                <div class="comment-item-right-author">
-                                    <span>{{ reply_item.from.nickname }}</span>
-                                    <span class="reply-author"> 回覆 </span>
-                                    <span>{{ reply_item.to.nickname }}</span>
-                                </div>
-                                <div class="comment-item-right-content reply-content">
-                                    <span>{{ reply_item.content.content | safe }}</span>
-                                </div>
-                                <div class="comment-item-right-info flex-r">
-                                    <div class="comment-item-right-action flex-r">
-                                        <div class="action-reply">回覆</div>
-                                    </div>
-                                    <div class="comment-date">
-                                        {{ reply_item.content.create_time }}
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                    {% endfor %}
                 </div>
                 {% endfor %}
+            </div>
+            {% endfor %}
             {% endif %}
         </div>
     </div>
@@ -356,9 +359,7 @@
                 <span class="comment-title">發佈評論</span>
                 <span class="comment-close" id="commentClose">×</span>
             </div>
-            <div class="comment-editor">
-                content
-            </div>
+            <div class="comment-editor" id="publishComment"></div>
             <div class="comment-submit flex-r">
                 <div class="submit">提交</div>
             </div>
@@ -367,11 +368,47 @@
     <script>
         $writeComment = document.getElementById('writeComment');
         $commentMaskModal = document.getElementById('commentMaskModal');
+        $commentClose = document.getElementById('commentClose');
+
         $writeComment.onclick = (e) => {
             e.stopPropagation();
             // alert('comment');
             $commentMaskModal.style.display = 'block';
         };
+
+        $commentClose.onclick = (e) => {
+            $commentMaskModal.style.display = 'none';
+        };
+    </script>
+    <script>
+        var ue = UE.getEditor('publishComment', {
+            // ... 更多配置
+            shortcutMenu: false,
+            elementPathEnabled: false,
+            wordCount: false,
+            autoHeightEnabled: false,
+            // 初始化编辑器宽度,默认 1000
+            // initialFrameWidth: 800,
+            initialFrameWidth: '100%',
+            // 初始化编辑器高度,默认 320
+            initialFrameHeight: 150,
+            toolbars: [
+                [
+                    // "source",
+                    "insertcode",
+                    "bold",
+                    "italic",
+                    "insertimage",
+                    "link",
+                    "insertorderedlist",
+                    "insertunorderedlist",
+                    "blockquote",
+                    "undo",
+                    "redo",
+                    "emotion"
+                ]
+            ]
+        });
     </script>
     <script>
         // side praise mounted
