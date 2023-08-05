@@ -65,3 +65,15 @@ def model_to_json(result):
             result_dict[k] = v
 
     return result_dict
+
+
+def compress_image(source, dest, width=1200):
+    im = Image.open(source)
+    x, y = im.size
+    if x > width:
+        ys = int(y*width/x)
+        xs = width
+        tmp = im.resize((xs, ys), Image.ANTIALIAS)
+        tmp.save(dest, quality=80)
+    else:
+        im.save(dest, quality=80)

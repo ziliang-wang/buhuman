@@ -2,6 +2,7 @@ import os
 from flask import Flask
 
 from controller.article import article
+from controller.comment import comment
 from controller.concern import concern
 from controller.index import index
 from controller.praise import praise
@@ -24,3 +25,4 @@ def init_blueprint(app):
     app.register_blueprint(collect)
     app.register_blueprint(praise)
     app.register_blueprint(concern)
+    app.register_blueprint(comment)
