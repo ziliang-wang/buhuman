@@ -361,7 +361,7 @@
             </div>
             <div class="comment-editor" id="publishComment"></div>
             <div class="comment-submit flex-r">
-                <div class="submit">提交</div>
+                <div class="submit" id="submitComment">提交</div>
             </div>
         </div>
     </div>
@@ -369,6 +369,8 @@
         $writeComment = document.getElementById('writeComment');
         $commentMaskModal = document.getElementById('commentMaskModal');
         $commentClose = document.getElementById('commentClose');
+        $submitComment = document.getElementById('submitComment');
+        $publishComment = document.getElementById('publishComment');
 
         $writeComment.onclick = (e) => {
             e.stopPropagation();
@@ -379,6 +381,10 @@
         $commentClose.onclick = (e) => {
             $commentMaskModal.style.display = 'none';
         };
+
+        // $submitComment.onclick = () => {
+        //     console.log($publishComment.innerText);
+        // };
     </script>
     <script>
         var ue = UE.getEditor('publishComment', {
