@@ -1,3 +1,5 @@
+# coding: utf-8
+
 UECONFIG = {
     # 编辑器初始化内容
     "initialContent": '<p>我是初始化内容，设不设置都可以</p>',
