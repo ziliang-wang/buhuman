@@ -266,7 +266,7 @@
         <div class="detail-comment">
             <div class="write-comment flex-r">
                 <div class="write-left">評論</div>
-                <div class="write-right">寫下您的評論</div>
+                <div class="write-right" id="writeComment">寫下您的評論</div>
             </div>
             {% if not comment_list %}
                 <div class="no-comment">暫無評論</div>
@@ -350,6 +350,29 @@
             <!--            <li>評論</li>-->
         </ul>
     </div>
+    <div class="comment-mask-modal" id="commentMaskModal">
+        <div class="comment-window">
+            <div class="comment-window-title flex-r">
+                <span class="comment-title">發佈評論</span>
+                <span class="comment-close" id="commentClose">×</span>
+            </div>
+            <div class="comment-editor">
+                content
+            </div>
+            <div class="comment-submit flex-r">
+                <div class="submit">提交</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $writeComment = document.getElementById('writeComment');
+        $commentMaskModal = document.getElementById('commentMaskModal');
+        $writeComment.onclick = (e) => {
+            e.stopPropagation();
+            // alert('comment');
+            $commentMaskModal.style.display = 'block';
+        };
+    </script>
     <script>
         // side praise mounted
         const $praise = document.getElementById('praise');
