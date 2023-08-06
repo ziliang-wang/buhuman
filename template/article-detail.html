@@ -332,7 +332,7 @@
                                     </div>
                                 </div>
                             {% endfor %}
-                            <div class="reply-author-comment" id="{{ comment_item.id }}">
+                            <div class="reply-author-comment" id="{{ comment_item.id }}" data-tid="{{ comment_item.id }}">
                                 <div class="reply-container flex-r">
                                     <img src="{{ comment_item.avatar }}" alt="">
                                     <textarea type="text" placeholder="寫下您的回覆"></textarea>
@@ -442,7 +442,7 @@
             });
         };
 
-        let isShow = false;
+        // let isShow = false;
         // switch
         let currReplyInputId = 0;
         let baseReplyId = 0;
@@ -459,12 +459,13 @@
             currReplyInputId = commentId;
             const $inputWrap = document.getElementById(commentId);
             $inputWrap.style.display = 'block';
+            const $currInput = document.querySelector(`.reply-author-comment[data-tid="${currReplyInputId}"]`);
+            document.documentElement.scrollTop = $currInput.offsetTop;
         };
 
         const hiddenReply = (inputId) => {
             const $inputWrap = document.getElementById(inputId);
             $inputWrap.style.display = 'none';
-
         };
     </script>
     <script>
