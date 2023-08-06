@@ -132,7 +132,7 @@ class Comment(Base):
 
         db_session.add(comment)
         db_session.commit()
-        db_session.refresh()
+        db_session.refresh(comment)
 
         return comment
 

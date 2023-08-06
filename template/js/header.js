@@ -579,4 +579,23 @@ window.onload = () => {
             $imageCode.src = '/vcode?' + Math.random();
         }
     };
+    // 提交一级评论
+    $submitComment = document.getElementById('submitComment');
+
+    $submitComment.onclick = function (e) {
+        e.stopPropagation();
+
+        const isLogin = this.getAttribute('data-isLogin');
+        // console.log('isLogin', isLogin);
+
+        if (isLogin !== 'true') {
+            // console.log('未登入')
+            $maskLoginModal.style.display = 'block';
+            $loginAccount.focus();
+            $loginAccountMsg.innerHTML = '';
+            $loginPwdMsg.innerHTML = '';
+            $vcodeMsg.innerHTML = '';
+            $imageCode.src = '/vcode?' + Math.random();
+        }
+    };
 };
