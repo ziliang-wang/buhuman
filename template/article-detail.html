@@ -331,6 +331,16 @@
                     </div>
                 </div>
                 {% endfor %}
+                <div class="reply-author-comment" id="{{ comment_item.id }}">
+                    <div class="reply-container flex-r">
+                        <img src="{{ comment_item.avatar }}" alt="">
+                        <textarea type="text" placeholder="寫下您的回覆"></textarea>
+                    </div>
+                    <div class="reply-actions flex-r">
+                        <span class="reply-actions-cancel">取消</span>
+                        <span class="reply-actions-submit">回覆</span>
+                    </div>
+                </div>
             </div>
             {% endfor %}
             {% endif %}
