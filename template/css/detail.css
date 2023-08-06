@@ -694,7 +694,8 @@ body {
     height: 48px;
     border-radius: 50%;
     margin-right: 20px;
-    /*flex-shrink: 1;*/
+    /*flex: 48px;*/
+    flex-shrink: 1;
 }
 
 .reply-author-comment .reply-container textarea {
@@ -704,10 +705,12 @@ body {
     padding: 8px 12px;
     border: 1px solid #d9dde1;
     outline: none;
+    flex: 1;
     /*flex-shrink: 1;*/
 }
 
 .reply-author-comment .reply-actions {
+    /*flex-wrap: wrap;*/
     /*margin-right: 88px;*/
     margin-top: 20px;
     /*justify-content: flex-end;*/

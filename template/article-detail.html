@@ -334,7 +334,8 @@
                             {% endfor %}
                             <div class="reply-author-comment" id="{{ comment_item.id }}" data-tid="{{ comment_item.id }}">
                                 <div class="reply-container flex-r">
-                                    <img src="{{ comment_item.avatar }}" alt="">
+<!--                                    <img src="{{ comment_item.avatar }}" alt="">-->
+                                    <img src="{{ session.get('avatar') or comment_item.avatar }} " alt="">
                                     <textarea type="text" placeholder="寫下您的回覆"></textarea>
                                     <div class="reply-actions flex-r">
                                         <span class="reply-actions-cancel" onclick="hiddenReply('{{ comment_item.id }}')">取消</span>
