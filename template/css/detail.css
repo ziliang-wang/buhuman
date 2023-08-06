@@ -684,7 +684,7 @@ body {
 
 .reply-author-comment .reply-container {
     width: 100%;
-    /*flex-wrap: wrap;*/
+    flex-wrap: wrap;
 }
 
 .reply-author-comment .reply-container img {
@@ -709,7 +709,7 @@ body {
     /*margin-right: 88px;*/
     margin-top: 20px;
     /*justify-content: flex-end;*/
-    /*width: 100%;*/
+    width: 100%;
     /*text-align: right;*/
     /*padding-right: 100px;*/
     font-size: 12px;
