@@ -443,15 +443,27 @@
         };
 
         let isShow = false;
-
+        // switch
+        let currReplyInputId = 0;
+        let baseReplyId = 0;
+        let replyAid = 0;
+        let commentReplyId = 0;
         const showReply = (commentId, uid, aid, nickname, replyId) => {
-            const baseReplyId = commentId;
-            const replyAid = aid;
-            const commentReplyId = replyId;
-
+            baseReplyId = commentId;
+            replyAid = aid;
+            commentReplyId = replyId;
+            // 關閉當前已經打開的輸入框
+            if (currReplyInputId !== 0) {
+                hiddenReply(currReplyInputId);
+            }
+            currReplyInputId = commentId;
+            const $inputWrap = document.getElementById(commentId);
+            $inputWrap.style.display = 'block';
         };
 
-        const hiddenReply = () => {
+        const hiddenReply = (inputId) => {
+            const $inputWrap = document.getElementById(inputId);
+            $inputWrap.style.display = 'none';
 
         };
     </script>
