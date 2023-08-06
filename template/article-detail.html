@@ -272,78 +272,79 @@
                 <div class="write-right" id="writeComment">寫下您的評論</div>
             </div>
             {% if not comment_list %}
-            <div class="no-comment">暫無評論</div>
+                <div class="no-comment">暫無評論</div>
             {% else %}
-            {% for comment_item in comment_list %}
-            <div class="comment-item flex-r">
-                <div class="comment-item-left">
-                    <div class="comment-item-left-avatar">
-                        <img src="{{ comment_item.avatar }}" alt="">
-                    </div>
-                    <div class="comment-item-left-floor">
-                        {{ comment_item.floor_number }}樓
-                    </div>
-                </div>
-                <div class="comment-item-right">
-                    <div class="comment-item-right-author">
-                        {{ comment_item.nickname }}
-                    </div>
-                    <div class="comment-item-right-content">
-                        <span>{{ comment_item.content | safe }}</span>
-                    </div>
-                    <div class="comment-item-right-info flex-r">
-                        <div class="comment-item-right-action flex-r">
-                            <div class="action-praise">
-                                <i class="iconfont icon-dianzan"></i>
-                                <span class="dianzan-num">4</span>
+                <div id="commentItemList">
+                    {% for comment_item in comment_list %}
+                        <div class="comment-item flex-r">
+                            <div class="comment-item-left">
+                                <div class="comment-item-left-avatar">
+                                    <img src="{{ comment_item.avatar }}" alt="">
+                                </div>
+                                <div class="comment-item-left-floor">
+                                    {{ comment_item.floor_number }}樓
+                                </div>
                             </div>
-                            <div class="action-reply">回覆</div>
-                        </div>
-                        <div class="comment-date">
-                            {{ comment_item.create_time }}
-                        </div>
-                    </div>
-                </div>
-                {% for reply_item in comment_item.reply_list %}
-                <div class="comment-reply flex-r">
-                    <div class="comment-item-left">
-                        <div class="comment-item-left-avatar">
-                            <img src="{{ reply_item.from.avatar }}" alt="">
-                        </div>
-                    </div>
-                    <div class="comment-item-right">
-                        <div class="comment-item-right-author">
-                            <span>{{ reply_item.from.nickname }}</span>
-                            <span class="reply-author"> 回覆 </span>
-                            <span>{{ reply_item.to.nickname }}</span>
-                        </div>
-                        <div class="comment-item-right-content reply-content">
-                            <span>{{ reply_item.content.content | safe }}</span>
-                        </div>
-                        <div class="comment-item-right-info flex-r">
-                            <div class="comment-item-right-action flex-r">
-                                <div class="action-reply">回覆</div>
+                            <div class="comment-item-right">
+                                <div class="comment-item-right-author">
+                                    {{ comment_item.nickname }}
+                                </div>
+                                <div class="comment-item-right-content">
+                                    <span>{{ comment_item.content | safe }}</span>
+                                </div>
+                                <div class="comment-item-right-info flex-r">
+                                    <div class="comment-item-right-action flex-r">
+                                        <div class="action-praise">
+                                            <i class="iconfont icon-dianzan"></i>
+                                            <span class="dianzan-num">4</span>
+                                        </div>
+                                        <div class="action-reply" onclick="showReply('{{comment_item.id}}', '{{comment_item.uid}}', '{{comment_item.aid}}', '{{comment_item.nickname}}', '{{comment_item.reply_id}}')" data-reply="{{ comment_item.id }}">回覆</div>
+                                    </div>
+                                    <div class="comment-date">
+                                        {{ comment_item.create_time }}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="comment-date">
-                                {{ reply_item.content.create_time }}
+                            {% for reply_item in comment_item.reply_list %}
+                                <div class="comment-reply flex-r">
+                                    <div class="comment-item-left">
+                                        <div class="comment-item-left-avatar">
+                                            <img src="{{ reply_item.from.avatar }}" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="comment-item-right">
+                                        <div class="comment-item-right-author">
+                                            <span>{{ reply_item.from.nickname }}</span>
+                                            <span class="reply-author"> 回覆 </span>
+                                            <span>{{ reply_item.to.nickname }}</span>
+                                        </div>
+                                        <div class="comment-item-right-content reply-content">
+                                            <span>{{ reply_item.content.content | safe }}</span>
+                                        </div>
+                                        <div class="comment-item-right-info flex-r">
+                                            <div class="comment-item-right-action flex-r">
+                                                <div class="action-reply" onclick="showReply('{{comment_item.id}}', '{{reply_item.from.uid}}', '{{comment_item.aid}}', '{{reply_item.from.nickname}}', '{{reply_item.content.id}}')" data-reply="{{ reply_item.content.id }}">回覆</div>
+                                            </div>
+                                            <div class="comment-date">
+                                                {{ reply_item.content.create_time }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="reply-author-comment" id="{{ comment_item.id }}">
+                                <div class="reply-container flex-r">
+                                    <img src="{{ comment_item.avatar }}" alt="">
+                                    <textarea type="text" placeholder="寫下您的回覆"></textarea>
+                                    <div class="reply-actions flex-r">
+                                        <span class="reply-actions-cancel" onclick="hiddenReply('{{ comment_item.id }}')">取消</span>
+                                        <span class="reply-actions-submit">回覆</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-                <div class="reply-author-comment" id="{{ comment_item.id }}">
-                    <div class="reply-container flex-r">
-                        <img src="{{ comment_item.avatar }}" alt="">
-                        <textarea type="text" placeholder="寫下您的回覆"></textarea>
-                        <div class="reply-actions flex-r">
-                            <span class="reply-actions-cancel">取消</span>
-                            <span class="reply-actions-submit">回覆</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            {% endfor %}
             {% endif %}
         </div>
     </div>
@@ -439,6 +440,19 @@
                     console.log(res.data.data);
                 }
             });
+        };
+
+        let isShow = false;
+
+        const showReply = (commentId, uid, aid, nickname, replyId) => {
+            const baseReplyId = commentId;
+            const replyAid = aid;
+            const commentReplyId = replyId;
+
+        };
+
+        const hiddenReply = () => {
+
         };
     </script>
     <script>
