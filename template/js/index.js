@@ -504,7 +504,7 @@ window.onload = () => {
     };
 
     $writeArticle.onclick = () => {
-        location.href = './new_article.html';
+        location.href = '/article/new';
     };
 
     const $articleList = document.getElementById('articleList');

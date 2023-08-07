@@ -499,7 +499,7 @@ window.onload = () => {
     };
 
     $writeArticle.onclick = () => {
-        location.href = './new_article.html';
+        location.href = '/article/new';
     };
 
     const $doCollect = document.getElementById('doCollect');

@@ -50,3 +50,9 @@ def article_detail():
         comment_list=comment_list,
         comment_num=comment_num
     )
+
+
+@article.route('/article/new')
+def article_new():
+    # uid = session.get('uid')
+    return render_template('new_article.html')
