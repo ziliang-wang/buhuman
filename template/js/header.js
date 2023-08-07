@@ -598,4 +598,27 @@ window.onload = () => {
             $imageCode.src = '/vcode?' + Math.random();
         }
     };
+
+    // 回覆評論check login
+    const $commentItemList = document.getElementById('commentItemList');
+
+    $commentItemList.onclick = (e) => {
+        e.stopPropagation();
+        const self = e.target;
+        const isLogin = self.getAttribute('data-isLogin');
+        const currElem = self.getAttribute('data-reply');
+
+        if (currElem) {
+            if (isLogin !== 'true') {
+                // console.log('未登入')
+                $maskLoginModal.style.display = 'block';
+                $loginAccount.focus();
+                $loginAccountMsg.innerHTML = '';
+                $loginPwdMsg.innerHTML = '';
+                $vcodeMsg.innerHTML = '';
+                $imageCode.src = '/vcode?' + Math.random();
+                // return false;
+            }
+        }
+    };
 };
