@@ -540,6 +540,7 @@ body {
 
 .detail-container .detail-wrap .detail-comment .comment-item .comment-item-right .comment-item-right-action .action-praise {
     margin-right: 24px;
+    cursor: pointer;
     /*background-color: #ededee;*/
     /*padding: 0 16px;*/
     /*height: 32px;*/

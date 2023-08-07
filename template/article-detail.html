@@ -295,7 +295,7 @@
                                 <div class="comment-item-right-info flex-r">
                                     <div class="comment-item-right-action flex-r">
                                         <div class="action-praise">
-                                            <i class="iconfont icon-dianzan"></i>
+                                            <i class="iconfont icon-dianzan" data-reply="{{ comment_item.id }}"></i>
                                             <span class="dianzan-num">4</span>
                                         </div>
                                         <div class="action-reply" data-isLogin="{{ session.get('is_login') }}" onclick="this.getAttribute('data-isLogin') === 'true' ? showReply('{{comment_item.id}}', '{{comment_item.uid}}', '{{comment_item.aid}}', '{{comment_item.nickname}}', '{{comment_item.id}}') : false;" data-reply="{{ comment_item.id }}">回覆</div>
