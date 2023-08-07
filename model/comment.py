@@ -136,4 +136,20 @@ class Comment(Base):
 
         return comment
 
+    def insert_reply(self, uid, aid, base_reply_id, reply_id, content, ipaddr):
+        reply_comment = Comment(
+            uid=uid,
+            aid=aid,
+            base_reply_id=base_reply_id,
+            reply_id=reply_id,
+            floor_number=0,
+            content=content,
+            ipaddr=ipaddr
+        )
+
+        db_session.add(reply_comment)
+        db_session.commit()
+
+
+
 

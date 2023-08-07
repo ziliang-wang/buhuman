@@ -68,3 +68,28 @@ def add_comment():
         print(e)
         return CommentMessage.fail('failed')
 
+
+@comment.route('/comment/reply', methods=['POST'])
+def reply():
+    request_data = json.loads(request.data)
+    aid = request_data.get('aid')
+    content = request_data.get('content').strip()
+    ipaddr = request.remote_addr
+    uid = session.get('uid')
+    base_reply_id = request_data.get('baseReplyId')
+    reply_id = request_data.get('commentReplyId')
+
+
+    if len(content) < 5 or len(content) > 1000:
+        return CommentMessage.other('內容太長或太短')
+
+    comment = Comment()
+
+    try:
+        result = comment.insert_reply(uid, aid, base_reply_id, reply_id, content, ipaddr)
+        result = model_to_json(result)
+        return CommentMessage.success(result)
+    except Exception as e:
+        print(e)
+        return CommentMessage.fail('failed')
+
