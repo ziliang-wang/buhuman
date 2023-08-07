@@ -149,6 +149,9 @@ class Comment(Base):
 
         db_session.add(reply_comment)
         db_session.commit()
+        db_session.refresh(reply_comment)
+
+        return reply_comment
 
 
 

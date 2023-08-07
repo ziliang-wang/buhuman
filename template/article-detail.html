@@ -298,7 +298,7 @@
                                             <i class="iconfont icon-dianzan"></i>
                                             <span class="dianzan-num">4</span>
                                         </div>
-                                        <div class="action-reply" onclick="showReply('{{comment_item.id}}', '{{comment_item.uid}}', '{{comment_item.aid}}', '{{comment_item.nickname}}', '{{comment_item.reply_id}}')" data-reply="{{ comment_item.id }}">回覆</div>
+                                        <div class="action-reply" onclick="showReply('{{comment_item.id}}', '{{comment_item.uid}}', '{{comment_item.aid}}', '{{comment_item.nickname}}', '{{comment_item.id}}')" data-reply="{{ comment_item.id }}">回覆</div>
                                     </div>
                                     <div class="comment-date">
                                         {{ comment_item.create_time }}
@@ -339,7 +339,7 @@
                                     <textarea type="text" placeholder="寫下您的回覆"></textarea>
                                     <div class="reply-actions flex-r">
                                         <span class="reply-actions-cancel" onclick="hiddenReply('{{ comment_item.id }}')">取消</span>
-                                        <span class="reply-actions-submit">回覆</span>
+                                        <span class="reply-actions-submit" onclick="writeReply()">回覆</span>
                                     </div>
                                 </div>
                             </div>
@@ -450,9 +450,9 @@
         let replyAid = 0;
         let commentReplyId = 0;
         const showReply = (commentId, uid, aid, nickname, replyId) => {
-            baseReplyId = commentId;
-            replyAid = aid;
-            commentReplyId = replyId;
+            baseReplyId = Number(commentId);
+            replyAid = Number(aid);
+            commentReplyId = Number(replyId);
             // 關閉當前已經打開的輸入框
             if (currReplyInputId !== 0) {
                 hiddenReply(currReplyInputId);
@@ -467,6 +467,19 @@
         const hiddenReply = (inputId) => {
             const $inputWrap = document.getElementById(inputId);
             $inputWrap.style.display = 'none';
+        };
+
+        const writeReply = () => {
+            const content = document.getElementById(baseReplyId).querySelector('textarea').value.trim();
+            axios.post('/comment/reply', {
+               aid: Number(replyAid),
+               baseReplyId: Number(baseReplyId),
+               commentReplyId: Number(commentReplyId),
+               content: content
+            }).then(res => {
+                console.log(res.data.data);
+                location.reload();
+            });
         };
     </script>
     <script>
