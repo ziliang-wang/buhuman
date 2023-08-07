@@ -30,8 +30,13 @@ window.onload = () => {
 
     $publishBtn = document.getElementById('publishBtn');
     $publishArticleModal = document.getElementById('publishArticleModal');
+    $publishClose = document.getElementById('publishClose');
 
     $publishBtn.onclick = () => {
         $publishArticleModal.style.display = 'block';
+    };
+
+    $publishClose.onclick = () => {
+        $publishArticleModal.style.display = 'none';
     };
 };
