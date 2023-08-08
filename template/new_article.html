@@ -66,7 +66,7 @@
                             <i class="iconfont icon-xiajiantou"></i>
                         </div>
                         <ul class="select-box" id="articleItemList">
-<!--                            <li data-value="請選擇需要投遞的項目">請選擇需要投遞的項目</li>-->
+                            <li data-value="">請選擇需要投遞的項目</li>
                             <li data-value="b">2</li>
                             <li data-value="c">3</li>
                             <li data-value="4">4</li>
@@ -89,7 +89,7 @@
                             <i class="iconfont icon-xiajiantou"></i>
                         </div>
                         <ul class="select-box" id="articleTypeList">
-<!--                            <li data-value="請選擇">請選擇</li>-->
+                            <li data-value="">請選擇</li>
                             <li data-value="原創">原創</li>
                             <li data-value="首發">首發</li>
                             <li data-value="分享">分享</li>
@@ -114,11 +114,13 @@
     let isShowArticleItem = false;
     let isShowArticleType = false;
 
-    $articleItem.onclick = () => {
+    $articleItem.onclick = function () {
         if (!isShowArticleItem) {
             $articleItemList.style.display = 'block';
+            this.style.boxShadow = '0 0 5px #6f4627';
         } else {
             $articleItemList.style.display = 'none';
+            this.style.boxShadow = '';
         }
         isShowArticleItem = !isShowArticleItem;
     };
@@ -131,11 +133,13 @@
         isShowArticleItem = !isShowArticleItem;
     };
 
-    $articleType.onclick = () => {
+    $articleType.onclick = function () {
         if (!isShowArticleType) {
             $articleTypeList.style.display = 'block';
+            this.style.boxShadow = '0 0 5px #6f4627';
         } else {
             $articleTypeList.style.display = 'none';
+            this.style.boxShadow = '';
         }
         isShowArticleType = !isShowArticleType;
     };

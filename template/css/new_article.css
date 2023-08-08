@@ -170,7 +170,7 @@ body {
 
 .mask-login-modal .article-publish-from .publish-article-right {
     flex: 80%;
-    background-color: orange;
+    /*background-color: orange;*/
     height: 400px;
     /*text-align: center;*/
     padding-left: 30px;
@@ -209,6 +209,7 @@ body {
     padding-left: 10px;
     position: relative;
     cursor: pointer;
+    /*box-shadow: 0 0 5px #6f4627;*/
 }
 
 .mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item .select-box,
