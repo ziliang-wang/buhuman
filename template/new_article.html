@@ -130,6 +130,7 @@
         const self = e.target;
         $itemName.innerHTML = self.getAttribute('data-value') || '請選擇需要投遞的項目';
         this.style.display = 'none';
+        $articleItem.style.boxShadow = '';
         isShowArticleItem = !isShowArticleItem;
     };
 
@@ -149,6 +150,7 @@
         const self = e.target;
         $typeName.innerHTML = self.getAttribute('data-value') || '請選擇';
         this.style.display = 'none';
+        $articleType.style.boxShadow = '';
         isShowArticleType = !isShowArticleType;
     };
 </script>
