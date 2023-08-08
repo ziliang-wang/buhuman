@@ -226,6 +226,22 @@ body {
     /*padding-left: 10px;*/
 }
 
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item .item-name,
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .item-name {
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item .item-name > i,
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .item-name > i{
+    font-size: 12px;
+    color: #9199a1;
+}
+
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .select-box {
+    height: auto;
+}
+
 .mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item .select-box li,
 .mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .select-box li{
     padding-left: 10px;
