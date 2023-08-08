@@ -114,6 +114,7 @@
                     <li data-tag="css">CSS</li>
                     <li data-tag="html">Html</li>
                 </ul>
+                <button id="submit">submit</button>
             </div>
         </div>
     </div>
@@ -196,6 +197,24 @@
             span.className = 'span-tag';
             $tagItems.appendChild(span);
         }
+    };
+    // test
+    const $submit = document.getElementById('submit');
+
+    const tagsResultList = [];
+
+    $submit.onclick = () => {
+        const tagsList = document.getElementById('tagItems').getElementsByTagName('span');
+        if (tagsList.length >= 1) {
+            for (let item of tagsList) {
+                tagsResultList.push(item.getAttribute('data-tag'));
+            }
+        } else {
+            alert('沒有tag');
+        }
+
+        console.log(tagsResultList);
+        console.log(tagsResultList.join(','));
     };
 </script>
 </body>
