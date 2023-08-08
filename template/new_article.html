@@ -175,12 +175,13 @@
         isShowArticleType = !isShowArticleType;
     };
 
-    const chkList = [];
+    let chkList = [];
     $tagsList.onclick = (e) => {
-        e.stopPropagation();
 
         const self = e.target;
         const tagName = self.getAttribute('data-tag');
+
+        if (chkList.length >= 3) return false;
 
         if (tagName) {
             if (chkList.indexOf(tagName) < 0) {
@@ -190,7 +191,6 @@
             }
 
             tagCount += 1;
-            if (tagCount > 3) return false;
             $tagCount.innerText = tagCount;
 
             const span = document.createElement('span');
@@ -211,7 +211,6 @@
         if (tagValue) {
             const tagIdx = chkList.indexOf(tagValue);
             chkList.splice(tagIdx, 1);
-            if (tagCount === 4) tagCount = 3;
             tagCount -= 1;
             $tagCount.innerText = tagCount;
             this.removeChild(self);
