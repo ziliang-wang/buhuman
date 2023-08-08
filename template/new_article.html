@@ -56,8 +56,89 @@
                 JPG/GIF圖片
             </div>
         </div>
-        <div class="publish-article-right">sdfsdfsdf</div>
+        <div class="publish-article-right">
+            <div class="article-cols flex-r">
+                <div class="cols-left">
+                    <div class="left-title">投遞項目</div>
+                    <div class="choose-item" id="articleItem">
+                        <div id="itemName">請選擇需要投遞的項目</div>
+                        <ul class="select-box" id="articleItemList">
+                            <li data-value="請選擇需要投遞的項目">請選擇需要投遞的項目</li>
+                            <li data-value="b">2</li>
+                            <li data-value="c">3</li>
+                            <li data-value="4">4</li>
+                            <li data-value="5">5</li>
+                            <li data-value="6">6</li>
+                            <li data-value="7">7</li>
+                            <li data-value="8">8</li>
+                            <li data-value="9">9</li>
+                            <li data-value="10">10</li>
+                            <li data-value="11">11</li>
+                            <li data-value="12">12</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cols-right">
+                    <div class="right-title">文章類型</div>
+                    <div class="choose-type" id="articleType">
+                        <div id="typeName">請選擇</div>
+                        <ul class="select-box" id="articleTypeList">
+                            <li data-value="請選擇">請選擇</li>
+                            <li data-value="原創">原創</li>
+                            <li data-value="分享">分享</li>
+                            <li data-value="其它">其它</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<script>
+    $articleItem = document.getElementById('articleItem');
+    $articleItemList = document.getElementById('articleItemList');
+    $itemName = document.getElementById('itemName');
+
+    $articleType = document.getElementById('articleType');
+    $articleTypeList = document.getElementById('articleTypeList');
+    $typeName = document.getElementById('typeName');
+
+    let isShowArticleItem = false;
+    let isShowArticleType = false;
+
+    $articleItem.onclick = () => {
+        if (!isShowArticleItem) {
+            $articleItemList.style.display = 'block';
+        } else {
+            $articleItemList.style.display = 'none';
+        }
+        isShowArticleItem = !isShowArticleItem;
+    };
+
+    $articleItemList.onclick = function (e) {
+        e.stopPropagation();
+        const self = e.target;
+        $itemName.innerHTML = self.getAttribute('data-value') || '請選擇需要投遞的項目';
+        this.style.display = 'none';
+        isShowArticleItem = !isShowArticleItem;
+    };
+
+    $articleType.onclick = () => {
+        if (!isShowArticleType) {
+            $articleTypeList.style.display = 'block';
+        } else {
+            $articleTypeList.style.display = 'none';
+        }
+        isShowArticleType = !isShowArticleType;
+    };
+
+    $articleTypeList.onclick = function (e) {
+        e.stopPropagation();
+        const self = e.target;
+        $typeName.innerHTML = self.getAttribute('data-value') || '請選擇';
+        this.style.display = 'none';
+        isShowArticleType = !isShowArticleType;
+    };
+</script>
 </body>
 </html>

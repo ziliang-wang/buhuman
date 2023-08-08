@@ -39,4 +39,12 @@ window.onload = () => {
     $publishClose.onclick = () => {
         $publishArticleModal.style.display = 'none';
     };
+
+    // $articleItem = document.getElementById('articleItem');
+    // $articleItemList = document.getElementById('articleItemList');
+    //
+    // $articleItem.onclick = (e) => {
+    //     e.stopPropagation();
+    //     $articleItemList.style.display = 'block'
+    // };
 };

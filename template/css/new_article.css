@@ -172,5 +172,70 @@ body {
     flex: 80%;
     background-color: orange;
     height: 400px;
-    text-align: center;
+    /*text-align: center;*/
+    padding-left: 30px;
 }
+
+.mask-login-modal .article-publish-from .publish-article-right .article-cols {
+    /*justify-content: space-between;*/
+}
+
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .cols-left {
+    flex: 1;
+    margin-right: 30px;
+}
+
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .cols-right {
+    flex: 1;
+}
+
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .left-title,
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .right-title {
+    font-size: 14px;
+    color: #1c1f21;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item,
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type {
+    width: 100%;
+    height: 36px;
+    border: 1px solid #9199a1;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #1c1f21;
+    line-height: 34px;
+    padding-left: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item .select-box,
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .select-box {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    width: 100%;
+    height: 330px;
+    background-color: #fff;
+    overflow: auto;
+    box-shadow: 0 8px 16px 0 rgba(28,31,33,.2);
+    border-radius: 5px;
+    display: none;
+    /*padding-left: 10px;*/
+}
+
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item .select-box li,
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .select-box li{
+    padding-left: 10px;
+}
+/*#f3f5f6*/
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item .select-box li:hover,
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .select-box li:hover{
+    background-color: #f3f5f6;
+}
+
+/*#selectItemWrap {*/
+/*    display: none;*/
+/*}*/
