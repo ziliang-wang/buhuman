@@ -99,20 +99,40 @@
                     </div>
                 </div>
             </div>
+            <div class="article-tags-container">
+                <div class="article-tags">
+                    <span>文章標簽</span>
+                    <span id="tagCount">0</span><span>/3</span>
+                </div>
+                <div class="search-tags-box">
+                    <div class="tag-items" id="tagItems"></div>
+                    <input type="text" class="tags-input" placeholder="請選擇下列標籤">
+                </div>
+                <ul class="tags-list" id="tagsList">
+                    <li data-tag="python">Python</li>
+                    <li data-tag="javascript">JavaScript</li>
+                    <li data-tag="css">CSS</li>
+                    <li data-tag="html">Html</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 <script>
-    $articleItem = document.getElementById('articleItem');
-    $articleItemList = document.getElementById('articleItemList');
-    $itemName = document.getElementById('itemName');
+    const $articleItem = document.getElementById('articleItem');
+    const $articleItemList = document.getElementById('articleItemList');
+    const $itemName = document.getElementById('itemName');
 
-    $articleType = document.getElementById('articleType');
-    $articleTypeList = document.getElementById('articleTypeList');
-    $typeName = document.getElementById('typeName');
+    const $articleType = document.getElementById('articleType');
+    const $articleTypeList = document.getElementById('articleTypeList');
+    const $typeName = document.getElementById('typeName');
+    const $tagsList = document.getElementById('tagsList');
+    const $tagItems = document.getElementById('tagItems');
+    const $tagCount = document.getElementById('tagCount');
 
     let isShowArticleItem = false;
     let isShowArticleType = false;
+    let tagCount = 0;
 
     $articleItem.onclick = function () {
         if (!isShowArticleItem) {
@@ -152,6 +172,30 @@
         this.style.display = 'none';
         $articleType.style.boxShadow = '';
         isShowArticleType = !isShowArticleType;
+    };
+
+    const chkList = [];
+    $tagsList.onclick = (e) => {
+        const self = e.target;
+        const tagName = self.getAttribute('data-tag');
+
+        if (chkList.indexOf(tagName) < 0) {
+            chkList.push(tagName);
+        } else {
+            return false;
+        }
+
+        tagCount += 1;
+        if (tagCount > 3) return false;
+        $tagCount.innerText = tagCount;
+
+        if (tagName) {
+            const span = document.createElement('span');
+            span.innerHTML = tagName;
+            span.setAttribute('data-tag', tagName);
+            span.className = 'span-tag';
+            $tagItems.appendChild(span);
+        }
     };
 </script>
 </body>
