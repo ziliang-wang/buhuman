@@ -106,7 +106,7 @@
                 </div>
                 <div class="search-tags-box">
                     <div class="tag-items" id="tagItems"></div>
-                    <input type="text" class="tags-input" placeholder="請選擇下列標籤">
+                    <input type="text" class="tags-input" placeholder="請選擇下列熱門標籤" id="tagInput">
                 </div>
                 <ul class="tags-list" id="tagsList">
                     <li data-tag="python">Python</li>
@@ -114,7 +114,10 @@
                     <li data-tag="css">CSS</li>
                     <li data-tag="html">Html</li>
                 </ul>
-                <button id="submit">submit</button>
+                <div class="action-buttons">
+                    <button class="action-button" id="save">保存並取消</button>
+                    <button class="action-button" id="submit">確定發佈</button>
+                </div>
             </div>
         </div>
     </div>
@@ -123,6 +126,7 @@
     const $articleItem = document.getElementById('articleItem');
     const $articleItemList = document.getElementById('articleItemList');
     const $itemName = document.getElementById('itemName');
+    const $tagInput = document.getElementById('tagInput');
 
     const $articleType = document.getElementById('articleType');
     const $articleTypeList = document.getElementById('articleTypeList');
@@ -192,6 +196,12 @@
 
             tagCount += 1;
             $tagCount.innerText = tagCount;
+
+            if (tagCount === 3) {
+                $tagInput.setAttribute('placeholder', '');
+            } else if (tagCount >= 1) {
+                $tagInput.setAttribute('placeholder', '輸入關鍵詞搜索標籤');
+            }
 
             const span = document.createElement('span');
             span.innerHTML = tagName;
