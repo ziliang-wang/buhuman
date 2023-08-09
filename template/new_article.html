@@ -191,7 +191,7 @@
     let tagCount = 0;
 
     $draftActionBox.onclick = (e) => {
-        // e.stopPropagation();
+        e.stopPropagation();
         if (!isShowDraftBox) {
             $draftedContainer.style.display = 'block';
             $upArrow.style.display = 'block';
