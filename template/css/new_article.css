@@ -50,6 +50,7 @@ body {
     padding: 0 16px 16px 16px;
     box-shadow: 0 8px 16px 0 rgba(7,17,27,.2);
     overflow: auto;
+    display: none;
     /*border: none;*/
     /*border-top: none;*/
 }
@@ -69,6 +70,7 @@ em.up-arrow {
     /*height: 100px;*/
     /*display: inline-block;*/
     z-index: 99992;
+    display: none;
 }
 
 .header .left .drafted-container .drafted-box-title {
