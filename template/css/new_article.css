@@ -33,6 +33,10 @@ body {
     position: relative;
 }
 
+/*.header .left > .draft span {*/
+/*    cursor: pointer;*/
+/*}*/
+
 .header .left .drafted-container {
     position: absolute;
     top: 68px;
@@ -54,6 +58,7 @@ em.up-arrow {
     position: absolute;
     /*top: -41px;*/
     top: 28px;
+    cursor: pointer;
     /*left: 15px;*/
     left: 50px;
     color: #fff;
@@ -157,6 +162,14 @@ em.up-arrow {
 .header .left .drafted-container .drafted-box .list-item:hover .draft-item-middle .draft-item-up {
     color: #0055ff;
 }
+
+/*.header .left .drafted-container .drafted-box-title {*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.header .left .drafted-container .drafted-box-title .title-left {*/
+/*    cursor: pointer;*/
+/*}*/
 
 .header .left .drafted-container .drafted-box-title .title-right {
     font-size: 12px;
