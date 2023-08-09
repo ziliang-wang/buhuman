@@ -26,10 +26,25 @@ body {
     color: #545c63;
     font-size: 14px;
     cursor: pointer;
+    position: relative;
 }
 
 .header .left > .draft i {
     font-size: 14px;
+}
+
+.header .left > .draft > .draft-num {
+    position: absolute;
+    top: -6px;
+    right: -5px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #f20d0d;
+    font-size: 12px;
+    text-align: center;
+    line-height: 17px;
 }
 
 /* .header .left > .draft > span:nth-child(2) {
@@ -103,14 +118,14 @@ body {
 
 .mask-login-modal .article-publish-from {
     position: absolute;
-    width: 53%;
+    width: 56%;
     /*width: 1012px;*/
     height: 460px;
     background-color: #fff;
     border-radius: 10px;
     left: 50%;
     top: 50%;
-    margin-left: -26.5%;
+    margin-left: -28%;
     margin-top: -230px;
     padding: 30px;
     display: flex;
@@ -283,7 +298,8 @@ body {
     font-size: 14px;
     color: #1c1f21;
     line-height: 34px;
-    padding-left: 10px;
+    padding-left: 6px;
+    /*text-wrap: none;*/
     /*overflow:hidden;*/
     /*white-space: nowrap;*/
     /*text-overflow: ellipsis;*/
@@ -309,6 +325,7 @@ body {
 }
 
 .article-tags-container .search-tags-box .tags-input {
+    font-size: 14px;
     /*min-width: 50%;*/
     /*max-width: 50%;*/
     /*flex: 1;*/
