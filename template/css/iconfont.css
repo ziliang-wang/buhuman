@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('../fonts/iconfont.ttf?t=1691474771733') format('truetype');
+  src: url('../fonts/iconfont.ttf?t=1691549831075') format('truetype');
 }
 
 .iconfont {
@@ -13,6 +13,10 @@
 
 .icon-facebook:before {
   content: "\e650";
+}
+
+.icon-quanxianfuzhi:before {
+  content: "\e62b";
 }
 
 .icon-yanjing:before {
@@ -28,7 +32,11 @@
 }
 
 .icon-shoucangxuanzhong:before {
-  content: "\e62b";
+  content: "\e62c";
+}
+
+.icon-shangjiantou:before {
+  content: "\f034d";
 }
 
 .icon-xiajiantou:before {
@@ -37,6 +45,10 @@
 
 .icon-twitterB:before {
   content: "\e9fc";
+}
+
+.icon-shangjiantou1:before {
+  content: "\eb6d";
 }
 
 .icon-line:before {
@@ -49,6 +61,10 @@
 
 .icon-dianzan:before {
   content: "\e510";
+}
+
+.icon-shangjiantou2:before {
+  content: "\e606";
 }
 
 .icon-tuite:before {

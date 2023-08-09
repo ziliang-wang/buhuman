@@ -15,6 +15,10 @@ body {
     flex: 1;
 }
 
+.header .left {
+    /*position: relative;*/
+}
+
 .header .left > .draft {
     display: inline-block;
     width: 108px;
@@ -27,6 +31,41 @@ body {
     font-size: 14px;
     cursor: pointer;
     position: relative;
+}
+
+.header .left .drafted-container {
+    position: absolute;
+    top: 68px;
+    left: 2.5%;
+    width: 384px;
+    height: 366px;
+    background-color: #fff;
+    /*border: 1px solid red;*/
+    z-index: 99991;
+    border-radius: 12px;
+    padding: 0 16px 16px 16px;
+    box-shadow: 0 8px 16px 0 rgba(7,17,27,.2);
+}
+
+.header .left .drafted-container i {
+    position: absolute;
+    top: -41px;
+    left: 15px;
+    color: #fff;
+    font-size: 40px;
+}
+
+.header .left .drafted-container .drafted-box-title {
+    font-weight: bold;
+    font-size: 14px;
+    color: #1c1f21;
+    justify-content: space-between;
+}
+
+.header .left .drafted-container .drafted-box-title .title-right {
+    font-size: 12px;
+    color: #9199a1;
+    font-weight: normal;
 }
 
 .header .left > .draft i {
