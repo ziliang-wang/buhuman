@@ -180,6 +180,13 @@ window.onload = () => {
         this.src = '/vcode?' + Math.random();
     };
 
+    $search.onkeyup = (e) => {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            $searchBtn.click();
+        }
+    };
+
     $searchBtn.onclick = () => {
         const keyword = $search.value.trim();
         if (keyword === '') return false;
