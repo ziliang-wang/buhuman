@@ -200,7 +200,7 @@
             if (tagCount === 3) {
                 $tagInput.setAttribute('placeholder', '');
             } else if (tagCount >= 1) {
-                $tagInput.setAttribute('placeholder', '輸入關鍵詞搜索標籤');
+                $tagInput.setAttribute('placeholder', '請輸入關鍵詞搜索標籤');
             }
 
             const span = document.createElement('span');
@@ -223,6 +223,13 @@
             chkList.splice(tagIdx, 1);
             tagCount -= 1;
             $tagCount.innerText = tagCount;
+
+            if (tagCount >= 1) {
+                $tagInput.setAttribute('placeholder', '請輸入關鍵詞搜索標籤');
+            } else {
+                $tagInput.setAttribute('placeholder', '請選擇下列熱門標籤');
+            }
+
             this.removeChild(self);
         }
     };
