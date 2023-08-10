@@ -510,8 +510,20 @@ window.onload = () => {
         $regEmail.focus();
     };
 
-    $writeArticle.onclick = () => {
-        location.href = '/article/new';
+    $writeArticle.onclick = function (e) {
+        e.stopPropagation();
+        const isLogin = this.getAttribute('data-isLogin');
+        if (isLogin !== 'true') {
+            $maskLoginModal.style.display = 'block';
+            $loginAccount.focus();
+            $loginAccountMsg.innerHTML = '';
+            $loginPwdMsg.innerHTML = '';
+            $vcodeMsg.innerHTML = '';
+            $imageCode.src = '/vcode?' + Math.random();
+        } else {
+            // location.reload();
+            location.href = '/article/new';
+        }
     };
 
     const $articleList = document.getElementById('articleList');

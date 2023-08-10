@@ -33,7 +33,7 @@
                 <input id="search" type="text" placeholder="搜索感興趣的文章或知識">
                 <i class="iconfont icon-Magnifier" id="searchBtn"></i>
             </div>
-            <button class="write" id="writeArticle">寫文章</button>
+            <button class="write" id="writeArticle" data-isLogin="session.get('is_login')">寫文章</button>
             {% if session.get('is_login') == 'true' %}
             <div class="account">
                 <span class="login nickname" id="nickname">
@@ -147,5 +147,12 @@
         <span id="loginClose" class="reg-close">×</span>
     </div>
 </div>
+<script>
+    const $writeArticle = document.getElementById('writeArticle');
+
+    $writeArticle.onclick = function (e) {
+       location.href = '/article/new';
+    };
+</script>
 </body>
 </html>
