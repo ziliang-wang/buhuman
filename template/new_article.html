@@ -12,6 +12,7 @@
     <script src="/plugins/ueditor-plus/ueditor.all.js"></script>
     <script src="/plugins/ueditor-plus/lang/zh-cn/zh-cn.js"></script>
     <script src="/js/new_article.js"></script>
+    <script src="/js/axios.min.js"></script>
 </head>
 <body>
 <div class="header new-article-center-wrap">
@@ -78,7 +79,7 @@
 </div>
 <div class="main">
     <div class="article-head">
-        <input class="article-title" type="text" placeholder="請在此輸入標題">
+        <input class="article-title" id="articleTitle" type="text" placeholder="請在此輸入標題">
     </div>
     <div class="ueditor">
         <script id="editor" type="text/plain" style="height:300px;"></script>
@@ -177,6 +178,7 @@
     const $draftActionBox = document.getElementById('draftActionBox');
     const $draftedContainer = document.querySelector('.drafted-container');
     const $upArrow = document.querySelector('.up-arrow');
+    // const $publishBtn = document.getElementById('publishBtn');
 
     const $articleType = document.getElementById('articleType');
     const $articleTypeList = document.getElementById('articleTypeList');
@@ -185,10 +187,35 @@
     const $tagItems = document.getElementById('tagItems');
     const $tagCount = document.getElementById('tagCount');
 
+    const $articleTitle = document.getElementById('articleTitle');
+
     let isShowArticleItem = false;
     let isShowArticleType = false;
     let isShowDraftBox = false;
     let tagCount = 0;
+
+    // let content = '';
+    // let title = '';
+    // let aid = -1;
+    // let drafted = 0;
+    //
+    // $publishBtn.onclick = () => {
+    //     title = $articleTitle.value.trim();
+    //     content = ue.getContent();
+    //     axios.post('/article/save', {
+    //         title: title,
+    //         content: content,
+    //         aid: aid,
+    //         drafted: drafted
+    //     }).then(res => {
+    //         if (res.data.status === 2003) {
+    //             aid = res.data.aid;
+    //             alert(res.data.data);
+    //         } else {
+    //             alert('草稿存檔失敗');
+    //         }
+    //     });
+    // };
 
     $draftActionBox.onclick = (e) => {
         e.stopPropagation();

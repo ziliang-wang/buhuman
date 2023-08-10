@@ -29,16 +29,43 @@ window.onload = () => {
         ]
     });
 
-    $publishBtn = document.getElementById('publishBtn');
-    $publishArticleModal = document.getElementById('publishArticleModal');
-    $publishClose = document.getElementById('publishClose');
+    const $publishBtn = document.getElementById('publishBtn');
+    const $publishArticleModal = document.getElementById('publishArticleModal');
+    // const $publishClose = document.getElementById('publishClose');
+
+    // $publishBtn.onclick = () => {
+    //     $publishArticleModal.style.display = 'block';
+    // };
+
+    // $publishClose.onclick = () => {
+    //     $publishArticleModal.style.display = 'none';
+    // };
+
+    // const $publishBtn = document.getElementById('publishBtn');
+
+    let content = '';
+    let title = '';
+    let aid = -1;
+    let drafted = 0;
 
     $publishBtn.onclick = () => {
+        // console.log(ue.getContent());
+        title = $articleTitle.value.trim();
+        content = ue.getContent();
+        axios.post('/article/save', {
+            title: title,
+            content: content,
+            aid: aid,
+            drafted: drafted
+        }).then(res => {
+            if (res.data.status === 2003) {
+                aid = res.data.aid;
+                alert(res.data.data);
+            } else {
+                alert('草稿存檔失敗');
+            }
+        });
         $publishArticleModal.style.display = 'block';
-    };
-
-    $publishClose.onclick = () => {
-        $publishArticleModal.style.display = 'none';
     };
 
     // $articleItem = document.getElementById('articleItem');
