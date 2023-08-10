@@ -10,6 +10,7 @@ window.onload = () => {
         initialFrameWidth: '100%',
         // 初始化编辑器高度,默认 320
         initialFrameHeight: 500,
+        serverUrl: 'http://127.0.0.1:5000/ue',
         toolbars: [
             [
                 // "source",
