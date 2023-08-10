@@ -178,13 +178,15 @@ window.onload = () => {
             } else if (res.data.data === 'loginok') {
                 setTimeout(() => {
                     location.reload();
-                }, 1000);
+                }, 500);
             } else if (res.data.data === 'vcodeErr') {
                 $vcodeMsg.innerHTML = '請輸入正確的圖片驗證碼';
                 $loginBtn.innerHTML = '登錄';
+                return;
             } else {
                 $loginAccountMsg.innerHTML = '帳號或密碼錯誤';
                 $loginBtn.innerHTML = '登錄';
+                return;
             }
             action = '';
             // $writeArticle.setAttribute('data-isLogin', 'true');
