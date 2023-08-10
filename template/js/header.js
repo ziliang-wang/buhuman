@@ -172,8 +172,9 @@ window.onload = () => {
             // console.log('action: ', res.data.action);
             if (res.data.action === 'write') {
                 setTimeout(() => {
-                    location.href = '/article/new';
+                    location.reload();
                 }, 500);
+                location.href = '/article/new';
             } else if (res.data.data === 'loginok') {
                 setTimeout(() => {
                     location.reload();

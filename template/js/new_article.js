@@ -1,4 +1,5 @@
 window.onload = () => {
+
     const ue = UE.getEditor('editor', {
         // ... 更多配置
         shortcutMenu: false,

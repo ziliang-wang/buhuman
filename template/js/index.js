@@ -24,7 +24,8 @@ window.onload = () => {
 
     const $backReg = document.getElementById('backReg');
 
-    const $writeArticle = document.getElementById('writeArticle');
+    // const $writeArticle = document.getElementById('writeArticle');
+    const $writeArticle = document.querySelector('.write');
 
     const $imageCode = document.getElementById('imageCode');
 
@@ -169,8 +170,9 @@ window.onload = () => {
             // console.log(res.data.data);
             if (res.data.action === 'write') {
                 setTimeout(() => {
-                    location.href = '/article/new';
+                    location.reload();
                 }, 500);
+                location.href = '/article/new';
             } else if (res.data.data === 'loginok') {
                 setTimeout(() => {
                     location.reload();
@@ -518,6 +520,8 @@ window.onload = () => {
 
     $writeArticle.onclick = function (e) {
         e.stopPropagation();
+        // $loginClose.click();
+        // if (action !== 'write') return;
         const writeIsLogin = this.getAttribute('data-isLogin');
         action = this.getAttribute('data-action');
         if (writeIsLogin !== 'true') {
