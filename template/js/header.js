@@ -51,6 +51,7 @@ window.onload = () => {
     const $vcode = document.getElementById('vcode');
     const $vcodeMsg = document.getElementById('vcodeMsg');
     const $keepLogin = document.getElementById('keepLogin');
+    const $logout = document.getElementById('logout');
 
     // 註冊/登入表單 正則表達式
     const emailReg = /^\w{2,}\@\w{2,}\.[a-zA-Z]{2,4}(\.[a-zA-Z]{2,4})?$/;
@@ -68,6 +69,10 @@ window.onload = () => {
     let isVcode = false;
     let keepDays = 0;
     let action = '';
+
+    // $logout.onclick = (e) => {
+    //     $writeArticle.setAttribute('data-isLogin', 'false');
+    // };
 
     $loginAccount.onblur = function () {
         const loginAccount = this.value;
@@ -169,7 +174,6 @@ window.onload = () => {
                 setTimeout(() => {
                     location.href = '/article/new';
                 }, 500);
-                $loginClose.click();
             } else if (res.data.data === 'loginok') {
                 setTimeout(() => {
                     location.reload();
@@ -182,6 +186,8 @@ window.onload = () => {
                 $loginBtn.innerHTML = '登錄';
             }
             action = '';
+            // $writeArticle.setAttribute('data-isLogin', 'true');
+            $loginClose.click();
         });
     };
 
@@ -516,9 +522,9 @@ window.onload = () => {
 
     $writeArticle.onclick = function (e) {
         e.stopPropagation();
-        const isLogin = this.getAttribute('data-isLogin');
+        const writeIsLogin = this.getAttribute('data-isLogin');
         action = this.getAttribute('data-action');
-        if (isLogin !== 'true') {
+        if (writeIsLogin !== 'true') {
             $maskLoginModal.style.display = 'block';
             $loginAccount.focus();
             $loginAccountMsg.innerHTML = '';
@@ -526,7 +532,6 @@ window.onload = () => {
             $vcodeMsg.innerHTML = '';
             $imageCode.src = '/vcode?' + Math.random();
         } else {
-            // location.reload();
             location.href = '/article/new';
         }
     };
