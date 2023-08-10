@@ -6,10 +6,11 @@ class UserMessage(object):
     # 其它 { 'status': 1001 }
     # 錯誤 { 'status': 1002 }
     @staticmethod
-    def success(data):
+    def success(data, action):
         return {
             'status': 1000,
-            'data': data
+            'data': data,
+            'action': action
         }
 
     @staticmethod

@@ -107,6 +107,7 @@ def login():
     request_data = json.loads(request.data)
     username = request_data.get('username')
     password = request_data.get('password')
+    action = request_data.get('action')
     vcode = request_data.get('vcode')
     keep_days = request_data.get('keepdays')
 
@@ -125,7 +126,7 @@ def login():
             session['nickname'] = result.nickname
             session['avatar'] = config[env].user_avatar_path + result.avatar
             expires_time = datetime.datetime.now() + datetime.timedelta(days=keep_days)
-            response = make_response(UserMessage.success('loginok'))
+            response = make_response(UserMessage.success('loginok', action))
             response.set_cookie('uid', str(result.uid), expires=expires_time)
             return response
     return UserMessage.fail('loginfail')

@@ -66,6 +66,7 @@ window.onload = () => {
     let isLoginPwd = false;
     let isVcode = false;
     let keepDays = 0;
+    let action = '';
 
     $loginAccount.onblur = function () {
         const loginAccount = this.value;
@@ -113,7 +114,6 @@ window.onload = () => {
 
 
     $loginBtn.onclick = () => {
-
         const loginAccount = $loginAccount.value;
         if (!emailReg.test(loginAccount)) {
             $loginAccountMsg.innerHTML = 'Email格式錯誤';
@@ -155,15 +155,21 @@ window.onload = () => {
             username: loginAccount,
             password: loginPwd,
             vcode: vcode,
-            keepdays: keepDays
+            keepdays: keepDays,
+            action: action
         }
         $loginBtn.innerHTML = '登錄中.....';
         // axios
         axios.post('/login', data).then(res => {
-            console.log(res.data.data);
-            if (res.data.data === 'loginok') {
+            // console.log(res.data.data);
+            if (res.data.action === 'write') {
                 setTimeout(() => {
-                    location.reload(true);
+                    location.href = '/article/new';
+                }, 500);
+                $loginClose.click();
+            } else if (res.data.data === 'loginok') {
+                setTimeout(() => {
+                    location.reload();
                 }, 1000);
             } else if (res.data.data === 'vcodeErr') {
                 $vcodeMsg.innerHTML = '請輸入正確的圖片驗證碼';
@@ -172,6 +178,7 @@ window.onload = () => {
                 $loginAccountMsg.innerHTML = '帳號或密碼錯誤';
                 $loginBtn.innerHTML = '登錄';
             }
+            action = '';
         });
     };
 
@@ -326,15 +333,6 @@ window.onload = () => {
         const regRePassword = $regRePassword.value.trim();
         const regCode = $regCode.value;
 
-        // if (!emailReg.test(regEmail)) {
-        //     $regEmailErrMsg.innerHTML = 'Email格式錯誤';
-        //     // $regEmail.focus()
-        //     isRegEmail = false;
-        //     return false;
-        // } else {
-        //     $regEmailErrMsg.innerHTML = '';
-        //     isRegEmail = true;
-        // }
         if (!isRegEmail) {
             return false;
         }
@@ -513,6 +511,7 @@ window.onload = () => {
     $writeArticle.onclick = function (e) {
         e.stopPropagation();
         const isLogin = this.getAttribute('data-isLogin');
+        action = this.getAttribute('data-action');
         if (isLogin !== 'true') {
             $maskLoginModal.style.display = 'block';
             $loginAccount.focus();
