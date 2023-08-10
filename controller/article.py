@@ -1,4 +1,8 @@
+import json
+
 from flask import Blueprint, render_template, request, session
+
+from common.response_message import ArticleMessage
 from model.article import Article
 from app.config.config import config
 from app.settings import env
@@ -56,3 +60,35 @@ def article_detail():
 def article_new():
     # uid = session.get('uid')
     return render_template('new_article.html')
+
+
+def get_article_request_param(request_data):
+    user = User().find_by_uid(session.get('uid'))
+    title = request_data.get('title')
+    content = request_data.get('content')
+    return user, title, content
+
+
+@article.route('/article/save', methods=['POST'])
+def article_save():
+    request_data = json.loads(request.data)
+    aid = request_data.get('aid')
+    drafted = request_data.get('drafted')
+
+    if aid == -1 and drafted == 0:
+        user, title, content, = get_article_request_param(request_data)
+        if title == '':
+            return ArticleMessage.other('請輸入文章Title')
+        aid = Article().insert_article(user.uid, title, content, drafted)
+        return ArticleMessage.saved_success(aid)
+    elif aid > -1:
+        user, title, content, = get_article_request_param(request_data)
+        if title == '':
+            return ArticleMessage.other('請輸入文章Title')
+        label_name = request_data.get('label_name')
+        article_tag = request_data.get('article_tag')
+        article_type = request_data.get('article_type')
+
+        aid = Article().update_article(aid, title, content, drafted, label_name, article_tag, article_type)
+        return ArticleMessage.saved_success(aid)
+

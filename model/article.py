@@ -166,14 +166,38 @@ class Article(Base):
 
         return result
 
-        # print('獲得的收藏數:', collection)
-        # SELECT
-        # count(article.uid)
-        # FROM
-        # article
-        # join
-        # collection
-        # on
-        # article.aid = collection.aid
-        # WHERE
-        # article.uid = 19 and collection.collected = 1;
+    def insert_article(self, uid, title, content, drafted):
+        article = Article(
+            uid=uid,
+            title=title,
+            article_content=content,
+            drafted=drafted
+        )
+
+        db_session.add(article)
+        db_session.commit()
+
+        return article.aid
+
+    def update_article(self,
+                       aid,
+                       title,
+                       content,
+                       drafted,
+                       label_name='',
+                       article_tag='',
+                       article_type=''
+                       ):
+
+        row = db_session.query(Article).filter_by(aid=aid).first()
+        row.title = title
+        row.article_content = content
+        row.drafted = drafted
+        row.label_name = label_name
+        row.article_tag = article_tag
+        row.article_type = article_type
+
+        db_session.commit()
+
+        return aid
+

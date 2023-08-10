@@ -49,6 +49,21 @@ class ArticleMessage(object):
             'data': data
         }
 
+    # @staticmethod
+    # def drafted_success(data, aid):
+    #     return {
+    #         'status': 2003,
+    #         'data': data,
+    #         'aid': aid
+    #     }
+
+    @staticmethod
+    def saved_success(aid):
+        return {
+            'status': 2003,
+            'aid': aid
+        }
+
 
 class CollectionMessage(object):
     @staticmethod
