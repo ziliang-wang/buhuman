@@ -79,6 +79,7 @@ def ueditor():
     if request.method == 'GET' and param == 'config':
         return make_response(ARTICLE_UECONFIG)
     # elif param == 'uploadimage':
+    # elif param == 'uploadimage':
     elif param == 'image':
         f = request.files.get('file')
         filename = f.filename
@@ -86,7 +87,7 @@ def ueditor():
         newname = time.strftime('%Y%m%d_%H%M%S.' + suffix)
         f.save('template/upload/' + newname)
         # 壓縮圖片
-        source = dest = 'template/upload' + newname
+        source = dest = 'template/upload/' + newname
         compress_image(source, dest, 1200)
         # {
         #     "state": "SUCCESS",
@@ -96,9 +97,11 @@ def ueditor():
         # }
         result = {}
         result['state'] = "SUCCESS"
-        result['url'] = '/upload' + newname
-        result['title'] = filename
-        result['original'] = filename
+        result['url'] = '/upload/' + newname
+        # result['title'] = filename
+        result['title'] = newname
+        # result['original'] = filename
+        result['original'] = newname
     return jsonify(result)
 
 
