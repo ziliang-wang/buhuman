@@ -1,4 +1,5 @@
 import json
+import random
 import time
 
 from flask import Blueprint, render_template, request, session, make_response, jsonify
@@ -149,3 +150,18 @@ def upload_cover_image():
     return jsonify(result)
 
 
+@article.route('/article/upload/random', methods=['POST'])
+def upload_random_header_image():
+
+    name = random.randint(1, 539)
+    newname = str(name) + '.jpg'
+
+    aid = request.form.get('aid')
+    Article().update_article_header_img(aid, newname)
+
+    result = {}
+    result['state'] = "SUCCESS"
+    result['url'] = '/images/headers/' + newname
+    result['title'] = newname
+    result['original'] = newname
+    return jsonify(result)

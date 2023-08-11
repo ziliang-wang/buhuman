@@ -84,6 +84,21 @@ window.onload = () => {
        });
     };
 
+    const $randomArticleHeader = document.getElementById('randomArticleHeader');
+
+    $randomArticleHeader.onclick = () => {
+        const formData = new FormData();
+        // formData.append('article-header-image', articleHeaderImageFile);
+        formData.append('aid', aid);
+       // axios
+        axios.post('/article/upload/random', formData).then(res => {
+            const $articleImg = document.getElementById('articleImg');
+            $articleImg.src = res.data.url;
+            $articleImg.style.width = '128px';
+            $articleImg.style.height = '128px';
+        });
+    };
+
     // $articleItem = document.getElementById('articleItem');
     // $articleItemList = document.getElementById('articleItemList');
     //
