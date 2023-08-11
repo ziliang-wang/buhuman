@@ -48,12 +48,24 @@ window.onload = () => {
     let title = '';
     let aid = -1;
     let drafted = 0;
-    let label_name = '';
+    // let label_name = '';
 
     $publishBtn.onclick = () => {
         // console.log(ue.getContent());
         title = $articleTitle.value.trim();
-        content = ue.getContent();
+        if (title.length < 6 || title === '') {
+            alert('標題不能為空，且必需為6個字以上喔');
+            return;
+        }
+        content = ue.getContent().trim();
+
+        // console.log(content);
+
+        if (content.length < 32 || content === '') {
+            alert('內容創作，不能為空，且必需為20個字以上喔');
+            return;
+        }
+
         axios.post('/article/save', {
             title: title,
             content: content,
@@ -62,9 +74,10 @@ window.onload = () => {
         }).then(res => {
             if (res.data.status === 2003) {
                 aid = res.data.aid;
-                alert(res.data.data);
+                // alert(res.data.data);
             } else {
                 alert('草稿存檔失敗');
+                return false;
             }
         });
         $publishArticleModal.style.display = 'block';

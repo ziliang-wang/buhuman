@@ -260,6 +260,7 @@ em.up-arrow {
 .main .article-head .article-title {
     font-size: 20px;
     font-weight: bold;
+    width: 90%;
 }
 
 .mask-login-modal {
