@@ -107,7 +107,7 @@ class Article(Base):
         return result
 
     def get_article_detail(self, aid):
-        row = db_session.query(Article).filter_by(aid=aid).first()
+        row = db_session.query(Article).filter_by(aid=aid, drafted=1, is_valid=1).first()
         if row:
             row.browse_num += 1
             db_session.commit()
@@ -123,6 +123,7 @@ class Article(Base):
         result_list = set()
 
         rows = db_session.query(Article).filter_by(
+            drafted=1,
             is_valid=1
         ).order_by(
             Article.browse_num.desc()
