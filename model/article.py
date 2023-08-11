@@ -130,10 +130,11 @@ class Article(Base):
         ).all()
 
         for row in rows:
-            row_tag = row.article_tag.split(',')
-            for tag_name in tag_list:
-                if tag_name in row_tag:
-                    result_list.add(row)
+            if row.article_tag.split(','):
+                row_tag = row.article_tag.split(',')
+                for tag_name in tag_list:
+                    if tag_name in row_tag:
+                        result_list.add(row)
 
         return list(result_list)[:5]
 
