@@ -418,6 +418,10 @@ em.up-arrow {
     background-color: #f3f5f6;
 }
 
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item .select-box .selected {
+    background-color: #f3f5f6;
+}
+
 .article-tags-container {
     margin-top: 30px;
 }

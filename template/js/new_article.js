@@ -48,6 +48,7 @@ window.onload = () => {
     let title = '';
     let aid = -1;
     let drafted = 0;
+    let label_name = '';
 
     $publishBtn.onclick = () => {
         // console.log(ue.getContent());
@@ -71,17 +72,17 @@ window.onload = () => {
 
     $xFile = document.getElementById('xFile');
     $xFile.onchange = (e) => {
-       const articleHeaderImageFile = e.target.files[0];
-       const formData = new FormData();
-       formData.append('article-header-image', articleHeaderImageFile);
-       formData.append('aid', aid);
-       // axios
-       axios.post('/article/upload/cover', formData).then(res => {
-           const $articleImg = document.getElementById('articleImg');
-           $articleImg.src = res.data.url;
-           $articleImg.style.width = '128px';
-           $articleImg.style.height = '128px';
-       });
+        const articleHeaderImageFile = e.target.files[0];
+        const formData = new FormData();
+        formData.append('article-header-image', articleHeaderImageFile);
+        formData.append('aid', aid);
+        // axios
+        axios.post('/article/upload/cover', formData).then(res => {
+            const $articleImg = document.getElementById('articleImg');
+            $articleImg.src = res.data.url;
+            $articleImg.style.width = '128px';
+            $articleImg.style.height = '128px';
+        });
     };
 
     const $randomArticleHeader = document.getElementById('randomArticleHeader');
@@ -90,7 +91,7 @@ window.onload = () => {
         const formData = new FormData();
         // formData.append('article-header-image', articleHeaderImageFile);
         formData.append('aid', aid);
-       // axios
+        // axios
         axios.post('/article/upload/random', formData).then(res => {
             const $articleImg = document.getElementById('articleImg');
             $articleImg.src = res.data.url;

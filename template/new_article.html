@@ -107,25 +107,31 @@
         <div class="publish-article-right">
             <div class="article-cols flex-r">
                 <div class="cols-left">
-                    <div class="left-title">投遞項目</div>
+                    <div class="left-title">文章分類</div>
                     <div class="choose-item" id="articleItem">
                         <div id="itemName" class="item-name flex-r">
-                            <span>請選擇需要投遞的項目</span>
+                            <span>請選擇您的文章分類</span>
                             <i class="iconfont icon-xiajiantou"></i>
                         </div>
                         <ul class="select-box" id="articleItemList">
-                            <li data-value="">請選擇需要投遞的項目</li>
-                            <li data-value="b">2</li>
-                            <li data-value="c">3</li>
-                            <li data-value="4">4</li>
-                            <li data-value="5">5</li>
-                            <li data-value="6">6</li>
-                            <li data-value="7">7</li>
-                            <li data-value="8">8</li>
-                            <li data-value="9">9</li>
-                            <li data-value="10">10</li>
-                            <li data-value="11">11</li>
-                            <li data-value="12">12</li>
+                            {% for label_name, label_value in label_types.items() %}
+                            <li class="{{ label_value.selected }}" data-label="{{ label_name }}"
+                                onclick="selectItemList('{{ label_name }}', '{{ label_value.name }}')">{{
+                                label_value.name }}
+                            </li>
+                            {% endfor %}
+                            <!--                            <li data-value="">請選擇需要投遞的項目</li>-->
+                            <!--                            <li data-value="b">2</li>-->
+                            <!--                            <li data-value="c">3</li>-->
+                            <!--                            <li data-value="4">4</li>-->
+                            <!--                            <li data-value="5">5</li>-->
+                            <!--                            <li data-value="6">6</li>-->
+                            <!--                            <li data-value="7">7</li>-->
+                            <!--                            <li data-value="8">8</li>-->
+                            <!--                            <li data-value="9">9</li>-->
+                            <!--                            <li data-value="10">10</li>-->
+                            <!--                            <li data-value="11">11</li>-->
+                            <!--                            <li data-value="12">12</li>-->
                         </ul>
                     </div>
                 </div>
@@ -255,14 +261,14 @@
         isShowArticleItem = !isShowArticleItem;
     };
 
-    $articleItemList.onclick = function (e) {
-        e.stopPropagation();
-        const self = e.target;
-        $itemName.innerHTML = self.getAttribute('data-value') || '請選擇需要投遞的項目';
-        this.style.display = 'none';
-        $articleItem.style.boxShadow = '';
-        isShowArticleItem = !isShowArticleItem;
-    };
+    // $articleItemList.onclick = function (e) {
+    //     e.stopPropagation();
+    //     const self = e.target;
+    //     $itemName.innerHTML = self.getAttribute('data-value') || '請選擇需要投遞的項目';
+    //     this.style.display = 'none';
+    //     $articleItem.style.boxShadow = '';
+    //     isShowArticleItem = !isShowArticleItem;
+    // };
 
     $articleType.onclick = function () {
         if (!isShowArticleType) {
@@ -357,6 +363,22 @@
         console.log(tagsResultList);
         console.log(tagsResultList.join(','));
     };
+
+    const selectItemList = (label_name_arg, label_value_arg) => {
+        // console.log('selected');
+        label_name = label_name_arg;
+        const $dropDown = document.querySelector('#itemName > span');
+        $dropDown.innerHTML = label_value_arg;
+        const lis = document.querySelectorAll('#articleItemList > li');
+
+        for (let item of lis) {
+            item.className = 'no-selected';
+
+            if (item.getAttribute('data-label') === label_name_arg) {
+                item.className = 'selected';
+            }
+        }
+    }
 </script>
 </body>
 </html>

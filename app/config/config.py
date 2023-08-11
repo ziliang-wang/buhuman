@@ -9,6 +9,43 @@ class Config(object):
     user_avatar_path = '/images/headers/'
     sender = '550310889@qq.com'
     auth_code = 'ndviaaqistysbeae'
+
+    label_types = {
+        'default': {
+            'name': '請選擇您的文章分類',
+            'selected': 'selected'
+        },
+        'recommend': {
+            'name': '推薦',
+            'selected': 'no-selected'
+        },
+        'auto_test': {
+            'name': '自動化測試',
+            'selected': 'no-selected'
+        },
+        'python': {
+            'name': 'Python開發',
+            'selected': 'no-selected'
+        },
+        'java': {
+            'name': 'java開發',
+            'selected': 'no-selected'
+        },
+        'function_test': {
+            'name': '功能測試',
+            'selected': 'no-selected'
+        },
+        'perf_test': {
+            'name': '性能測試',
+            'selected': 'no-selected'
+        },
+        'funny': {
+            'name': '幽默段子',
+            'selected': 'no-selected'
+        },
+    }
+
+
 # Env settings
 
 
