@@ -124,3 +124,28 @@ def article_save():
         aid = Article().update_article(aid, title, content, drafted, label_name, article_tag, article_type)
         return ArticleMessage.saved_success('文章發佈成功', aid)
 
+
+@article.route('/article/upload/cover', methods=['POST'])
+def upload_cover_image():
+    f = request.files.get('article-header-image')
+    filename = f.filename
+    suffix = filename.split('.')[-1]
+    newname = time.strftime('%Y%m%d_%H%M%S.' + suffix)
+    newname = 'article-header-' + newname
+
+    f.save('template/upload/article-header/' + newname)
+    # 壓縮圖片
+    source = dest = 'template/upload/article-header/' + newname
+    compress_image(source, dest, 1200)
+    # update database
+    aid = request.form.get('aid')
+    Article().update_article_header_img(aid, newname)
+
+    result = {}
+    result['state'] = "SUCCESS"
+    result['url'] = '/upload/article-header/' + newname
+    result['title'] = filename
+    result['original'] = filename
+    return jsonify(result)
+
+

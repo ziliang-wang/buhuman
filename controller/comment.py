@@ -31,7 +31,7 @@ def ueditor():
         newname = time.strftime('%Y%m%d_%H%M%S.' + suffix)
         f.save('template/upload/' + newname)
         # 壓縮圖片
-        source = dest = 'template/upload' + newname
+        source = dest = 'template/upload/' + newname
         compress_image(source, dest, 1200)
         # {
         #     "state": "SUCCESS",

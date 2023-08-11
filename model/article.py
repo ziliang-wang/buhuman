@@ -201,3 +201,7 @@ class Article(Base):
 
         return aid
 
+    def update_article_header_img(self, aid, filename):
+        row = db_session.query(Article).filter_by(aid=aid).first()
+        row.article_image = filename
+        db_session.commit()
