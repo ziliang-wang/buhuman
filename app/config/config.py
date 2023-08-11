@@ -45,6 +45,33 @@ class Config(object):
         },
     }
 
+    article_types = {
+        'default': {
+            'name': '請選擇',
+            'selected': 'selected'
+        },
+        'first': {
+            'name': '首發',
+            'selected': 'no-selected'
+        },
+        'original': {
+            'name': '原創',
+            'selected': 'no-selected'
+        },
+        'share': {
+            'name': '分享',
+            'selected': 'no-selected'
+        },
+        'recommend': {
+            'name': '推薦',
+            'selected': 'no-selected'
+        },
+        'other': {
+            'name': '其它',
+            'selected': 'no-selected'
+        }
+    }
+
 
 # Env settings
 

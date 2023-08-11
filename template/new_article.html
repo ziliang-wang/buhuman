@@ -143,12 +143,15 @@
                             <i class="iconfont icon-xiajiantou"></i>
                         </div>
                         <ul class="select-box" id="articleTypeList">
-                            <li data-value="">請選擇</li>
-                            <li data-value="原創">原創</li>
-                            <li data-value="首發">首發</li>
-                            <li data-value="分享">分享</li>
-                            <li data-value="推薦">推薦</li>
-                            <li data-value="其它">其它</li>
+                            {% for type_name, type_value in article_types.items() %}
+                                <li data-article-type="{{ type_name }}" class="{{ type_value.selected }}" onclick="selectType('{{ type_name }}', '{{ type_value.name }}')">{{ type_value.name }}</li>
+                            {% endfor %}
+<!--                            <li data-value="">請選擇</li>-->
+<!--                            <li data-value="原創">首發</li>-->
+<!--                            <li data-value="首發">原創</li>-->
+<!--                            <li data-value="分享">分享</li>-->
+<!--                            <li data-value="推薦">推薦</li>-->
+<!--                            <li data-value="其它">其它</li>-->
                         </ul>
                     </div>
                 </div>
@@ -281,14 +284,14 @@
         isShowArticleType = !isShowArticleType;
     };
 
-    $articleTypeList.onclick = function (e) {
-        e.stopPropagation();
-        const self = e.target;
-        $typeName.innerHTML = self.getAttribute('data-value') || '請選擇';
-        this.style.display = 'none';
-        $articleType.style.boxShadow = '';
-        isShowArticleType = !isShowArticleType;
-    };
+    // $articleTypeList.onclick = function (e) {
+    //     e.stopPropagation();
+    //     const self = e.target;
+    //     $typeName.innerHTML = self.getAttribute('data-value') || '請選擇';
+    //     this.style.display = 'none';
+    //     $articleType.style.boxShadow = '';
+    //     isShowArticleType = !isShowArticleType;
+    // };
 
     let chkList = [];
     $tagsList.onclick = (e) => {
@@ -364,9 +367,10 @@
         console.log(tagsResultList.join(','));
     };
 
+    let article_label_name = '';
     const selectItemList = (label_name_arg, label_value_arg) => {
         // console.log('selected');
-        label_name = label_name_arg;
+        article_label_name = label_name_arg;
         const $dropDown = document.querySelector('#itemName > span');
         $dropDown.innerHTML = label_value_arg;
         const lis = document.querySelectorAll('#articleItemList > li');
@@ -375,6 +379,22 @@
             item.className = 'no-selected';
 
             if (item.getAttribute('data-label') === label_name_arg) {
+                item.className = 'selected';
+            }
+        }
+    }
+
+    let article_type_name = '';
+    const selectType = (type_name_arg, type_value_arg) => {
+        article_type_name = type_name_arg;
+        const $type = document.querySelector('#typeName > span');
+        $type.innerHTML = type_value_arg;
+        const lis = document.querySelectorAll('#articleTypeList > li');
+
+        for (let item of lis) {
+            item.className = 'no-selected';
+
+            if (item.getAttribute('data-article-type') === type_name_arg) {
                 item.className = 'selected';
             }
         }

@@ -17,6 +17,7 @@ from model.user import User
 
 article = Blueprint('article', __name__)
 label_types = config[env].label_types
+article_types = config[env].article_types
 
 
 @article.route('/detail')
@@ -64,7 +65,7 @@ def article_detail():
 @article.route('/article/new')
 def article_new():
     # uid = session.get('uid')
-    return render_template('new_article.html', label_types=label_types)
+    return render_template('new_article.html', label_types=label_types, article_types=article_types)
 
 
 def get_article_request_param(request_data):

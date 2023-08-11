@@ -399,7 +399,7 @@ em.up-arrow {
 }
 
 .mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item .item-name > i,
-.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .item-name > i{
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .item-name > i {
     font-size: 12px;
     color: #9199a1;
 }
@@ -409,16 +409,17 @@ em.up-arrow {
 }
 
 .mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item .select-box li,
-.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .select-box li{
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .select-box li {
     padding-left: 10px;
 }
 /*#f3f5f6*/
 .mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item .select-box li:hover,
-.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .select-box li:hover{
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .select-box li:hover {
     background-color: #f3f5f6;
 }
 
-.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item .select-box .selected {
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-item .select-box .selected,
+.mask-login-modal .article-publish-from .publish-article-right .article-cols .choose-type .select-box .selected {
     background-color: #f3f5f6;
 }
 
