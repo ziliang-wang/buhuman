@@ -51,6 +51,14 @@ window.onload = () => {
     // let label_name = '';
 
     $publishBtn.onclick = () => {
+        drafted = 0;
+        //
+        const tagsList = document.getElementById('tagItems').getElementsByTagName('span');
+        if (tagsList.length >= 1) {
+            for (let item of tagsList) {
+                tagsResultList.push(item.getAttribute('data-tag'));
+            }
+        }
         // console.log(ue.getContent());
         title = $articleTitle.value.trim();
         if (title.length < 6 || title === '') {
@@ -70,11 +78,15 @@ window.onload = () => {
             title: title,
             content: content,
             aid: aid,
-            drafted: drafted
+            drafted: drafted,
+            //
+            article_label: window.article_label_name,
+            article_type: window.article_type_name,
+            article_tag: tagsResultList.join(',')
         }).then(res => {
             if (res.data.status === 2003) {
                 aid = res.data.aid;
-                alert(res.data.data);
+                // alert(res.data.data);
             } else {
                 alert('草稿存檔失敗');
                 return false;
@@ -343,6 +355,7 @@ window.onload = () => {
                 }, 1000);
             }
         });
+        $publishArticleModal.style.display = 'none';
     };
     //
     // let article_label_name = '';
@@ -414,5 +427,11 @@ window.onload = () => {
         // console.log(`相关${mySearch}的搜索有${searchResultNum}个`);
         // console.log(`分别是${resultStrList.slice(0, resultStrList.length-1)}`);
 
+    };
+
+    $saveAndCancel = document.getElementById('saveAndCancel');
+    $saveAndCancel.onclick = () => {
+        $publishBtn.click();
+        $publishArticleModal.style.display = 'none';
     };
 };
