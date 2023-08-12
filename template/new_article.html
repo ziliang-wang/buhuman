@@ -144,14 +144,16 @@
                         </div>
                         <ul class="select-box" id="articleTypeList">
                             {% for type_name, type_value in article_types.items() %}
-                                <li data-article-type="{{ type_name }}" class="{{ type_value.selected }}" onclick="selectType('{{ type_name }}', '{{ type_value.name }}')">{{ type_value.name }}</li>
+                            <li data-article-type="{{ type_name }}" class="{{ type_value.selected }}"
+                                onclick="selectType('{{ type_name }}', '{{ type_value.name }}')">{{ type_value.name }}
+                            </li>
                             {% endfor %}
-<!--                            <li data-value="">請選擇</li>-->
-<!--                            <li data-value="原創">首發</li>-->
-<!--                            <li data-value="首發">原創</li>-->
-<!--                            <li data-value="分享">分享</li>-->
-<!--                            <li data-value="推薦">推薦</li>-->
-<!--                            <li data-value="其它">其它</li>-->
+                            <!--                            <li data-value="">請選擇</li>-->
+                            <!--                            <li data-value="原創">首發</li>-->
+                            <!--                            <li data-value="首發">原創</li>-->
+                            <!--                            <li data-value="分享">分享</li>-->
+                            <!--                            <li data-value="推薦">推薦</li>-->
+                            <!--                            <li data-value="其它">其它</li>-->
                         </ul>
                     </div>
                 </div>
@@ -165,7 +167,9 @@
                     <div class="tag-items" id="tagItems"></div>
                     <input type="text" class="tags-input" placeholder="請選擇下列熱門標籤" id="tagInput">
                 </div>
-                <div class="tag-search-result">相關 "<span id="searchStr"></span>" 的搜索 <span id="searchResultNum"></span> 個</div>
+                <div class="tag-search-result">相關 "<span id="searchStr"></span>" 的搜索 <span
+                        id="searchResultNum"></span> 個
+                </div>
                 <ul class="tags-list" id="tagsList">
                     <li data-tag="Python">Python</li>
                     <li data-tag="javaScript">JavaScript</li>
@@ -412,29 +416,32 @@
     const $searchResultNum = document.getElementById('searchResultNum');
     // tag search
     $tagInput.oninput = function () {
-            const mySearch = this.value.trim().toLowerCase();
-            let searchResultNum = 0;
+        const mySearch = this.value.trim().toLowerCase();
+        let searchResultNum = 0;
 
-            if (mySearch.length !== 0) {
-                $tagSearchResult.style.display = 'block';
-            } else {
-                $tagSearchResult.style.display = 'none';
+        if (mySearch.length !== 0) {
+            $tagSearchResult.style.display = 'block';
+        } else {
+            $tagSearchResult.style.display = 'none';
+        }
+
+        $tagsList.innerHTML = null;
+
+        for (const tagItem of $articleTagsList) {
+            let tagName = tagItem.getAttribute('data-tag').toLowerCase();
+            if (tagName.indexOf(mySearch) >= 0) {
+                searchResultNum += 1;
+                $tagsList.appendChild(tagItem);
             }
+        }
 
-            for (const tagItem of $articleTagsList) {
-                let tagName = tagItem.getAttribute('data-tag').toLowerCase();
-                if (tagName.indexOf(mySearch) >= 0) {
-                    searchResultNum += 1;
-                }
-            }
+        $searchStr.innerHTML = mySearch;
+        $searchResultNum.innerHTML = searchResultNum.toString();
+        //
+        // console.log(`相关${mySearch}的搜索有${searchResultNum}个`);
+        // console.log(`分别是${resultStrList.slice(0, resultStrList.length-1)}`);
 
-            $searchStr.innerHTML = mySearch;
-            $searchResultNum.innerHTML = searchResultNum.toString();
-            //
-            console.log(`相关${mySearch}的搜索有${searchResultNum}个`);
-            // console.log(`分别是${resultStrList.slice(0, resultStrList.length-1)}`);
-
-        };
+    };
 </script>
 </body>
 </html>

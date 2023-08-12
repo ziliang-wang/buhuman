@@ -548,6 +548,10 @@ em.up-arrow {
     font-size: 12px;
     color: #9199a1;
     margin-bottom: 15px;
+    /*overflow:hidden;*/
+    /*white-space: nowrap;*/
+    /*text-overflow: ellipsis;*/
+    /*max-width: 60%;*/
 }
 
 .tag-search-result > span {
