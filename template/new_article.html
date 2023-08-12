@@ -165,6 +165,7 @@
                     <div class="tag-items" id="tagItems"></div>
                     <input type="text" class="tags-input" placeholder="請選擇下列熱門標籤" id="tagInput">
                 </div>
+                <div class="tag-search-result">相關 "<span id="searchStr"></span>" 的搜索 <span id="searchResultNum"></span> 個</div>
                 <ul class="tags-list" id="tagsList">
                     <li data-tag="Python">Python</li>
                     <li data-tag="javaScript">JavaScript</li>
@@ -314,13 +315,11 @@
             if (tagCount === 3) {
                 $tagInput.setAttribute('placeholder', '');
                 $tagInput.value = '';
-                $tagInput.style.display = 'none';
-                // $tagInput.style.backgroundColor = '#fff';
-                // $tagInput.disabled = true;
+                $tagInput.style.backgroundColor = '#fff';
+                $tagInput.disabled = true;
             } else if (tagCount >= 1) {
                 $tagInput.setAttribute('placeholder', '請輸入關鍵詞搜索標籤');
-                $tagInput.style.display = 'inline-block';
-                // $tagInput.disabled = false;
+                $tagInput.disabled = false;
             }
 
             const span = document.createElement('span');
@@ -343,6 +342,7 @@
             chkList.splice(tagIdx, 1);
             tagCount -= 1;
             $tagCount.innerText = tagCount;
+            $tagInput.disabled = false;
 
             if (tagCount >= 1) {
                 $tagInput.setAttribute('placeholder', '請輸入關鍵詞搜索標籤');
@@ -372,7 +372,7 @@
         console.log(tagsResultList);
         console.log(tagsResultList.join(','));
     };
-
+    //
     let article_label_name = '';
     const selectItemList = (label_name_arg, label_value_arg) => {
         // console.log('selected');
@@ -405,6 +405,36 @@
             }
         }
     }
+
+    const $articleTagsList = document.querySelectorAll('#tagsList > li');
+    const $tagSearchResult = document.querySelector('.tag-search-result');
+    const $searchStr = document.getElementById('searchStr');
+    const $searchResultNum = document.getElementById('searchResultNum');
+    // tag search
+    $tagInput.oninput = function () {
+            const mySearch = this.value.trim().toLowerCase();
+            let searchResultNum = 0;
+
+            if (mySearch.length !== 0) {
+                $tagSearchResult.style.display = 'block';
+            } else {
+                $tagSearchResult.style.display = 'none';
+            }
+
+            for (const tagItem of $articleTagsList) {
+                let tagName = tagItem.getAttribute('data-tag').toLowerCase();
+                if (tagName.indexOf(mySearch) >= 0) {
+                    searchResultNum += 1;
+                }
+            }
+
+            $searchStr.innerHTML = mySearch;
+            $searchResultNum.innerHTML = searchResultNum.toString();
+            //
+            console.log(`相关${mySearch}的搜索有${searchResultNum}个`);
+            // console.log(`分别是${resultStrList.slice(0, resultStrList.length-1)}`);
+
+        };
 </script>
 </body>
 </html>
