@@ -33,7 +33,7 @@
                 <input id="search" type="text" placeholder="搜索感興趣的文章或知識">
                 <i class="iconfont icon-Magnifier" id="searchBtn"></i>
             </div>
-            <button class="write" id="writeArticle" data-action="write" data-isLogin="session.get('is_login')">寫文章</button>
+            <button class="write" id="writeArticle" data-action="write" data-isLogin="session.get('is_login')">創作者中心</button>
             {% if session.get('is_login') == 'true' %}
             <div class="account">
                 <span class="login nickname" id="nickname">
