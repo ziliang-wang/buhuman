@@ -166,10 +166,10 @@
                     <input type="text" class="tags-input" placeholder="請選擇下列熱門標籤" id="tagInput">
                 </div>
                 <ul class="tags-list" id="tagsList">
-                    <li data-tag="python">Python</li>
-                    <li data-tag="javascript">JavaScript</li>
-                    <li data-tag="css">CSS</li>
-                    <li data-tag="html">Html</li>
+                    <li data-tag="Python">Python</li>
+                    <li data-tag="javaScript">JavaScript</li>
+                    <li data-tag="CSS">CSS</li>
+                    <li data-tag="Html">Html</li>
                 </ul>
                 <div class="action-buttons">
                     <button class="action-button" id="save">保存並取消</button>
@@ -313,8 +313,14 @@
 
             if (tagCount === 3) {
                 $tagInput.setAttribute('placeholder', '');
+                $tagInput.value = '';
+                $tagInput.style.display = 'none';
+                // $tagInput.style.backgroundColor = '#fff';
+                // $tagInput.disabled = true;
             } else if (tagCount >= 1) {
                 $tagInput.setAttribute('placeholder', '請輸入關鍵詞搜索標籤');
+                $tagInput.style.display = 'inline-block';
+                // $tagInput.disabled = false;
             }
 
             const span = document.createElement('span');
