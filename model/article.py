@@ -139,7 +139,7 @@ class Article(Base):
         return list(result_list)[:5]
 
     def get_user_articles(self, uid):
-        user_articles = db_session.query(count(Article.uid)).filter_by(uid=uid).first()
+        user_articles = db_session.query(count(Article.uid)).filter_by(uid=uid, drafted=1).first()
         # print(user_articles)
         if not user_articles:
             return 0
