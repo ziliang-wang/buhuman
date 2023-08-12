@@ -411,12 +411,12 @@
             }
         }
     }
-
+    // tag search
     const $articleTagsList = document.querySelectorAll('#tagsList > li');
     const $tagSearchResult = document.querySelector('.tag-search-result');
     const $searchStr = document.getElementById('searchStr');
     const $searchResultNum = document.getElementById('searchResultNum');
-    // tag search
+
     $tagInput.oninput = function () {
         const mySearch = this.value.trim().toLowerCase();
         let searchResultNum = 0;
