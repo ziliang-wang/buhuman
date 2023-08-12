@@ -123,7 +123,7 @@ def article_save():
         user, title, content, = get_article_request_param(request_data)
         if title == '':
             return ArticleMessage.other('請輸入文章Title')
-        label_name = request_data.get('label_name')
+        label_name = request_data.get('article_label')
         article_tag = request_data.get('article_tag')
         article_type = request_data.get('article_type')
 
