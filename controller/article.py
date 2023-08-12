@@ -2,7 +2,7 @@ import json
 import random
 import time
 
-from flask import Blueprint, render_template, request, session, make_response, jsonify
+from flask import Blueprint, render_template, request, session, make_response, jsonify, url_for
 
 from app.config.ue_config import ARTICLE_UECONFIG
 from common.response_message import ArticleMessage
@@ -18,6 +18,18 @@ from model.user import User
 article = Blueprint('article', __name__)
 label_types = config[env].label_types
 article_types = config[env].article_types
+
+
+@article.before_request
+def article_before_request():
+    url = request.path
+    is_login = session.get('is_login')
+
+    if url.startswith('/article/new') and is_login != 'true':
+        response = make_response('Please Login', 302)
+        response.headers['Location'] = url_for('index.home')
+
+        return response
 
 
 @article.route('/detail')
