@@ -165,7 +165,7 @@
                 </div>
                 <div class="search-tags-box">
                     <div class="tag-items" id="tagItems"></div>
-                    <input type="text" class="tags-input" placeholder="請選擇下列熱門標籤" id="tagInput">
+                    <input type="text" class="tags-input" placeholder="請選擇下列熱門標籤或輸入關鍵詞檢索標籤" id="tagInput">
                 </div>
                 <div class="tag-search-result">相關 "<span id="searchStr"></span>" 的搜索 <span
                         id="searchResultNum"></span> 個
@@ -301,6 +301,8 @@
     let chkList = [];
     $tagsList.onclick = (e) => {
 
+        $tagInput.value = '';
+
         const self = e.target;
         const tagName = self.getAttribute('data-tag');
 
@@ -322,7 +324,7 @@
                 $tagInput.style.backgroundColor = '#fff';
                 $tagInput.disabled = true;
             } else if (tagCount >= 1) {
-                $tagInput.setAttribute('placeholder', '請輸入關鍵詞搜索標籤');
+                $tagInput.setAttribute('placeholder', '請輸入關鍵詞檢索標籤');
                 $tagInput.disabled = false;
             }
 
