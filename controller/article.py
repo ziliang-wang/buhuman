@@ -6,7 +6,7 @@ from flask import Blueprint, render_template, request, session, make_response, j
 
 from app.config.ue_config import ARTICLE_UECONFIG
 from common.response_message import ArticleMessage
-from common.utils import compress_image
+from common.utils import compress_image, model_to_json
 from model.article import Article
 from app.config.config import config
 from app.settings import env
@@ -76,8 +76,24 @@ def article_detail():
 
 @article.route('/article/new')
 def article_new():
-    # uid = session.get('uid')
-    return render_template('new_article.html', label_types=label_types, article_types=article_types)
+    uid = session.get('uid')
+    all_drafted = Article().get_all_drafted(uid)
+
+    return render_template('new_article.html',
+                           label_types=label_types,
+                           article_types=article_types,
+                           all_drafted=all_drafted
+                           )
+
+
+@article.route('/article/drafted', methods=['POST'])
+def get_drafted_detail():
+    request_data = json.loads(request.data)
+    aid = request_data.get('aid')
+    result = Article().get_one_drafted(aid=aid)
+    article_drafted_detail = model_to_json(result)
+
+    return ArticleMessage.success(article_drafted_detail)
 
 
 def get_article_request_param(request_data):
