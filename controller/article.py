@@ -82,7 +82,8 @@ def article_new():
     return render_template('new_article.html',
                            label_types=label_types,
                            article_types=article_types,
-                           all_drafted=all_drafted
+                           all_drafted=all_drafted,
+                           drafted_count=len(all_drafted)
                            )
 
 
