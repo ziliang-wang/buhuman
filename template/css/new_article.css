@@ -74,14 +74,30 @@ em.up-arrow {
 }
 
 .header .left .drafted-container .drafted-box-title {
+    position: fixed;
     font-weight: bold;
     font-size: 14px;
     color: #1c1f21;
     justify-content: space-between;
+    align-items: center;
+    /*margin-top: 2px;*/
+    /*z-index: 99990;*/
+    width: 344px;
+    height: 50px;
+    line-height: 50px;
+    /*display: flex;*/
+    background-color: #fff;
+    padding-top: 2px;
+}
+
+.header .left .drafted-container .drafted-box-title .title-right {
+    /*text-align: right;*/
 }
 
 .header .left .drafted-container .drafted-box {
-    margin-top: -5px;
+    margin-top: -10px;
+    padding-top: 60px;
+    /*overflow: auto;*/
     /*flex-wrap: nowrap;*/
     /*justify-content: space-between;*/
     /*align-items: center;*/
@@ -119,7 +135,7 @@ em.up-arrow {
 
 .header .left .drafted-container .drafted-box .list-item .draft-item-middle {
     line-height: normal;
-    justify-content: center;
+    /*justify-content: center;*/
     flex: 4;
     /*width: 80%;*/
     overflow:hidden;
@@ -134,25 +150,38 @@ em.up-arrow {
 }
 
 .header .left .drafted-container .drafted-box .list-item .draft-item-middle .draft-item-up {
+    margin-top: 5px;
     font-size: 14px;
     color: #545c63;
     padding-bottom: 2px;
     width: 95%;
+    /*background-color: blue;*/
+    height: 20px;
+    line-height: 20px;
     overflow:hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    font-weight: bold;
 }
 
 .header .left .drafted-container .drafted-box .list-item .draft-item-middle .draft-item-down {
+    margin-top: 5px;
     font-size: 12px;
     color: #9199a1;
     padding-top: 2px;
+    width: 95%;
+    /*background-color: orange;*/
+    height: 20px;
+    line-height: 20px;
+    /*font-weight: bold;*/
+    /*height: 50px;*/
 }
 
 .header .left .drafted-container .drafted-box .list-item .draft-item-right > i.item-close {
     font-size: 18px;
     color: #b2b8bd;
     display: none;
+    /*font-weight: bold;*/
     /*flex: 1;*/
     /*text-align: right;*/
 }
@@ -570,4 +599,7 @@ em.up-arrow {
 }
 /*#selectItemWrap {*/
 /*    display: none;*/
+/*}*/
+/*.drafted-layout {*/
+/*    margin: 20px 0;*/
 /*}*/

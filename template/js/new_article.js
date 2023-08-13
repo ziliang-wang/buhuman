@@ -1,5 +1,11 @@
 window.onload = () => {
 
+    document.onclick = () => {
+        $draftedContainer.style.display = 'none';
+        $upArrow.style.display = 'none';
+        isShowDraftBox = false;
+    };
+
     const ue = UE.getEditor('editor', {
         // ... 更多配置
         shortcutMenu: false,
@@ -50,7 +56,8 @@ window.onload = () => {
     let drafted = 0;
     // let label_name = '';
 
-    $publishBtn.onclick = () => {
+    $publishBtn.onclick = (e) => {
+        e.stopPropagation();
         drafted = 0;
         //
         const tagsList = document.getElementById('tagItems').getElementsByTagName('span');
@@ -195,7 +202,8 @@ window.onload = () => {
         isShowDraftBox = !isShowDraftBox;
     };
 
-    $upArrow.onclick = function () {
+    $upArrow.onclick = function (e) {
+        e.stopPropagation();
         if (!isShowDraftBox) {
             $draftedContainer.style.display = 'block';
             this.style.display = 'block';
@@ -206,7 +214,8 @@ window.onload = () => {
         isShowDraftBox = !isShowDraftBox;
     };
 
-    $articleItem.onclick = function () {
+    $articleItem.onclick = function (e) {
+        e.stopPropagation();
         if (!isShowArticleItem) {
             $articleItemList.style.display = 'block';
             this.style.boxShadow = '0 0 5px #6f4627';
@@ -226,7 +235,8 @@ window.onload = () => {
     //     isShowArticleItem = !isShowArticleItem;
     // };
 
-    $articleType.onclick = function () {
+    $articleType.onclick = function (e) {
+        e.stopPropagation();
         if (!isShowArticleType) {
             $articleTypeList.style.display = 'block';
             this.style.boxShadow = '0 0 5px #6f4627';
@@ -429,9 +439,22 @@ window.onload = () => {
 
     };
 
-    $saveAndCancel = document.getElementById('saveAndCancel');
+    const $saveAndCancel = document.getElementById('saveAndCancel');
     $saveAndCancel.onclick = () => {
         $publishBtn.click();
         $publishArticleModal.style.display = 'none';
+    };
+
+    // // draftedBox
+    const $draftedBoxItemList = document.getElementById('draftedBoxItemList');
+    // console.log($draftedBoxItemList);
+    $draftedBoxItemList.onclick = function (e) {
+        e.stopPropagation();
+        const self = e.target;
+        // const self = e.target.title;
+        const draftedId = self.getAttribute('data-did');
+        if (draftedId) {
+            console.log(draftedId);
+        }
     };
 };

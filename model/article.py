@@ -210,11 +210,11 @@ class Article(Base):
         db_session.commit()
 
     def get_all_drafted(self, uid):
-        result = db_session.query(Article).filter_by(uid=uid, drafted=0).all()
+        result = db_session.query(Article).filter_by(uid=uid, drafted=0, is_valid=1).all()
         return result
 
     def get_one_drafted(self, aid):
-        result = db_session.query(Article).filter_by(aid=aid, drafted=0).first()
+        result = db_session.query(Article).filter_by(aid=aid, drafted=0, is_valid=1).first()
         return result
 
 
