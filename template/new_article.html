@@ -32,7 +32,7 @@
             </div>
             <div class="drafted-box" id="draftedBoxItemList">
                 {% for drafted in all_drafted %}
-                    <div class="list-item flex-r" >
+                    <div class="list-item flex-r" id="{{ drafted.aid }}">
                         <div class="draft-item-left">
                             <div class="iconfont icon-caogao05 draft-icon" data-did="{{ drafted.aid }}"></div>
                         </div>
@@ -41,7 +41,7 @@
                             <span class="draft-item-down" data-did="{{ drafted.aid }}">{{ drafted.create_time }}</span>
                         </div>
                         <div class="draft-item-right">
-                            <i class="iconfont icon-guanbi item-close"></i>
+                            <i class="iconfont icon-guanbi item-close" data-action="remove" data-did="{{ drafted.aid }}"></i>
                         </div>
                     </div>
                 {% endfor %}

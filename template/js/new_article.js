@@ -446,14 +446,20 @@ window.onload = () => {
 
     // // draftedBox
     const $draftedBoxItemList = document.getElementById('draftedBoxItemList');
+
     // console.log($draftedBoxItemList);
     $draftedBoxItemList.onclick = function (e) {
         e.stopPropagation();
         const self = e.target;
         // const self = e.target.title;
         const draftedId = self.getAttribute('data-did');
-        if (draftedId) {
-            console.log(draftedId);
+        const action = self.getAttribute('data-action');
+        // console.log('this', this);
+        // console.log($draftItem);
+        // console.log(this.children);
+        // console.log(action);
+        if (draftedId && !action) {
+            // console.log(draftedId);
             // const title = e.currentTarget.querySelector('.draft-item-up').innerHTML;
             // const title = self.getAttribute('data-title');
             // console.log(title);
@@ -469,7 +475,24 @@ window.onload = () => {
                     alert('獲取失敗');
                 }
             });
-            // $articleTitle.value = title;
+        } else if (action === 'remove') {
+            const $draftItem = document.getElementById(draftedId);
+            // console.log($draftItem);
+            axios.post('/article/remove/draft', {
+                aid: draftedId
+            }).then(res => {
+                if (res.data.status === 2000) {
+                    this.removeChild($draftItem);
+                } else {
+                    alert('刪除失敗');
+                }
+            });
         }
     };
+    // remove draft
+    // $remoteDraft = document.querySelector('.item-close');
+    // $remoteDraft.onclick = function (e) {
+    //     e.stopPropagation();
+    //     console.log(this);
+    // };
 };

@@ -217,4 +217,11 @@ class Article(Base):
         result = db_session.query(Article).filter_by(aid=aid, drafted=0, is_valid=1).first()
         return result
 
+    def remove_one_drafted(self, aid):
+        row = db_session.query(Article).filter_by(aid=aid, drafted=0, is_valid=1).first()
+        row.is_valid = 0
+        db_session.commit()
+
+
+
 

@@ -97,6 +97,15 @@ def get_drafted_detail():
     return ArticleMessage.success(article_drafted_detail)
 
 
+@article.route('/article/remove/draft', methods=['POST'])
+def remove_drafted():
+    request_data = json.loads(request.data)
+    aid = request_data.get('aid')
+    Article().remove_one_drafted(aid=aid)
+    # article_drafted_detail = model_to_json(result)
+    return ArticleMessage.success('ok')
+
+
 def get_article_request_param(request_data):
     user = User().find_by_uid(session.get('uid'))
     title = request_data.get('title')
