@@ -55,8 +55,9 @@ window.onload = () => {
     let aid = -1;
     let drafted = 0;
     // let label_name = '';
-
+    let tagsResultList = [];
     $publishBtn.onclick = (e) => {
+        tagsResultList = [];
         e.stopPropagation();
         drafted = 0;
         //
@@ -325,18 +326,16 @@ window.onload = () => {
 
     // 文章發佈
     const $submit = document.getElementById('submit');
-
-    const tagsResultList = [];
-
     $submit.onclick = () => {
         drafted = 1;
+        tagsResultList = [];
         const tagsList = document.getElementById('tagItems').getElementsByTagName('span');
         if (tagsList.length >= 1) {
             for (let item of tagsList) {
                 tagsResultList.push(item.getAttribute('data-tag'));
             }
         } else {
-            alert('文章的標籤不能為空喔');
+            alert('文章的標籤至少要有一個喔');
             return;
         }
         // console.log(tagsResultList);
@@ -455,6 +454,22 @@ window.onload = () => {
         const draftedId = self.getAttribute('data-did');
         if (draftedId) {
             console.log(draftedId);
+            // const title = e.currentTarget.querySelector('.draft-item-up').innerHTML;
+            // const title = self.getAttribute('data-title');
+            // console.log(title);
+            axios.post('/article/drafted', {
+                aid: draftedId
+            }).then(res => {
+                if (res.data.status === 2000) {
+                    $articleTitle.value = res.data.data.title;
+                    ue.body.innerHTML = res.data.data.article_content;
+                    // 此時編輯的是哪個草稿
+                    aid = res.data.data.aid;
+                } else {
+                    alert('獲取失敗');
+                }
+            });
+            // $articleTitle.value = title;
         }
     };
 };
