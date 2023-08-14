@@ -477,16 +477,22 @@ window.onload = () => {
             });
         } else if (action === 'remove') {
             const $draftItem = document.getElementById(draftedId);
+            const $draftNum = document.querySelector('.draft-num');
             // console.log($draftItem);
-            axios.post('/article/remove/draft', {
-                aid: draftedId
-            }).then(res => {
-                if (res.data.status === 2000) {
-                    this.removeChild($draftItem);
-                } else {
-                    alert('刪除失敗');
-                }
-            });
+            const result = confirm('確認刪除該筆草稿嗎?');
+            if (result) {
+                axios.post('/article/remove/draft', {
+                    aid: draftedId
+                }).then(res => {
+                    if (res.data.status === 2000) {
+                        // console.log('rest num:', res.data.data);
+                        $draftNum.innerHTML = res.data.data;
+                        this.removeChild($draftItem);
+                    } else {
+                        alert('刪除失敗');
+                    }
+                });
+            }
         }
     };
     // remove draft

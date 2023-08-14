@@ -99,11 +99,13 @@ def get_drafted_detail():
 
 @article.route('/article/remove/draft', methods=['POST'])
 def remove_drafted():
-    request_data = json.loads(request.data)
-    aid = request_data.get('aid')
-    Article().remove_one_drafted(aid=aid)
-    # article_drafted_detail = model_to_json(result)
-    return ArticleMessage.success('ok')
+    uid = session.get('uid')
+    if request.method == 'POST':
+        request_data = json.loads(request.data)
+        aid = request_data.get('aid')
+        Article().remove_one_drafted(aid=aid)
+        all_drafted = Article().get_all_drafted(uid)
+        return ArticleMessage.success(len(all_drafted))
 
 
 def get_article_request_param(request_data):

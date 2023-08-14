@@ -223,5 +223,10 @@ class Article(Base):
         db_session.commit()
 
 
+    # def get_rest_drafted_num(self, uid):
+    #     result = db_session.query(Article).filter_by(uid=uid, drafted=0, is_valid=1).all()
+
+
+
 
 
