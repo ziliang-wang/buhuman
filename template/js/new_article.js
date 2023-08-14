@@ -56,6 +56,57 @@ window.onload = () => {
     let drafted = 0;
     // let label_name = '';
     let tagsResultList = [];
+
+    const autoSave = (drafted) => {
+        tagsResultList = [];
+        // e.stopPropagation();
+        drafted = 0;
+        aid = -1;
+        //
+        // const tagsList = document.getElementById('tagItems').getElementsByTagName('span');
+        // if (tagsList.length >= 1) {
+        //     for (let item of tagsList) {
+        //         tagsResultList.push(item.getAttribute('data-tag'));
+        //     }
+        // }
+        // console.log(ue.getContent());
+        title = $articleTitle.value.trim();
+        // if (title.length < 6 || title === '') {
+        //     alert('標題不能為空，且必需為6個字以上喔');
+        //     return;
+        // }
+        content = ue.getContent().trim();
+
+        // console.log(content);
+
+        // if (content.length < 32 || content === '') {
+        //     alert('內容創作，不能為空，且必需為20個字以上喔');
+        //     return;
+        // }
+
+        axios.post('/article/save', {
+            title: title,
+            content: content,
+            aid: aid,
+            drafted: drafted,
+            //
+            // article_label: window.article_label_name,
+            // article_type: window.article_type_name,
+            // article_tag: tagsResultList.join(',')
+        }).then(res => {
+            if (res.data.status === 2003) {
+                aid = res.data.aid;
+                // alert(res.data.data);
+            } else {
+                alert('草稿存檔失敗');
+                return false;
+            }
+        });
+        // $publishArticleModal.style.display = 'block';
+    };
+
+    $draftDesc = document.querySelector('.draft-desc');
+
     $publishBtn.onclick = (e) => {
         tagsResultList = [];
         e.stopPropagation();
@@ -94,6 +145,7 @@ window.onload = () => {
         }).then(res => {
             if (res.data.status === 2003) {
                 aid = res.data.aid;
+                $draftDesc.innerHTML = '已存檔';
                 // alert(res.data.data);
             } else {
                 alert('草稿存檔失敗');
