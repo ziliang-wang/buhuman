@@ -38,6 +38,8 @@ window.onload = () => {
 
     const $publishBtn = document.getElementById('publishBtn');
     const $publishArticleModal = document.getElementById('publishArticleModal');
+    const $draftNum = document.querySelector('.draft-num');
+
     // const $publishClose = document.getElementById('publishClose');
 
     // $publishBtn.onclick = () => {
@@ -145,6 +147,7 @@ window.onload = () => {
         }).then(res => {
             if (res.data.status === 2003) {
                 aid = res.data.aid;
+                $draftNum.innerHTML = res.data.data;
                 $draftDesc.innerHTML = '已存檔';
                 // alert(res.data.data);
             } else {
@@ -409,7 +412,7 @@ window.onload = () => {
             article_type: window.article_type_name,
             article_tag: tagsResultList.join(',')
         }).then(res => {
-            alert(res.data.data);
+            // alert(res.data.data);
             if (drafted === 1) {
                 setTimeout(() => {
                     location.href = `/detail?aid=${aid}`;
@@ -529,7 +532,6 @@ window.onload = () => {
             });
         } else if (action === 'remove') {
             const $draftItem = document.getElementById(draftedId);
-            const $draftNum = document.querySelector('.draft-num');
             // console.log($draftItem);
             const result = confirm('確認刪除該筆草稿嗎?');
             if (result) {

@@ -158,8 +158,12 @@ def article_save():
         if title == '':
             return ArticleMessage.other('請輸入文章Title')
         aid = Article().insert_article(user.uid, title, content, drafted)
-        return ArticleMessage.saved_success('草稿存檔成功', aid)
-    elif aid > -1:
+
+        uid = session.get('uid')
+        all_drafted = Article().get_all_drafted(uid)
+
+        return ArticleMessage.saved_success(len(all_drafted), aid)
+    elif aid > -1 and drafted == 1:
         user, title, content, = get_article_request_param(request_data)
         if title == '':
             return ArticleMessage.other('請輸入文章Title')
@@ -167,8 +171,11 @@ def article_save():
         article_tag = request_data.get('article_tag')
         article_type = request_data.get('article_type')
 
+        # uid = session.get('uid')
+        # all_drafted = Article().get_all_drafted(uid)
+
         aid = Article().update_article(aid, title, content, drafted, label_name, article_tag, article_type)
-        return ArticleMessage.saved_success('文章發佈成功', aid)
+        return ArticleMessage.saved_success('ok', aid)
 
 
 @article.route('/article/upload/cover', methods=['POST'])
