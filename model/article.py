@@ -234,7 +234,7 @@ class Article(Base):
         return self.add_article_image_path(rows)
 
     def get_collection_article_by_uid(self, uid):
-        # 當前用戶，收藏了哪些文章
+        # 當前用戶，收藏了哪些文章 我的文章
         rows = db_session.query(Article).join(
             Collection, Article.aid == Collection.aid
         ).filter(
@@ -249,7 +249,7 @@ class Article(Base):
         return self.add_article_image_path(rows)
 
     def get_comment_article_by_uid(self, uid):
-        # 當前用戶，評論了哪些文章
+        # 當前用戶，評論了哪些文章 我的评论
         rows = db_session.query(Article).join(
             Comment, Article.aid == Comment.aid
         ).filter(
@@ -259,6 +259,20 @@ class Article(Base):
             Article.is_valid == 1
         ).order_by(
             Comment.create_time.desc()
+        ).all()
+
+        return self.add_article_image_path(rows)
+
+    def get_praise_article_by_uid(self, uid):
+        # 我的推荐
+        rows = db_session.query(Article).join(
+            Praise, Article.aid == Praise.aid
+        ).filter(
+            Praise.uid == uid,
+            Praise.is_valid == 1,
+            Article.is_valid == 1
+        ).order_by(
+            Praise.create_time.desc()
         ).all()
 
         return self.add_article_image_path(rows)
