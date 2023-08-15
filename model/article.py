@@ -3,6 +3,7 @@ from common.database import db_connect
 from app.config.config import config
 from app.settings import env
 from model.collection import Collection
+from model.comment import Comment
 from model.praise import Praise
 from model.user import User
 from sqlalchemy.sql.functions import sum, count
@@ -239,9 +240,25 @@ class Article(Base):
         ).filter(
             Collection.uid == uid,
             Collection.collected == 1,
+            Collection.is_valid == 1,
             Article.is_valid == 1
         ).order_by(
-            Article.create_time.desc()
+            Collection.create_time.desc()
+        ).all()
+
+        return self.add_article_image_path(rows)
+
+    def get_comment_article_by_uid(self, uid):
+        # 當前用戶，評論了哪些文章
+        rows = db_session.query(Article).join(
+            Comment, Article.aid == Comment.aid
+        ).filter(
+            Comment.uid == uid,
+            Comment.floor_number != 0,
+            Comment.is_valid == 1,
+            Article.is_valid == 1
+        ).order_by(
+            Comment.create_time.desc()
         ).all()
 
         return self.add_article_image_path(rows)
