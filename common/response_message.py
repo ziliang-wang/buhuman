@@ -157,3 +157,26 @@ class CommentMessage(object):
             'status': 6001,
             'data': data
         }
+
+
+class PersonalMessage(object):
+    @staticmethod
+    def success(data):
+        return {
+            'status': 7000,
+            'data': data
+        }
+
+    @staticmethod
+    def fail(data):
+        return {
+            'status': 7002,
+            'data': data
+        }
+
+    @staticmethod
+    def other(data):
+        return {
+            'status': 7001,
+            'data': data
+        }

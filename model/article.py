@@ -222,6 +222,41 @@ class Article(Base):
         row.is_valid = 0
         db_session.commit()
 
+    def get_article_by_uid(self, uid):
+        # 當前用戶寫了哪些文章
+        rows = db_session.query(Article).filter_by(
+            uid=uid,
+            drafted=1,
+            is_valid=1
+        ).all()
+
+        return self.add_article_image_path(rows)
+
+    def get_collection_article_by_uid(self, uid):
+        # 當前用戶，收藏了哪些文章
+        rows = db_session.query(Article).join(
+            Collection, Article.aid == Collection.aid
+        ).filter(
+            Collection.uid == uid,
+            Collection.collected == 1,
+            Article.is_valid == 1
+        ).order_by(
+            Article.create_time.desc()
+        ).all()
+
+        return self.add_article_image_path(rows)
+
+    def add_article_image_path(self, rows):
+        if not rows:
+            return None
+
+        for row in rows:
+            row.article_image = config[env].article_header_image_path + row.article_image
+
+        return rows
+
+
+
 
     # def get_rest_drafted_num(self, uid):
     #     result = db_session.query(Article).filter_by(uid=uid, drafted=0, is_valid=1).all()
