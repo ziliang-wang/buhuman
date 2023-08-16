@@ -36,6 +36,8 @@ window.onload = () => {
         ]
     });
 
+    const $editor = document.getElementById('editor');
+
     const $publishBtn = document.getElementById('publishBtn');
     const $publishArticleModal = document.getElementById('publishArticleModal');
     const $draftNum = document.querySelector('.draft-num');
@@ -117,6 +119,20 @@ window.onload = () => {
         $draftDesc.innerHTML = '尚未存檔';
     };
 
+    ue.addListener('selectionchange', function () {
+        $draftDesc.innerHTML = '尚未存檔';
+    });
+
+    // ue.addListener('input', function () {
+    //     console.log("选区已经变化！");
+    // });
+
+    // const $view = document.getElementById('edui1_iframeholder').getElementById('ueditor_0');
+    // console.log($view);
+    // $editor.oninput = () => {
+    //     console.log('editor');
+    // }
+
 
     $publishBtn.onclick = (e) => {
         tagsResultList = [];
@@ -163,9 +179,9 @@ window.onload = () => {
                 for (const drafted of draftedList) {
                     // const html = `<h1 style="color: red;">${drafted.aid}</h1>`
                     const html = `
-                        <div class="list-item flex-r" id="${ drafted.aid }">
+                        <div class="list-item flex-r" id="${drafted.aid}">
                             <div class="draft-item-left">
-                                <div class="iconfont icon-caogao05 draft-icon" data-did="${ drafted.aid }"></div>
+                                <div class="iconfont icon-caogao05 draft-icon" data-did="${drafted.aid}"></div>
                             </div>
                             <div class="draft-item-middle flex-c" data-did="${drafted.aid}">
                                 <span class="draft-item-up" data-did="${drafted.aid}">${drafted.title}</span>
