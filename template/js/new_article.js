@@ -536,6 +536,7 @@ window.onload = () => {
         // const self = e.target.title;
         const draftedId = self.getAttribute('data-did');
         const action = self.getAttribute('data-action');
+        $draftDesc.innerHTML = '尚未存檔';
         // console.log('this', this);
         // console.log($draftItem);
         // console.log(this.children);
