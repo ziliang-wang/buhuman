@@ -110,6 +110,12 @@ window.onload = () => {
     $draftDesc = document.querySelector('.draft-desc');
 
     const $draftedBoxItemList = document.getElementById('draftedBoxItemList');
+    const $articleTitle = document.getElementById('articleTitle');
+
+
+    $articleTitle.oninput = () => {
+        $draftDesc.innerHTML = '尚未存檔';
+    };
 
 
     $publishBtn.onclick = (e) => {
@@ -239,7 +245,6 @@ window.onload = () => {
     const $tagItems = document.getElementById('tagItems');
     const $tagCount = document.getElementById('tagCount');
 
-    const $articleTitle = document.getElementById('articleTitle');
 
     let isShowArticleItem = false;
     let isShowArticleType = false;
