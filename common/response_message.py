@@ -59,11 +59,12 @@ class ArticleMessage(object):
     #     }
 
     @staticmethod
-    def saved_success(data, aid):
+    def saved_success(data, aid, data_list):
         return {
             'status': 2003,
             'data': data,
-            'aid': aid
+            'aid': aid,
+            'list': data_list
         }
 
 

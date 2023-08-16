@@ -109,6 +109,9 @@ window.onload = () => {
 
     $draftDesc = document.querySelector('.draft-desc');
 
+    const $draftedBoxItemList = document.getElementById('draftedBoxItemList');
+
+
     $publishBtn.onclick = (e) => {
         tagsResultList = [];
         e.stopPropagation();
@@ -147,10 +150,34 @@ window.onload = () => {
         }).then(res => {
             if (res.data.status === 2003) {
                 aid = res.data.aid;
+                const draftedList = res.data.list;
+                console.log(draftedList);
+                // $draftedBoxItemList.innerHTML = '';
+                // //
+                // for (const drafted of draftedList) {
+                //     const html = `<h1 style="color: red;">${drafted.aid}</h1>`
+                    // const html = ```
+                    //     <div class="list-item flex-r" id=${ drafted.aid }>
+                    //         <div class="draft-item-left">
+                    //             <div class="iconfont icon-caogao05 draft-icon" data-did=${ drafted.aid }></div>
+                    //         </div>
+                    //         <div class="draft-item-middle flex-c" data-did=${drafted.aid}>
+                    //             <span class="draft-item-up" data-did=${drafted.aid}>drafted.title</span>
+                    //             <span class="draft-item-down" data-did=${drafted.aid}>drafted.create_time</span>
+                    //         </div>
+                    //         <div class="draft-item-right">
+                    //             <i class="iconfont icon-guanbi item-close" data-action="remove" data-did=${drafted.aid}></i>
+                    //         </div>
+                    //     </div>
+                    // ```;
+                //     $draftedBoxItemList.innerHTML += html;
+                // }
                 $draftNum.innerHTML = res.data.data;
                 $draftDesc.innerHTML = '已存檔';
+                // console.log()
                 // alert(res.data.data);
             } else {
+                console.log(res.data.status);
                 alert('草稿存檔失敗');
                 return false;
             }
@@ -495,12 +522,12 @@ window.onload = () => {
 
     const $saveAndCancel = document.getElementById('saveAndCancel');
     $saveAndCancel.onclick = () => {
+        drafted = 0;
         $publishBtn.click();
         $publishArticleModal.style.display = 'none';
     };
 
     // // draftedBox
-    const $draftedBoxItemList = document.getElementById('draftedBoxItemList');
 
     // console.log($draftedBoxItemList);
     $draftedBoxItemList.onclick = function (e) {

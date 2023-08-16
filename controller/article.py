@@ -78,12 +78,15 @@ def article_detail():
 def article_new():
     uid = session.get('uid')
     all_drafted = Article().get_all_drafted(uid)
+    drafted_num = 0
+    if all_drafted:
+        drafted_num = len(all_drafted)
 
     return render_template('new_article.html',
                            label_types=label_types,
                            article_types=article_types,
                            all_drafted=all_drafted,
-                           drafted_count=len(all_drafted)
+                           drafted_count=drafted_num
                            )
 
 
@@ -105,7 +108,10 @@ def remove_drafted():
         aid = request_data.get('aid')
         Article().remove_one_drafted(aid=aid)
         all_drafted = Article().get_all_drafted(uid)
-        return ArticleMessage.success(len(all_drafted))
+        drafted_num = 0
+        if all_drafted:
+            drafted_num = len(all_drafted)
+        return ArticleMessage.success(drafted_num)
 
 
 def get_article_request_param(request_data):
@@ -147,11 +153,26 @@ def ueditor():
     return jsonify(result)
 
 
+@article.route('/article/draft/list')
+def get_draft_list():
+    uid = session.get('uid')
+    drafted_list = []
+    all_drafted = Article().get_all_drafted(uid)
+
+    if all_drafted:
+        for drafted in all_drafted:
+            drafted_list.append(model_to_json(drafted))
+        return drafted_list
+    return ''
+
+
 @article.route('/article/save', methods=['POST'])
 def article_save():
     request_data = json.loads(request.data)
     aid = request_data.get('aid')
     drafted = request_data.get('drafted')
+    uid = session.get('uid')
+    drafted_list = []
 
     if aid == -1 and drafted == 0:
         user, title, content, = get_article_request_param(request_data)
@@ -159,11 +180,29 @@ def article_save():
             return ArticleMessage.other('請輸入文章Title')
         aid = Article().insert_article(user.uid, title, content, drafted)
 
-        uid = session.get('uid')
         all_drafted = Article().get_all_drafted(uid)
 
-        return ArticleMessage.saved_success(len(all_drafted), aid)
-    elif aid > -1 and drafted == 1:
+        for drafted in all_drafted:
+            drafted_list.append(model_to_json(drafted))
+
+        return ArticleMessage.saved_success(len(all_drafted), aid, drafted_list)
+    # elif aid > -1 and drafted == 0:
+    #     user, title, content, = get_article_request_param(request_data)
+    #     if title == '':
+    #         return ArticleMessage.other('請輸入文章Title')
+    #     label_name = request_data.get('article_label')
+    #     article_tag = request_data.get('article_tag')
+    #     article_type = request_data.get('article_type')
+    #
+    #     # uid = session.get('uid')
+    #     all_drafted = Article().get_all_drafted(uid)
+    #
+    #     for drafted in all_drafted:
+    #         drafted_list.append(model_to_json(drafted))
+    #
+    #     aid = Article().update_article(aid, title, content, drafted, label_name, article_tag, article_type)
+    #     return ArticleMessage.saved_success(len(all_drafted), aid, drafted_list)
+    elif aid > -1:
         user, title, content, = get_article_request_param(request_data)
         if title == '':
             return ArticleMessage.other('請輸入文章Title')
@@ -172,10 +211,16 @@ def article_save():
         article_type = request_data.get('article_type')
 
         # uid = session.get('uid')
-        # all_drafted = Article().get_all_drafted(uid)
-
         aid = Article().update_article(aid, title, content, drafted, label_name, article_tag, article_type)
-        return ArticleMessage.saved_success('ok', aid)
+
+        all_drafted = Article().get_all_drafted(uid)
+
+        for drafted in all_drafted:
+            drafted_list.append(model_to_json(drafted))
+
+        return ArticleMessage.saved_success(len(all_drafted), aid, drafted_list)
+
+    return ''
 
 
 @article.route('/article/upload/cover', methods=['POST'])
