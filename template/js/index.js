@@ -53,6 +53,8 @@ window.onload = () => {
     const $keepLogin = document.getElementById('keepLogin');
     const $logout = document.getElementById('logout');
 
+    const $avatar = document.querySelector('.avatar');
+
     // 註冊/登入表單 正則表達式
     const emailReg = /^\w{2,}\@\w{2,}\.[a-zA-Z]{2,4}(\.[a-zA-Z]{2,4})?$/;
     const passwdReg = /^\w{6,}/;
@@ -69,6 +71,10 @@ window.onload = () => {
     let isVcode = false;
     let keepDays = 0;
     let action = '';
+
+    // $avatar.onclick = () => {
+    //     location.href = '/personal';
+    // };
 
     // $logout.onclick = (e) => {
     //     $writeArticle.setAttribute('data-isLogin', 'false');

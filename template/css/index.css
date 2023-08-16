@@ -125,6 +125,7 @@
 .header-container .header .header-right .account .avatar {
     display: inline-block;
     margin: 0 10px;
+    cursor: pointer;
 }
 
 .header-container .header .header-right .account .avatar img {
@@ -133,6 +134,7 @@
     border-radius: 50%;
     position: relative;
     top: -3px;
+    cursor: pointer;
 }
 
 .header-container .header .header-right .account span {

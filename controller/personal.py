@@ -32,10 +32,12 @@ def personal_before_request():
 
 @personal.route('/personal')
 def personal_center():
+    uid = session.get('uid')
+
     type_name = request.args.get('type')
     if not type_name:
         type_name = 'article'
-    uid = session.get('uid')
+
     article = Article()
     if type_name == 'article':
         data_list = article.get_article_by_uid(uid)

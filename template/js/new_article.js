@@ -121,6 +121,9 @@ window.onload = () => {
 
     ue.addListener('selectionchange', function () {
         $draftDesc.innerHTML = '尚未存檔';
+        $draftedContainer.style.display = 'none';
+        $upArrow.style.display = 'none';
+        isShowDraftBox = false;
     });
 
     // ue.addListener('input', function () {
@@ -138,6 +141,10 @@ window.onload = () => {
         tagsResultList = [];
         e.stopPropagation();
         drafted = 0;
+        //
+        $draftedContainer.style.display = 'none';
+        $upArrow.style.display = 'none';
+        isShowDraftBox = false;
         //
         const tagsList = document.getElementById('tagItems').getElementsByTagName('span');
         if (tagsList.length >= 1) {
@@ -207,15 +214,22 @@ window.onload = () => {
         $publishArticleModal.style.display = 'block';
     };
 
+    const $articleImg = document.getElementById('articleImg');
+
     $xFile = document.getElementById('xFile');
     $xFile.onchange = (e) => {
         const articleHeaderImageFile = e.target.files[0];
+
+        // if (!articleHeaderImageFile) {
+        //     alert('請上傳文章');
+        //     return
+        // }
+
         const formData = new FormData();
         formData.append('article-header-image', articleHeaderImageFile);
         formData.append('aid', aid);
         // axios
         axios.post('/article/upload/cover', formData).then(res => {
-            const $articleImg = document.getElementById('articleImg');
             $articleImg.src = res.data.url;
             $articleImg.style.width = '128px';
             $articleImg.style.height = '128px';
@@ -429,10 +443,32 @@ window.onload = () => {
 
     // 文章發佈
     const $submit = document.getElementById('submit');
+    const $itemType = document.querySelector('#itemName > span');
+    const $type = document.querySelector('#typeName > span');
     $submit.onclick = () => {
         drafted = 1;
         tagsResultList = [];
         const tagsList = document.getElementById('tagItems').getElementsByTagName('span');
+
+        // console.log($articleImg.src.split('/')[4]);
+        // return;
+
+        if ($itemType.innerHTML === '請選擇您的文章分類' || window.article_label_name === '請選擇您的文章分類') {
+            alert('請選擇文章的分類，才能正式發佈喔');
+            return;
+        }
+
+        if ($type.innerHTML === '請選擇' || window.article_type_name === '請選擇') {
+            alert('請選擇文章的類型，才能正式發佈喔');
+            return;
+        }
+
+
+        if ($articleImg.src.split('/')[4] === 'image-upload.png' || $articleImg.src === '') {
+            alert('請上傳或隨機選擇文章的封面，才能正式發佈喔');
+            return;
+        }
+
         if (tagsList.length >= 1) {
             for (let item of tagsList) {
                 tagsResultList.push(item.getAttribute('data-tag'));

@@ -278,10 +278,12 @@ class Article(Base):
         return self.add_article_image_path(rows)
 
     def add_article_image_path(self, rows):
-        if not rows:
+        if not rows :
             return None
 
         for row in rows:
+            if not row.article_image:
+                row.article_image = '1.jpg'
             row.article_image = config[env].article_header_image_path + row.article_image
 
         return rows
