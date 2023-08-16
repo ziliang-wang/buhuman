@@ -151,27 +151,27 @@ window.onload = () => {
             if (res.data.status === 2003) {
                 aid = res.data.aid;
                 const draftedList = res.data.list;
-                console.log(draftedList);
-                // $draftedBoxItemList.innerHTML = '';
+                // console.log(draftedList);
+                $draftedBoxItemList.innerHTML = '';
                 // //
-                // for (const drafted of draftedList) {
-                //     const html = `<h1 style="color: red;">${drafted.aid}</h1>`
-                    // const html = ```
-                    //     <div class="list-item flex-r" id=${ drafted.aid }>
-                    //         <div class="draft-item-left">
-                    //             <div class="iconfont icon-caogao05 draft-icon" data-did=${ drafted.aid }></div>
-                    //         </div>
-                    //         <div class="draft-item-middle flex-c" data-did=${drafted.aid}>
-                    //             <span class="draft-item-up" data-did=${drafted.aid}>drafted.title</span>
-                    //             <span class="draft-item-down" data-did=${drafted.aid}>drafted.create_time</span>
-                    //         </div>
-                    //         <div class="draft-item-right">
-                    //             <i class="iconfont icon-guanbi item-close" data-action="remove" data-did=${drafted.aid}></i>
-                    //         </div>
-                    //     </div>
-                    // ```;
-                //     $draftedBoxItemList.innerHTML += html;
-                // }
+                for (const drafted of draftedList) {
+                    // const html = `<h1 style="color: red;">${drafted.aid}</h1>`
+                    const html = `
+                        <div class="list-item flex-r" id="${ drafted.aid }">
+                            <div class="draft-item-left">
+                                <div class="iconfont icon-caogao05 draft-icon" data-did="${ drafted.aid }"></div>
+                            </div>
+                            <div class="draft-item-middle flex-c" data-did="${drafted.aid}">
+                                <span class="draft-item-up" data-did="${drafted.aid}">${drafted.title}</span>
+                                <span class="draft-item-down" data-did="${drafted.aid}">${drafted.create_time}</span>
+                            </div>
+                            <div class="draft-item-right">
+                                <i class="iconfont icon-guanbi item-close" data-action="remove" data-did="${drafted.aid}"></i>
+                            </div>
+                        </div>
+                    `;
+                    $draftedBoxItemList.innerHTML += html;
+                }
                 $draftNum.innerHTML = res.data.data;
                 $draftDesc.innerHTML = '已存檔';
                 // console.log()
