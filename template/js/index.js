@@ -53,7 +53,6 @@ window.onload = () => {
     const $keepLogin = document.getElementById('keepLogin');
     const $logout = document.getElementById('logout');
 
-    const $avatar = document.querySelector('.avatar');
 
     // 註冊/登入表單 正則表達式
     const emailReg = /^\w{2,}\@\w{2,}\.[a-zA-Z]{2,4}(\.[a-zA-Z]{2,4})?$/;
@@ -72,9 +71,12 @@ window.onload = () => {
     let keepDays = 0;
     let action = '';
 
-    // $avatar.onclick = () => {
-    //     location.href = '/personal';
-    // };
+    if (window.isLogin === 'true') {
+        const $avatar = document.querySelector('.avatar');
+        $avatar.onclick = () => {
+            location.href = '/personal';
+        };
+    }
 
     // $logout.onclick = (e) => {
     //     $writeArticle.setAttribute('data-isLogin', 'false');
@@ -526,13 +528,18 @@ window.onload = () => {
 
     // let writeIsLogin = null;
 
+    // console.log($writeArticle);
+
     $writeArticle.onclick = function (e) {
         e.stopPropagation();
         // $loginClose.click();
         // if (action !== 'write') return;
         const writeIsLogin = this.getAttribute('data-isLogin');
         action = this.getAttribute('data-action');
-        if (writeIsLogin !== 'true') {
+
+        console.log(writeIsLogin);
+
+        if (writeIsLogin !== 'true' || writeIsLogin === 'None') {
             $maskLoginModal.style.display = 'block';
             $loginAccount.focus();
             $loginAccountMsg.innerHTML = '';

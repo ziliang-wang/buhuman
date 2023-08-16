@@ -19,22 +19,22 @@
             </div>
             <button class="write" id="writeArticle" data-action="write" data-isLogin="session.get('is_login')">創作者中心</button>
             {% if session.get('is_login') == 'true' %}
-            <div class="account">
-                <span class="login nickname" id="nickname">
-                    <a href="javascript:;">
-                        {{ session.get('nickname') }}
-                    </a>
-                </span>
-                <span class="avatar">
-<!--                    <img src="images/headers/1.jpg" alt="">-->
-                    <img src="{{ session.get('avatar') }}" alt="">
-                </span>
-                <span class="register" id="logout">
-                    <a href="/logout">
-                        登出
-                    </a>
-                </span>
-            </div>
+                <div class="account">
+                    <span class="login nickname" id="nickname">
+                        <a href="/personal">
+                            {{ session.get('nickname') }}
+                        </a>
+                    </span>
+                    <span class="avatar">
+    <!--                    <img src="images/headers/1.jpg" alt="">-->
+                        <img src="{{ session.get('avatar') }}" alt="">
+                    </span>
+                    <span class="register" id="logout">
+                        <a href="/logout">
+                            登出
+                        </a>
+                    </span>
+                </div>
             {% else %}
             <div class="account">
                 <span class="login" id="login">
@@ -52,4 +52,7 @@
             {% endif %}
         </div>
     </div>
+    <script>
+        window.isLogin = '{{ session.get("is_login") }}';
+    </script>
 </header>

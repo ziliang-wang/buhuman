@@ -74,6 +74,20 @@ window.onload = () => {
     //     $writeArticle.setAttribute('data-isLogin', 'false');
     // };
 
+    // console.log(window.isLogin);
+
+    if (window.isLogin === 'true') {
+        const $avatar = document.querySelector('.avatar');
+
+        console.log($avatar);
+
+        $avatar.onclick = () => {
+            location.href = '/personal';
+        };
+    }
+
+    console.log(document.querySelector('.avatar'));
+
     $loginAccount.onblur = function () {
         const loginAccount = this.value;
         if (!emailReg.test(loginAccount)) {
@@ -212,7 +226,9 @@ window.onload = () => {
         location.href = `/?keyword=${keyword}`;
     };
 
-    $register.onclick = (e) => {
+    // if (window.)
+
+    $register.onclick = function (e) {
         e.stopPropagation();
         $maskRegModal.style.display = 'block';
         // isRegEmail = false;
