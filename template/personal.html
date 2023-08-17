@@ -1,10 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="不良人互動社群"/>
+    <meta property="og:image" content="images/logo.png"/>
+    <meta property="og:description" content="挺有意思的社群-不良人互動社群"/>
+    <meta property="og:url" content="https://www.baidu.com"/>
+    <title>不良人互動社群</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/personal.css">
+<!--    <script src="plugins/ueditor-plus/ueditor.config.js"></script>-->
+<!--    <script src="plugins/ueditor-plus/ueditor.all.js"></script>-->
+<!--    <script src="plugins/ueditor-plus/lang/zh-cn/zh-cn.js"></script>-->
+    <script src="js/header.js"></script>
+    <script src="js/axios.min.js"></script>
 </head>
 <body>
-  <h1>個人中心</h1>
+{% include 'common/header.html' %}
+<section class="personal-header">
+    <div class="center-wrap header-wrap flex-r">
+        <div class="header-left">
+            <div class="avatar">
+                <img src="{{ user.avatar }}" alt="">
+            </div>
+            <div class="info"></div>
+        </div>
+        <div class="header-right"></div>
+    </div>
+</section>
+{% include 'common/modal.html' %}
 </body>
 </html>
