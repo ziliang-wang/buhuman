@@ -121,7 +121,19 @@ body {
 .detail-container .detail-wrap .detail-main .detail-main-left {
     background-color: #fff;
     width: 72%;
-    padding: 20px;
+    padding: 30px 20px 20px 20px;
+    position: relative;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .article-type {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-left .article-type img {
+    width: 64px;
+    height: 64px;
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-right {

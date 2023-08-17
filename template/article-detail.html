@@ -125,6 +125,20 @@
                 <script>
 
                 </script>
+
+                <div class="article-type">
+                    {% if article.article_type == 'first' %}
+                        <img src="/images/first.png" alt="">
+                    {% elif article.article_type == 'original' %}
+                        <img src="/images/original.png" alt="">
+                    {% elif article.article_type == 'share' %}
+                        <img src="/images/share.png" alt="">
+                    {% elif article.article_type == 'recommend' %}
+                        <img src="/images/recommend.png" alt="">
+                    {% elif article.article_type == 'other' %}
+                        <img src="/images/other.png" alt="">
+                    {% endif %}
+                </div>
             </div>
             <!--  detail right  -->
             <div class="detail-main-right">
