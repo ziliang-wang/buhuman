@@ -162,7 +162,7 @@
 
 .content-wrapper {
     /* margin-top: 20px; */
-    margin-top: 17px;
+    margin-top: 15px;
     display: flex;
     justify-content: space-between;
     /*flex-wrap: wrap;*/
@@ -611,4 +611,37 @@
     height: 15px;
     position: relative;
     top: 3px;
+}
+
+.banner {
+    position: relative;
+    margin-top: 90px;
+    width: 100%;
+    height: 320px;
+    background-color: rgb(226, 238, 249);
+    /*background-image: url(/images/logo.png);*/
+    background-position: bottom right;
+    background-repeat: no-repeat;
+}
+
+.banner .banner-text {
+    position: absolute;
+    width: 744px;
+    height: 320px;
+    top: 0;
+    left: 50%;
+    margin-left: -372px;
+    padding-top: 50px;
+}
+
+.banner .banner-text .banner-title,
+.banner .banner-text .banner-subtitle {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.banner .banner-text .banner-subtitle {
+    font-size: 20px;
+    margin-bottom: 0;
 }
