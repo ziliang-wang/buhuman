@@ -77,6 +77,7 @@ def article_detail():
 @article.route('/article/new')
 def article_new():
     uid = session.get('uid')
+    user = User().find_by_uid(uid)
     all_drafted = Article().get_all_drafted(uid)
     drafted_num = 0
     if all_drafted:
@@ -86,7 +87,8 @@ def article_new():
                            label_types=label_types,
                            article_types=article_types,
                            all_drafted=all_drafted,
-                           drafted_count=drafted_num
+                           drafted_count=drafted_num,
+                           user=user
                            )
 
 
