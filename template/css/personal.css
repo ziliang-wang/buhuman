@@ -23,7 +23,7 @@
 
 .personal-header .header-left .avatar img {
     position: relative;
-    top: 30px;
+    top: 20px;
     left: 0;
     box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);
     width: 150px;
@@ -53,4 +53,30 @@
 
 .personal-header .header-right div > div:first-child {
     margin-bottom: 10px;
+}
+
+.tabs {
+    height: 58px;
+    border-bottom: 1px solid #d4d5d7;
+    /*justify-content: space-evenly;*/
+    /*align-items: center;*/
+}
+
+.tabs ul {
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.tabs ul > li {
+    height: 58px;
+    line-height: 58px;
+    cursor: pointer;
+}
+
+.tabs ul > li:hover {
+    border-bottom: 2px solid #6f4627;
+}
+
+.active {
+    border-bottom: 2px solid #6f4627;
 }

@@ -14,11 +14,12 @@
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/personal.css">
-<!--    <script src="plugins/ueditor-plus/ueditor.config.js"></script>-->
-<!--    <script src="plugins/ueditor-plus/ueditor.all.js"></script>-->
-<!--    <script src="plugins/ueditor-plus/lang/zh-cn/zh-cn.js"></script>-->
+    <!--    <script src="plugins/ueditor-plus/ueditor.config.js"></script>-->
+    <!--    <script src="plugins/ueditor-plus/ueditor.all.js"></script>-->
+    <!--    <script src="plugins/ueditor-plus/lang/zh-cn/zh-cn.js"></script>-->
     <script src="js/header.js"></script>
     <script src="js/axios.min.js"></script>
+    <script src="js/personal.js"></script>
 </head>
 <body>
 {% include 'common/header.html' %}
@@ -34,7 +35,7 @@
                     <span>{{ user.gender or '性别未知' }}</span>&nbsp;&nbsp;|&nbsp;
                     <span>{{ user.slogan or '懶的寫個人簽名的說' }}</span>
                 </div>
-<!--                <div></div>-->
+                <!--                <div></div>-->
             </div>
         </div>
         <div class="header-right flex-r">
@@ -53,6 +54,17 @@
         </div>
     </div>
 </section>
+<section class="tabs center-wrap">
+    <ul class="flex-r" id="menu">
+        <li data-tab="article" class="{{ 'active' if active == 'article' else '' }}">我的文章</li>
+        <li data-tab="collection" class="{{ 'active' if active == 'collection' else '' }}">我的收藏</li>
+        <li data-tab="praise" class="{{ 'active' if active == 'praise' else '' }}">我的推薦</li>
+        <li data-tab="comment" class="{{ 'active' if active == 'comment' else '' }}">我的評論</li>
+    </ul>
+
+    <!--    <div>個人設置</div>-->
+</section>
+
 {% include 'common/modal.html' %}
 </body>
 </html>
