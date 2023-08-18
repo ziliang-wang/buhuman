@@ -1,3 +1,8 @@
+body {
+    /*padding-bottom: 30px;*/
+    /*background-color: #fff;*/
+}
+
 .personal-header {
     margin-top: 75px;
     background: url("/images/personal_background.png") no-repeat center;
@@ -80,3 +85,111 @@
 .active {
     border-bottom: 2px solid #6f4627;
 }
+
+.content {
+    /*position: relative;*/
+}
+
+
+
+.content-list {
+    width: 70%;
+    margin: 0 auto 30px auto;
+    /*position: relative;*/
+    /*text-align: center;*/
+}
+
+.no-collection {
+    /*position: absolute;*/
+    text-align: center;
+    margin-top: 100px;
+}
+
+.content-list li {
+    height: 300px;
+    padding: 20px 0 50px 0;
+    border-bottom: 1px solid #6f4627;
+    /*overflow-y: hidden;*/
+    overflow: hidden;
+}
+
+.content-list li .row1 {
+    align-items: center;
+    margin-bottom: 20px;
+    /*flex-wrap: nowrap;*/
+    justify-content: space-between;
+}
+
+.content-list li .row1 .title {
+    font-size: 20px;
+    color: #14191e;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 20px;
+    width: 50%;
+}
+
+.content-list li .row1 .title:hover {
+    color: #3377ff;
+}
+
+.content-list li .row1 .title .type {
+    position: relative;
+    top: -3px;
+    font-size: 12px;
+    line-height: 12px;
+    display: inline-block;
+    /*width: 20%;*/
+    /*flex: 1;*/
+    /*position: relative;*/
+    /*top: 1px;*/
+    /*text-align: left;*/
+    /*line-height: 27px;*/
+    /*margin-left: 10px;*/
+    /*border: 1px solid blue;*/
+    /*color: #71777d;*/
+    padding: 5px;
+    color: #fff;
+    background-color: #6f4627;
+    /*text-align: left;*/
+    /*line-height: 20px;*/
+}
+
+.content-list li .row1 .article-browse {
+    color: #b5b9bc;
+}
+
+.content-list li .row2 {
+    /*margin-bottom: 20px;*/
+    /*justify-content: space-between;*/
+}
+
+.content-list li .row2 img {
+    width: 100%;
+    /*overflow: hidden;*/
+}
+
+.content-list li .row2 .article-image {
+    /*width: 100%;*/
+    width: 210px;
+    height: 130px;
+    /*height: 130px;*/
+    margin-right: 20px;
+    /*overflow: hidden;*/
+    /*text-overflow:ellipsis;*/
+    /*display: -webkit-box;*/
+    /*-webkit-line-clamp: 2;*/
+    /*-webkit-box-orient: vertical;*/
+}
+
+.content-list li .row2 .article-content {
+    overflow: hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    /*-webkit-box-orient: horizontal;*/
+}
+

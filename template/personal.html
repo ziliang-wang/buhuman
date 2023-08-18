@@ -61,10 +61,156 @@
         <li data-tab="praise" class="{{ 'active' if active == 'praise' else '' }}">我的推薦</li>
         <li data-tab="comment" class="{{ 'active' if active == 'comment' else '' }}">我的評論</li>
     </ul>
-
-    <!--    <div>個人設置</div>-->
 </section>
-
+<section class="content center-wrap">
+    <ul class="content-list">
+        {% if active == 'article' %}
+            {% if data_list %}
+                {% for item in data_list %}
+                    <li>
+                        <div class="row1 flex-r">
+                            <a href="/detail?aid={{ item.aid }}" class="title">
+                                {{ item.title }}
+                                <span class="type">
+                                        {% if item.article_type == 'first' %}
+                                            首發
+                                        {% elif item.article_type == 'original' %}
+                                            原創
+                                        {% elif item.article_type == 'share' %}
+                                            分享
+                                        {% elif item.article_type == 'recommend' %}
+                                            推薦
+                                        {% elif item.article_type == 'other' %}
+                                            其它
+                                        {% else %}
+                                            原創
+                                        {% endif %}
+                                </span>
+                            </a>
+                            <div class="article-browse">{{ item.browse_num }}瀏覽</div>
+                        </div>
+                        <div class="row2 flex-r">
+                            <img class="article-image" src="{{ item.article_image }}" alt="">
+                            <div class="article-content">{{ item.article_content | safe }}</div>
+                        </div>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <div class="no-collection">
+                    您還沒有任何創作
+                </div>
+            {% endif %}
+        {% elif active == 'collection' %}
+            {% if data_list %}
+                {% for item in data_list %}
+                    <li>
+                        <div class="row1 flex-r">
+                            <a href="/detail?aid={{ item.aid }}" class="title">
+                                {{ item.title }}
+                                <span class="type">
+                                        {% if item.article_type == 'first' %}
+                                            首發
+                                        {% elif item.article_type == 'original' %}
+                                            原創
+                                        {% elif item.article_type == 'share' %}
+                                            分享
+                                        {% elif item.article_type == 'recommend' %}
+                                            推薦
+                                        {% elif item.article_type == 'other' %}
+                                            其它
+                                        {% else %}
+                                            原創
+                                        {% endif %}
+                                </span>
+                            </a>
+                            <div class="article-browse">{{ item.browse_num }}瀏覽</div>
+                        </div>
+                        <div class="row2 flex-r">
+                            <img class="article-image" src="{{ item.article_image }}" alt="">
+                            <div class="article-content">{{ item.article_content | safe }}</div>
+                        </div>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <div class="no-collection">
+                    您還沒有任何收藏
+                </div>
+            {% endif %}
+        {% elif active == 'praise' %}
+            {% if data_list %}
+                {% for item in data_list %}
+                    <li>
+                        <div class="row1 flex-r">
+                            <a href="/detail?aid={{ item.aid }}" class="title">
+                                {{ item.title }}
+                                <span class="type">
+                                        {% if item.article_type == 'first' %}
+                                            首發
+                                        {% elif item.article_type == 'original' %}
+                                            原創
+                                        {% elif item.article_type == 'share' %}
+                                            分享
+                                        {% elif item.article_type == 'recommend' %}
+                                            推薦
+                                        {% elif item.article_type == 'other' %}
+                                            其它
+                                        {% else %}
+                                            原創
+                                        {% endif %}
+                                </span>
+                            </a>
+                            <div class="article-browse">{{ item.browse_num }}瀏覽</div>
+                        </div>
+                        <div class="row2 flex-r">
+                            <img class="article-image" src="{{ item.article_image }}" alt="">
+                            <div class="article-content">{{ item.article_content | safe }}</div>
+                        </div>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <div class="no-collection">
+                    您還沒有任何推薦
+                </div>
+            {% endif %}
+        {% elif active == 'comment' %}
+            {% if data_list %}
+                {% for item in data_list %}
+                    <li>
+                        <div class="row1 flex-r">
+                            <a href="/detail?aid={{ item.aid }}" class="title">
+                                {{ item.title }}
+                                <span class="type">
+                                        {% if item.article_type == 'first' %}
+                                            首發
+                                        {% elif item.article_type == 'original' %}
+                                            原創
+                                        {% elif item.article_type == 'share' %}
+                                            分享
+                                        {% elif item.article_type == 'recommend' %}
+                                            推薦
+                                        {% elif item.article_type == 'other' %}
+                                            其它
+                                        {% else %}
+                                            原創
+                                        {% endif %}
+                                </span>
+                            </a>
+                            <div class="article-browse">{{ item.browse_num }}瀏覽</div>
+                        </div>
+                        <div class="row2 flex-r">
+                            <img class="article-image" src="{{ item.article_image }}" alt="">
+                            <div class="article-content">{{ item.article_content | safe }}</div>
+                        </div>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <div class="no-collection">
+                    您還沒有任何評論
+                </div>
+            {% endif %}
+        {% endif %}
+    </ul>
+</section>
 {% include 'common/modal.html' %}
 </body>
 </html>

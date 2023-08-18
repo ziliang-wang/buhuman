@@ -270,6 +270,7 @@ class Article(Base):
             Praise, Article.aid == Praise.aid
         ).filter(
             Praise.uid == uid,
+            Praise.praised == 1,
             Praise.is_valid == 1,
             Article.is_valid == 1
         ).order_by(
