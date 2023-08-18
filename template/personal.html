@@ -210,6 +210,13 @@
             {% endif %}
         {% endif %}
     </ul>
+    <script>
+        const $writeArticle = document.getElementById('writeArticle');
+
+        $writeArticle.onclick = function (e) {
+            location.href = '/article/new';
+        };
+    </script>
 </section>
 {% include 'common/modal.html' %}
 </body>
