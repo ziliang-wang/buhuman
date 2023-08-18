@@ -8,6 +8,7 @@
 
 .personal-header .header-wrap {
     position: relative;
+    justify-content: space-between;
 }
 
 /*.personal-header .header-left .avatar {*/
@@ -16,13 +17,40 @@
 /*    height: 140px;*/
 /*    border-radius: 50%;*/
 /*}*/
+.personal-header .header-left {
+    align-items: center;
+}
 
 .personal-header .header-left .avatar img {
-    position: absolute;
+    position: relative;
     top: 30px;
     left: 0;
     box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
+}
+
+.personal-header .header-left .info {
+    margin-left: 20px;
+    color: #fff;
+}
+
+.personal-header .header-left .info div:first-child {
+    margin-bottom: 20px;
+}
+
+.personal-header .header-right {
+    width: 20%;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.personal-header .header-right div {
+    text-align: center;
+}
+
+.personal-header .header-right div > div:first-child {
+    margin-bottom: 10px;
 }

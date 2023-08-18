@@ -24,13 +24,33 @@
 {% include 'common/header.html' %}
 <section class="personal-header">
     <div class="center-wrap header-wrap flex-r">
-        <div class="header-left">
+        <div class="header-left flex-r">
             <div class="avatar">
                 <img src="{{ user.avatar }}" alt="">
             </div>
-            <div class="info"></div>
+            <div class="info">
+                <div>{{ user.nickname }}</div>
+                <div>
+                    <span>{{ user.gender or '性别未知' }}</span>&nbsp;&nbsp;|&nbsp;
+                    <span>{{ user.slogan or '懶的寫個人簽名的說' }}</span>
+                </div>
+<!--                <div></div>-->
+            </div>
         </div>
-        <div class="header-right"></div>
+        <div class="header-right flex-r">
+            <div>
+                <div>關注</div>
+                <div>{{ concern_num }}</div>
+            </div>
+            <div>
+                <div>粉絲</div>
+                <div>{{ fans_num }}</div>
+            </div>
+            <div>
+                <div>績分</div>
+                <div>{{ score }}</div>
+            </div>
+        </div>
     </div>
 </section>
 {% include 'common/modal.html' %}

@@ -52,9 +52,19 @@ def personal_center():
 
     user = User().find_by_uid(uid)
 
+    # 關注
+    concern_num = article.get_concern_num_by_uid(uid)
+    # 粉絲
+    fans_num = article.get_fans_num_by_uid(uid)
+    # 績分
+    score = article.get_article_score_by_uid(uid)
+
     return render_template('personal.html',
                            data_list=data_list,
                            user=user,
-                           active=type_name
+                           active=type_name,
+                           concern_num=concern_num,
+                           fans_num=fans_num,
+                           score=score
                            )
 

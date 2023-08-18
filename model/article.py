@@ -4,6 +4,7 @@ from app.config.config import config
 from app.settings import env
 from model.collection import Collection
 from model.comment import Comment
+from model.concern import Concern
 from model.praise import Praise
 from model.user import User
 from sqlalchemy.sql.functions import sum, count
@@ -288,7 +289,33 @@ class Article(Base):
 
         return rows
 
+    # 關注
+    def get_concern_num_by_uid(self, uid):
+        concern_num = db_session.query(Concern).filter(
+            Concern.fid == uid,
+            Concern.is_valid == 1
+        ).count()
 
+        return concern_num
+
+    # 粉絲數
+    def get_fans_num_by_uid(self, uid):
+        fans_num = db_session.query(Concern).filter(
+            Concern.tid == uid,
+            Concern.is_valid == 1
+        ).count()
+
+        return fans_num
+
+    # 績分
+    def get_article_score_by_uid(self, uid):
+        score = db_session.query(Article).filter(
+            Article.uid == uid,
+            Article.is_valid == 1,
+            Article.drafted == 1
+        ).count()
+
+        return score
 
 
     # def get_rest_drafted_num(self, uid):
