@@ -60,6 +60,7 @@ body {
 
 .personal-header .header-left .avatar > .camera-circle > i {
     color: #fff;
+    font-weight: bold;
 }
 
 .personal-header .header-left .info {
