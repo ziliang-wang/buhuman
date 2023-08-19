@@ -47,6 +47,8 @@ def personal_center():
         data_list = article.get_comment_article_by_uid(uid)
     elif type_name == 'praise':
         data_list = article.get_praise_article_by_uid(uid)
+    elif type_name == 'settings':
+        data_list = []
     else:
         return PersonalMessage.fail('参數傳遞錯誤')
 

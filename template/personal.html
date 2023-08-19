@@ -51,16 +51,21 @@
                 <div>績分</div>
                 <div>{{ score }}</div>
             </div>
+            <a href="?type=settings" class="settings">
+                <i class="iconfont icon-shezhi"></i>
+                <span>個人設置</span>
+            </a>
         </div>
     </div>
 </section>
 <section class="tabs center-wrap">
-    <ul class="flex-r" id="menu">
-        <li data-tab="article" class="{{ 'active' if active == 'article' else '' }}">我的文章</li>
-        <li data-tab="collection" class="{{ 'active' if active == 'collection' else '' }}">我的收藏</li>
-        <li data-tab="praise" class="{{ 'active' if active == 'praise' else '' }}">我的推薦</li>
-        <li data-tab="comment" class="{{ 'active' if active == 'comment' else '' }}">我的評論</li>
-    </ul>
+        <ul class="flex-r" id="menu">
+            <li data-tab="article" class="{{ 'active' if active == 'article' else '' }}">我的文章</li>
+            <li data-tab="collection" class="{{ 'active' if active == 'collection' else '' }}">我的收藏</li>
+            <li data-tab="praise" class="{{ 'active' if active == 'praise' else '' }}">我的推薦</li>
+            <li data-tab="comment" class="{{ 'active' if active == 'comment' else '' }}">我的評論</li>
+            <li data-tab="settings" class="{{ 'active' if active == 'settings' else '' }}">個人設置</li>
+        </ul>
 </section>
 <section class="content center-wrap">
     <ul class="content-list">
@@ -208,6 +213,8 @@
                     您還沒有任何評論
                 </div>
             {% endif %}
+        {% elif active == 'settings' %}
+            <div>個人設置</div>
         {% endif %}
     </ul>
     <script>
