@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('../fonts/iconfont.ttf?t=1692411250071') format('truetype');
+  src: url('../fonts/iconfont.ttf?t=1692428124602') format('truetype');
 }
 
 .iconfont {
@@ -21,6 +21,10 @@
 
 .icon-yanjing:before {
   content: "\e661";
+}
+
+.icon-zhaoxiangji:before {
+  content: "\e663";
 }
 
 .icon-shezhi:before {
