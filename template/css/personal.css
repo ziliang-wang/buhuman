@@ -268,3 +268,14 @@ body {
     width: 128px;
     height: 128px;
 }
+
+.confirm {
+    margin-top: 30px;
+    width: 128px;
+    height: 24px;
+    border: none;
+    color: #fff;
+    background-color: #6f4627;
+    border-radius: 12px;
+    cursor: pointer;
+}

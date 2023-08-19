@@ -240,13 +240,14 @@
             </label>
             <label>
                 <div class="local" id="localAvatar">本地上傳</div>
-                <input type="file" id="xFile" accept="image/*" style="display: none;">
+                <input type="file" data-uid="{{ session.get('uid') }}" id="xFile" accept="image/*" style="display: none;">
             </label>
             <div class="random" data-uid="{{ session.get('uid') }}" id="randomAvatar">隨機頭像</div>
             <div class="desc">请上傳200*200px，小
                 於等於80KB的PNG/
                 JPG/GIF圖片
             </div>
+            <button class="confirm">確認更新</button>
         </div>
     </div>
 </div>

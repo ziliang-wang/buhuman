@@ -32,6 +32,7 @@ def personal_before_request():
 
 @personal.route('/personal')
 def personal_center():
+    # global is_upload
     uid = session.get('uid')
 
     type_name = request.args.get('type')
@@ -54,6 +55,9 @@ def personal_center():
 
     user = User().find_by_uid(uid)
 
+    # if is_upload:
+    #     session['avatar'] = user.avatar
+
     # 關注
     concern_num = article.get_concern_num_by_uid(uid)
     # 粉絲
@@ -71,8 +75,13 @@ def personal_center():
                            )
 
 
+# is_upload = False
+
+
 @personal.route('/personal/upload/random', methods=['POST'])
 def upload_random_header_image():
+    # global is_upload
+    # is_upload = False
     name = random.randint(1, 539)
     newname = str(name) + '.jpg'
 
@@ -86,4 +95,34 @@ def upload_random_header_image():
     result['url'] = '/images/headers/' + newname
     result['title'] = newname
     result['original'] = newname
+    return jsonify(result)
+
+
+@personal.route('/personal/upload/cover', methods=['POST'])
+def upload_cover_image():
+    # global is_upload
+    # is_upload = True
+    f = request.files.get('user-header-image')
+    filename = f.filename
+    suffix = filename.split('.')[-1]
+    newname = time.strftime('%Y%m%d_%H%M%S.' + suffix)
+    newname = 'user-avatar-' + newname
+
+    # f.save('template/upload/user-avatar/' + newname)
+    f.save('template/images/headers/' + newname)
+    # 壓縮圖片
+    # source = dest = 'template/upload/user-avatar/' + newname
+    source = dest = 'template/images/headers/' + newname
+    compress_image(source, dest, 1200)
+    # update database
+    uid = request.form.get('uid')
+    User().update_user_header_img(uid, newname)
+
+    session['avatar'] = '/images/headers/' + newname
+
+    result = {}
+    result['state'] = "SUCCESS"
+    result['url'] = '/images/headers/' + newname
+    result['title'] = filename
+    result['original'] = filename
     return jsonify(result)

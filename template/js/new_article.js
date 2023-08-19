@@ -216,7 +216,7 @@ window.onload = () => {
 
     const $articleImg = document.getElementById('articleImg');
 
-    $xFile = document.getElementById('xFile');
+    const $xFile = document.getElementById('xFile');
     $xFile.onchange = (e) => {
         const articleHeaderImageFile = e.target.files[0];
 

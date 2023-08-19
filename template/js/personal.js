@@ -6,6 +6,9 @@ window.onload = () => {
     const $randomAvatar = document.getElementById('randomAvatar');
     const $avatarImg = document.getElementById('avatarImg');
     const $userAvatar = document.getElementById('userAvatar');
+    const $xFile = document.getElementById('xFile');
+    const $confirm = document.querySelector('.confirm');
+
 
     $menu.onclick = (e) => {
         const self = e.target;
@@ -23,7 +26,23 @@ window.onload = () => {
     $personalModalClose.onclick = () => {
         $avatarModal.style.display = 'none';
     };
-
+    // upload avatar
+    $xFile.onchange = (e) => {
+        const userImageFile = e.target.files[0];
+        const uid = e.target.getAttribute('data-uid');
+        const formData = new FormData();
+        formData.append('user-header-image', userImageFile);
+        formData.append('uid', uid);
+        // axios
+        axios.post('/personal/upload/cover', formData).then(res => {
+            $avatarImg.src = res.data.url;
+            $avatarImg.style.width = '128px';
+            $avatarImg.style.height = '128px';
+            $userAvatar.src = res.data.url;
+            $userAvatar.style.width = '150px';
+            $userAvatar.style.height = '150px';
+        });
+    };
 
     // 隨機avatar
     $randomAvatar.onclick = function (){
@@ -41,5 +60,11 @@ window.onload = () => {
             $userAvatar.style.width = '150px';
             $userAvatar.style.height = '150px';
         });
+    };
+
+    // console.log($confirm);
+
+    $confirm.onclick = () => {
+        location.reload();
     };
 };
