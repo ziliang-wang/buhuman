@@ -245,3 +245,21 @@ body {
     position: relative;
     top: -1px;
 }
+
+.personal-modal {
+    position: relative;
+    width: 30% !important;
+    margin-left: -15% !important;
+}
+
+.personal-modal .personal-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.personal-modal .personal-modal-close:hover {
+    color: #b94a48;
+}

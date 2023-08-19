@@ -12,8 +12,9 @@
     <title>不良人互動社群</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/iconfont.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/new_article.css">
     <link rel="stylesheet" href="css/personal.css">
+    <link rel="stylesheet" href="css/index.css">
     <!--    <script src="plugins/ueditor-plus/ueditor.config.js"></script>-->
     <!--    <script src="plugins/ueditor-plus/ueditor.all.js"></script>-->
     <!--    <script src="plugins/ueditor-plus/lang/zh-cn/zh-cn.js"></script>-->
@@ -28,7 +29,7 @@
         <div class="header-left flex-r">
             <div class="avatar">
                 <img src="{{ user.avatar }}" alt="">
-                <div class="camera-circle">
+                <div class="camera-circle" id="avatarBtn">
                     <i class="iconfont icon-zhaoxiangji"></i>
                 </div>
             </div>
@@ -38,7 +39,6 @@
                     <span>{{ user.gender or '性别未知' }}</span>&nbsp;&nbsp;|&nbsp;
                     <span>{{ user.slogan or '懶的寫個人簽名的說' }}</span>
                 </div>
-                <!--                <div></div>-->
             </div>
         </div>
         <div class="header-right flex-r">
@@ -228,6 +228,26 @@
         };
     </script>
 </section>
-{% include 'common/modal.html' %}
+<div class="mask-login-modal" id="avatarModal">
+    <div class="article-publish-from flex-r personal-modal">
+        <i class="iconfont icon-guanbi personal-modal-close"></i>
+        <div class="publish-article-left flex-c">
+            <label for="xFile">
+                <div class="left-top">
+                    <img src="/images/image-upload.png" alt="upload" id="articleImg">
+                </div>
+            </label>
+            <label>
+                <div class="local" id="localAvatar">本地上傳</div>
+                <input type="file" id="xFile" accept="image/*" style="display: none;">
+            </label>
+            <div class="random" id="randomAvatar">隨機頭像</div>
+            <div class="desc">请上傳200*200px，小
+                於等於80KB的PNG/
+                JPG/GIF圖片
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
