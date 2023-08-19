@@ -70,3 +70,20 @@ def personal_center():
                            score=score
                            )
 
+
+@personal.route('/personal/upload/random', methods=['POST'])
+def upload_random_header_image():
+    name = random.randint(1, 539)
+    newname = str(name) + '.jpg'
+
+    uid = request.form.get('uid')
+    User().update_user_header_img(uid, newname)
+
+    session['avatar'] = '/images/headers/' + newname
+
+    result = {}
+    result['state'] = "SUCCESS"
+    result['url'] = '/images/headers/' + newname
+    result['title'] = newname
+    result['original'] = newname
+    return jsonify(result)

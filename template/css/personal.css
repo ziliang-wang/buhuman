@@ -263,3 +263,8 @@ body {
 .personal-modal .personal-modal-close:hover {
     color: #b94a48;
 }
+
+#avatarImg {
+    width: 128px;
+    height: 128px;
+}

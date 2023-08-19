@@ -39,3 +39,9 @@ class User(Base):
             return user_info
         user_info.avatar = config[env].user_avatar_path + user_info.avatar
         return user_info
+
+    def update_user_header_img(self, uid, filename):
+        row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()
+        if row:
+            row.avatar = filename
+        db_session.commit()
