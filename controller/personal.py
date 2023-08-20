@@ -127,3 +127,22 @@ def upload_cover_image():
     result['title'] = filename
     result['original'] = filename
     return jsonify(result)
+
+
+@personal.route('/alter/gender', methods=['POST'])
+def alter_gender():
+    if request.method == 'POST':
+        request_data = json.loads(request.data)
+        gender = request_data.get('gender')
+
+        uid = session.get('uid')
+
+        gender_result = User().alter_gender(uid, gender)
+
+        return {
+            'status': '8000',
+            'data': gender_result
+        }
+    else:
+        return {}
+

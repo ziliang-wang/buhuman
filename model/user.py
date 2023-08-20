@@ -48,6 +48,14 @@ class User(Base):
             row.avatar = filename
         db_session.commit()
 
+    def alter_gender(self, uid, gender):
+        row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()
+        row.gender = gender
+        db_session.commit()
+
+        return row.gender
+
+
     # def get_user_slogan(self, uid):
     #     row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()
     #     return row.slogan

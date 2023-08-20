@@ -82,6 +82,8 @@ window.onload = () => {
     // gender
     const $gender1 = document.getElementById('gender1');
     const $gender2 = document.getElementById('gender2');
+    const $genderBtn = document.getElementById('genderBtn');
+    const $headerGender = document.getElementById('headerGender');
 
     let genderValue = '';
 
@@ -100,6 +102,31 @@ window.onload = () => {
             // console.log(genderValue);
         }
     };
+
+    $genderBtn.onclick = () => {
+        // if (genderValue === '') return false;
+        // axios
+        // console.log('gender ok');
+        axios.post('/alter/gender', {
+            gender: genderValue
+        }).then(res => {
+            if (res.data.status === 8000) {
+                if (res.data.data === 'female') {
+                    $headerGender.innerHTML = '女';
+                }
+
+                if (res.data.data === 'male') {
+                    $headerGender.innerHTML = '男';
+                }
+
+                // genderValue = '';
+                // console.log(res.data)
+
+            }
+        });
+    };
+
+
     // slogan
     let sloganValue = '';
     const $slogan = document.getElementById('slogan');

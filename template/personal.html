@@ -37,7 +37,7 @@
             <div class="info">
                 <div>{{ user.nickname }}</div>
                 <div>
-                    <span>
+                    <span id="headerGender">
                         {% if not user.gender %}
                             性別未知
                         {% elif user.gender == 'male' %}
@@ -255,7 +255,7 @@
                         <input id="gender2" type="radio" name="gender" value="female">女
                     </label>
                     <div class="gender-btn">
-                        <button>確認變更</button>
+                        <button id="genderBtn">確認變更</button>
                     </div>
             </li>
         {% endif %}
