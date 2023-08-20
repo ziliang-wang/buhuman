@@ -329,7 +329,7 @@ body {
 
 .content-list .settings-item button {
     border: none;
-    background-color: #6f4627;
+    background-color: #3a87ad;
     padding: 6px 10px;
     color: #fff;
     /*width: 100px;*/
@@ -341,17 +341,23 @@ body {
 }
 
 .content-list .settings-item .slogan-title,
-.content-list .settings-item .gender-title{
+.content-list .settings-item .gender-title,
+.content-list .settings-item .reset-title {
     /*font-size: 14px;*/
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.content-list .settings-item .slogan-input {
+.content-list .settings-item .slogan-input,
+.content-list .settings-item .password-input{
     display: inline-block;
     background-color: #fff;
     height: 30px;
     padding-left: 5px;
+}
+
+.content-list .settings-item .password-input {
+    margin-bottom: 10px;
 }
 
 .content-list .settings-item input[type='radio'] {
@@ -360,6 +366,10 @@ body {
 
 .content-list .settings-item.gender-item {
     height: 130px;
+}
+
+.content-list .settings-item.reset-item {
+    height: 180px;
 }
 
 .content-list .settings-item .gender-btn {
