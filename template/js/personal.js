@@ -9,7 +9,7 @@ window.onload = () => {
     const $xFile = document.getElementById('xFile');
     const $confirm = document.querySelector('.confirm');
     const $tip = document.querySelector('.tip');
-
+    // const $gender = document.querySelector('#gender');
 
     $menu.onclick = (e) => {
         const self = e.target;
@@ -77,5 +77,36 @@ window.onload = () => {
         }
         isTipShow = !isTipShow;
     }, 1000);
+
+
+    // gender
+    const $gender1 = document.getElementById('gender1');
+    const $gender2 = document.getElementById('gender2');
+
+    let genderValue = '';
+
+    $gender1.onclick = (e) => {
+        const self = e.currentTarget;
+        if (self.checked) {
+            genderValue = self.value;
+            // console.log(genderValue);
+        }
+    };
+
+    $gender2.onclick = (e) => {
+        const self = e.currentTarget;
+        if (self.checked) {
+            genderValue = self.value;
+            // console.log(genderValue);
+        }
+    };
+    // slogan
+    let sloganValue = '';
+    $slogan = document.getElementById('slogan');
+    $sloganBtn = document.getElementById('sloganBtn');
+    $sloganBtn.onclick = () => {
+        sloganValue = $slogan.value.trim();
+        console.log(sloganValue);
+    };
 
 };

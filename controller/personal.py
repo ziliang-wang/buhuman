@@ -54,6 +54,7 @@ def personal_center():
         return PersonalMessage.fail('参數傳遞錯誤')
 
     user = User().find_by_uid(uid)
+    # slogan = User().get_user_slogan(uid)
 
     # if is_upload:
     #     session['avatar'] = user.avatar

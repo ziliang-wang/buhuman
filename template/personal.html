@@ -37,7 +37,17 @@
             <div class="info">
                 <div>{{ user.nickname }}</div>
                 <div>
-                    <span>{{ user.gender or '性别未知' }}</span>&nbsp;&nbsp;|&nbsp;
+                    <span>
+                        {% if not user.gender %}
+                            性別未知
+                        {% elif user.gender == 'male' %}
+                            男
+                        {% elif user.gender == 'female' %}
+                            女
+                        {% else %}
+                            性別未知
+                        {% endif %}
+                    </span>&nbsp;&nbsp;|&nbsp;
                     <span>{{ user.slogan or '懶的寫個人簽名的說' }}</span>
                 </div>
             </div>
@@ -228,23 +238,24 @@
                 </div>
                 <button>確認變更</button>
             </li>
+
             <li class="settings-item">
                 <div class="slogan-title">個性簽名</div>
-                <input class="slogan-input" type="text" placeholder="個性簽名">
-                <button>確認變更</button>
+                <input class="slogan-input" id="slogan" type="text" placeholder="個性簽名" value="{{ '' if not user.slogan else user.slogan }}">
+                <button class="slogan-btn" id="sloganBtn">確認變更</button>
             </li>
             <li class="settings-item gender-item">
-                <div class="gender-title">性別</div>
-                <label>
-                    <input type="radio" name="gender" value="male">男
-                </label>
-                &nbsp;&nbsp;&nbsp;
-                <label>
-                    <input type="radio" name="gender" value="female">女
-                </label>
-                <div class="gender-btn">
-                    <button>確認變更</button>
-                </div>
+                    <div class="gender-title">性別</div>
+                    <label data-gender="male">
+                        <input id="gender1" type="radio" name="gender" value="male">男
+                    </label>
+                    &nbsp;&nbsp;&nbsp;
+                    <label data-gender="female">
+                        <input id="gender2" type="radio" name="gender" value="female">女
+                    </label>
+                    <div class="gender-btn">
+                        <button>確認變更</button>
+                    </div>
             </li>
         {% endif %}
     </ul>

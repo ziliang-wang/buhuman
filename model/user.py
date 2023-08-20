@@ -47,3 +47,7 @@ class User(Base):
         if row:
             row.avatar = filename
         db_session.commit()
+
+    # def get_user_slogan(self, uid):
+    #     row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()
+    #     return row.slogan

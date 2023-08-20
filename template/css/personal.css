@@ -377,3 +377,8 @@ body {
     /*display: block;*/
     /*text-align: center;*/
 }
+
+.content-list .settings-item .slogan-btn {
+    position: relative;
+    top: -.3px;
+}
