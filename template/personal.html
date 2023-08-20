@@ -29,9 +29,10 @@
         <div class="header-left flex-r">
             <div class="avatar">
                 <img src="{{ user.avatar }}" alt="" id="userAvatar">
-                <div class="camera-circle" id="avatarBtn">
+                <div class="camera-circle" id="avatarBtn" title="更換頭像">
                     <i class="iconfont icon-zhaoxiangji"></i>
                 </div>
+                <i class="tip"><-這裡可以變更頭像喔</i>
             </div>
             <div class="info">
                 <div>{{ user.nickname }}</div>
@@ -212,12 +213,14 @@
                     </li>
                 {% endfor %}
             {% else %}
-                <div class="no-collection">
+                <li class="no-collection">
                     您還沒有任何評論
-                </div>
+                </li>
             {% endif %}
         {% elif active == 'settings' %}
-            <div>個人設置</div>
+            <li class="settings-item">
+                <button>更換頭像</button>
+            </li>
         {% endif %}
     </ul>
     <script>

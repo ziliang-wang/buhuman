@@ -8,6 +8,7 @@ window.onload = () => {
     const $userAvatar = document.getElementById('userAvatar');
     const $xFile = document.getElementById('xFile');
     const $confirm = document.querySelector('.confirm');
+    const $tip = document.querySelector('.tip');
 
 
     $menu.onclick = (e) => {
@@ -62,9 +63,19 @@ window.onload = () => {
         });
     };
 
-    // console.log($confirm);
-
     $confirm.onclick = () => {
         location.reload();
     };
+
+    let isTipShow = true;
+
+    setInterval(() => {
+        if (isTipShow) {
+            $tip.style.display = 'none';
+        } else {
+            $tip.style.display = 'block';
+        }
+        isTipShow = !isTipShow;
+    }, 1000);
+
 };
