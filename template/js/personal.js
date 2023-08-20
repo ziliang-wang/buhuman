@@ -130,7 +130,7 @@ window.onload = () => {
         axios.post('/alter/slogan', {
             slogan: sloganValue
         }).then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.status === 8000) {
                 $headerSlogan.innerHTML = res.data.data;
             }
