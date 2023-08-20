@@ -46,7 +46,7 @@ window.onload = () => {
     };
 
     // 隨機avatar
-    $randomAvatar.onclick = function (){
+    $randomAvatar.onclick = function () {
         const formData = new FormData();
         const uid = this.getAttribute('data-uid');
         // formData.append('article-header-image', articleHeaderImageFile);
@@ -102,11 +102,51 @@ window.onload = () => {
     };
     // slogan
     let sloganValue = '';
-    $slogan = document.getElementById('slogan');
-    $sloganBtn = document.getElementById('sloganBtn');
+    const $slogan = document.getElementById('slogan');
+    const $sloganBtn = document.getElementById('sloganBtn');
     $sloganBtn.onclick = () => {
         sloganValue = $slogan.value.trim();
         console.log(sloganValue);
     };
+    // password
+    const $password1 = document.getElementById('password1');
+    const $password2 = document.getElementById('password2');
+    const $pwdMsg = document.getElementById('pwdMsg');
+    const $passwordBtn = document.getElementById('passwordBtn');
 
+    let isPassword1 = false;
+    let isPassword2 = false;
+
+    let password = '';
+
+    $password1.onblur = function() {
+        isPassword1 = !(this.value.trim() === '' || this.value.trim().length < 6);
+        if (!isPassword1) {
+            $pwdMsg.innerHTML = '密碼不得為空，且必須為6位以上喔';
+        } else {
+            $pwdMsg.innerHTML = '';
+        }
+    };
+
+    $password2.onblur = function() {
+        isPassword2 = !(this.value.trim() === '' || this.value.trim().length < 6);
+        if (!isPassword2) {
+            $pwdMsg.innerHTML = '密碼不得為空，且必須為6位以上喔';
+        } else {
+            $pwdMsg.innerHTML = '';
+        }
+    };
+
+    $passwordBtn.onclick = () => {
+        if (!isPassword1 || !isPassword2) return;
+        if ($password1.value.trim() !== $password2.value.trim()) {
+            $pwdMsg.innerHTML = '兩次密碼不符';
+            return;
+        } else {
+            $pwdMsg.innerHTML = '';
+            password = $password1.value.trim();
+        }
+        // axios
+        console.log('password ok', password);
+    };
 };
