@@ -38,17 +38,7 @@
                 <div>{{ user.nickname }}</div>
                 <div>
                     <span id="headerGender">
-                        {% if not user.gender %}
-                            性別未知
-                        {% elif user.gender == 'male' %}
-                            男
-                        {% elif user.gender == 'female' %}
-                            女
-                        {% else %}
-                            性別未知
-                        {% endif %}
-                    </span>&nbsp;&nbsp;|&nbsp;
-                    <span>{{ user.slogan or '懶的寫個人簽名的說' }}</span>
+                        {% if not user.gender %}性別未知{% elif user.gender == 'male' %}男{% elif user.gender == 'female' %}女{% else %}性別未知{% endif %}</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span>{{ user.slogan or '懶的寫個人簽名的說' }}</span>
                 </div>
             </div>
         </div>

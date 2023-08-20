@@ -138,10 +138,10 @@ def alter_gender():
         uid = session.get('uid')
 
         gender_result = User().alter_gender(uid, gender)
-
+        print(gender_result)
         return {
-            'status': '8000',
-            'data': gender_result
+            'status': 8000,
+            'data': gender_result.strip(' ')
         }
     else:
         return {}

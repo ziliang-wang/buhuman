@@ -87,28 +87,24 @@ window.onload = () => {
 
     let genderValue = '';
 
-    $gender1.onclick = (e) => {
-        const self = e.currentTarget;
-        if (self.checked) {
-            genderValue = self.value;
+    $gender1.onclick = function () {
+        if (this.checked) {
+            genderValue = this.value;
             // console.log(genderValue);
         }
     };
 
-    $gender2.onclick = (e) => {
-        const self = e.currentTarget;
-        if (self.checked) {
-            genderValue = self.value;
+    $gender2.onclick = function (){
+        if (this.checked) {
+            genderValue = this.value;
             // console.log(genderValue);
         }
     };
 
     $genderBtn.onclick = () => {
-        // if (genderValue === '') return false;
-        // axios
-        // console.log('gender ok');
+        if (genderValue === '') return false;
         axios.post('/alter/gender', {
-            gender: genderValue
+            gender: genderValue.trim()
         }).then(res => {
             if (res.data.status === 8000) {
                 if (res.data.data === 'female') {
@@ -118,10 +114,6 @@ window.onload = () => {
                 if (res.data.data === 'male') {
                     $headerGender.innerHTML = '男';
                 }
-
-                // genderValue = '';
-                // console.log(res.data)
-
             }
         });
     };
