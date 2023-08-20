@@ -138,10 +138,28 @@ def alter_gender():
         uid = session.get('uid')
 
         gender_result = User().alter_gender(uid, gender)
-        print(gender_result)
+        # print(gender_result)
         return {
             'status': 8000,
             'data': gender_result.strip(' ')
+        }
+    else:
+        return {}
+
+
+@personal.route('/alter/slogan', methods=['POST'])
+def alter_slogan():
+    if request.method == 'POST':
+        request_data = json.loads(request.data)
+        slogan = request_data.get('slogan')
+
+        uid = session.get('uid')
+
+        slogan_result = User().alter_slogan(uid, slogan)
+        # print(gender_result)
+        return {
+            'status': 8000,
+            'data': slogan_result
         }
     else:
         return {}

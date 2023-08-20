@@ -55,6 +55,13 @@ class User(Base):
 
         return row.gender
 
+    def alter_slogan(self, uid, slogan):
+        row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()
+        row.slogan = slogan
+        db_session.commit()
+
+        return row.slogan
+
 
     # def get_user_slogan(self, uid):
     #     row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()

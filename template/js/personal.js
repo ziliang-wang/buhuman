@@ -118,15 +118,25 @@ window.onload = () => {
         });
     };
 
-
     // slogan
     let sloganValue = '';
     const $slogan = document.getElementById('slogan');
     const $sloganBtn = document.getElementById('sloganBtn');
+    const $headerSlogan = document.getElementById('headerSlogan');
+
     $sloganBtn.onclick = () => {
         sloganValue = $slogan.value.trim();
-        console.log(sloganValue);
+        // console.log(sloganValue);
+        axios.post('/alter/slogan', {
+            slogan: sloganValue
+        }).then(res => {
+            console.log(res.data);
+            if (res.data.status === 8000) {
+                $headerSlogan.innerHTML = res.data.data;
+            }
+        });
     };
+
     // password
     const $password1 = document.getElementById('password1');
     const $password2 = document.getElementById('password2');
