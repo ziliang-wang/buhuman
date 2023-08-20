@@ -219,7 +219,22 @@
             {% endif %}
         {% elif active == 'settings' %}
             <li class="settings-item">
-                <button>更換頭像</button>
+                <div class="slogan-title">個性簽名</div>
+                <input class="slogan-input" type="text" placeholder="個性簽名">
+                <button>確認變更</button>
+            </li>
+            <li class="settings-item gender-item">
+                <div class="gender-title">性別</div>
+                <label>
+                    <input type="radio" name="gender" value="male">男
+                </label>
+                &nbsp;&nbsp;&nbsp;
+                <label>
+                    <input type="radio" name="gender" value="female">女
+                </label>
+                <div class="gender-btn">
+                    <button>確認變更</button>
+                </div>
             </li>
         {% endif %}
     </ul>

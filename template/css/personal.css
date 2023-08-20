@@ -1,6 +1,18 @@
 body {
+    /*padding-top: 10px;*/
     /*padding-bottom: 30px;*/
     /*background-color: #fff;*/
+    /*height: 5000px;*/
+    overflow: auto;
+}
+
+.header-right {
+    padding-top: 10px;
+    /*align-items: center !important;*/
+    /*line-height: 75px !important;*/
+    /*padding-top: 3px;*/
+    /*position: fixed;*/
+    /*z-index: 999999 !important;*/
 }
 
 .personal-header {
@@ -8,12 +20,14 @@ body {
     background: url("/images/personal_background.png") no-repeat center;
     /*background-position: contain;*/
     /*width: 100%;*/
+    /*line-height: 148px;*/
     height: 148px;
 }
 
 .personal-header .header-wrap {
     position: relative;
     justify-content: space-between;
+    align-items: center;
 }
 
 /*.personal-header .header-left .avatar {*/
@@ -90,12 +104,19 @@ body {
 
 .personal-header .header-right {
     width: 30%;
+    margin-top: -10px;
+    /*height: 148px;*/
+    /*height: 148px;*/
+    /*line-height: 148px;*/
     align-items: center;
     justify-content: space-between;
     color: #fff;
 }
 
-.personal-header .header-right div {
+.personal-header .header-right > div {
+    /*align-items: center;*/
+    /*position: relative;*/
+    /*top: -5px;*/
     text-align: center;
 }
 
@@ -138,6 +159,8 @@ body {
 .content-list {
     width: 77%;
     margin: 0 auto 30px auto;
+    /*height: 5000px;*/
+    /*overflow: scroll;*/
     /*position: relative;*/
     /*text-align: center;*/
 }
@@ -152,8 +175,9 @@ body {
     height: 300px;
     padding: 20px 0 50px 0;
     border-bottom: 1px solid #6f4627;
-    /*overflow-y: hidden;*/
+    /*border-bottom: 1px solid #d4d5d7;*/
     overflow: hidden;
+    /*overflow: auto;*/
 }
 
 .content-list li .row1 {
@@ -297,14 +321,49 @@ body {
     cursor: pointer;
 }
 
-.settings-item {
+.content-list li.settings-item {
     text-align: center;
+    border-bottom: 1px solid #d4d5d7 !important;
+    height: 100px;
 }
 
-.settings-item button {
+.content-list .settings-item button {
     border: none;
     background-color: #6f4627;
-    width: 100px;
-    height: 50px;
+    padding: 6px 10px;
+    color: #fff;
+    /*width: 100px;*/
+    /*height: 50px;*/
     border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+}
+
+.content-list .settings-item .slogan-title,
+.content-list .settings-item .gender-title{
+    /*font-size: 14px;*/
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.content-list .settings-item .slogan-input {
+    display: inline-block;
+    background-color: #fff;
+    height: 30px;
+    padding-left: 5px;
+}
+
+.content-list .settings-item input[type='radio'] {
+    margin: 0 5px;
+}
+
+.content-list .settings-item.gender-item {
+    height: 130px;
+}
+
+.content-list .settings-item .gender-btn {
+    margin: 10px 0 20px 0;
+    /*display: block;*/
+    /*text-align: center;*/
 }
