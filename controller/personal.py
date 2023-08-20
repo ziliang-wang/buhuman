@@ -1,3 +1,4 @@
+import hashlib
 import json
 import random
 import time
@@ -160,6 +161,23 @@ def alter_slogan():
         return {
             'status': 8000,
             'data': slogan_result
+        }
+    else:
+        return {}
+
+
+@personal.route('/alter/password', methods=['POST'])
+def alter_password():
+    if request.method == 'POST':
+        request_data = json.loads(request.data)
+        password = request_data.get('password')
+        password = hashlib.md5(password.encode()).hexdigest()
+        uid = session.get('uid')
+
+        password_result = User().alter_password(uid, password)
+        # print(gender_result)
+        return {
+            'status': 8000
         }
     else:
         return {}

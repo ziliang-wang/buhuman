@@ -389,6 +389,10 @@ body {
     height: 15px;
 }
 
+#pwdMsg.alter {
+    color: #3377ff;
+}
+
 #password2 {
     margin-bottom: 0;
 }

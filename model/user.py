@@ -62,6 +62,13 @@ class User(Base):
 
         return row.slogan
 
+    def alter_password(self, uid, password):
+        row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()
+        row.password = password
+        db_session.commit()
+
+        # return row.slogan
+
 
     # def get_user_slogan(self, uid):
     #     row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()

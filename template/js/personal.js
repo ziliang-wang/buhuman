@@ -150,6 +150,7 @@ window.onload = () => {
 
     $password1.onblur = function() {
         isPassword1 = !(this.value.trim() === '' || this.value.trim().length < 6);
+        $pwdMsg.classList.remove('alter');
         if (!isPassword1) {
             $pwdMsg.innerHTML = '密碼不得為空，且必須為6位以上喔';
         } else {
@@ -159,6 +160,7 @@ window.onload = () => {
 
     $password2.onblur = function() {
         isPassword2 = !(this.value.trim() === '' || this.value.trim().length < 6);
+        $pwdMsg.classList.remove('alter');
         if (!isPassword2) {
             $pwdMsg.innerHTML = '密碼不得為空，且必須為6位以上喔';
         } else {
@@ -176,6 +178,14 @@ window.onload = () => {
             password = $password1.value.trim();
         }
         // axios
-        console.log('password ok', password);
+        // console.log('password ok', password);
+        axios.post('/alter/password', {
+            password: password
+        }).then(res => {
+            if (res.data.status === 8000) {
+                $pwdMsg.classList.add('alter');
+                $pwdMsg.innerHTML = '密碼修改成功，下次登入時，請使用新密碼';
+            }
+        });
     };
 };
