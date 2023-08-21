@@ -37,6 +37,24 @@
         </div>
         <div class="detail-main">
             <div class="detail-main-left">
+                <div class="side-menu">
+                    <ul class="side-menu-list">
+                        <li>
+                            <div class="side-praise-container flex-r">
+                                <div class="side-praise-wrapper" id="sidePraise"
+                                     data-isLogin="{{ session.get('is_login') }}"
+                                     data-aid="{{ article.aid }}">
+                                    <i class="iconfont icon-dianzan" id="sidePraiseIcon"></i>
+                                </div>
+                            </div>
+                            <div class="side-recommend" id="sideRecommend">
+                                推薦
+                            </div>
+                        </li>
+                        <!--            <li>收藏</li>-->
+                        <!--            <li>評論</li>-->
+                    </ul>
+                </div>
                 <div class="detail-left-title">
                         <span>
                             {{ article.title }}
@@ -128,17 +146,17 @@
 
                 <div class="article-type">
                     {% if article.article_type == 'first' %}
-                        <img src="/images/first.png" alt="">
+                    <img src="/images/first.png" alt="">
                     {% elif article.article_type == 'original' %}
-                        <img src="/images/original.png" alt="">
+                    <img src="/images/original.png" alt="">
                     {% elif article.article_type == 'share' %}
-                        <img src="/images/share.png" alt="">
+                    <img src="/images/share.png" alt="">
                     {% elif article.article_type == 'recommend' %}
-                        <img src="/images/recommend.png" alt="">
+                    <img src="/images/recommend.png" alt="">
                     {% elif article.article_type == 'other' %}
-                        <img src="/images/other.png" alt="">
+                    <img src="/images/other.png" alt="">
                     {% else %}
-                        <img src="/images/original.png" alt="">
+                    <img src="/images/original.png" alt="">
                     {% endif %}
                 </div>
             </div>
@@ -154,11 +172,11 @@
                             <div class="author-title">{{ user.slogan or '懶的寫個人簽名的說' }}</div>
                             <div class="author-gender">
                                 {% if user.gender == 'male' %}
-                                    <i class="iconfont icon-sex_man"></i>
+                                <i class="iconfont icon-sex_man"></i>
                                 {% elif user.gender == 'female' %}
-                                    <i class="iconfont icon-sex_woman"></i>
+                                <i class="iconfont icon-sex_woman"></i>
                                 {% else %}
-                                    性別未知
+                                性別未知
                                 {% endif %}
                             </div>
                         </div>
@@ -382,23 +400,6 @@
             </div>
             {% endif %}
         </div>
-    </div>
-    <div class="side-menu">
-        <ul class="side-menu-list">
-            <li>
-                <div class="side-praise-container flex-r">
-                    <div class="side-praise-wrapper" id="sidePraise" data-isLogin="{{ session.get('is_login') }}"
-                         data-aid="{{ article.aid }}">
-                        <i class="iconfont icon-dianzan" id="sidePraiseIcon"></i>
-                    </div>
-                </div>
-                <div class="side-recommend" id="sideRecommend">
-                    推薦
-                </div>
-            </li>
-            <!--            <li>收藏</li>-->
-            <!--            <li>評論</li>-->
-        </ul>
     </div>
     <div class="comment-mask-modal" id="commentMaskModal">
         <div class="comment-window">

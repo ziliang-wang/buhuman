@@ -107,6 +107,7 @@ window.onload = () => {
             gender: genderValue.trim()
         }).then(res => {
             if (res.data.status === 8000) {
+                alert('性別更新城功');
                 if (res.data.data === 'female') {
                     $headerGender.innerHTML = '女';
                 }
@@ -133,6 +134,7 @@ window.onload = () => {
             // console.log(res.data);
             if (res.data.status === 8000) {
                 $headerSlogan.innerHTML = res.data.data;
+                alert('個人簽名更新城功');
             }
         });
     };
