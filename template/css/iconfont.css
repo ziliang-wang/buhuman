@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('../fonts/iconfont.ttf?t=1692579689648') format('truetype');
+  src: url('../fonts/iconfont.ttf?t=1692597817302') format('truetype');
 }
 
 .iconfont {
@@ -49,6 +49,10 @@
 
 .icon-xiajiantou:before {
   content: "\f034e";
+}
+
+.icon-pinglun:before {
+  content: "\f0302";
 }
 
 .icon-twitterB:before {

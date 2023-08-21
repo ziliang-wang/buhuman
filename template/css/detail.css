@@ -64,10 +64,26 @@ body {
 .detail-container .side-menu .side-collection-container .icon-collection {
     color: #d9dde1;
     /*border: 1px solid blue;*/
-    font-size: 24px;
+    font-size: 30px;
     margin-bottom: 2px;
     cursor: pointer;
     /*color: #000;*/
+}
+
+.detail-container .side-menu .side-collection-container .icon-comment {
+    /*color: #d9dde1;*/
+    /*border: 1px solid blue;*/
+    font-size: 24px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    color: #6f4627;
+    /*color: #000;*/
+}
+
+.detail-container .side-menu .side-collection-container .side-comment {
+    font-size: 12px;
+    color: #9199a1;
+    /*margin-top: 2px;*/
 }
 
 .detail-container .side-menu .side-collection-container .icon-collection.alter {
