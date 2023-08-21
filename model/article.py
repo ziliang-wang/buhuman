@@ -151,11 +151,21 @@ class Article(Base):
     def get_collection_and_praise(self, uid):
         collection = db_session.query(count(Article.uid)).join(
             Collection, Article.aid == Collection.aid).filter(
-            Article.uid == uid, Collection.collected == 1).first()
+            Article.uid == uid,
+            Article.drafted == 1,
+            Article.is_valid == 1,
+            Collection.collected == 1,
+            Collection.is_valid == 1
+        ).first()
 
         praise = db_session.query(count(Article.uid)).join(
             Praise, Article.aid == Praise.aid).filter(
-            Article.uid == uid, Praise.praised == 1).first()
+            Article.uid == uid,
+            Article.drafted == 1,
+            Article.is_valid == 1,
+            Praise.praised == 1,
+            Praise.is_valid == 1
+        ).first()
 
         collection_result = 0
         praise_result = 0
