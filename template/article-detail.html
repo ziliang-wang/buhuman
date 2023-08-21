@@ -151,7 +151,16 @@
                         </div>
                         <div class="author-desc">
                             <div class="author-name">{{ user.nickname }}</div>
-                            <div class="author-title">{{ user.job }}</div>
+                            <div class="author-title">{{ user.slogan or '懶的寫個人簽名的說' }}</div>
+                            <div class="author-gender">
+                                {% if user.gender == 'male' %}
+                                    <i class="iconfont icon-sex_man"></i>
+                                {% elif user.gender == 'female' %}
+                                    <i class="iconfont icon-sex_woman"></i>
+                                {% else %}
+                                    性別未知
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                     <div class="author-achievement flex-r">

@@ -233,6 +233,10 @@ body {
 .detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-info .author-desc {
     /*flex-shrink: 1;*/
     /*flex: 1;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /*width: 30%;*/
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-info .author-desc .author-name {
@@ -240,10 +244,22 @@ body {
     color: #1c1f21;
     font-size: 16px;
     margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-info .author-desc .author-title {
     margin-top: 5px;
+    font-size: 12px;
+    color: #545c63;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.detail-container .detail-wrap .detail-main .detail-main-right .detail-right-top .author-info .author-desc .author-gender {
+    margin-top: 2px;
     font-size: 12px;
     color: #545c63;
 }
