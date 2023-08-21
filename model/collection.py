@@ -47,4 +47,10 @@ class Collection(Base):
             return 0
         return collected[0]
 
+    def calc_collected_num(self, aid):
+        collected_num = db_session.query(sum(Collection.collected)).filter_by(aid=aid, collected=1, is_valid=1).first()
+        # print(praised_num, type(praised_num))
+        # print('點讚數:', praised_num[0])
+        return collected_num[0]
+
 

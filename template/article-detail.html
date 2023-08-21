@@ -51,7 +51,12 @@
                                 推薦
                             </div>
                         </li>
-                        <!--            <li>收藏</li>-->
+                        <li class="side-collection-container">
+                            <i class="iconfont icon-shoucangxuanzhong icon-collection" id="sideCollectionIcon"></i>
+                            <div class="side-collection" id="sideCollection">
+                                收藏
+                            </div>
+                        </li>
                         <!--            <li>評論</li>-->
                     </ul>
                 </div>
@@ -64,7 +69,7 @@
                     <div class="detail-info-tag">
                         <span class="tag-name">標籤:</span>
                         {% for tag_name in tags_list %}
-                        <span class="tag-value">
+                            <span class="tag-value">
                                 {{ tag_name }}
                             </span>
                         {% endfor %}

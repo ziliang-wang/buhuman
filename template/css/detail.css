@@ -21,7 +21,7 @@ body {
 
 .detail-container .side-menu .side-praise-container {
     justify-content: center;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 .detail-container .side-menu .side-recommend {
@@ -54,6 +54,25 @@ body {
 
 .detail-container .side-menu .side-praise-container .side-praise-wrapper i.i-alter {
     color: #fff;
+}
+
+.detail-container .side-menu .side-collection-container {
+    margin-top: 5px;
+}
+
+/*icon-collection*/
+.detail-container .side-menu .side-collection-container .icon-collection {
+    color: #d9dde1;
+    /*border: 1px solid blue;*/
+    font-size: 24px;
+    margin-bottom: 2px;
+    /*color: #000;*/
+}
+
+.detail-container .side-menu .side-collection-container .side-collection {
+    font-size: 12px;
+    color: #9199a1;
+    /*margin-top: 2px;*/
 }
 
 .detail-container .detail-wrap {
@@ -777,6 +796,9 @@ body {
     color: #fff;
     border: none;
 }
+
+
+
 /*.detail-container .detail-wrap .detail-comment .comment-item > .comment-reply .reply-reply {*/
 /*    */
 /*}*/
