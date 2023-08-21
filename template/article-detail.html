@@ -79,6 +79,8 @@
                     </div>
                     <script>
                         const $doCollect = document.getElementById('doCollect');
+                        const $sideCollection = document.getElementById('sideCollection');
+                        const $sideCollectionIcon = document.getElementById('sideCollectionIcon');
                         let collected = 0;
                         let isLogin = $doCollect.getAttribute('data-isLogin');
                         let aid = $doCollect.getAttribute('data-aid');
@@ -94,8 +96,10 @@
                                     collected = res.data.collected;
                                     if (collected) {
                                         $doCollect.innerHTML = '已收藏';
+                                        $sideCollectionIcon.classList.add('alter');
                                     } else {
                                         $doCollect.innerHTML = '收藏';
+                                        $sideCollectionIcon.classList.remove('alter');
                                     }
                                 }
                             });
@@ -110,6 +114,8 @@
                                 }).then(res => {
                                     if (res.data.status === 3000) {
                                         this.innerHTML = '收藏';
+                                        $sideCollection.innerHTML = res.data.data;
+                                        $sideCollectionIcon.classList.remove('alter');
                                     }
                                 });
                             } else {
@@ -120,6 +126,8 @@
                                 }).then(res => {
                                     if (res.data.status === 3000) {
                                         this.innerHTML = '已收藏';
+                                        $sideCollection.innerHTML = res.data.data;
+                                        $sideCollectionIcon.classList.add('alter');
                                     }
                                 });
                             }

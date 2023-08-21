@@ -69,6 +69,10 @@ body {
     /*color: #000;*/
 }
 
+.detail-container .side-menu .side-collection-container .icon-collection.alter {
+    color: #3b3f42;
+}
+
 .detail-container .side-menu .side-collection-container .side-collection {
     font-size: 12px;
     color: #9199a1;

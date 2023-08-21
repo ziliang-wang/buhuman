@@ -20,8 +20,8 @@ def update_collection_status():
     collected = request_data.get('collected')
     collection = Collection()
     try:
-        collection.update_status(uid, aid, collected)
-        return CollectionMessage.success('收藏成功')
+        collected_num = collection.update_status(uid, aid, collected)
+        return CollectionMessage.success(collected_num)
     except Exception as e:
         return CollectionMessage.fail('收藏失败')
 

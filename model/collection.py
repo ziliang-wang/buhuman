@@ -42,6 +42,8 @@ class Collection(Base):
         # else:
         # article_row.collected = 1
         db_session.commit()
+        collected_num = self.calc_collected_num(aid)
+        return collected_num
 
     def get_collection_status(self, uid, aid):
         collected = db_session.query(Collection.collected).filter_by(uid=uid, aid=aid).first()
