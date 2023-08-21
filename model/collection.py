@@ -1,4 +1,6 @@
 from sqlalchemy import Table, or_
+from sqlalchemy.ext.hybrid import hybrid_property
+
 from common.database import db_connect
 from app.config.config import config
 from app.settings import env
@@ -48,9 +50,11 @@ class Collection(Base):
         return collected[0]
 
     def calc_collected_num(self, aid):
-        collected_num = db_session.query(sum(Collection.collected)).filter_by(aid=aid, collected=1, is_valid=1).first()
+        collected_num = db_session.query(Collection).filter_by(aid=aid, collected=1, is_valid=1).count()
+        # if not collected_num:
+        #     return 0
         # print(praised_num, type(praised_num))
         # print('點讚數:', praised_num[0])
-        return collected_num[0]
+        return collected_num
 
 

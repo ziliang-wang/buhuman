@@ -46,7 +46,7 @@ def article_detail():
     # print('author uid', user_info.uid)
     # 作者文章數
     user_articles = article.get_user_articles(user_info.uid)
-    # 獲讚與點讚
+    # 獲讚與收藏
     collection_and_praise = article.get_collection_and_praise(user_info.uid)
     # 作者粉絲數
     concern_obj = Concern()
@@ -59,7 +59,8 @@ def article_detail():
     comment_num = common_obj.get_comment_list_total(aid)
     # print('評論列表:', comment_list)
     # 收藏數
-    # collected_num = Collection().calc_collected_num(aid)
+    collection_obj = Collection()
+    collected_num = collection_obj.calc_collected_num(aid)
 
     return render_template(
         'article-detail.html',
@@ -73,7 +74,7 @@ def article_detail():
         fans_num=fans_num,
         comment_list=comment_list,
         comment_num=comment_num,
-        # collected_num=collected_num
+        collected_num=collected_num
     )
 
 
