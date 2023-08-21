@@ -132,6 +132,55 @@
                                 });
                             }
                         };
+
+                        // icon
+                        // mounted
+                        // if (isLogin === 'true') {
+                        //     axios.get('/collect/status', {
+                        //         params: {
+                        //             aid: aid
+                        //         }
+                        //     }).then(res => {
+                        //         if (res.data.status === 3000) {
+                        //             collected = res.data.collected;
+                        //             if (collected) {
+                        //                 $doCollect.innerHTML = '已收藏';
+                        //                 $sideCollectionIcon.classList.add('alter');
+                        //             } else {
+                        //                 $doCollect.innerHTML = '收藏';
+                        //                 $sideCollectionIcon.classList.remove('alter');
+                        //             }
+                        //         }
+                        //     });
+                        // }
+                        // icon click
+                        $sideCollectionIcon.onclick = function () {
+                            if (collected) {
+                                collected = 0;
+                                axios.post('/collect/update', {
+                                    aid: aid,
+                                    collected: collected
+                                }).then(res => {
+                                    if (res.data.status === 3000) {
+                                        $doCollect.innerHTML = '收藏';
+                                        $sideCollection.innerHTML = res.data.data;
+                                        $sideCollectionIcon.classList.remove('alter');
+                                    }
+                                });
+                            } else {
+                                collected = 1;
+                                axios.post('/collect/update', {
+                                    aid: aid,
+                                    collected: collected
+                                }).then(res => {
+                                    if (res.data.status === 3000) {
+                                        $doCollect.innerHTML = '已收藏';
+                                        $sideCollection.innerHTML = res.data.data;
+                                        $sideCollectionIcon.classList.add('alter');
+                                    }
+                                });
+                            }
+                        };
                     </script>
                 </div>
                 <div class="detail-content-wrapper">
@@ -141,7 +190,7 @@
                     發表於 {{ article.create_time }} 共 {{ article.browse_num }}人瀏覽
                 </div>
                 <div class="detail-inform">
-                    本文發布于"不良人" ，分享請註明出處，謝謝合作
+                    本文發布于"葉書" ，分享請註明出處，謝謝合作
                 </div>
                 <div class="praise-container">
                     <div class="praise-wrapper" id="praise" data-isLogin="{{ session.get('is_login') }}"
