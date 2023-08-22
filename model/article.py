@@ -328,9 +328,36 @@ class Article(Base):
 
         return score
 
+    def remove_article(self, uid, aid):
+        row = db_session.query(Article).filter(
+            Article.uid == uid,
+            Article.aid == aid,
+            Article.is_valid == 1,
+            Article.drafted == 1
+        ).first()
 
-    # def get_rest_drafted_num(self, uid):
-    #     result = db_session.query(Article).filter_by(uid=uid, drafted=0, is_valid=1).all()
+        if row:
+            praise_row = db_session.query(Praise).filter(
+                Praise.aid == aid,
+                Praise.praised == 1
+            ).first()
+
+            collection_row = db_session.query(Collection).filter(
+                Collection.aid == aid,
+                Collection.collected == 1
+            ).first()
+
+            if praise_row:
+                praise_row.is_valid = 0
+
+            if collection_row:
+                collection_row.collected = 0
+
+            row.is_valid = 0
+            db_session.commit()
+            return True
+        return False
+
 
 
 

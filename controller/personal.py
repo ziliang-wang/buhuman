@@ -206,3 +206,21 @@ def alter_nickname():
         }
     else:
         return {}
+
+
+@personal.route('/alter/article', methods=['POST'])
+def alter_article():
+    if request.method == 'POST':
+        request_data = json.loads(request.data)
+        aid = request_data.get('aid')
+        # print('aid', aid)
+        uid = session.get('uid')
+        result = Article().remove_article(uid, aid)
+        # print(result.aid)
+        if result:
+            return {
+                'status': 8000,
+                'data': 'ok'
+            }
+    else:
+        return {}

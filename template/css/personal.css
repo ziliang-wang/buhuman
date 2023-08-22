@@ -228,6 +228,16 @@ body {
     color: #b5b9bc;
 }
 
+.content-list li .row1 .row1-right {
+    width: 11%;
+    justify-content: space-between;
+}
+
+.content-list li .row1 .row1-right .article-remove {
+    color: #aa1111;
+    cursor: pointer;
+}
+
 .content-list li .row2 {
     /*margin-bottom: 20px;*/
     /*justify-content: space-between;*/

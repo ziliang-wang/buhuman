@@ -74,7 +74,7 @@
     </ul>
 </section>
 <section class="content center-wrap">
-    <ul class="content-list">
+    <ul class="content-list" id="dataList">
         {% if active == 'article' %}
         {% if data_list %}
         {% for item in data_list %}
@@ -98,7 +98,10 @@
                                         {% endif %}
                                 </span>
                 </a>
-                <div class="article-browse">{{ item.browse_num }}瀏覽</div>
+                <div class="row1-right flex-r">
+                    <div class="article-browse">{{ item.browse_num }}瀏覽</div>
+                    <div class="article-remove" data-aid="{{ item.aid }}">刪除</div>
+                </div>
             </div>
             <div class="row2 flex-r">
                 <img class="article-image" src="{{ item.article_image }}" alt="">
@@ -234,7 +237,8 @@
         <li class="settings-item slogan-item">
             <div class="slogan-title">修改匿稱</div>
             <div>
-                <input id="nicknameInput" class="nickname-input" type="text" placeholder="修改匿稱" value="{{ user.nickname }}">
+                <input id="nicknameInput" class="nickname-input" type="text" placeholder="修改匿稱"
+                       value="{{ user.nickname }}">
             </div>
             <div id="nicknameMsg" class=""></div>
             <button id="nicknameBtn">確認變更</button>
@@ -300,5 +304,26 @@
         </div>
     </div>
 </div>
+<script>
+    $dataList = document.getElementById('dataList');
+    $dataList.onclick = (e) => {
+        const self = e.target;
+        const aid = parseInt(self.getAttribute('data-aid'));
+        if (aid) {
+            // axios
+            const confirmResult = confirm('是否確認刪除？');
+            if (confirmResult) {
+                axios.post('/alter/article', {
+                    aid: aid
+                }).then(res => {
+                    console.log(res.data);
+                    if (res.data.status === 8000) {
+                        location.reload();
+                    }
+                });
+            }
+        }
+    };
+</script>
 </body>
 </html>
