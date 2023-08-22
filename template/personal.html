@@ -38,7 +38,8 @@
                 <div>{{ user.nickname }}</div>
                 <div>
                     <span id="headerGender">
-                        {% if not user.gender %}性別未知{% elif user.gender == 'male' %}男{% elif user.gender == 'female' %}女{% else %}性別未知{% endif %}</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span id="headerSlogan">{{ user.slogan or '懶的寫個人簽名的說' }}</span>
+                        {% if not user.gender %}性別未知{% elif user.gender == 'male' %}男{% elif user.gender == 'female' %}女{% else %}性別未知{% endif %}</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span
+                        id="headerSlogan">{{ user.slogan or '懶的寫個人簽名的說' }}</span>
                 </div>
             </div>
         </div>
@@ -63,24 +64,24 @@
     </div>
 </section>
 <section class="tabs center-wrap">
-        <ul class="flex-r" id="menu">
-            <li data-tab="article" class="{{ 'active' if active == 'article' else '' }}">我的文章</li>
-            <li data-tab="collection" class="{{ 'active' if active == 'collection' else '' }}">我的收藏</li>
-            <li data-tab="praise" class="{{ 'active' if active == 'praise' else '' }}">我的推薦</li>
-            <li data-tab="comment" class="{{ 'active' if active == 'comment' else '' }}">我的評論</li>
-            <li data-tab="settings" class="{{ 'active' if active == 'settings' else '' }}">個人設置</li>
-        </ul>
+    <ul class="flex-r" id="menu">
+        <li data-tab="article" class="{{ 'active' if active == 'article' else '' }}">我的文章</li>
+        <li data-tab="collection" class="{{ 'active' if active == 'collection' else '' }}">我的收藏</li>
+        <li data-tab="praise" class="{{ 'active' if active == 'praise' else '' }}">我的推薦</li>
+        <li data-tab="comment" class="{{ 'active' if active == 'comment' else '' }}">我的評論</li>
+        <li data-tab="settings" class="{{ 'active' if active == 'settings' else '' }}">個人設置</li>
+    </ul>
 </section>
 <section class="content center-wrap">
     <ul class="content-list">
         {% if active == 'article' %}
-            {% if data_list %}
-                {% for item in data_list %}
-                    <li>
-                        <div class="row1 flex-r">
-                            <a href="/detail?aid={{ item.aid }}" class="title">
-                                {{ item.title }}
-                                <span class="type">
+        {% if data_list %}
+        {% for item in data_list %}
+        <li>
+            <div class="row1 flex-r">
+                <a href="/detail?aid={{ item.aid }}" class="title">
+                    {{ item.title }}
+                    <span class="type">
                                         {% if item.article_type == 'first' %}
                                             首發
                                         {% elif item.article_type == 'original' %}
@@ -95,28 +96,28 @@
                                             原創
                                         {% endif %}
                                 </span>
-                            </a>
-                            <div class="article-browse">{{ item.browse_num }}瀏覽</div>
-                        </div>
-                        <div class="row2 flex-r">
-                            <img class="article-image" src="{{ item.article_image }}" alt="">
-                            <div class="article-content">{{ item.article_content | safe }}</div>
-                        </div>
-                    </li>
-                {% endfor %}
-            {% else %}
-                <div class="no-collection">
-                    您還沒有任何創作
-                </div>
-            {% endif %}
+                </a>
+                <div class="article-browse">{{ item.browse_num }}瀏覽</div>
+            </div>
+            <div class="row2 flex-r">
+                <img class="article-image" src="{{ item.article_image }}" alt="">
+                <div class="article-content">{{ item.article_content | safe }}</div>
+            </div>
+        </li>
+        {% endfor %}
+        {% else %}
+        <div class="no-collection">
+            您還沒有任何創作
+        </div>
+        {% endif %}
         {% elif active == 'collection' %}
-            {% if data_list %}
-                {% for item in data_list %}
-                    <li>
-                        <div class="row1 flex-r">
-                            <a href="/detail?aid={{ item.aid }}" class="title">
-                                {{ item.title }}
-                                <span class="type">
+        {% if data_list %}
+        {% for item in data_list %}
+        <li>
+            <div class="row1 flex-r">
+                <a href="/detail?aid={{ item.aid }}" class="title">
+                    {{ item.title }}
+                    <span class="type">
                                         {% if item.article_type == 'first' %}
                                             首發
                                         {% elif item.article_type == 'original' %}
@@ -131,28 +132,28 @@
                                             原創
                                         {% endif %}
                                 </span>
-                            </a>
-                            <div class="article-browse">{{ item.browse_num }}瀏覽</div>
-                        </div>
-                        <div class="row2 flex-r">
-                            <img class="article-image" src="{{ item.article_image }}" alt="">
-                            <div class="article-content">{{ item.article_content | safe }}</div>
-                        </div>
-                    </li>
-                {% endfor %}
-            {% else %}
-                <div class="no-collection">
-                    您還沒有任何收藏
-                </div>
-            {% endif %}
+                </a>
+                <div class="article-browse">{{ item.browse_num }}瀏覽</div>
+            </div>
+            <div class="row2 flex-r">
+                <img class="article-image" src="{{ item.article_image }}" alt="">
+                <div class="article-content">{{ item.article_content | safe }}</div>
+            </div>
+        </li>
+        {% endfor %}
+        {% else %}
+        <div class="no-collection">
+            您還沒有任何收藏
+        </div>
+        {% endif %}
         {% elif active == 'praise' %}
-            {% if data_list %}
-                {% for item in data_list %}
-                    <li>
-                        <div class="row1 flex-r">
-                            <a href="/detail?aid={{ item.aid }}" class="title">
-                                {{ item.title }}
-                                <span class="type">
+        {% if data_list %}
+        {% for item in data_list %}
+        <li>
+            <div class="row1 flex-r">
+                <a href="/detail?aid={{ item.aid }}" class="title">
+                    {{ item.title }}
+                    <span class="type">
                                         {% if item.article_type == 'first' %}
                                             首發
                                         {% elif item.article_type == 'original' %}
@@ -167,28 +168,28 @@
                                             原創
                                         {% endif %}
                                 </span>
-                            </a>
-                            <div class="article-browse">{{ item.browse_num }}瀏覽</div>
-                        </div>
-                        <div class="row2 flex-r">
-                            <img class="article-image" src="{{ item.article_image }}" alt="">
-                            <div class="article-content">{{ item.article_content | safe }}</div>
-                        </div>
-                    </li>
-                {% endfor %}
-            {% else %}
-                <div class="no-collection">
-                    您還沒有任何推薦
-                </div>
-            {% endif %}
+                </a>
+                <div class="article-browse">{{ item.browse_num }}瀏覽</div>
+            </div>
+            <div class="row2 flex-r">
+                <img class="article-image" src="{{ item.article_image }}" alt="">
+                <div class="article-content">{{ item.article_content | safe }}</div>
+            </div>
+        </li>
+        {% endfor %}
+        {% else %}
+        <div class="no-collection">
+            您還沒有任何推薦
+        </div>
+        {% endif %}
         {% elif active == 'comment' %}
-            {% if data_list %}
-                {% for item in data_list %}
-                    <li>
-                        <div class="row1 flex-r">
-                            <a href="/detail?aid={{ item.aid }}" class="title">
-                                {{ item.title }}
-                                <span class="type">
+        {% if data_list %}
+        {% for item in data_list %}
+        <li>
+            <div class="row1 flex-r">
+                <a href="/detail?aid={{ item.aid }}" class="title">
+                    {{ item.title }}
+                    <span class="type">
                                         {% if item.article_type == 'first' %}
                                             首發
                                         {% elif item.article_type == 'original' %}
@@ -203,51 +204,58 @@
                                             原創
                                         {% endif %}
                                 </span>
-                            </a>
-                            <div class="article-browse">{{ item.browse_num }}瀏覽</div>
-                        </div>
-                        <div class="row2 flex-r">
-                            <img class="article-image" src="{{ item.article_image }}" alt="">
-                            <div class="article-content">{{ item.article_content | safe }}</div>
-                        </div>
-                    </li>
-                {% endfor %}
-            {% else %}
-                <li class="no-collection">
-                    您還沒有任何評論
-                </li>
-            {% endif %}
+                </a>
+                <div class="article-browse">{{ item.browse_num }}瀏覽</div>
+            </div>
+            <div class="row2 flex-r">
+                <img class="article-image" src="{{ item.article_image }}" alt="">
+                <div class="article-content">{{ item.article_content | safe }}</div>
+            </div>
+        </li>
+        {% endfor %}
+        {% else %}
+        <li class="no-collection">
+            您還沒有任何評論
+        </li>
+        {% endif %}
         {% elif active == 'settings' %}
-            <li class="settings-item reset-item">
-                <div class="reset-title">修改密碼</div>
-                <div>
-                    <input id="password1" class="password-input" type="password" placeholder="新密碼">
-                </div>
-                <div>
-                    <input id="password2" class="password-input" type="password" placeholder="確認新密碼">
-                </div>
-                <div id="pwdMsg" class=""></div>
-                <button id="passwordBtn">確認變更</button>
-            </li>
+        <li class="settings-item reset-item">
+            <div class="reset-title">修改密碼</div>
+            <div>
+                <input id="password1" class="password-input" type="password" placeholder="新密碼">
+            </div>
+            <div>
+                <input id="password2" class="password-input" type="password" placeholder="確認新密碼">
+            </div>
+            <div id="pwdMsg" class=""></div>
+            <button id="passwordBtn">確認變更</button>
+        </li>
 
-            <li class="settings-item">
-                <div class="slogan-title">個性簽名</div>
-                <input class="slogan-input" id="slogan" type="text" placeholder="個性簽名" value="{{ '' if not user.slogan else user.slogan }}">
-                <button class="slogan-btn" id="sloganBtn">確認變更</button>
-            </li>
-            <li class="settings-item gender-item">
-                    <div class="gender-title">性別</div>
-                    <label data-gender="male">
-                        <input id="gender1" type="radio" name="gender" value="male">男
-                    </label>
-                    &nbsp;&nbsp;&nbsp;
-                    <label data-gender="female">
-                        <input id="gender2" type="radio" name="gender" value="female">女
-                    </label>
-                    <div class="gender-btn">
-                        <button id="genderBtn">確認變更</button>
-                    </div>
-            </li>
+        <li class="settings-item slogan-item">
+            <div class="slogan-title">個性簽名</div>
+            <div>
+                <input id="slogan" class="password-input" type="text" placeholder="個性簽名">
+            </div>
+            <div id="sloganMsg" class=""></div>
+            <button id="sloganBtn">確認變更</button>
+            <!--                <input class="slogan-input" id="slogan" type="text" placeholder="個性簽名" value="{{ '' if not user.slogan else user.slogan }}">-->
+            <!--                <button class="slogan-btn" id="sloganBtn">確認變更</button>-->
+        </li>
+        <li class="settings-item gender-item">
+            <div class="gender-title">性別</div>
+            <div class="flex-r gender-container">
+                <label data-gender="male">
+                    <input id="gender1" type="radio" name="gender" value="male">男
+                </label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label data-gender="female">
+                    <input id="gender2" type="radio" name="gender" value="female">女
+                </label>
+            </div>
+            <div class="gender-btn">
+                <button id="genderBtn">確認變更</button>
+            </div>
+        </li>
         {% endif %}
     </ul>
     <script>
@@ -264,13 +272,14 @@
         <div class="publish-article-left flex-c">
             <label for="xFile">
                 <div class="left-top">
-<!--                    <img src="/images/image-upload.png" alt="upload" id="avatarImg">-->
+                    <!--                    <img src="/images/image-upload.png" alt="upload" id="avatarImg">-->
                     <img src="{{ user.avatar }}" alt="upload" id="avatarImg">
                 </div>
             </label>
             <label>
                 <div class="local" id="localAvatar">本地上傳</div>
-                <input type="file" data-uid="{{ session.get('uid') }}" id="xFile" accept="image/*" style="display: none;">
+                <input type="file" data-uid="{{ session.get('uid') }}" id="xFile" accept="image/*"
+                       style="display: none;">
             </label>
             <div class="random" data-uid="{{ session.get('uid') }}" id="randomAvatar">隨機頭像</div>
             <div class="desc">请上傳200*200px，小

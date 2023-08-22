@@ -360,16 +360,34 @@ body {
     margin-bottom: 10px;
 }
 
-.content-list .settings-item input[type='radio'] {
-    margin: 0 5px;
-}
+/*.content-list .settings-item input[type='radio'] {*/
+/*    margin-right: 5px;*/
+/*    margin-left: 10px;*/
+/*}*/
+
+/*.content-list .settings-item input[type='radio']:nth-child(1) {*/
+/*    !*margin-right: 10px;*!*/
+/*}*/
 
 .content-list .settings-item.gender-item {
-    height: 130px;
+    /*width: 15%;*/
+    height: 125px;
+}
+
+.content-list .settings-item.gender-item .gender-container {
+    justify-content: center;
+}
+
+.content-list .settings-item.gender-item .gender-container input[type='radio'] {
+    margin-right: 3px;
 }
 
 .content-list .settings-item.reset-item {
     height: 180px;
+}
+
+.content-list .settings-item.slogan-item {
+    height: 135px;
 }
 
 .content-list .settings-item .gender-btn {
@@ -379,6 +397,8 @@ body {
 }
 
 .content-list .settings-item .slogan-btn {
+    /*text-align: center;*/
+    /*display: block;*/
     position: relative;
     top: -.3px;
 }
