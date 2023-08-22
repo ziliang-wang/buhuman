@@ -229,4 +229,20 @@ window.onload = () => {
             }
         });
     };
+    // self introduce
+    // job
+    const $self = document.getElementById('self');
+    const $selfBtn = document.getElementById('selfBtn');
+
+    $selfBtn.onclick = () => {
+        const self = $self.value.trim();
+        axios.post('/alter/introduce', {
+            introduce: self
+        }).then(res => {
+            // console.log(res.data);
+            if (res.data.status === 8000) {
+                location.reload();
+            }
+        });
+    };
 };

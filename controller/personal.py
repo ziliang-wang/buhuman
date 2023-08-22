@@ -239,3 +239,18 @@ def alter_job():
         }
     else:
         return {}
+
+
+@personal.route('/alter/introduce', methods=['POST'])
+def alter_introduce():
+    if request.method == 'POST':
+        request_data = json.loads(request.data)
+        introduce = request_data.get('introduce')
+
+        uid = session.get('uid')
+        introduce_result = User().alter_introduce(uid, introduce)
+        return {
+            'status': 8000
+        }
+    else:
+        return {}

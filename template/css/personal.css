@@ -2,7 +2,7 @@ body {
     /*padding-top: 10px;*/
     /*padding-bottom: 30px;*/
     /*background-color: #fff;*/
-    /*height: 5000px;*/
+    /*height: 300px;*/
     overflow: auto;
 }
 
@@ -441,4 +441,19 @@ body {
 
 #password2 {
     margin-bottom: 0;
+}
+
+.settings-item.self-item {
+    height: 200px !important;
+}
+
+.settings-item.self-item textarea.self {
+    margin-bottom: 10px;
+    resize: none;
+    outline: none;
+    border: none;
+    width: 50%;
+    height: 100px;
+    padding: 5px;
+    overflow-y: auto;
 }

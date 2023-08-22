@@ -93,6 +93,13 @@ class User(Base):
 
         return row.job
 
+    def alter_introduce(self, uid, introduce):
+        row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()
+        row.introduce = introduce
+        db_session.commit()
+
+        return row.introduce
+
     # def get_user_slogan(self, uid):
     #     row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()
     #     return row.slogan
