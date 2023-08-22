@@ -69,6 +69,22 @@ class User(Base):
 
         # return row.slogan
 
+    def check_nickname(self, uid, nickname):
+        row = db_session.query(User).filter_by(uid=uid, nickname=nickname, is_valid=1).first()
+        print('nickname:', nickname)
+        if row:
+            return True
+        return False
+
+    def alter_nickname(self, uid, nickname):
+        row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()
+        row.nickname = nickname
+        db_session.commit()
+        return row.nickname
+        # print('nickname:', nickname)
+        # if row:
+        #     return True
+        # return False
 
     # def get_user_slogan(self, uid):
     #     row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()

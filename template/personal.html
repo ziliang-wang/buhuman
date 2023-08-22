@@ -35,11 +35,12 @@
                 <i class="tip"><-這裡可以變更頭像喔</i>
             </div>
             <div class="info">
-                <div>{{ user.nickname }}</div>
+                <div id="headerNickname">{{ user.nickname }}</div>
                 <div>
                     <span id="headerGender">
                         {% if not user.gender %}性別未知{% elif user.gender == 'male' %}男{% elif user.gender == 'female' %}女{% else %}性別未知{% endif %}</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span
-                        id="headerSlogan">{{ user.slogan or '懶的寫個人簽名的說' }}</span>
+                        id="headerSlogan">{{ user.slogan or '懶的寫個人簽名的說' }}
+                    </span>
                 </div>
             </div>
         </div>
@@ -233,7 +234,7 @@
         <li class="settings-item slogan-item">
             <div class="slogan-title">修改匿稱</div>
             <div>
-                <input id="nickname" class="password-input" type="text" placeholder="修改匿稱" value="{{ user.nickname }}">
+                <input id="nicknameInput" class="nickname-input" type="text" placeholder="修改匿稱" value="{{ user.nickname }}">
             </div>
             <div id="nicknameMsg" class=""></div>
             <button id="nicknameBtn">確認變更</button>

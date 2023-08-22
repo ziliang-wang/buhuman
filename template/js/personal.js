@@ -192,4 +192,34 @@ window.onload = () => {
             }
         });
     };
+
+    // nickname
+    let nicknameValue = '';
+    const $nicknameInput = document.getElementById('nicknameInput');
+    const $nicknameBtn = document.getElementById('nicknameBtn');
+    const $nicknameMsg = document.getElementById('nicknameMsg');
+    const $headerNickname = document.getElementById('headerNickname');
+
+
+    // console.log($nickname);
+
+    $nicknameBtn.onclick = () => {
+        nicknameValue = $nicknameInput.value.trim();
+        // console.log($nicknameInput.value);
+        // console.log(sloganValue);
+        axios.post('/alter/nickname', {
+            nickname: nicknameValue
+        }).then(res => {
+            console.log(res.data);
+            if (res.data.status === 8001) {
+                $nicknameMsg.innerHTML = '該匿稱已被人使用了喔，請再另取一個喔';
+                // alert('個人簽名更新城功');
+                // location.reload();
+            } else {
+                $headerNickname.innerHTML = res.data.data;
+                location.reload();
+            }
+        });
+    };
+
 };

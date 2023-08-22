@@ -349,16 +349,22 @@ body {
 }
 
 .content-list .settings-item .slogan-input,
-.content-list .settings-item .password-input{
+.content-list .settings-item .password-input,
+.content-list .settings-item .nickname-input{
     display: inline-block;
     background-color: #fff;
     height: 30px;
     padding-left: 5px;
 }
 
-.content-list .settings-item .password-input {
+.content-list .settings-item .password-input,
+.content-list .settings-item .nickname-input {
     margin-bottom: 10px;
 }
+
+/*.content-list .settings-item .nickname-input {*/
+/*    margin-bottom: 0;*/
+/*}*/
 
 /*.content-list .settings-item input[type='radio'] {*/
 /*    margin-right: 5px;*/
@@ -407,6 +413,12 @@ body {
     font-size: 12px;
     color: #aa1111;
     height: 15px;
+}
+
+#nicknameMsg {
+    height: 0;
+    font-size: 12px;
+    height: 5px;
 }
 
 #pwdMsg.alter {

@@ -182,3 +182,27 @@ def alter_password():
     else:
         return {}
 
+
+@personal.route('/alter/nickname', methods=['POST'])
+def alter_nickname():
+    if request.method == 'POST':
+        request_data = json.loads(request.data)
+        nickname = request_data.get('nickname')
+        # print('nickname', nickname)
+        uid = session.get('uid')
+        check_result = User().check_nickname(uid, nickname)
+        # nickname_result = ''
+        if check_result:
+            return {
+                'status': 8001,
+                'data': '該匿稱已存在'
+            }
+        else:
+            nickname_result = User().alter_nickname(uid, nickname)
+            session['nickname'] = nickname_result
+        return {
+            'status': 8000,
+            'data': nickname_result
+        }
+    else:
+        return {}
