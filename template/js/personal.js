@@ -214,4 +214,19 @@ window.onload = () => {
             }
         });
     };
+    // job
+    const $job = document.getElementById('job');
+    const $jobBtn = document.getElementById('jobBtn');
+
+    $jobBtn.onclick = () => {
+        const job = $job.value.trim();
+        axios.post('/alter/job', {
+            job: job
+        }).then(res => {
+            // console.log(res.data);
+            if (res.data.status === 8000) {
+                location.reload();
+            }
+        });
+    };
 };

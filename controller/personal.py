@@ -224,3 +224,18 @@ def alter_article():
             }
     else:
         return {}
+
+
+@personal.route('/alter/job', methods=['POST'])
+def alter_job():
+    if request.method == 'POST':
+        request_data = json.loads(request.data)
+        job = request_data.get('job')
+
+        uid = session.get('uid')
+        job_result = User().alter_job(uid, job)
+        return {
+            'status': 8000
+        }
+    else:
+        return {}

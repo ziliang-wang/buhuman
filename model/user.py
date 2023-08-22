@@ -86,6 +86,13 @@ class User(Base):
         #     return True
         # return False
 
+    def alter_job(self, uid, job):
+        row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()
+        row.job = job
+        db_session.commit()
+
+        return row.job
+
     # def get_user_slogan(self, uid):
     #     row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()
     #     return row.slogan
