@@ -230,11 +230,20 @@
             <div id="pwdMsg" class=""></div>
             <button id="passwordBtn">確認變更</button>
         </li>
-
+        <li class="settings-item slogan-item">
+            <div class="slogan-title">修改匿稱</div>
+            <div>
+                <input id="nickname" class="password-input" type="text" placeholder="修改匿稱" value="{{ user.nickname }}">
+            </div>
+            <div id="nicknameMsg" class=""></div>
+            <button id="nicknameBtn">確認變更</button>
+            <!--                <input class="slogan-input" id="slogan" type="text" placeholder="個性簽名" value="{{ '' if not user.slogan else user.slogan }}">-->
+            <!--                <button class="slogan-btn" id="sloganBtn">確認變更</button>-->
+        </li>
         <li class="settings-item slogan-item">
             <div class="slogan-title">個性簽名</div>
             <div>
-                <input id="slogan" class="password-input" type="text" placeholder="個性簽名">
+                <input id="slogan" class="password-input" type="text" placeholder="個性簽名" value="{{ user.slogan }}">
             </div>
             <div id="sloganMsg" class=""></div>
             <button id="sloganBtn">確認變更</button>
