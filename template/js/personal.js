@@ -10,6 +10,7 @@ window.onload = () => {
     const $confirm = document.querySelector('.confirm');
     const $tip = document.querySelector('.tip');
     // const $gender = document.querySelector('#gender');
+    const $successModal = document.querySelector('.success-modal');
 
     $menu.onclick = (e) => {
         const self = e.target;
@@ -115,7 +116,11 @@ window.onload = () => {
                 if (res.data.data === 'male') {
                     $headerGender.innerHTML = '男';
                 }
-                location.reload();
+                $successModal.style.display = 'block';
+                setTimeout(() => {
+                    $successModal.style.display = 'none';
+                    location.reload();
+                }, 2000);
             }
         });
     };
@@ -135,8 +140,11 @@ window.onload = () => {
             // console.log(res.data);
             if (res.data.status === 8000) {
                 $headerSlogan.innerHTML = res.data.data;
-                // alert('個人簽名更新城功');
-                location.reload();
+                $successModal.style.display = 'block';
+                setTimeout(() => {
+                    $successModal.style.display = 'none';
+                    location.reload();
+                }, 2000);
             }
         });
     };
@@ -210,7 +218,11 @@ window.onload = () => {
                 $nicknameMsg.innerHTML = '該匿稱已被人使用了喔，請再另取一個喔';
             } else {
                 $headerNickname.innerHTML = res.data.data;
-                location.reload();
+                $successModal.style.display = 'block';
+                setTimeout(() => {
+                    $successModal.style.display = 'none';
+                    location.reload();
+                }, 2000);
             }
         });
     };
@@ -225,7 +237,11 @@ window.onload = () => {
         }).then(res => {
             // console.log(res.data);
             if (res.data.status === 8000) {
-                location.reload();
+                $successModal.style.display = 'block';
+                setTimeout(() => {
+                    $successModal.style.display = 'none';
+                    location.reload();
+                }, 2000);
             }
         });
     };
@@ -241,8 +257,13 @@ window.onload = () => {
         }).then(res => {
             // console.log(res.data);
             if (res.data.status === 8000) {
-                location.reload();
+                $successModal.style.display = 'block';
+                setTimeout(() => {
+                    $successModal.style.display = 'none';
+                    location.reload();
+                }, 2000);
             }
         });
     };
+    //
 };
