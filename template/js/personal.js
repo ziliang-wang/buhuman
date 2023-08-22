@@ -213,9 +213,11 @@ window.onload = () => {
             console.log(res.data);
             if (res.data.status === 8001) {
                 $nicknameMsg.innerHTML = '該匿稱已被人使用了喔，請再另取一個喔';
+                // $nicknameMsg.classList.add('alter');
                 // alert('個人簽名更新城功');
                 // location.reload();
             } else {
+                // $nicknameMsg.classList.remove('alter');
                 $headerNickname.innerHTML = res.data.data;
                 location.reload();
             }

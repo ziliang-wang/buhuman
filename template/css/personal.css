@@ -350,15 +350,14 @@ body {
 
 .content-list .settings-item .slogan-input,
 .content-list .settings-item .password-input,
-.content-list .settings-item .nickname-input{
+.content-list .settings-item .nickname-input {
     display: inline-block;
     background-color: #fff;
     height: 30px;
     padding-left: 5px;
 }
 
-.content-list .settings-item .password-input,
-.content-list .settings-item .nickname-input {
+.content-list .settings-item .password-input {
     margin-bottom: 10px;
 }
 
@@ -416,10 +415,14 @@ body {
 }
 
 #nicknameMsg {
-    height: 0;
+    height: 15px;
     font-size: 12px;
-    height: 5px;
+    color: #aa1111;
+    /*height: 5px;*/
 }
+/*#nicknameMsg.alter {*/
+/*    color: #3377ff;*/
+/*}*/
 
 #pwdMsg.alter {
     color: #3377ff;
