@@ -278,7 +278,19 @@ def user_home():
     uid = request.args.get('user')
     articles_list = Article().get_article_list_by_uid(uid)
     user_info = User().find_by_uid(uid)
+
+    article = Article()
+    # 關注
+    concern_num = article.get_concern_num_by_uid(uid)
+    # 粉絲
+    fans_num = article.get_fans_num_by_uid(uid)
+    # 績分
+    score = article.get_article_score_by_uid(uid)
+
     return render_template('user_home.html',
                            articles_list=articles_list,
-                           user_info=user_info
+                           user_info=user_info,
+                           concern_num=concern_num,
+                           fans_num=fans_num,
+                           score=score
                            )

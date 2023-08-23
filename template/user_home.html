@@ -1,15 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="不良人互動社群"/>
+    <meta property="og:image" content="images/logo.png"/>
+    <meta property="og:description" content="挺有意思的社群-不良人互動社群"/>
+    <meta property="og:url" content="https://www.baidu.com"/>
+    <title>{{ user_info.nickname }}的主頁</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/new_article.css">
+    <link rel="stylesheet" href="css/personal.css">
+    <link rel="stylesheet" href="css/user_home.css">
+    <link rel="stylesheet" href="css/index.css">
+    <!--    <script src="plugins/ueditor-plus/ueditor.config.js"></script>-->
+    <!--    <script src="plugins/ueditor-plus/ueditor.all.js"></script>-->
+    <!--    <script src="plugins/ueditor-plus/lang/zh-cn/zh-cn.js"></script>-->
+    <script src="js/axios.min.js"></script>
+<!--    <script src="js/personal.js"></script>-->
+    <script src="js/header.js"></script>
+<!--    <script src="js/user_home.js"></script>-->
 </head>
 <body>
-<ul>
-    {% for article in articles_list %}
-        <li>{{ article.uid }}</li>
-    {% endfor %}
-    {{ user_info.username }}
-</ul>
+{% include 'common/header.html' %}
+<section class="personal-header">
+    <div class="center-wrap header-wrap flex-r">
+        <div class="header-left flex-r">
+            <div class="avatar">
+                <img src="{{ user_info.avatar }}" alt="">
+            </div>
+            <div class="info">
+                <div>{{ user_info.nickname }}</div>
+                <div>
+                    <span>
+                        {% if not user_info.gender %}性別未知{% elif user_info.gender == 'male' %}男{% elif user_info.gender == 'female' %}女{% else %}性別未知{% endif %}</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span
+                        >{{ user_info.slogan or '懶的寫個人簽名的說' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="header-right flex-r">
+            <div>
+                <div>關注</div>
+                <div>{{ concern_num }}</div>
+            </div>
+            <div>
+                <div>粉絲</div>
+                <div>{{ fans_num }}</div>
+            </div>
+            <div>
+                <div>績分</div>
+                <div>{{ score }}</div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    const $writeArticle = document.getElementById('writeArticle');
+
+    $writeArticle.onclick = function (e) {
+        location.href = '/article/new';
+    };
+</script>
+{% include 'common/modal.html' %}
 </body>
 </html>
