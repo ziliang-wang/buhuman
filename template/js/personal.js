@@ -96,7 +96,7 @@ window.onload = () => {
         }
     };
 
-    $gender2.onclick = function (){
+    $gender2.onclick = function () {
         if (this.checked) {
             genderValue = this.value;
             // console.log(genderValue);
@@ -128,6 +128,11 @@ window.onload = () => {
                     $errorModal.style.display = 'none';
                 }, 1500);
             }
+        }).catch(err => {
+            $errorModal.style.display = 'block';
+            setTimeout(() => {
+                $errorModal.style.display = 'none';
+            }, 1500);
         });
     };
 
@@ -157,6 +162,11 @@ window.onload = () => {
                     $errorModal.style.display = 'none';
                 }, 1500);
             }
+        }).catch(err => {
+            $errorModal.style.display = 'block';
+            setTimeout(() => {
+                $errorModal.style.display = 'none';
+            }, 1500);
         });
     };
 
@@ -171,7 +181,7 @@ window.onload = () => {
 
     let password = '';
 
-    $password1.onblur = function() {
+    $password1.onblur = function () {
         isPassword1 = !(this.value.trim() === '' || this.value.trim().length < 6);
         $pwdMsg.classList.remove('alter');
         if (!isPassword1) {
@@ -181,7 +191,7 @@ window.onload = () => {
         }
     };
 
-    $password2.onblur = function() {
+    $password2.onblur = function () {
         isPassword2 = !(this.value.trim() === '' || this.value.trim().length < 6);
         $pwdMsg.classList.remove('alter');
         if (!isPassword2) {
@@ -214,6 +224,11 @@ window.onload = () => {
                     $errorModal.style.display = 'none';
                 }, 1500);
             }
+        }).catch(err => {
+            $errorModal.style.display = 'block';
+            setTimeout(() => {
+                $errorModal.style.display = 'none';
+            }, 1500);
         });
     };
 
@@ -240,6 +255,11 @@ window.onload = () => {
                     location.reload();
                 }, 1500);
             }
+        }).catch(err => {
+            $errorModal.style.display = 'block';
+            setTimeout(() => {
+                $errorModal.style.display = 'none';
+            }, 1500);
         });
     };
     // job
@@ -258,12 +278,12 @@ window.onload = () => {
                     $successModal.style.display = 'none';
                     location.reload();
                 }, 1500);
-            } else {
-                $errorModal.style.display = 'block';
-                setTimeout(() => {
-                    $errorModal.style.display = 'none';
-                }, 1500);
             }
+        }).catch(err => {
+            $errorModal.style.display = 'block';
+            setTimeout(() => {
+                $errorModal.style.display = 'none';
+            }, 1500);
         });
     };
     // self introduce
@@ -288,6 +308,11 @@ window.onload = () => {
                     $errorModal.style.display = 'none';
                 }, 1500);
             }
+        }).catch(err => {
+            $errorModal.style.display = 'block';
+            setTimeout(() => {
+                $errorModal.style.display = 'none';
+            }, 1500);
         });
     };
     //

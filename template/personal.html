@@ -320,40 +320,11 @@
         </div>
     </div>
 </div>
-<script>
-    const $dataList = document.getElementById('dataList');
-    const $errorModal = document.querySelector('.error-modal');
-    const $errMsg = document.querySelector('.error-message');
-    $dataList.onclick = (e) => {
-        const self = e.target;
-        const aid = parseInt(self.getAttribute('data-aid'));
-        if (aid) {
-            // axios
-            const confirmResult = confirm('是否確認刪除？');
-            if (confirmResult) {
-                axios.post('/alter/article', {
-                    aid: aid
-                }).then(res => {
-                    // console.log(res.data);
-                    if (res.data.status === 8000) {
-                        location.reload();
-                    } else {
-                        $errorModal.style.display = 'block';
-                        $errMsg.innerHTML = '刪除失敗';
-                        setTimeout(() => {
-                            $errorModal.style.display = 'none';
-                        }, 1500);
-                    }
-                });
-            }
-        }
-    };
-</script>
 <!-- success modal -->
 <div class="success-modal">
     <div class="success flex-r">
         <i class="iconfont icon-chenggong"></i>
-        <i class="message">更新成功</i>
+        <i class="success-message">更新成功</i>
     </div>
 </div>
 <!-- error modal -->
@@ -370,5 +341,48 @@
         <i class="message">標題字數太少</i>
     </div>
 </div>
+<script>
+    const $dataList = document.getElementById('dataList');
+    const $errorModal = document.querySelector('.error-modal');
+    const $errMsg = document.querySelector('.error-message');
+    const $successModal = document.querySelector('.success-modal');
+    const $successMsg = document.querySelector('.success-message');
+
+    $dataList.onclick = (e) => {
+        const self = e.target;
+        const aid = parseInt(self.getAttribute('data-aid'));
+        if (aid) {
+            // axios
+            const confirmResult = confirm('是否確認刪除？');
+            if (confirmResult) {
+                axios.post('/alter/article', {
+                    aid: aid
+                }).then(res => {
+                    // console.log(res.data);
+                    if (res.data.status === 8000) {
+                        $successModal.style.display = 'block';
+                        $successMsg.innerHTML = '刪除成功';
+                        setTimeout(() => {
+                            $successModal.style.display = 'none';
+                            location.reload();
+                        }, 1500);
+                    } else {
+                        $errorModal.style.display = 'block';
+                        $errMsg.innerHTML = '刪除失敗';
+                        setTimeout(() => {
+                            $errorModal.style.display = 'none';
+                        }, 1500);
+                    }
+                }).catch(err => {
+                    $errorModal.style.display = 'block';
+                    $errMsg.innerHTML = '刪除失敗';
+                    setTimeout(() => {
+                        $errorModal.style.display = 'none';
+                    }, 1500);
+                });
+            }
+        }
+    };
+</script>
 </body>
 </html>
