@@ -321,7 +321,9 @@
     </div>
 </div>
 <script>
-    $dataList = document.getElementById('dataList');
+    const $dataList = document.getElementById('dataList');
+    const $errorModal = document.querySelector('.error-modal');
+    const $errMsg = document.querySelector('.error-message');
     $dataList.onclick = (e) => {
         const self = e.target;
         const aid = parseInt(self.getAttribute('data-aid'));
@@ -332,9 +334,15 @@
                 axios.post('/alter/article', {
                     aid: aid
                 }).then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     if (res.data.status === 8000) {
                         location.reload();
+                    } else {
+                        $errorModal.style.display = 'block';
+                        $errMsg.innerHTML = '刪除失敗';
+                        setTimeout(() => {
+                            $errorModal.style.display = 'none';
+                        }, 1500);
                     }
                 });
             }
@@ -352,7 +360,7 @@
 <div class="error-modal">
     <div class="error flex-r">
         <i class="iconfont icon-71shibai"></i>
-        <i class="message">更新失敗，請檢查網路並重試</i>
+        <i class="error-message">更新失敗，請檢查網路並重試</i>
     </div>
 </div>
 <!-- alert modal -->
