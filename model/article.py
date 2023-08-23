@@ -360,8 +360,16 @@ class Article(Base):
             return True
         return False
 
+    def get_article_list_by_uid(self, uid):
+        rows = db_session.query(Article).filter(
+            Article.uid == uid,
+            Article.drafted == 1,
+            Article.is_valid == 1
+        ).order_by(
+            Article.create_time.desc()
+        ).all()
 
-
+        return rows
 
 
 

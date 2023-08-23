@@ -271,3 +271,14 @@ def upload_random_header_image():
     result['title'] = newname
     result['original'] = newname
     return jsonify(result)
+
+
+@article.route('/u')
+def user_home():
+    uid = request.args.get('user')
+    articles_list = Article().get_article_list_by_uid(uid)
+    user_info = User().find_by_uid(uid)
+    return render_template('user_home.html',
+                           articles_list=articles_list,
+                           user_info=user_info
+                           )
