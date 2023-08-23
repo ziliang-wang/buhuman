@@ -240,12 +240,14 @@ class Article(Base):
             uid=uid,
             drafted=1,
             is_valid=1
+        ).order_by(
+            Article.create_time.desc()
         ).all()
 
         return self.add_article_image_path(rows)
 
     def get_collection_article_by_uid(self, uid):
-        # 當前用戶，收藏了哪些文章 我的文章
+        # 當前用戶，收藏了哪些文章
         rows = db_session.query(Article).join(
             Collection, Article.aid == Collection.aid
         ).filter(
