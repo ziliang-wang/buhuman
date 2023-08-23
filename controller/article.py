@@ -237,9 +237,11 @@ def upload_cover_image():
     newname = time.strftime('%Y%m%d_%H%M%S.' + suffix)
     newname = 'article-header-' + newname
 
-    f.save('template/upload/article-header/' + newname)
+    # f.save('template/upload/article-header/' + newname)
+    f.save('template/images/article/header/' + newname)
     # 壓縮圖片
-    source = dest = 'template/upload/article-header/' + newname
+    # source = dest = 'template/upload/article-header/' + newname
+    source = dest = 'template/images/article/header/' + newname
     compress_image(source, dest, 1200)
     # update database
     aid = request.form.get('aid')
@@ -247,7 +249,8 @@ def upload_cover_image():
 
     result = {}
     result['state'] = "SUCCESS"
-    result['url'] = '/upload/article-header/' + newname
+    # result['url'] = '/upload/article-header/' + newname
+    result['url'] = '/images/article/header/' + newname
     result['title'] = filename
     result['original'] = filename
     return jsonify(result)
