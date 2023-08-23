@@ -319,13 +319,14 @@ window.onload = () => {
     };
     // 字數統計
     const $words = document.getElementById('words');
-    $words.innerHTML = $self.value.length;
+    $words.innerHTML = $self.value.trim().length;
 
     $self.oninput = function () {
         $words.innerHTML = this.value.trim().length;
         if (this.value.length > 100) {
             $selfBtn.disabled = true;
             $selfBtn.style.backgroundColor = '#ccc';
+            $selfBtn.style.cursor = 'none';
             this.disabled = true;
         }
     };
