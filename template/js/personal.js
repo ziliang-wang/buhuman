@@ -319,7 +319,7 @@ window.onload = () => {
     };
     // 字數統計
     const $words = document.getElementById('words');
-    $words.innerHTML = '{{ user.introduce }}'.length;
+    $words.innerHTML = $self.value.length;
 
     $self.oninput = function () {
         $words.innerHTML = this.value.trim().length;
@@ -327,10 +327,6 @@ window.onload = () => {
             $selfBtn.disabled = true;
             $selfBtn.style.backgroundColor = '#ccc';
             this.disabled = true;
-        } else {
-            $selfBtn.disabled = false;
-            this.disabled = false;
-            $selfBtn.style.backgroundColor = '#3a87ad';
         }
     };
 
