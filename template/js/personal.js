@@ -11,6 +11,7 @@ window.onload = () => {
     const $tip = document.querySelector('.tip');
     // const $gender = document.querySelector('#gender');
     const $successModal = document.querySelector('.success-modal');
+    const $errorModal = document.querySelector('.error-modal');
 
     $menu.onclick = (e) => {
         const self = e.target;
@@ -120,7 +121,12 @@ window.onload = () => {
                 setTimeout(() => {
                     $successModal.style.display = 'none';
                     location.reload();
-                }, 2000);
+                }, 1500);
+            } else {
+                $errorModal.style.display = 'block';
+                setTimeout(() => {
+                    $errorModal.style.display = 'none';
+                }, 1500);
             }
         });
     };
@@ -144,7 +150,12 @@ window.onload = () => {
                 setTimeout(() => {
                     $successModal.style.display = 'none';
                     location.reload();
-                }, 2000);
+                }, 1500);
+            } else {
+                $errorModal.style.display = 'block';
+                setTimeout(() => {
+                    $errorModal.style.display = 'none';
+                }, 1500);
             }
         });
     };
@@ -197,6 +208,11 @@ window.onload = () => {
             if (res.data.status === 8000) {
                 $pwdMsg.classList.add('alter');
                 $pwdMsg.innerHTML = '密碼修改成功，下次登入時，請使用新密碼';
+            } else {
+                $errorModal.style.display = 'block';
+                setTimeout(() => {
+                    $errorModal.style.display = 'none';
+                }, 1500);
             }
         });
     };
@@ -213,7 +229,7 @@ window.onload = () => {
         axios.post('/alter/nickname', {
             nickname: nicknameValue
         }).then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.status === 8001) {
                 $nicknameMsg.innerHTML = '該匿稱已被人使用了喔，請再另取一個喔';
             } else {
@@ -222,7 +238,7 @@ window.onload = () => {
                 setTimeout(() => {
                     $successModal.style.display = 'none';
                     location.reload();
-                }, 2000);
+                }, 1500);
             }
         });
     };
@@ -241,12 +257,16 @@ window.onload = () => {
                 setTimeout(() => {
                     $successModal.style.display = 'none';
                     location.reload();
-                }, 2000);
+                }, 1500);
+            } else {
+                $errorModal.style.display = 'block';
+                setTimeout(() => {
+                    $errorModal.style.display = 'none';
+                }, 1500);
             }
         });
     };
     // self introduce
-    // job
     const $self = document.getElementById('self');
     const $selfBtn = document.getElementById('selfBtn');
 
@@ -261,7 +281,12 @@ window.onload = () => {
                 setTimeout(() => {
                     $successModal.style.display = 'none';
                     location.reload();
-                }, 2000);
+                }, 1500);
+            } else {
+                $errorModal.style.display = 'block';
+                setTimeout(() => {
+                    $errorModal.style.display = 'none';
+                }, 1500);
             }
         });
     };
