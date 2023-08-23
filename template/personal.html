@@ -279,12 +279,14 @@
             <button id="jobBtn">確認變更</button>
         </li>
         <li class="settings-item self-item">
-            <div class="slogan-title">自我簡介</div>
+            <div class="introduce-title">自我簡介</div>
+            <div class="introduce-words"><span id="words">0</span>/100</div>
             <div>
                 <textarea class="self" id="self">{{ user.introduce or '' | safe }}</textarea>
             </div>
             <div class=""></div>
             <button id="selfBtn">確認變更</button>
+            <button id="selfResetBtn">重置</button>
         </li>
         {% endif %}
     </ul>

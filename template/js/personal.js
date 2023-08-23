@@ -289,18 +289,20 @@ window.onload = () => {
     // self introduce
     const $self = document.getElementById('self');
     const $selfBtn = document.getElementById('selfBtn');
+    const $selfResetBtn = document.getElementById('selfResetBtn');
 
     $selfBtn.onclick = () => {
         const self = $self.value.trim();
         axios.post('/alter/introduce', {
             introduce: self
         }).then(res => {
-            // console.log(res.data);
+            console.log(res.data);
             if (res.data.status === 8000) {
+                $words.innerHTML = res.data.data.length;
                 $successModal.style.display = 'block';
                 setTimeout(() => {
                     $successModal.style.display = 'none';
-                    location.reload();
+                    location.reload(true);
                 }, 1500);
             } else {
                 $errorModal.style.display = 'block';
@@ -315,5 +317,29 @@ window.onload = () => {
             }, 1500);
         });
     };
-    //
+    // 字數統計
+    const $words = document.getElementById('words');
+    $words.innerHTML = '{{ user.introduce }}'.length;
+
+    $self.oninput = function () {
+        $words.innerHTML = this.value.trim().length;
+        if (this.value.length > 100) {
+            $selfBtn.disabled = true;
+            $selfBtn.style.backgroundColor = '#ccc';
+            this.disabled = true;
+        } else {
+            $selfBtn.disabled = false;
+            this.disabled = false;
+            $selfBtn.style.backgroundColor = '#3a87ad';
+        }
+    };
+
+    $selfResetBtn.onclick = () => {
+        $words.innerHTML = '0';
+        $self.focus();
+        $self.value = '';
+        $self.disabled = false;
+        $selfBtn.disabled = false;
+        $selfBtn.style.backgroundColor = '#3a87ad';
+    };
 };

@@ -250,7 +250,8 @@ def alter_introduce():
         uid = session.get('uid')
         introduce_result = User().alter_introduce(uid, introduce)
         return {
-            'status': 8000
+            'status': 8000,
+            'data': introduce_result
         }
     else:
         return {}

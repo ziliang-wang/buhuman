@@ -553,3 +553,15 @@ body {
     color: #aa1111;
     margin-right: 5px;
 }
+
+.introduce-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.introduce-words {
+    display: inline-block;
+    color: #9199a1;
+}
