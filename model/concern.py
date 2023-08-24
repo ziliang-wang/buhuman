@@ -1,5 +1,5 @@
 from sqlalchemy import Table, or_
-from sqlalchemy.sql.functions import sum
+from sqlalchemy.sql.functions import sum, func
 
 from common.database import db_connect
 from app.config.config import config
@@ -49,5 +49,32 @@ class Concern(Base):
         if not concerned:
             return 0
         return concerned[0]
+
+    def find_top_concerned_uid(self):
+        # SELECT tid, count(*) from concern GROUP BY tid limit 1;
+        row = db_session.query(Concern).filter(
+            Concern.concerned == 1,
+            Concern.is_valid == 1
+        ).group_by(
+            Concern.tid
+        ).order_by(func.count(Concern.tid).desc()).first()
+
+        return row
+
+    def get_concerning_list_by_tid(self, tid):
+        # SELECT distinct user.* FROM concern
+        # join user
+        # on concern.fid=user.uid
+        # -- GROUP BY concern.tid
+        # WHERE concern.tid =
+        rows = db_session.query(User, Concern).join(
+            User, Concern.fid == User.uid
+        ).filter(
+            Concern.tid == tid,
+            User.is_valid == 1,
+        ).all()
+        # for user, concern in rows:
+        #     print(user.uid)
+        return rows
 
 

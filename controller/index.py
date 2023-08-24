@@ -3,6 +3,8 @@ from model.article import Article
 from app.config.config import config
 from app.settings import env
 from model.collection import Collection
+from model.concern import Concern
+from model.user import User
 
 index = Blueprint('index', __name__)
 
@@ -91,7 +93,7 @@ def home():
         curr_uid = session.get('uid')
     else:
         curr_uid = None
-    print(curr_uid)
+    # print(curr_uid)
 
     for article, nickname in db_result:
         if curr_uid:
@@ -117,6 +119,14 @@ def home():
         else:
             v['selected'] = 'no-selected'
 
+    # -- 哪个uid的粉丝最多？
+    # SELECT tid, count(*) from concern GROUP BY tid limit 1;
+    concern = Concern()
+    top_concerned = concern.find_top_concerned_uid()
+    top_concerned_user = User().find_by_uid(top_concerned.tid)
+
+    concerning_list = concern.get_concerning_list_by_tid(top_concerned.tid)
+
     return render_template(
         'index.html',
         result=db_result,
@@ -129,5 +139,7 @@ def home():
         spage=spage,
         keyword=keyword,
         search_count=len(search_total_rows),
-        article_count=len(total_rows)
+        article_count=len(total_rows),
+        concerning_list=concerning_list,
+        top_concerned_user=top_concerned_user
     )
