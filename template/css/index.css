@@ -301,7 +301,12 @@
 /*    margin-right: 5px;*/
 /*}*/
 .content-wrapper .article-wrapper .ranking-container .rank-left .fans-container .avatar-list {
-
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    /*max-width: 50%;*/
+    /*flex: 1;*/
 }
 
 
@@ -315,10 +320,14 @@
 }
 
 .content-wrapper .article-wrapper .ranking-container .rank-left .fans-container .viewers,
-.content-wrapper .article-wrapper .ranking-container .rank-right .fans-container .viewers{
-    margin-left: 5px;
+.content-wrapper .article-wrapper .ranking-container .rank-right .fans-container .viewers {
+    /*margin-left: 5px;*/
     font-size: 12px;
     color: #9199a1;
+    /*flex: 1;*/
+    line-height: 25px;
+    /*width: 50%;*/
+    /*text-align: left;*/
 }
 
 .content-wrapper .article-wrapper .search-result > div > span {

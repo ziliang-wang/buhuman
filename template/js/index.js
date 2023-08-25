@@ -76,6 +76,10 @@ window.onload = () => {
     // get top1 concerning avatar
     axios.get('/get/top1').then(res => {
         let leftOffset = 0;
+        const span = document.createElement('span');
+        span.innerHTML = '正在關注';
+        span.className = 'viewers';
+
         if (res.data.status === 9000) {
             let avatarList = res.data.data;
             for (let i =0; i < avatarList.length; i++) {
@@ -89,8 +93,11 @@ window.onload = () => {
                 }
 
                 img.style.left = leftOffset + 'px';
+
                 $top1AvatarList.appendChild(img);
             }
+            span.style.marginLeft = (leftOffset * 3) + 'px';
+            $top1AvatarList.appendChild(span);
         }
     });
 
