@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, request, session
+
+from common.utils import model_to_json
 from model.article import Article
 from app.config.config import config
 from app.settings import env
@@ -143,3 +145,19 @@ def home():
         concerning_list=concerning_list,
         top_concerned_user=top_concerned_user
     )
+
+
+@index.route('/get/top1')
+def get_top1():
+    concerning_list = []
+    concern = Concern()
+    top_concerned = concern.find_top_concerned_uid()
+    concerning_tmp_list = concern.get_concerning_list_by_tid(top_concerned.tid)
+
+    for user, concern in concerning_tmp_list:
+        concerning_list.append(model_to_json(user)['avatar'])
+
+    return {
+        'status': 9000,
+        'data': concerning_list
+    }

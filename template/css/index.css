@@ -300,6 +300,10 @@
 /*.content-wrapper .article-wrapper .ranking-container .rank-left .fans-container .avatar-list {*/
 /*    margin-right: 5px;*/
 /*}*/
+.content-wrapper .article-wrapper .ranking-container .rank-left .fans-container .avatar-list {
+
+}
+
 
 .content-wrapper .article-wrapper .ranking-container .rank-left .fans-container .avatar-list img {
     width: 25px;

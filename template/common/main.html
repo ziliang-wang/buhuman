@@ -9,11 +9,9 @@
                 {{ top_concerned_user.introduce or '暫無簡介' }}
             </div>
             <div class="fans-container flex-r">
-                {% for user, concern in concerning_list %}
-                    <span class="avatar-list">
-                        <img src="/images/headers/{{ user.avatar }}" alt="">
-                    </span>
-                {% endfor %}
+                <div class="avatar-list" id="top1AvatarList">
+
+                </div>
                 <div class="viewers">{{ '用戶正在圍觀' if concerning_list else '' }}</div>
             </div>
         </div>

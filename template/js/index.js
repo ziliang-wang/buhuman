@@ -71,6 +71,12 @@ window.onload = () => {
     let keepDays = 0;
     let action = '';
 
+    // get top1 concerning avatar
+    axios.get('/get/top1').then(res => {
+        console.log(res);
+    });
+
+
     if (window.isLogin === 'true') {
         const $avatar = document.querySelector('.avatar');
         $avatar.onclick = () => {
