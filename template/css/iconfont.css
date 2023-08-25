@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('../fonts/iconfont.ttf?t=1692711098220') format('truetype');
+  src: url('../fonts/iconfont.ttf?t=1692948634497') format('truetype');
 }
 
 .iconfont {
@@ -37,6 +37,10 @@
 
 .icon-weibo:before {
   content: "\e62e";
+}
+
+.icon-wechat:before {
+  content: "\e891";
 }
 
 .icon-shoucang:before {
@@ -95,12 +99,20 @@
   content: "\e630";
 }
 
+.icon-wechat1:before {
+  content: "\e618";
+}
+
 .icon-dianzan:before {
   content: "\e510";
 }
 
 .icon-shangjiantou2:before {
   content: "\e606";
+}
+
+.icon-line1:before {
+  content: "\e6fb";
 }
 
 .icon-tuite:before {

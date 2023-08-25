@@ -1,6 +1,6 @@
 <main class="article-wrapper">
     <div class="ranking-container flex-r">
-        <div class="rank-left">
+        <div class="rank-left" id="top1">
             <div class="rank-left-title flex-r">
                 <span>{{ top_concerned_user.nickname }} 說</span>
                 <span class="hot">熱議中</span>
@@ -15,17 +15,15 @@
         </div>
         <div class="rank-right">
             <div class="rank-right-title flex-r">
-                <span>Jonas 說</span>
+                <span>{{ band_data.nickname or '暫無數據' }} 說</span>
                 <span class="hot">活動</span>
             </div>
             <div class="rank-content">
-                好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子
-                好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子
-                好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子好日子
+                {{ band_data.article_content or '暫無數據' }}
             </div>
-            <div class="fans-container flex-r">
-                <div class="viewers">用戶正在圍觀</div>
-            </div>
+<!--            <div class="fans-container flex-r">-->
+<!--                <div class="viewers">用戶正在圍觀</div>-->
+<!--            </div>-->
         </div>
     </div>
     {% if is_search %}

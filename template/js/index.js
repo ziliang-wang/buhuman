@@ -93,7 +93,6 @@ window.onload = () => {
                 }
 
                 img.style.left = leftOffset + 'px';
-
                 $top1AvatarList.appendChild(img);
             }
             span.style.marginLeft = (leftOffset * 3) + 'px';

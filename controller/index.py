@@ -12,7 +12,7 @@ index = Blueprint('index', __name__)
 
 label_types = {
     'recommend': {
-        'name': '推薦',
+        'name': '全部',
         'selected': 'selected'
     },
     'auto_test': {
@@ -37,6 +37,10 @@ label_types = {
     },
     'funny': {
         'name': '幽默段子',
+        'selected': 'no-selected'
+    },
+    'band': {
+        'name': '樂團活動',
         'selected': 'no-selected'
     },
 }
@@ -128,6 +132,8 @@ def home():
     top_concerned_user = User().find_by_uid(top_concerned.tid)
 
     concerning_list = concern.get_concerning_list_by_tid(top_concerned.tid)
+    # band data
+    band_data = article.get_band_data()
 
     return render_template(
         'index.html',
@@ -143,7 +149,8 @@ def home():
         search_count=len(search_total_rows),
         article_count=len(total_rows),
         concerning_list=concerning_list,
-        top_concerned_user=top_concerned_user
+        top_concerned_user=top_concerned_user,
+        band_data=band_data
     )
 
 

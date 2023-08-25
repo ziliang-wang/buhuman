@@ -73,7 +73,7 @@ class Article(Base):
                 # Article.label_name == 'java',
                 Article.drafted == 1,
                 Article.is_valid == 1).order_by(
-                Article.browse_num.desc()
+                Article.create_time.desc()
             ).offset((page - 1) * count).limit(count).all()
             # ).limit(count).all()
         else:
@@ -371,5 +371,14 @@ class Article(Base):
 
         return rows
 
+    def get_band_data(self):
+        row = db_session.query(Article, User.nickname).join(
+            User, User.uid == Article.uid).filter(
+            Article.label_name == 'band',
+            Article.is_valid == 1,
+            Article.drafted == 1
+        ).order_by(
+            Article.create_time.desc()
+        ).limit(1).first()
 
-
+        return row
