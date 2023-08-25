@@ -155,7 +155,7 @@ def get_top1():
     concerning_tmp_list = concern.get_concerning_list_by_tid(top_concerned.tid)
 
     for user, concern in concerning_tmp_list:
-        concerning_list.append(model_to_json(user)['avatar'])
+        concerning_list.append('/images/headers/' + model_to_json(user)['avatar'])
 
     return {
         'status': 9000,

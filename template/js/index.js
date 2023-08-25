@@ -71,9 +71,27 @@ window.onload = () => {
     let keepDays = 0;
     let action = '';
 
+    const $top1AvatarList = document.getElementById('top1AvatarList');
+
     // get top1 concerning avatar
     axios.get('/get/top1').then(res => {
-        console.log(res);
+        let leftOffset = 0;
+        if (res.data.status === 9000) {
+            let avatarList = res.data.data;
+            for (let i =0; i < avatarList.length; i++) {
+                const img = document.createElement('img');
+                img.src = avatarList[i];
+
+                if (i === 0) {
+                    leftOffset += 0;
+                } else {
+                    leftOffset += 15;
+                }
+
+                img.style.left = leftOffset + 'px';
+                $top1AvatarList.appendChild(img);
+            }
+        }
     });
 
 
