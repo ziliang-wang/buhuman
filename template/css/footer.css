@@ -37,16 +37,25 @@
 
 .footer-container .footer-inner .line-feedback-modal {
     position: absolute;
-    width: 200px;
-    height: 200px;
-    top: -130px;
-    left: 0;
+    width: 150px;
+    height: 150px;
+    top: -180px;
+    left: -30px;
     display: none;
+    background-color: #6f4627;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+}
+
+.footer-container .footer-inner .line-feedback-modal .desc {
+    /*color: #fff;*/
+    /*text-align: center;*/
 }
 
 .footer-container .footer-inner .line-feedback-modal > img {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 
 
