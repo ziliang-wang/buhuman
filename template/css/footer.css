@@ -1,0 +1,52 @@
+.footer-container {
+    height: 100px;
+    background-color: #545c63;
+    /*position: relative;*/
+}
+
+.footer-container .footer-inner {
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-container .footer-inner .copyright {
+    color: #fff;
+}
+
+.footer-container .footer-inner .line-feedback,
+.footer-container .footer-inner .line-wechat {
+    /*color: #fff;*/
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    /*color: #fff;*/
+}
+
+.footer-container .footer-inner .line-feedback {
+    margin: 0 20px;
+}
+
+.footer-container .footer-inner .line-container {
+    position: relative;
+}
+
+.footer-container .footer-inner .line-container:hover .line-feedback-modal {
+    display: block;
+}
+
+.footer-container .footer-inner .line-feedback-modal {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: -130px;
+    left: 0;
+    display: none;
+}
+
+.footer-container .footer-inner .line-feedback-modal > img {
+    width: 100px;
+    height: 100px;
+}
+
+
