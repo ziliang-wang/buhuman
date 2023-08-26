@@ -1,11 +1,12 @@
 .footer-container {
-    height: 100px;
+    height: 70px;
     background-color: #545c63;
+    margin-top: 20px;
     /*position: relative;*/
 }
 
 .footer-container .footer-inner {
-    height: 100px;
+    height: 70px;
     align-items: center;
     justify-content: center;
 }
@@ -46,11 +47,6 @@
     border-radius: 5px;
     text-align: center;
     color: #fff;
-}
-
-.footer-container .footer-inner .line-feedback-modal .desc {
-    /*color: #fff;*/
-    /*text-align: center;*/
 }
 
 .footer-container .footer-inner .line-feedback-modal > img {
