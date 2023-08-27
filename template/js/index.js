@@ -100,6 +100,11 @@ window.onload = () => {
         }
     });
 
+    // const $top1 = document.getElementById('top1');
+    // $top1.onclick = () => {
+    //     location.href = ''
+    // };
+
 
     if (window.isLogin === 'true') {
         const $avatar = document.querySelector('.avatar');

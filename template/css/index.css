@@ -231,6 +231,10 @@
     margin-bottom: 15px;
 }
 
+/*.content-wrapper .article-wrapper .ranking-container > a {*/
+/*    display: block;*/
+/*}*/
+
 .content-wrapper .article-wrapper .ranking-container .rank-left,
 .content-wrapper .article-wrapper .ranking-container .rank-right {
     height: 200px;

@@ -1,17 +1,19 @@
 <main class="article-wrapper">
     <div class="ranking-container flex-r">
         <div class="rank-left" id="top1">
-            <div class="rank-left-title flex-r">
-                <span>{{ top_concerned_user.nickname }} 說</span>
-                <span class="hot">熱議中</span>
-            </div>
-            <div class="rank-content">
-                {{ top_concerned_user.introduce or '暫無簡介' }}
-            </div>
-            <div class="fans-container">
-                <div class="avatar-list" id="top1AvatarList">
+            <a href="/u?user={{ top_concerned_user.uid }}">
+                <div class="rank-left-title flex-r">
+                    <span>{{ top_concerned_user.nickname }} 說</span>
+                    <span class="hot">熱議中</span>
                 </div>
-            </div>
+                <div class="rank-content">
+                    {{ top_concerned_user.introduce or '暫無簡介' }}
+                </div>
+                <div class="fans-container">
+                    <div class="avatar-list" id="top1AvatarList">
+                    </div>
+                </div>
+            </a>
         </div>
         <div class="rank-right">
             <div class="rank-right-title flex-r">
@@ -21,9 +23,9 @@
             <div class="rank-content">
                 {{ band_data.article_content or '暫無數據' }}
             </div>
-<!--            <div class="fans-container flex-r">-->
-<!--                <div class="viewers">用戶正在圍觀</div>-->
-<!--            </div>-->
+            <!--            <div class="fans-container flex-r">-->
+            <!--                <div class="viewers">用戶正在圍觀</div>-->
+            <!--            </div>-->
         </div>
     </div>
     {% if is_search %}

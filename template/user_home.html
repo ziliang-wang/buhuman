@@ -21,8 +21,8 @@
     <!--    <script src="plugins/ueditor-plus/ueditor.all.js"></script>-->
     <!--    <script src="plugins/ueditor-plus/lang/zh-cn/zh-cn.js"></script>-->
     <script src="js/axios.min.js"></script>
-<!--    <script src="js/personal.js"></script>-->
-    <script src="js/user_home.js"></script>
+    <!--    <script src="js/personal.js"></script>-->
+<!--    <script src="js/user_home.js"></script>-->
     <script src="js/header.js"></script>
     <!--    <script src="js/personal.js"></script>-->
 </head>
@@ -39,13 +39,13 @@
                 <div>
                     <span>
                         {% if not user_info.gender %}性別未知{% elif user_info.gender == 'male' %}男{% elif user_info.gender == 'female' %}女{% else %}性別未知{% endif %}</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span
-                        >{{ user_info.slogan or '懶的寫個人簽名的說' }}
+                >{{ user_info.slogan or '懶的寫個人簽名的說' }}
                     </span>
                 </div>
             </div>
             <div class="self-intro">
-<!--                葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉-->
-<!--                葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉-->
+                <!--                葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉-->
+                <!--                葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉-->
                 {{ user_info.introduce | safe or '暫無簡介' }}
             </div>
         </div>
@@ -53,8 +53,11 @@
 </section>
 <section class="tabs center-wrap">
     <ul class="flex-r" id="menu">
-        <li data-tab="article" data-uid="{{ user_info.uid }}" class="{{ 'active' if active == 'article' else '' }}">文章 ({{ data_list | length }})</li>
-        <li data-tab="course" data-uid="{{ user_info.uid }}" class="{{ 'active' if active == 'course' else '' }}">課程</li>
+        <li data-tab="article" data-uid="{{ user_info.uid }}" class="{{ 'active' if active == 'article' else '' }}">文章
+            ({{ data_list | length }})
+        </li>
+        <li data-tab="course" data-uid="{{ user_info.uid }}" class="{{ 'active' if active == 'course' else '' }}">課程
+        </li>
     </ul>
 </section>
 <section class="content center-wrap">
@@ -142,6 +145,18 @@
     // console.log($writeArticle);
     $writeArticle.onclick = function (e) {
         location.href = '/article/new';
+    };
+
+    const $menu = document.getElementById('menu');
+
+    $menu.onclick = (e) => {
+        const self = e.target;
+        const tabName = self.getAttribute('data-tab');
+        const uid = self.getAttribute('data-uid');
+
+        if (tabName) {
+            location.href = `/u?user=${uid}&type=${tabName}`;
+        }
     };
 </script>
 {% include 'common/modal.html' %}
