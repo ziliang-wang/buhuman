@@ -5,9 +5,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta property="og:title" content="不良人互動社群"/>
+    <meta property="og:title" content="葉書-有意思的創作社群"/>
     <meta property="og:image" content="images/logo.png"/>
-    <meta property="og:description" content="挺有意思的社群-不良人互動社群"/>
+    <meta property="og:description" content="葉書-有意思的創作社群"/>
     <meta property="og:url" content="https://www.baidu.com"/>
     <title>{{ user_info.nickname }}的主頁</title>
     <link rel="stylesheet" href="css/base.css">
@@ -22,8 +22,9 @@
     <!--    <script src="plugins/ueditor-plus/lang/zh-cn/zh-cn.js"></script>-->
     <script src="js/axios.min.js"></script>
 <!--    <script src="js/personal.js"></script>-->
+    <script src="js/user_home.js"></script>
     <script src="js/header.js"></script>
-<!--    <script src="js/user_home.js"></script>-->
+    <!--    <script src="js/personal.js"></script>-->
 </head>
 <body>
 {% include 'common/header.html' %}
@@ -34,7 +35,7 @@
                 <img src="{{ user_info.avatar }}" alt="">
             </div>
             <div class="info">
-                <div>{{ user_info.nickname }}</div>
+                <div>{{ user_info.nickname }}&nbsp;&nbsp;<span>{{ user_info.job }}</span></div>
                 <div>
                     <span>
                         {% if not user_info.gender %}性別未知{% elif user_info.gender == 'male' %}男{% elif user_info.gender == 'female' %}女{% else %}性別未知{% endif %}</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span
@@ -42,26 +43,103 @@
                     </span>
                 </div>
             </div>
-        </div>
-        <div class="header-right flex-r">
-            <div>
-                <div>關注</div>
-                <div>{{ concern_num }}</div>
-            </div>
-            <div>
-                <div>粉絲</div>
-                <div>{{ fans_num }}</div>
-            </div>
-            <div>
-                <div>績分</div>
-                <div>{{ score }}</div>
+            <div class="self-intro">
+<!--                葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉-->
+<!--                葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉-->
+                {{ user_info.introduce | safe or '暫無簡介' }}
             </div>
         </div>
     </div>
 </section>
+<section class="tabs center-wrap">
+    <ul class="flex-r" id="menu">
+        <li data-tab="article" data-uid="{{ user_info.uid }}" class="{{ 'active' if active == 'article' else '' }}">文章 ({{ data_list | length }})</li>
+        <li data-tab="course" data-uid="{{ user_info.uid }}" class="{{ 'active' if active == 'course' else '' }}">課程</li>
+    </ul>
+</section>
+<section class="content center-wrap">
+    <ul class="content-list" id="dataList">
+        {% if active == 'article' %}
+        {% if data_list %}
+        {% for item in data_list %}
+        <li>
+            <div class="row1 flex-r">
+                <a href="/detail?aid={{ item.aid }}" class="title">
+                    {{ item.title }}
+                    <span class="type">
+                                        {% if item.article_type == 'first' %}
+                                            首發
+                                        {% elif item.article_type == 'original' %}
+                                            原創
+                                        {% elif item.article_type == 'share' %}
+                                            分享
+                                        {% elif item.article_type == 'recommend' %}
+                                            推薦
+                                        {% elif item.article_type == 'other' %}
+                                            其它
+                                        {% else %}
+                                            原創
+                                        {% endif %}
+                                </span>
+                </a>
+                <div class="row1-right flex-r">
+                    <div class="article-browse">{{ item.browse_num }}瀏覽</div>
+                </div>
+            </div>
+            <div class="row2 flex-r">
+                <img class="article-image" src="/images/article/header/{{ item.article_image }}" alt="">
+                <div class="article-content">{{ item.article_content | safe }}</div>
+            </div>
+        </li>
+        {% endfor %}
+        {% else %}
+        <div class="no-collection">
+            作者還沒有任何創作
+        </div>
+        {% endif %}
+        {% elif active == 'course' %}
+        {% if data_list %}
+        {% for item in data_list %}
+        <li>
+            <div class="row1 flex-r">
+                <a href="/detail?aid={{ item.aid }}" class="title">
+                    {{ item.title }}
+                    <span class="type">
+                                        {% if item.article_type == 'first' %}
+                                            首發
+                                        {% elif item.article_type == 'original' %}
+                                            原創
+                                        {% elif item.article_type == 'share' %}
+                                            分享
+                                        {% elif item.article_type == 'recommend' %}
+                                            推薦
+                                        {% elif item.article_type == 'other' %}
+                                            其它
+                                        {% else %}
+                                            原創
+                                        {% endif %}
+                                </span>
+                </a>
+                <div class="article-browse">{{ item.browse_num }}瀏覽</div>
+            </div>
+            <div class="row2 flex-r">
+                <img class="article-image" src="{{ item.article_image }}" alt="">
+                <div class="article-content">{{ item.article_content | safe }}</div>
+            </div>
+        </li>
+        {% endfor %}
+        {% else %}
+        <div class="no-collection">
+            作者沒有任何課程
+        </div>
+        {% endif %}
+        {% endif %}
+    </ul>
+</section>
+
 <script>
     const $writeArticle = document.getElementById('writeArticle');
-
+    // console.log($writeArticle);
     $writeArticle.onclick = function (e) {
         location.href = '/article/new';
     };

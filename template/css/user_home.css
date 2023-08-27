@@ -1,6 +1,42 @@
+.personal-header .header-left {
+
+}
+
+.personal-header .header-left .avatar {
+    /*width: 20% !important;*/
+    flex: 1 !important;
+}
+
+.personal-header .header-left .info {
+    flex: 2 !important;
+}
+
+.personal-header .header-left .self-intro {
+    /*width: 60%;*/
+    /*justify-content: center;*/
+    flex: 3 !important;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.personal-header .header-right {
+    width: 0 !important;
+}
+
 .user-home-footer {
     position: fixed;
     width: 100%;
     left: 0;
     bottom: 0;
+}
+
+.row1-right {
+    width: 100% !important;
+    /*justify-content: space-between !important;*/
+    /*text-align: right !important;*/
 }
