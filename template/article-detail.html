@@ -407,7 +407,7 @@
                         <div class="comment-item-right-info flex-r">
                             <div class="comment-item-right-action flex-r">
                                 <div class="action-praise">
-                                    <i class="iconfont icon-dianzan" data-reply="{{ comment_item.id }}"></i>
+                                    <i id="praiseComment" class="iconfont icon-dianzan" data-reply="{{ comment_item.id }}"></i>
                                     <span class="dianzan-num">4</span>
                                 </div>
                                 <div class="action-reply" data-isLogin="{{ session.get('is_login') }}"
@@ -745,6 +745,33 @@
                 });
             }
         };
+    </script>
+    <script>
+        // praise comment mounted
+        // isLogin = $praise.getAttribute('data-isLogin');
+        const $praiseComment = document.getElementById('praiseComment');
+        const $dianzanNum = document.querySelector('.dianzan-num');
+
+        // console.log($praiseComment);
+
+        cid = $praiseComment.getAttribute('data-reply');
+
+        axios.get('/praise/comment/status', {
+            params: {
+                cid: cid
+            }
+        }).then(res => {
+            if (res.data.status === 4000) {
+                // console.log(res.data);
+                praised = res.data.praised;
+                if (praised) {
+                    $praiseComment.classList.add('alter');
+                } else {
+                    $praiseComment.classList.remove('alter');
+                }
+                $dianzanNum.innerHTML = res.data.praisedNum;
+            }
+        });
     </script>
 </section>
 {% include 'common/modal.html' %}

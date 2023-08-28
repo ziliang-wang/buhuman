@@ -86,7 +86,7 @@ window.onload = () => {
         };
     }
 
-    console.log(document.querySelector('.avatar'));
+    // console.log(document.querySelector('.avatar'));
 
     $loginAccount.onblur = function () {
         const loginAccount = this.value;

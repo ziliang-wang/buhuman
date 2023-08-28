@@ -818,6 +818,10 @@ body {
     border: none;
 }
 
+#praiseComment.alter {
+    color: #6f4627;
+    font-weight: bold;
+}
 
 
 /*.detail-container .detail-wrap .detail-comment .comment-item > .comment-reply .reply-reply {*/
