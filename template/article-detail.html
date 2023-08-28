@@ -53,7 +53,7 @@
                             </div>
                         </li>
                         <li class="side-collection-container">
-                            <i class="iconfont icon-shoucangxuanzhong icon-collection" id="sideCollectionIcon"></i>
+                            <i class="iconfont icon-shoucangxuanzhong icon-collection" id="sideCollectionIcon" data-isLogin="{{ session.get('is_login') }}"></i>
                             <div class="side-collection" id="sideCollection">
                                 {{ collected_num or '收藏' }}
                             </div>
