@@ -676,8 +676,22 @@ window.onload = () => {
         const self = e.target;
         const isLogin = self.getAttribute('data-isLogin');
         const currElem = self.getAttribute('data-reply');
+        const pid = self.getAttribute('data-pid');
 
         if (currElem) {
+            if (isLogin !== 'true') {
+                // console.log('未登入')
+                $maskLoginModal.style.display = 'block';
+                $loginAccount.focus();
+                $loginAccountMsg.innerHTML = '';
+                $loginPwdMsg.innerHTML = '';
+                $vcodeMsg.innerHTML = '';
+                $imageCode.src = '/vcode?' + Math.random();
+                // return false;
+            }
+        }
+
+        if (pid) {
             if (isLogin !== 'true') {
                 // console.log('未登入')
                 $maskLoginModal.style.display = 'block';

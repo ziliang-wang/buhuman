@@ -409,9 +409,9 @@
                             <div class="comment-item-right-action flex-r">
                                 <div class="action-praise"
                                      data-pid="{{ comment_item.id }}" data-isLogin="{{ session.get('is_login') }}">
-                                    <i id="praise{{ comment_item.id }}" class="iconfont icon-dianzan" data-pid="{{ comment_item.id }}"></i>
+                                    <i id="praise{{ comment_item.id }}" class="iconfont icon-dianzan" data-pid="{{ comment_item.id }}" data-isLogin="{{ session.get('is_login') }}"></i>
                                     <span id="praiseNum{{ comment_item.id }}" class="dianzan-num"
-                                          data-pid="{{ comment_item.id }}">4</span>
+                                          data-pid="{{ comment_item.id }}" data-isLogin="{{ session.get('is_login') }}">4</span>
                                 </div>
                                 <div class="action-reply" data-isLogin="{{ session.get('is_login') }}"
                                      onclick="this.getAttribute('data-isLogin') === 'true' ? showReply('{{comment_item.id}}', '{{comment_item.uid}}', '{{comment_item.aid}}', '{{comment_item.nickname}}', '{{comment_item.id}}') : false;"
