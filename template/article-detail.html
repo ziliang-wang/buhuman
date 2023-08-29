@@ -392,7 +392,9 @@
                 <div class="comment-item flex-r">
                     <div class="comment-item-left">
                         <div class="comment-item-left-avatar">
-                            <img src="{{ comment_item.avatar }}" alt="">
+                            <a href="/u?user={{ comment_item.uid }}">
+                                <img src="{{ comment_item.avatar }}" alt="">
+                            </a>
                         </div>
                         <div class="comment-item-left-floor">
                             {{ comment_item.floor_number }}樓
@@ -400,7 +402,7 @@
                     </div>
                     <div class="comment-item-right">
                         <div class="comment-item-right-author">
-                            {{ comment_item.nickname }}
+                            <a href="/u?user={{ comment_item.uid }}">{{ comment_item.nickname }}</a>
                         </div>
                         <div class="comment-item-right-content">
                             <span>{{ comment_item.content | safe }}</span>
@@ -428,14 +430,20 @@
                     <div class="comment-reply flex-r">
                         <div class="comment-item-left">
                             <div class="comment-item-left-avatar">
-                                <img src="{{ reply_item.from.avatar }}" alt="">
+                                <a href="/u?user={{ reply_item.from.uid }}">
+                                    <img src="{{ reply_item.from.avatar }}" alt="">
+                                </a>
                             </div>
                         </div>
                         <div class="comment-item-right">
                             <div class="comment-item-right-author">
-                                <span>{{ reply_item.from.nickname }}</span>
+                                <a href="/u?user={{ reply_item.from.uid }}">
+                                    <span>{{ reply_item.from.nickname }}</span>
+                                </a>
                                 <span class="reply-author"> 回覆 </span>
-                                <span>{{ reply_item.to.nickname }}</span>
+                                <a href="/u?user={{ reply_item.to.uid }}">
+                                    <span>{{ reply_item.to.nickname }}</span>
+                                </a>
                             </div>
                             <div class="comment-item-right-content reply-content">
                                 <span>{{ reply_item.content.content | safe }}</span>
