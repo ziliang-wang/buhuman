@@ -691,22 +691,22 @@ window.onload = () => {
         }
     };
     // praise comment
-    const $praiseComment = document.getElementById('praiseComment');
-
-    $praiseComment.onclick = function (e) {
-        e.stopPropagation();
-
-        const isLogin = this.getAttribute('data-isLogin');
-        // console.log('isLogin', isLogin);
-
-        if (isLogin !== 'true') {
-            // console.log('未登入')
-            $maskLoginModal.style.display = 'block';
-            $loginAccount.focus();
-            $loginAccountMsg.innerHTML = '';
-            $loginPwdMsg.innerHTML = '';
-            $vcodeMsg.innerHTML = '';
-            $imageCode.src = '/vcode?' + Math.random();
-        }
-    }
+    // const $praiseComment = document.getElementById('praiseComment');
+    //
+    // $praiseComment.onclick = function (e) {
+    //     e.stopPropagation();
+    //
+    //     const isLogin = this.getAttribute('data-isLogin');
+    //     // console.log('isLogin', isLogin);
+    //
+    //     if (isLogin !== 'true') {
+    //         // console.log('未登入')
+    //         $maskLoginModal.style.display = 'block';
+    //         $loginAccount.focus();
+    //         $loginAccountMsg.innerHTML = '';
+    //         $loginPwdMsg.innerHTML = '';
+    //         $vcodeMsg.innerHTML = '';
+    //         $imageCode.src = '/vcode?' + Math.random();
+    //     }
+    // }
 };

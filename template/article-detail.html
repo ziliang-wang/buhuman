@@ -53,7 +53,8 @@
                             </div>
                         </li>
                         <li class="side-collection-container">
-                            <i class="iconfont icon-shoucangxuanzhong icon-collection" id="sideCollectionIcon" data-isLogin="{{ session.get('is_login') }}"></i>
+                            <i class="iconfont icon-shoucangxuanzhong icon-collection" id="sideCollectionIcon"
+                               data-isLogin="{{ session.get('is_login') }}"></i>
                             <div class="side-collection" id="sideCollection">
                                 {{ collected_num or '收藏' }}
                             </div>
@@ -406,9 +407,11 @@
                         </div>
                         <div class="comment-item-right-info flex-r">
                             <div class="comment-item-right-action flex-r">
-                                <div class="action-praise" id="praiseComment" data-reply="{{ comment_item.id }}" data-isLogin="{{ session.get('is_login') }}">
-                                    <i class="iconfont icon-dianzan"></i>
-                                    <span class="dianzan-num">4</span>
+                                <div class="action-praise"
+                                     data-pid="{{ comment_item.id }}" data-isLogin="{{ session.get('is_login') }}">
+                                    <i id="praise{{ comment_item.id }}" class="iconfont icon-dianzan" data-pid="{{ comment_item.id }}"></i>
+                                    <span id="praiseNum{{ comment_item.id }}" class="dianzan-num"
+                                          data-pid="{{ comment_item.id }}">4</span>
                                 </div>
                                 <div class="action-reply" data-isLogin="{{ session.get('is_login') }}"
                                      onclick="this.getAttribute('data-isLogin') === 'true' ? showReply('{{comment_item.id}}', '{{comment_item.uid}}', '{{comment_item.aid}}', '{{comment_item.nickname}}', '{{comment_item.id}}') : false;"
@@ -747,66 +750,54 @@
         };
     </script>
     <script>
-        // praise comment mounted
-        const $praiseComment = document.getElementById('praiseComment');
-        const $dianzanNum = document.querySelector('.dianzan-num');
+        // praise comment click
+        const $commentItemList = document.getElementById('commentItemList');
         let commentPraised = 0;
 
-        const cid = $praiseComment.getAttribute('data-reply');
+        $commentItemList.onclick = (e) => {
+            const self = e.target;
+            const pid = self.getAttribute('data-pid');
+            const $dianzanNum = document.getElementById('praiseNum' + pid);
+            const $dianzan = document.getElementById('praise' + pid);
 
-        axios.get('/praise/comment/status', {
-            params: {
-                cid: cid
-            }
-        }).then(res => {
-            if (res.data.status === 4000) {
-                // console.log(res.data);
-                const commentPraised = res.data.praised;
-                if (commentPraised) {
-                    $praiseComment.classList.add('alter');
-                } else {
-                    $praiseComment.classList.remove('alter');
-                }
-                $dianzanNum.innerHTML = res.data.praisedNum;
-            }
-        });
-
-        // praise comment click
-        $praiseComment.onclick = function () {
-            if (commentPraised) {
-                commentPraised = 0;
-                axios.post('/praise/comment/update', {
-                    cid: cid,
-                    praised: commentPraised
-                }).then(res => {
-                    if (res.data.status === 4000) {
-                        this.classList.remove('alter');
-                        $dianzanNum.innerHTML = res.data.praisedNum;
-                        // if (!res.data.praisedNum) {
-                        //     $forta.innerHTML = `為 TA 點讚`;
-                        //     $sideRecommend.innerHTML = `推薦`;
-                        // } else {
-                        //     $forta.innerHTML = `${res.data.praisedNum}人點讚`;
-                        //     $sideRecommend.innerHTML = `${res.data.praisedNum}`;
-                        // }
+            if (pid) {
+                axios.get('/praise/comment/status', {
+                    params: {
+                        cid: pid
                     }
-                });
-            } else {
-                commentPraised = 1;
-                axios.post('/praise/comment/update', {
-                    cid: cid,
-                    praised: commentPraised
                 }).then(res => {
                     if (res.data.status === 4000) {
-                        this.classList.add('alter');
+                        // console.log(res.data);
+                        commentPraised = res.data.praised;
+                        if (commentPraised) {
+                            $dianzan.classList.add('icon-dianzan-alter');
+                        } else {
+                            $dianzan.classList.remove('icon-dianzan-alter');
+                        }
                         $dianzanNum.innerHTML = res.data.praisedNum;
-                        // if (!res.data.praisedNum) {
-                        //     $forta.innerHTML = `為 TA 點讚`;
-                        //     $sideRecommend.innerHTML = `推薦`;
-                        // } else {
-                        //     $forta.innerHTML = `${res.data.praisedNum}人點讚`;
-                        //     $sideRecommend.innerHTML = `${res.data.praisedNum}`;
-                        // }
+                        if (commentPraised) {
+                            commentPraised = 0;
+                            axios.post('/praise/comment/update', {
+                                cid: pid,
+                                praised: commentPraised
+                            }).then(res => {
+                                if (res.data.status === 4000) {
+                                    $dianzan.classList.remove('icon-dianzan-alter');
+                                    $dianzanNum.innerHTML = res.data.praisedNum;
+                                }
+                            });
+                        } else {
+                            commentPraised = 1;
+                            axios.post('/praise/comment/update', {
+                                cid: pid,
+                                praised: commentPraised
+                            }).then(res => {
+                                if (res.data.status === 4000) {
+                                    $dianzan.classList.add('icon-dianzan-alter');
+                                    $dianzanNum.innerHTML = res.data.praisedNum;
+                                }
+                            });
+                        }
                     }
                 });
             }

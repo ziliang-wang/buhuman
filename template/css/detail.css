@@ -240,6 +240,10 @@ body {
     top: -2px;
 }
 
+.detail-container .detail-wrap .detail-main .detail-main-left .detail-content-wrapper > p {
+    /*width: 30%;*/
+}
+
 .detail-container .detail-wrap .detail-main .detail-main-left .detail-content-wrapper img {
     width: 100%;
 }
@@ -818,7 +822,7 @@ body {
     border: none;
 }
 
-#praiseComment.alter {
+.icon-dianzan-alter {
     color: #6f4627;
     font-weight: bold;
 }
