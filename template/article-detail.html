@@ -411,7 +411,7 @@
                                      data-pid="{{ comment_item.id }}" data-isLogin="{{ session.get('is_login') }}">
                                     <i id="praise{{ comment_item.id }}" class="iconfont icon-dianzan" data-pid="{{ comment_item.id }}" data-isLogin="{{ session.get('is_login') }}"></i>
                                     <span id="praiseNum{{ comment_item.id }}" class="dianzan-num"
-                                          data-pid="{{ comment_item.id }}" data-isLogin="{{ session.get('is_login') }}">4</span>
+                                          data-pid="{{ comment_item.id }}" data-isLogin="{{ session.get('is_login') }}">{{ comment_item.praised_num }}</span>
                                 </div>
                                 <div class="action-reply" data-isLogin="{{ session.get('is_login') }}"
                                      onclick="this.getAttribute('data-isLogin') === 'true' ? showReply('{{comment_item.id}}', '{{comment_item.uid}}', '{{comment_item.aid}}', '{{comment_item.nickname}}', '{{comment_item.id}}') : false;"
@@ -761,6 +761,7 @@
             const $dianzan = document.getElementById('praise' + pid);
 
             if (pid) {
+                // console.log(pid);
                 axios.get('/praise/comment/status', {
                     params: {
                         cid: pid
