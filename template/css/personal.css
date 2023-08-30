@@ -248,6 +248,7 @@ body {
 .content-list li .row1 .row1-right {
     width: 15%;
     justify-content: space-between;
+    padding-left: 30px;
 }
 
 .content-list li .row1 .row1-right .article-remove {
