@@ -79,3 +79,19 @@
     white-space: nowrap;
     width: 100%;
 }
+
+
+.content-list li .row1 .title {
+    /*font-size: 20px;*/
+    /*color: #14191e;*/
+    /*font-weight: bold;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+    /*line-height: 20px;*/
+    width: 100%;
+}
+
+.content-list li .row1 .row1-right  {
+    text-align: right;
+}

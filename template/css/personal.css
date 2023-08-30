@@ -241,12 +241,12 @@ body {
     /*line-height: 20px;*/
 }
 
-.content-list li .row1 .article-browse {
+.content-list li .row1 .row1-right .article-browse {
     color: #b5b9bc;
 }
 
 .content-list li .row1 .row1-right {
-    width: 11%;
+    width: 15%;
     justify-content: space-between;
 }
 
