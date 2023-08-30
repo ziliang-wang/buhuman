@@ -35,18 +35,18 @@
                 <img src="{{ user_info.avatar }}" alt="">
             </div>
             <div class="info">
-                <div>{{ user_info.nickname }}&nbsp;&nbsp;<span>{{ user_info.job }}</span></div>
-                <div>
-                    <span>
-                        {% if not user_info.gender %}性別未知{% elif user_info.gender == 'male' %}男{% elif user_info.gender == 'female' %}女{% else %}性別未知{% endif %}</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span
-                >{{ user_info.slogan or '懶的寫個人簽名的說' }}
-                    </span>
+                <div class="user-home-info">{{ user_info.nickname }}&nbsp;&nbsp;<span>&nbsp;{% if not user_info.gender %}性別未知{% elif user_info.gender == 'male' %}男{% elif user_info.gender == 'female' %}女{% else %}性別未知{% endif %}</span></div>
+                <div class="user-home-title">
+                    {{ user_info.job }}
+                </div>
+                <div class="user-home-slogan">
+<!--                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+                    {{ user_info.slogan or '懶的寫個人簽名的說' }}
                 </div>
             </div>
             <div class="self-intro">
-                <!--                葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉-->
-                <!--                葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉葉-->
-                {{ user_info.introduce | safe or '暫無簡介' }}
+                {{ user_info.introduce or '暫無簡介' }}
+<!--                暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介暫無簡介-->
             </div>
         </div>
     </div>
@@ -160,8 +160,5 @@
     };
 </script>
 {% include 'common/modal.html' %}
-<div class="user-home-footer">
-    {% include 'common/footer.html' %}
-</div>
 </body>
 </html>

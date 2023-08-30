@@ -1,31 +1,63 @@
 .personal-header .header-left {
-
+    /*flex: 1;*/
+    /*width: 80%;*/
+    /*justify-content: normal !important;*/
 }
 
 .personal-header .header-left .avatar {
+    width: 150px;
     /*width: 20% !important;*/
-    flex: 1 !important;
+    /*flex: 1 !important;*/
 }
 
 .personal-header .header-left .info {
-    flex: 2 !important;
+    /*flex: 1 !important;*/
+    /*width: 60%;*/
+    /*margin-left: 0;*/
+    /*flex: 1 !important;*/
+    /*display: flex !important;*/
+    /*flex-direction: column !important;*/
+    width: 800px;
+    /*overflow: hidden;*/
+    overflow: hidden !important;
+    /*justify-content: space-between !important;*/
 }
 
-.personal-header .header-left .self-intro {
-    /*width: 60%;*/
+.personal-header .header-left .info .user-home-info {
+
+}
+
+.personal-header .header-left .info .user-home-title {
+
+}
+
+.personal-header .header-left .info .user-home-slogan {
+    margin-top: 20px;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    /*width: 400px;*/
+}
+
+.personal-header .header-left > .self-intro {
+    width: 100%;
+    /*width: 200px;*/
+    /*flex: 1 !important;*/
+    /*width: 30%;*/
     /*justify-content: center;*/
-    flex: 3 !important;
+    /*flex: 1 !important;*/
+    margin-left: 25px;
+    /*margin: 0 30px;*/
     color: #fff;
-    text-align: center;
+    /*width: 300px;*/
+    /*flex-shrink: 1;*/
+    /*text-align: center;*/
     overflow: hidden;
-    text-overflow:ellipsis;
+    text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
-}
-
-.personal-header .header-right {
-    width: 0 !important;
+    /*margin-right: 30px;*/
 }
 
 .user-home-footer {
@@ -39,4 +71,11 @@
     width: 100% !important;
     /*justify-content: space-between !important;*/
     /*text-align: right !important;*/
+}
+
+.user-home-slogan {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
 }

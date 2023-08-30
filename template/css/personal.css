@@ -38,6 +38,8 @@ body {
 /*}*/
 .personal-header .header-left {
     align-items: center;
+    flex: 2;
+    flex-shrink: 1;
 }
 
 .personal-header .header-left .avatar {
@@ -96,10 +98,25 @@ body {
 .personal-header .header-left .info {
     margin-left: 20px;
     color: #fff;
+    width: 60%;
+    /*overflow: hidden;*/
+    /*flex-shrink: 1;*/
 }
 
 .personal-header .header-left .info div:first-child {
     margin-bottom: 20px;
+}
+
+.personal-header .header-left .info div:nth-child(2) {
+    margin-bottom: 20px;
+}
+
+.personal-header .header-left .info div:nth-child(3) {
+    width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /*margin-bottom: 20px;*/
 }
 
 .personal-header .header-right {
