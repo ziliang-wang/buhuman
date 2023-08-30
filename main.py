@@ -20,5 +20,5 @@ if __name__ == '__main__':
     logging.info('info的log')
     logging.debug('debug的log')
 
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
 
