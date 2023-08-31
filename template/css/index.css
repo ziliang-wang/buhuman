@@ -96,6 +96,15 @@
     /* width: 100%; */
 }
 
+.header-container .header .header-right .notification {
+    margin-right: 30px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.header-container .header .header-right .notification .notification-icon {
+}
+
 .header-container .header .header-right .write {
     /* height: auto; */
     /*width: 90px;*/
