@@ -7,6 +7,7 @@ from model.article import Article
 from app.config.config import config
 from app.settings import env
 from model.collection import Collection
+from model.notification import Notification
 from model.praise import Praise
 from model.user import User
 
@@ -20,8 +21,14 @@ def update_status():
     aid = request_data.get('aid')
     praised = request_data.get('praised')
     praise_obj = Praise()
+
+    tid = Article().get_article_detail(aid).uid
+    notification_obj = Notification()
+
     try:
         praised_num = praise_obj.update_status(uid, aid, praised)
+        if praised:
+            notification_obj.update_praised_notification(uid, tid, aid, praised)
         return PraiseMessage.success(praised_num)
     except Exception as e:
         return PraiseMessage.fail('點讚失败')

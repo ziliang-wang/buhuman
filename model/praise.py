@@ -4,6 +4,7 @@ from sqlalchemy.sql.functions import sum
 from common.database import db_connect
 from app.config.config import config
 from app.settings import env
+from model.notification import Notification
 # from model.article import Article
 from model.user import User
 
@@ -20,8 +21,7 @@ class Praise(Base):
         return praised_num[0]
 
     def update_status(self, uid, aid, praised=0):
-        # article_row = db_session.query(Article).filter_by(aid=aid).first()
-        # collected 0 收藏 1取消收藏
+
         row = db_session.query(Praise).filter_by(
             uid=uid,
             aid=aid,
@@ -49,5 +49,3 @@ class Praise(Base):
         if not praised:
             return 0
         return praised[0]
-
-
