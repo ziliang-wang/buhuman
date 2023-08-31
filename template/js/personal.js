@@ -338,5 +338,6 @@ window.onload = () => {
         $self.disabled = false;
         $selfBtn.disabled = false;
         $selfBtn.style.backgroundColor = '#3a87ad';
+        $selfBtn.style.cursor = 'pointer';
     };
 };
