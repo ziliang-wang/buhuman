@@ -41,6 +41,10 @@ window.onload = () => {
     const $publishBtn = document.getElementById('publishBtn');
     const $publishArticleModal = document.getElementById('publishArticleModal');
     const $draftNum = document.querySelector('.draft-num');
+    const $successModal = document.querySelector('.success-modal');
+    const $errorModal = document.querySelector('.error-modal');
+    const $alertModal = document.querySelector('.alert-modal');
+    const $alertMsg = document.querySelector('.alert-message');
 
     // const $publishClose = document.getElementById('publishClose');
 
@@ -155,7 +159,13 @@ window.onload = () => {
         // console.log(ue.getContent());
         title = $articleTitle.value.trim();
         if (title.length < 6 || title === '') {
-            alert('標題不能為空，且必需為6個字以上喔');
+            // alert('標題不能為空，且必需為6個字以上喔');
+            $alertMsg.innerHTML = '標題不能為空，且必需為6個字以上喔';
+            $alertModal.style.display = 'block';
+            setTimeout(() => {
+                $alertModal.style.display = 'none';
+                // return;
+            }, 1500);
             return;
         }
         content = ue.getContent().trim();
@@ -163,7 +173,13 @@ window.onload = () => {
         // console.log(content);
 
         if (content.length < 32 || content === '') {
-            alert('內容創作，不能為空，且必需為20個字以上喔');
+            // alert('內容創作，不能為空，且必需為20個字以上喔');
+            $alertMsg.innerHTML = '內容創作，不能為空，且必需為20個字以上喔';
+            $alertModal.style.display = 'block';
+            setTimeout(() => {
+                $alertModal.style.display = 'none';
+                // return;
+            }, 1500);
             return;
         }
 
@@ -454,18 +470,36 @@ window.onload = () => {
         // return;
 
         if ($itemType.innerHTML === '請選擇您的文章分類' || window.article_label_name === '請選擇您的文章分類') {
-            alert('請選擇文章的分類，才能正式發佈喔');
+            // alert('請選擇文章的分類，才能正式發佈喔');
+            $alertMsg.innerHTML = '請選擇文章的分類，才能正式發佈喔';
+            $alertModal.style.display = 'block';
+            setTimeout(() => {
+                $alertModal.style.display = 'none';
+                // return;
+            }, 1500);
             return;
         }
 
         if ($type.innerHTML === '請選擇' || window.article_type_name === '請選擇') {
-            alert('請選擇文章的類型，才能正式發佈喔');
+            // alert('請選擇文章的類型，才能正式發佈喔');
+            $alertMsg.innerHTML = '請選擇文章的類型，才能正式發佈喔';
+            $alertModal.style.display = 'block';
+            setTimeout(() => {
+                $alertModal.style.display = 'none';
+                // return;
+            }, 1500);
             return;
         }
 
 
         if ($articleImg.src.split('/')[4] === 'image-upload.png' || $articleImg.src === '') {
-            alert('請上傳或隨機選擇文章的封面，才能正式發佈喔');
+            // alert('請上傳或隨機選擇文章的封面，才能正式發佈喔');
+            $alertMsg.innerHTML = '請上傳或隨機選擇文章的封面，才能正式發佈喔';
+            $alertModal.style.display = 'block';
+            setTimeout(() => {
+                $alertModal.style.display = 'none';
+                // return;
+            }, 1500);
             return;
         }
 
@@ -474,7 +508,13 @@ window.onload = () => {
                 tagsResultList.push(item.getAttribute('data-tag'));
             }
         } else {
-            alert('文章的標籤至少要有一個喔');
+            // alert('文章的標籤至少要有一個喔');
+            $alertMsg.innerHTML = '文章的標籤至少要有一個喔';
+            $alertModal.style.display = 'block';
+            setTimeout(() => {
+                $alertModal.style.display = 'none';
+                // return;
+            }, 1500);
             return;
         }
         // console.log(tagsResultList);

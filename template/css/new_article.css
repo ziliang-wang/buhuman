@@ -263,6 +263,8 @@ em.up-arrow {
     border-radius: 50%;
     cursor: pointer;
     margin-right: 10px;
+    position: relative;
+    top: -1px;
 }
 
 .header .right > .publish {
@@ -611,3 +613,100 @@ em.up-arrow {
 /*.drafted-layout {*/
 /*    margin: 20px 0;*/
 /*}*/
+
+/* success modal */
+.success-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /*height: 1500px;*/
+    height: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: 99999999;
+    display: none;
+}
+
+.success-modal .success {
+    position: absolute;
+    width: 15%;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin-left: -7.5%;
+    margin-top: -80px;
+    background-color: #fff;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.success-modal .success .icon-chenggong {
+    color: #3377ff;
+    margin-right: 5px;
+}
+/* error modal */
+.error-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /*height: 1500px;*/
+    height: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: 99999999;
+    display: none;
+}
+
+.error-modal .error {
+    position: absolute;
+    width: 15%;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin-left: -7.5%;
+    margin-top: -80px;
+    background-color: #fff;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.error-modal .error .icon-71shibai {
+    color: #aa1111;
+    margin-right: 5px;
+}
+/* alert modal */
+.alert-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /*height: 1500px;*/
+    height: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: 99999999;
+    display: none;
+}
+
+.alert-modal .alert {
+    position: absolute;
+    width: 30%;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin-left: -15%;
+    margin-top: -80px;
+    background-color: #fff;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.alert-modal .alert .icon-jinggao {
+    color: #aa1111;
+    margin-right: 5px;
+}
