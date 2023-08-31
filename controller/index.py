@@ -6,6 +6,7 @@ from app.config.config import config
 from app.settings import env
 from model.collection import Collection
 from model.concern import Concern
+from model.notification import Notification
 from model.user import User
 
 index = Blueprint('index', __name__)
@@ -134,6 +135,9 @@ def home():
     concerning_list = concern.get_concerning_list_by_tid(top_concerned.tid)
     # band data
     band_data = article.get_band_data()
+    # 通知中心
+    notification = Notification()
+    notification_list = notification.get_notification_list(curr_uid)
 
     return render_template(
         'index.html',
@@ -150,7 +154,8 @@ def home():
         article_count=len(total_rows),
         concerning_list=concerning_list,
         top_concerned_user=top_concerned_user,
-        band_data=band_data
+        band_data=band_data,
+        notification_list=notification_list
     )
 
 

@@ -34,5 +34,24 @@ class Notification(Base):
         db_session.commit()
 
     def get_notification_list(self, uid):
-        # db_session.query(Notification)
-        pass
+
+        from model.article import Article
+
+        result_list = []
+
+        rows = db_session.query(Notification).filter_by(
+            tid=uid,
+            is_valid=1
+        ).all()
+
+        for row in rows:
+            data = {}
+            data['user'] = User().find_by_uid(row.uid).nickname
+            data['avatar'] = User().find_by_uid(row.uid).avatar
+            data['article_avatar'] = Article().get_article_image(row.aid)
+            data['praised'] = row.praised
+            result_list.append(data)
+
+        print(result_list)
+
+        return result_list
