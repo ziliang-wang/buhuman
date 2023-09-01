@@ -875,3 +875,7 @@
     font-size: 20px;
     margin-bottom: 0;
 }
+
+.no-notification {
+    text-align: center;
+}

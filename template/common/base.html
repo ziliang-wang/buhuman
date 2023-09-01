@@ -37,28 +37,34 @@
             {% if session.get('is_login') == 'true' %}
             <div class="notification">
                 <i class="iconfont icon-tongzhi1 notification-icon">
-                    <i class="dot" id="reminder"></i>
+                    {% if notification_list %}
+                        <i class="dot" id="reminder"></i>
+                    {% endif %}
                 </i>
                 <div class="notification-layout">
-                    <ul class="notification-list">
-                        {% for item in notification_list %}
-                        <li class="list-item flex-r">
-                            <a class="item-left" href="/u?user={{ item.uid }}"><img class="img1" src="{{ item.avatar }}" alt=""></a>
-                            <a href="/detail?aid={{ item.aid }}">
-                                <div class="item-middle">
-                                    <div class="content flex-r">
-                                        <span>{{ item.nickname }}</span>
-                                        <span>{{ item.type }}了您的文章</span>
-                                    </div>
-                                    <div class="datetime">{{ item.create_time }}</div>
-                                </div>
-                            </a>
-                            <a href="/detail?aid={{ item.aid }}">
-                                <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
+                    {% if notification_list %}
+                        <ul class="notification-list">
+                            {% for item in notification_list %}
+                                <li class="list-item flex-r">
+                                    <a class="item-left" href="/u?user={{ item.uid }}"><img class="img1" src="{{ item.avatar }}" alt=""></a>
+                                    <a href="/detail?aid={{ item.aid }}">
+                                        <div class="item-middle">
+                                            <div class="content flex-r">
+                                                <span>{{ item.nickname }}</span>
+                                                <span>{{ item.type }}了您的文章</span>
+                                            </div>
+                                            <div class="datetime">{{ item.create_time }}</div>
+                                        </div>
+                                    </a>
+                                    <a href="/detail?aid={{ item.aid }}">
+                                        <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="no-notification">暫時沒有您的消息通知喔</div>
+                    {% endif %}
                 </div>
             </div>
             {% endif %}
