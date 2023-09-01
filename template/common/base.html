@@ -35,44 +35,60 @@
                 <i class="iconfont icon-Magnifier" id="searchBtn"></i>
             </div>
             {% if session.get('is_login') == 'true' %}
-                <div class="notification">
-                    <i class="iconfont icon-tongzhi1 notification-icon">
-                        <i class="dot" id="reminder"></i>
-                    </i>
+            <div class="notification">
+                <i class="iconfont icon-tongzhi1 notification-icon">
+                    <i class="dot" id="reminder"></i>
+                </i>
+                <div class="notification-layout">
+                    <ul class="notification-list">
+                        {% for item in notification_list %}
+                        <li class="list-item flex-r">
+                            <a class="item-left" href=""><img class="img1" src="{{ item.avatar }}" alt=""></a>
+                            <div class="item-middle">
+                                <div class="content">讚了您的文章</div>
+                                <div class="datetime">{{ item.create_time }}</div>
+                            </div>
+                            <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </div>
+            </div>
             {% endif %}
-            <button class="write" id="writeArticle" data-action="write" data-isLogin="session.get('is_login')">創作者中心</button>
+            <button class="write" id="writeArticle" data-action="write" data-isLogin="session.get('is_login')">
+                創作者中心
+            </button>
             {% if session.get('is_login') == 'true' %}
-                <div class="account">
+            <div class="account">
                     <span class="login nickname" id="nickname">
                         <a href="/personal">
                             {{ session.get('nickname') }}
                         </a>
                     </span>
-                    <span class="avatar">
+                <span class="avatar">
     <!--                    <img src="images/headers/1.jpg" alt="">-->
                         <img src="{{ session.get('avatar') }}" alt="">
                     </span>
-                    <span class="register" id="logout">
+                <span class="register" id="logout">
                         <a href="/logout">
                             登出
                         </a>
                     </span>
-                </div>
+            </div>
             {% else %}
-                <div class="account">
+            <div class="account">
                     <span class="login" id="login">
                         <a href="javascript:;">
                             登入
                         </a>
                     </span>
-                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                    <span class="register" id="register">
+                <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <span class="register" id="register">
                         <a href="javascript:;">
                             註冊
                         </a>
                     </span>
-                </div>
+            </div>
             {% endif %}
         </div>
     </div>
