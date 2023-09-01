@@ -33,6 +33,26 @@ class Notification(Base):
 
         db_session.commit()
 
+    def update_collected_notification(self, uid, tid, aid, collected=0):
+        notification_row = db_session.query(Notification).filter_by(
+            uid=uid,
+            aid=aid,
+            is_valid=1
+        ).first()
+
+        if not notification_row:
+            notification = Notification(
+                uid=uid,
+                tid=tid,
+                aid=aid,
+                collected=collected
+            )
+            db_session.add(notification)
+        else:
+            notification_row.collected = collected
+
+        db_session.commit()
+
     def get_notification_list(self, uid):
 
         from model.article import Article

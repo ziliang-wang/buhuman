@@ -7,6 +7,7 @@ from model.article import Article
 from app.config.config import config
 from app.settings import env
 from model.collection import Collection
+from model.notification import Notification
 from model.user import User
 
 collect = Blueprint('collect', __name__)
@@ -19,8 +20,12 @@ def update_collection_status():
     aid = request_data.get('aid')
     collected = request_data.get('collected')
     collection = Collection()
+    tid = Article().get_article_detail(aid).uid
+    notification_obj = Notification()
+
     try:
         collected_num = collection.update_status(uid, aid, collected)
+        notification_obj.update_collected_notification(uid, tid, aid, collected)
         return CollectionMessage.success(collected_num)
     except Exception as e:
         return CollectionMessage.fail('收藏失败')
