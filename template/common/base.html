@@ -43,12 +43,19 @@
                     <ul class="notification-list">
                         {% for item in notification_list %}
                         <li class="list-item flex-r">
-                            <a class="item-left" href=""><img class="img1" src="{{ item.avatar }}" alt=""></a>
-                            <div class="item-middle">
-                                <div class="content">讚了您的文章</div>
-                                <div class="datetime">{{ item.create_time }}</div>
-                            </div>
-                            <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
+                            <a class="item-left" href="/u?user={{ item.uid }}"><img class="img1" src="{{ item.avatar }}" alt=""></a>
+                            <a href="/detail?aid={{ item.aid }}">
+                                <div class="item-middle">
+                                    <div class="content flex-r">
+                                        <span>{{ item.nickname }}</span>
+                                        <span>{{ item.type }}了您的文章</span>
+                                    </div>
+                                    <div class="datetime">{{ item.create_time }}</div>
+                                </div>
+                            </a>
+                            <a href="/detail?aid={{ item.aid }}">
+                                <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
+                            </a>
                         </li>
                         {% endfor %}
                     </ul>

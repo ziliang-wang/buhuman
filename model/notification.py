@@ -42,7 +42,9 @@ class Notification(Base):
         rows = db_session.query(Notification).filter_by(
             tid=uid,
             is_valid=1
-        ).all()
+        ).order_by(
+            Notification.create_time.desc()
+        ).limit(10).all()
 
         for row in rows:
             data = {}
@@ -50,9 +52,16 @@ class Notification(Base):
             data['nickname'] = User().find_by_uid(row.uid).nickname
             data['avatar'] = User().find_by_uid(row.uid).avatar
             data['article_avatar'] = Article().get_article_image(row.aid)
+            data['aid'] = row.aid
             data['praised'] = row.praised
             data['is_read'] = row.is_read
             data['create_time'] = row.create_time
+
+            if row.praised:
+                data['type'] = '讚'
+            elif row.collected:
+                data['type'] = '收藏'
+
             result_list.append(data)
 
         print(result_list)
