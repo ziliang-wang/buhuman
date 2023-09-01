@@ -27,8 +27,7 @@ def update_status():
 
     try:
         praised_num = praise_obj.update_status(uid, aid, praised)
-        if praised:
-            notification_obj.update_praised_notification(uid, tid, aid, praised)
+        notification_obj.update_praised_notification(uid, tid, aid, praised)
         return PraiseMessage.success(praised_num)
     except Exception as e:
         return PraiseMessage.fail('點讚失败')

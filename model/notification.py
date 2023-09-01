@@ -13,7 +13,7 @@ engine, db_session, Base = db_connect()
 class Notification(Base):
     __table__ = Table('notification', Base.metadata, autoload_with=engine)
 
-    def update_praised_notification(self, uid, tid, aid, praised):
+    def update_praised_notification(self, uid, tid, aid, praised=0):
         notification_row = db_session.query(Notification).filter_by(
             uid=uid,
             aid=aid,
@@ -50,6 +50,7 @@ class Notification(Base):
             data['avatar'] = User().find_by_uid(row.uid).avatar
             data['article_avatar'] = Article().get_article_image(row.aid)
             data['praised'] = row.praised
+            data['is_read'] = row.is_read
             result_list.append(data)
 
         print(result_list)
