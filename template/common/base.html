@@ -36,7 +36,9 @@
             </div>
             {% if session.get('is_login') == 'true' %}
                 <div class="notification">
-                    <i class="iconfont icon-tongzhi1 notification-icon"></i>
+                    <i class="iconfont icon-tongzhi1 notification-icon">
+                        <i class="dot" id="reminder"></i>
+                    </i>
                 </div>
             {% endif %}
             <button class="write" id="writeArticle" data-action="write" data-isLogin="session.get('is_login')">創作者中心</button>

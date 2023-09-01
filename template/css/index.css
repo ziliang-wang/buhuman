@@ -100,9 +100,34 @@
     margin-right: 30px;
     cursor: pointer;
     font-size: 22px;
+    /*position: relative;*/
 }
 
+/*.header-container .header .header-right .notification .dot {*/
+/*    position: absolute;*/
+/*    width: 3px;*/
+/*    height: 3px;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    background-color: #aa1111;*/
+/*}*/
+
 .header-container .header .header-right .notification .notification-icon {
+    position: relative;
+}
+
+.header-container .header .header-right .notification .notification-icon .dot {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    top: -2px;
+    right: -2px;
+    background-color: #aa1111;
+    border-radius: 50%;
+}
+
+.header-container .header .header-right .notification .notification-icon:hover {
+    color: #6f4627;
 }
 
 .header-container .header .header-right .write {
