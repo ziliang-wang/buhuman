@@ -79,6 +79,31 @@ class Notification(Base):
 
         db_session.commit()
 
+    def update_concerned_notification(self, uid, tid, concerned=0):
+        notification_row = db_session.query(Notification).filter_by(
+            uid=uid,
+            praised=0,
+            collected=0,
+            comment=0,
+            is_valid=1
+        ).first()
+
+        if not notification_row:
+            notification = Notification(
+                uid=uid,
+                tid=tid,
+                aid=0,
+                praised=0,
+                collected=0,
+                comment=0,
+                concerned=concerned
+            )
+            db_session.add(notification)
+        else:
+            notification_row.concerned = concerned
+
+        db_session.commit()
+
     def get_notification_list(self, uid):
 
         from model.article import Article
@@ -94,14 +119,23 @@ class Notification(Base):
 
         for row in rows:
             data = {}
-            data['uid'] = row.uid
-            data['nickname'] = User().find_by_uid(row.uid).nickname
-            data['avatar'] = User().find_by_uid(row.uid).avatar
-            data['article_avatar'] = Article().get_article_image(row.aid)
-            data['aid'] = row.aid
-            data['praised'] = row.praised
-            data['is_read'] = row.is_read
-            data['create_time'] = row.create_time
+            if not row.concerned:
+                data['uid'] = row.uid
+                data['nickname'] = User().find_by_uid(row.uid).nickname
+                data['avatar'] = User().find_by_uid(row.uid).avatar
+                data['article_avatar'] = Article().get_article_image(row.aid)
+                data['aid'] = row.aid
+                data['praised'] = row.praised
+                data['is_read'] = row.is_read
+                data['create_time'] = row.create_time
+            else:
+                data['uid'] = row.uid
+                data['nickname'] = User().find_by_uid(row.uid).nickname
+                data['avatar'] = User().find_by_uid(row.uid).avatar
+                data['aid'] = row.aid
+                data['praised'] = row.praised
+                data['is_read'] = row.is_read
+                data['create_time'] = row.create_time
 
             if row.praised:
                 data['type'] = '讚'
@@ -109,6 +143,8 @@ class Notification(Base):
                 data['type'] = '收藏'
             elif row.comment:
                 data['type'] = '評論'
+            elif row.concerned:
+                data['type'] = 'concerned'
 
             result_list.append(data)
 

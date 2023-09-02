@@ -8,6 +8,7 @@ from app.config.config import config
 from app.settings import env
 from model.collection import Collection
 from model.concern import Concern
+from model.notification import Notification
 from model.praise import Praise
 from model.user import User
 
@@ -21,7 +22,9 @@ def update_status():
     tid = request_data.get('tid')
     concerned = request_data.get('concerned')
     concern_obj = Concern()
+    notification_obj = Notification()
     try:
+        notification_obj.update_concerned_notification(fid, tid, concerned)
         concerned_num = concern_obj.update_status(fid, tid, concerned)
         return ConcernMessage.success(concerned_num)
     except Exception as e:

@@ -51,14 +51,22 @@
                                         <div class="item-middle">
                                             <div class="content flex-r">
                                                 <span>{{ item.nickname }}</span>
-                                                <span>{{ item.type }}</span>了您的文章
+                                                {% if item.type == 'concerned' %}
+                                                    <span>關注</span>了您
+                                                {% else %}
+                                                    <span>{{ item.type }}</span>了您的文章
+                                                {% endif %}
                                             </div>
                                             <div class="datetime">{{ item.create_time }}</div>
                                         </div>
                                     </a>
-                                    <a href="/detail?aid={{ item.aid }}">
-                                        <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
-                                    </a>
+                                    {% if item.type != 'concerned' %}
+                                        <a href="/detail?aid={{ item.aid }}">
+                                            <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
+                                        </a>
+                                    {% else %}
+                                        <span class="item-right zhanwei"></span>
+                                    {% endif %}
                                 </li>
                             {% endfor %}
                         </ul>

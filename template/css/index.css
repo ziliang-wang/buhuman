@@ -204,6 +204,13 @@
     /*text-align: right;*/
 }
 
+.header-container .header .header-right .notification > .notification-layout .notification-list .list-item .zhanwei {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    /*text-align: right;*/
+}
+
 .header-container .header .header-right .notification > .notification-icon {
     position: relative;
 }
