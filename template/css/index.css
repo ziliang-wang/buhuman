@@ -175,6 +175,7 @@
 }
 
 .header-container .header .header-right .notification > .notification-layout .notification-list .list-item .item-middle .content span:last-child {
+    font-weight: bold;
     /*flex: 1;*/
     /*flex-shrink: 1;*/
 }

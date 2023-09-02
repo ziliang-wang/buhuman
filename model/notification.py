@@ -13,6 +13,20 @@ engine, db_session, Base = db_connect()
 class Notification(Base):
     __table__ = Table('notification', Base.metadata, autoload_with=engine)
 
+    def update_comment_notification(self, uid, tid, aid):
+
+        notification = Notification(
+            uid=uid,
+            tid=tid,
+            aid=aid,
+            collected=0,
+            concerned=0,
+            praised=0,
+            comment=1
+        )
+        db_session.add(notification)
+        db_session.commit()
+
     def update_praised_notification(self, uid, tid, aid, praised=0):
         notification_row = db_session.query(Notification).filter_by(
             uid=uid,
@@ -93,6 +107,8 @@ class Notification(Base):
                 data['type'] = '讚'
             elif row.collected:
                 data['type'] = '收藏'
+            elif row.comment:
+                data['type'] = '評論'
 
             result_list.append(data)
 

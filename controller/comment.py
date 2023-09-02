@@ -12,6 +12,7 @@ from app.settings import env
 from model.collection import Collection
 from model.comment import Comment
 from model.concern import Concern
+from model.notification import Notification
 from model.praise import Praise
 from model.user import User
 
@@ -59,8 +60,11 @@ def add_comment():
         return CommentMessage.other('內容太長或太短')
 
     comment = Comment()
+    tid = Article().get_article_detail(aid).uid
+    notification_obj = Notification()
 
     try:
+        notification_obj.update_comment_notification(uid, tid, aid)
         result = comment.insert_comment(uid, aid, content, ipaddr)
         result = model_to_json(result)
         return CommentMessage.success(result)
