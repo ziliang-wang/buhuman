@@ -41,7 +41,11 @@
                         <i class="dot" id="reminder"></i>
                     {% endif %}
                 </i>
-                <div class="notification-layout">
+                {% if notification_list %}
+                    <div class="notification-layout">
+                {% else %}
+                    <div class="no-notification-layout">
+                {% endif %}
                     {% if notification_list %}
                         <ul class="notification-list">
                             {% for item in notification_list %}
