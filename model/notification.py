@@ -17,6 +17,9 @@ class Notification(Base):
         notification_row = db_session.query(Notification).filter_by(
             uid=uid,
             aid=aid,
+            collected=0,
+            concerned=0,
+            comment=0,
             is_valid=1
         ).first()
 
@@ -25,6 +28,9 @@ class Notification(Base):
                 uid=uid,
                 tid=tid,
                 aid=aid,
+                collected=0,
+                concerned=0,
+                comment=0,
                 praised=praised
             )
             db_session.add(notification)
@@ -37,6 +43,9 @@ class Notification(Base):
         notification_row = db_session.query(Notification).filter_by(
             uid=uid,
             aid=aid,
+            praised=0,
+            concerned=0,
+            comment=0,
             is_valid=1
         ).first()
 
@@ -45,6 +54,9 @@ class Notification(Base):
                 uid=uid,
                 tid=tid,
                 aid=aid,
+                praised=0,
+                concerned=0,
+                comment=0,
                 collected=collected
             )
             db_session.add(notification)
