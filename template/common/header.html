@@ -17,6 +17,52 @@
                 <input id="search" type="text" placeholder="搜索感興趣的文章或知識">
                 <i class="iconfont icon-Magnifier" id="searchBtn"></i>
             </div>
+            {% if session.get('is_login') == 'true' %}
+            <div class="notification">
+                <i class="iconfont icon-tongzhi1 notification-icon">
+                    {% if session.get('notification_list') %}
+                        <i class="dot" id="reminder"></i>
+                    {% endif %}
+                </i>
+                {% if session.get('notification_list') %}
+                    <div class="notification-layout">
+                {% else %}
+                    <div class="no-notification-layout">
+                {% endif %}
+                    {% if session.get('notification_list') %}
+                        <ul class="notification-list">
+                            {% for item in session.get('notification_list') %}
+                                <li class="list-item flex-r">
+                                    <a class="item-left" href="/u?user={{ item.uid }}"><img class="img1" src="{{ item.avatar }}" alt=""></a>
+                                    <a href="/detail?aid={{ item.aid }}">
+                                        <div class="item-middle">
+                                            <div class="content flex-r">
+                                                <span>{{ item.nickname }}</span>
+                                                {% if item.type == 'concerned' %}
+                                                    <span>關注</span>了您
+                                                {% else %}
+                                                    <span>{{ item.type }}</span>了您的文章
+                                                {% endif %}
+                                            </div>
+                                            <div class="datetime">{{ item.create_time }}</div>
+                                        </div>
+                                    </a>
+                                    {% if item.type != 'concerned' %}
+                                        <a href="/detail?aid={{ item.aid }}">
+                                            <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
+                                        </a>
+                                    {% else %}
+                                        <span class="item-right zhanwei"></span>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="no-notification">暫時沒有您的消息通知喔</div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
             <button class="write" id="writeArticle" data-action="write" data-isLogin="session.get('is_login')">創作者中心</button>
             {% if session.get('is_login') == 'true' %}
                 <div class="account">
