@@ -1,3 +1,4 @@
+import datetime
 import os
 from flask import Flask
 
@@ -15,6 +16,8 @@ from controller.collection import collect
 def create_app():
     app = Flask(__name__, template_folder='../template', static_url_path='/', static_folder='../template')
     app.config['SECRET_KEY'] = os.urandom(24)
+    app.permanent_session_lifetime = datetime.timedelta(days=7)
+
     init_blueprint(app)
 
     return app

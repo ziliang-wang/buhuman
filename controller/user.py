@@ -2,7 +2,11 @@ import datetime
 import hashlib
 import json
 import re
-from flask import Blueprint, make_response, session, request, url_for
+import time
+
+from flask import Blueprint, make_response, session, request, url_for, redirect
+
+from app import app
 from common.email_utils import gen_email_code, send_email, send_registed_email
 from common.response_message import UserMessage
 from common.utils import ImageCode
@@ -104,6 +108,10 @@ def chkuser():
 
 @user.route('/login', methods=['POST'])
 def login():
+    # cookie_app = app.create_app()
+    # cookie_app.permanent_session_lifetime = datetime.timedelta(seconds=20)
+    # print(cookie_app.permanent_session_lifetime)
+
     request_data = json.loads(request.data)
     username = request_data.get('username')
     password = request_data.get('password')
@@ -125,9 +133,13 @@ def login():
             session['username'] = username
             session['nickname'] = result.nickname
             session['avatar'] = config[env].user_avatar_path + result.avatar
+            if keep_days == 7:
+                session.permanent = True
             expires_time = datetime.datetime.now() + datetime.timedelta(days=keep_days)
+
             response = make_response(UserMessage.success('loginok', action))
             response.set_cookie('uid', str(result.uid), expires=expires_time)
+
             return response
     return UserMessage.fail('loginfail')
 
