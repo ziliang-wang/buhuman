@@ -32,7 +32,7 @@ window.onload = () => {
                 isExist = false;
                 return false;
             } else if (res.data.status === 8002) {
-                $emailMsg.innerHTML = '該Email帳號不存在';
+                $emailMsg.innerHTML = '此Email帳號不存在';
                 isExist = false;
                 return false;
             }
