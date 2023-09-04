@@ -157,3 +157,24 @@ def logout():
 def new_forget():
     return render_template('newforget.html')
 
+
+@user.route('/reset/chkuser', methods=['POST'])
+def reset_chkuser():
+    request_data = json.loads(request.data)
+    username = request_data.get('username')
+    # username
+    emailReg = '^\w{2,}\@\w{2,}\.[a-z]{2,4}(\.[a-z]{2,4})?$'
+    if not re.match(emailReg, username):
+        return UserMessage.other('無效的Email')
+
+    # username是否已存在
+    user = User()
+    user_find_result = user.find_by_username(username)
+    # print('user:', user_result)
+    if user_find_result:
+        return UserMessage.fail('exist')
+    return {
+        'status': 8002
+    }
+
+

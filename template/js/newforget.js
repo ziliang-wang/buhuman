@@ -10,17 +10,35 @@ window.onload = () => {
 
     let emalFlag = false;
     let vcodeFlag = false;
+    let isExist = false;
 
     // $email.focus();
 
     $email.onblur = () => {
-        if (!emailReg.test($email.value.trim())) {
+        const username = $email.value.trim()
+        if (!emailReg.test(username)) {
             $emailMsg.innerHTML = 'Email格式錯誤';
             emalFlag = false;
         } else {
             $emailMsg.innerHTML = '';
             emalFlag = true;
         }
+        // axios check user
+        axios.post('/reset/chkuser', {
+            username: username
+        }).then(res => {
+            if (res.data.status === 1001) {
+                $emailMsg.innerHTML = 'Email格式錯誤';
+                isExist = false;
+                return false;
+            } else if (res.data.status === 8002) {
+                $emailMsg.innerHTML = '該Email帳號不存在';
+                isExist = false;
+                return false;
+            }
+            $emailMsg.innerHTML = '';
+            isExist = true;
+        });
     };
 
     $vcode.onblur = () => {
@@ -34,13 +52,13 @@ window.onload = () => {
     };
 
     $nextBtn.onclick = () => {
-        if ($email.value.trim() === '' || $vcode.value.trim() === '') {
+        if ($email.value.trim() === '' && $vcode.value.trim() === '') {
             $emailMsg.innerHTML = 'Email不得為空';
             $vcodeMsg.innerHTML = '請輸入正確的驗證碼';
             return;
         }
 
-        if (!emalFlag || !vcodeFlag) {
+        if (!emalFlag || !vcodeFlag || !isExist) {
             return;
         }
         // axios
