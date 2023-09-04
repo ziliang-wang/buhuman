@@ -52,6 +52,7 @@ window.onload = () => {
     const $vcodeMsg = document.getElementById('vcodeMsg');
     const $keepLogin = document.getElementById('keepLogin');
     const $logout = document.getElementById('logout');
+    // const $resetPwdBtn = document.getElementById('resetPwdBtn');
 
 
     // 註冊/登入表單 正則表達式
@@ -72,6 +73,10 @@ window.onload = () => {
     let action = '';
 
     const $top1AvatarList = document.getElementById('top1AvatarList');
+
+    // $resetPwdBtn.onclick = () => {
+    //     window.open('/newfoget');
+    // };
 
     // get top1 concerning avatar
     axios.get('/get/top1').then(res => {

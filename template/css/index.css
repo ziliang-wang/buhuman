@@ -826,7 +826,7 @@
 .mask-login-modal .reg-form .login-btn {
     font-size: 16px;
     cursor: pointer;
-    margin-top: -10px;
+    /*margin-top: -5px;*/
     border: none;
 }
 
@@ -875,6 +875,14 @@
     height: 15px;
     position: relative;
     top: 3px;
+}
+
+.mask-login-modal .reg-form .login-help > a {
+    color: #9199a1;
+}
+
+.mask-login-modal .reg-form .login-help > a:hover {
+    color: #000
 }
 
 .banner {

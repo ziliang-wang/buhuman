@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>葉書-重設密碼</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/newforget.css">
+    <script src="js/axios.min.js"></script>
+    <script src="js/newforget.js"></script>
+</head>
+<body>
+    <div class="reset-container">
+        <h1 class="logo">
+            <img src="images/logo.png" alt="logo">
+        </h1>
+        <h2 class="reset-container-title">重設密碼</h2>
+        <input class="email" id="email" type="text" placeholder="請輸入登錄Email">
+        <div class="email-msg" id="emailMsg"></div>
+        <div class="code-container flex-r">
+            <img src="" alt="">
+            <input type="text" id="vcode" placeholder="請輸入圖片驗證碼">
+        </div>
+        <div class="vcode-msg" id="vcodeMsg"></div>
+        <a class="next-btn" id="nextBtn" href="javascript:;">下一步</a>
+    </div>
+</body>
+</html>

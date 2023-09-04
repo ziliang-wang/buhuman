@@ -4,7 +4,7 @@ import json
 import re
 import time
 
-from flask import Blueprint, make_response, session, request, url_for, redirect
+from flask import Blueprint, make_response, session, request, url_for, redirect, render_template
 
 from app import app
 from common.email_utils import gen_email_code, send_email, send_registed_email
@@ -153,4 +153,7 @@ def logout():
     return response
 
 
+@user.route('/newforget')
+def new_forget():
+    return render_template('newforget.html')
 
