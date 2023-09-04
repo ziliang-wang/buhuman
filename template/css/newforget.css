@@ -39,7 +39,7 @@ body {
 .reset-container .code-container input {
     height: 48px;
     border-radius: 10px;
-    background-color: #f2f2f2;
+    background-color: #e8f0fe;
     padding: 0 20px;
     width: 100%;
     /*margin-bottom: 20px;*/
@@ -53,6 +53,7 @@ body {
     height: 48px;
     width: 96px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .reset-container .code-container input {

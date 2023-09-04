@@ -2,6 +2,7 @@ window.onload = () => {
     const $nextBtn = document.getElementById('nextBtn');
     const $email = document.getElementById('email');
     const $vcode = document.getElementById('vcode');
+    const $imageCode = document.getElementById('imageCode');
     const $emailMsg = document.getElementById('emailMsg');
     const $vcodeMsg = document.getElementById('vcodeMsg');
 
@@ -49,6 +50,10 @@ window.onload = () => {
             $vcodeMsg.innerHTML = '';
             vcodeFlag = true;
         }
+    };
+
+    $imageCode.onclick = function (e) {
+        this.src = '/vcode?' + Math.random();
     };
 
     $nextBtn.onclick = () => {
