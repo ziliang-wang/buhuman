@@ -178,3 +178,24 @@ def reset_chkuser():
     }
 
 
+@user.route('/reset/next', methods=['POST'])
+def reset_next():
+    request_data = json.loads(request.data)
+    username = request_data.get('username')
+    vcode = request_data.get('vcode')
+
+    if vcode.lower() != session.get('vcode'):
+        return UserMessage.fail('vcodeErr')
+
+    user = User()
+    result = user.find_by_username(username)
+
+    if not result:
+        return UserMessage.fail('userErr')
+    return ''
+
+
+@user.route('/reset/password')
+def reset_password():
+    return render_template('resetpwd.html')
+

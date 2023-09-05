@@ -13,8 +13,6 @@ window.onload = () => {
     let vcodeFlag = false;
     let isExist = false;
 
-    // $email.focus();
-
     $email.onblur = () => {
         const username = $email.value.trim()
         if (!emailReg.test(username)) {
@@ -57,9 +55,13 @@ window.onload = () => {
     };
 
     $nextBtn.onclick = () => {
-        if ($email.value.trim() === '' && $vcode.value.trim() === '') {
+
+        const username = $email.value.trim()
+        const vcode = $vcode.value.trim();
+
+        if (username === '' &&  vcode === '') {
             $emailMsg.innerHTML = 'Email不得為空';
-            $vcodeMsg.innerHTML = '請輸入正確的驗證碼';
+            $vcodeMsg.innerHTML = '驗證碼不得為空';
             return;
         }
 
@@ -67,6 +69,18 @@ window.onload = () => {
             return;
         }
         // axios
-        alert('ok');
+        data = {
+            username: username,
+            vcode: vcode
+        };
+        // alert('ok');
+        axios.post('/reset/next', data).then(res => {
+            if (res.data.status === 1002) {
+                $vcodeMsg.innerHTML = '請輸入正確的驗證碼';
+            } else {
+                $vcodeMsg.innerHTML = '';
+                location.href = '/reset/password';
+            }
+        });
     };
 };
