@@ -7,7 +7,7 @@ import time
 from flask import Blueprint, make_response, session, request, url_for, redirect, render_template
 
 from app import app
-from common.email_utils import gen_email_code, send_email, send_registed_email
+from common.email_utils import gen_email_code, send_email, send_registed_email, reset_send_email
 from common.response_message import UserMessage
 from common.utils import ImageCode
 from model.user import User
@@ -178,6 +178,23 @@ def reset_chkuser():
     }
 
 
+@user.route('/reset/ecode', methods=['POST'])
+def reset_ecode():
+    email = json.loads(request.data).get('email')
+    emailReg = '^\w{2,}\@\w{2,}\.[a-z]{2,4}(\.[a-z]{2,4})?$'
+    if not re.match(emailReg, email):
+        return UserMessage.other('無效的Email')
+    email_code = gen_email_code()
+    print('ecode:', email_code)
+    # 發送郵件
+    try:
+        reset_send_email(email, email_code)
+        session['ecode'] = email_code.lower()
+        return UserMessage.success('sentcode', '')
+    except:
+        return UserMessage.fail('ecodefail')
+
+
 @user.route('/reset/next', methods=['POST'])
 def reset_next():
     request_data = json.loads(request.data)
@@ -190,12 +207,19 @@ def reset_next():
     user = User()
     result = user.find_by_username(username)
 
-    if not result:
+    if result:
+        # 發送email驗證碼
+        pass
+    else:
         return UserMessage.fail('userErr')
     return ''
 
 
 @user.route('/reset/password')
 def reset_password():
+    user = request.args.get('u')
+    if not user:
+        return redirect(url_for('index.home'))
+
     return render_template('resetpwd.html')
 

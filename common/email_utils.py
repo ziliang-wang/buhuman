@@ -32,6 +32,29 @@ def send_email(email, email_code):
     s.sendmail(sender, msg_to, msg.as_string())
 
 
+def reset_send_email(email, email_code):
+    sender = config[env].sender
+    auth_code = config[env].auth_code
+    msg_to = email
+    username = email.split('@')[0]
+    content = f'''
+        Your Reset Password-validation code is <strong style="color: red;">{ email_code }</strong>
+        <br>
+        Please visit http://localhost:5000/reset/password?u={username} to change your password
+    '''
+    msg = MIMEMultipart()
+    msg['Subject'] = '[Jomunn Service] Reset Password-Email Validation Code'
+    # 昵称+空格+<邮箱地址>形式
+    msg['From'] = f'Jomunn Service {sender}'
+    msg['To'] = msg_to
+    # 正文掛載
+    msg.attach(MIMEText(content, 'html', 'utf-8'))
+
+    s = smtplib.SMTP_SSL('smtp.qq.com', 465)
+    s.login(sender, auth_code)
+    s.sendmail(sender, msg_to, msg.as_string())
+
+
 def send_registed_email(email):
     sender = config[env].sender
     auth_code = config[env].auth_code

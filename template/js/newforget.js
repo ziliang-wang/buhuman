@@ -59,7 +59,9 @@ window.onload = () => {
         const username = $email.value.trim()
         const vcode = $vcode.value.trim();
 
-        if (username === '' &&  vcode === '') {
+        $emailMsg.style.color = '#ef1300';
+
+        if (username === '' && vcode === '') {
             $emailMsg.innerHTML = 'Email不得為空';
             $vcodeMsg.innerHTML = '驗證碼不得為空';
             return;
@@ -76,11 +78,32 @@ window.onload = () => {
         // alert('ok');
         axios.post('/reset/next', data).then(res => {
             if (res.data.status === 1002) {
-                $vcodeMsg.innerHTML = '請輸入正確的驗證碼';
+                $vcodeMsg.innerHTML = '請輸入正確的圖片驗證碼';
+                return false;
+            } else if (res.data.data === 'userErr') {
+                $emailMsg.innerHTML = '此Email帳號不存在';
+                return false;
             } else {
                 $vcodeMsg.innerHTML = '';
-                location.href = '/reset/password';
+                $nextBtn.innerHTML = '正在發送Email驗證碼...';
+                // ecode
+                axios.post('/reset/ecode', {
+                    email: username
+                }).then(res => {
+                    if (res.data.status === 1000) {
+                        $emailMsg.style.color = '#3377ff';
+                        $emailMsg.innerHTML = '系統已發送email驗證碼到您的email, 請查收email並修改密碼';
+                        $nextBtn.innerHTML = '下一步';
+                    } else {
+                        $emailMsg.style.color = '#ef1300';
+                        $emailMsg.innerHTML = '發送失敗，請再試一次';
+                        $nextBtn.innerHTML = '下一步';
+                    }
+                });
+                // location.href = '/reset/password';
             }
+        }).catch(err => {
+            $emailMsg.innerHTML = '提交失敗，請再試一次';
         });
     };
 };

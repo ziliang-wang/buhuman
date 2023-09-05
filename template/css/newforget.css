@@ -79,3 +79,8 @@ body {
     /*box-sizing: border-box;*/
 }
 
+.ecode-msg {
+    height: 20px;
+    color: #3377ff;
+    /*margin-bottom: 20px;*/
+}
