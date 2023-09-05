@@ -54,16 +54,29 @@ window.onload = () => {
         this.src = '/vcode?' + Math.random();
     };
 
+    let isNextClick = false;
+
     $nextBtn.onclick = () => {
+
+        if (isNextClick) return;
 
         const username = $email.value.trim()
         const vcode = $vcode.value.trim();
 
         $emailMsg.style.color = '#ef1300';
-        // $emailMsg.style.fontSize = '16px';
 
         if (username === '' && vcode === '') {
             $emailMsg.innerHTML = 'Email不得為空';
+            $vcodeMsg.innerHTML = '驗證碼不得為空';
+            return;
+        }
+
+        if (username === '') {
+            $emailMsg.innerHTML = 'Email不得為空';
+            return;
+        }
+
+        if (vcode === '') {
             $vcodeMsg.innerHTML = '驗證碼不得為空';
             return;
         }
@@ -96,12 +109,12 @@ window.onload = () => {
                         $emailMsg.style.color = '#3377ff';
                         $emailMsg.style.fontSize = '14px';
                         $emailMsg.innerHTML = '系統已發送驗證碼到您的email, 請查收並修改密碼';
-                        $nextBtn.innerHTML = '下一步';
-                        // $nextBtn.disabled = true;
+                        $nextBtn.innerHTML = 'Email驗證碼已發送';
+                        isNextClick = true;
                     } else {
                         $emailMsg.style.color = '#ef1300';
                         $emailMsg.innerHTML = '發送失敗，請再試一次';
-                        // $nextBtn.disabled = false;
+                        isNextClick = false;
                         $nextBtn.innerHTML = '下一步';
                     }
                 });
