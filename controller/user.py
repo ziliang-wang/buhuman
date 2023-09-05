@@ -2,6 +2,7 @@ import datetime
 import hashlib
 import json
 import re
+import base64
 import time
 
 from flask import Blueprint, make_response, session, request, url_for, redirect, render_template
@@ -185,11 +186,11 @@ def reset_ecode():
     if not re.match(emailReg, email):
         return UserMessage.other('無效的Email')
     email_code = gen_email_code()
-    print('ecode:', email_code)
+    print('recode:', email_code)
     # 發送郵件
     try:
         reset_send_email(email, email_code)
-        session['ecode'] = email_code.lower()
+        session['recode'] = email_code.lower()
         return UserMessage.success('sentcode', '')
     except:
         return UserMessage.fail('ecodefail')
@@ -215,11 +216,58 @@ def reset_next():
     return ''
 
 
-@user.route('/reset/password')
+@user.route('/reset/password', methods=['GET', 'POST'])
 def reset_password():
-    user = request.args.get('u')
-    if not user:
+
+    global u
+
+    if request.method == 'POST':
+        recode = json.loads(request.data).get('recode')
+        password = json.loads(request.data).get('password')
+        print('info:', u, recode, password)
+
+        username = base64.decodebytes(u.encode('utf-8')).decode('utf-8')
+
+        username_result = User().find_by_username(username)
+
+        if recode.lower() != session.get('recode'):
+            return {
+                'status': 9001
+            }
+        elif not username_result:
+            return {
+                'status': 9002
+            }
+        else:
+            password = hashlib.md5(password.encode()).hexdigest()
+            uid = username_result.uid
+            print(uid, password)
+            User().alter_password(uid, password)
+
+        return {
+            'status': 9000
+        }
+
+    u = request.args.get('u')
+    if not u:
         return redirect(url_for('index.home'))
 
     return render_template('resetpwd.html')
+
+
+# @user.route('/change/password', methods=['GET', 'POST'])
+# def change_password():
+#     # user = request.args.get('u')
+#
+#     if request.method == 'POST':
+#         recode = json.loads(request.data).get('recode')
+#         password = json.loads(request.data).get('password')
+#         # print('data:', request.data)
+#         print('info:', recode, password)
+#         return {
+#             'status': 9001
+#         }
+#
+#     return ''
+
 

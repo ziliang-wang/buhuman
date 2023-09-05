@@ -5,6 +5,7 @@
     <title>葉書-重設密碼</title>
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/newforget.css">
+    <link rel="stylesheet" href="/css/resetpwd.css">
     <script src="/js/axios.min.js"></script>
     <script src="/js/resetpwd.js"></script>
 </head>
@@ -14,12 +15,12 @@
             <img src="/images/logo.png" alt="logo">
         </h1>
         <h2 class="reset-container-title">修改密碼</h2>
-        <input class="email ecode" id="ecode" type="text" placeholder="Email驗證碼">
-        <div class="ecode-msg" id="ecodeMsg">請輸入您在email中收到的Email驗證碼</div>
+        <input class="email ecode" id="recode" type="text" placeholder="Email驗證碼">
+        <div class="ecode-msg" id="recodeMsg"></div>
         <input class="email" id="password1" type="password" placeholder="密碼">
-        <div class="email-msg" id="emailMsg"></div>
+        <div class="email-msg" id="pwd1Msg"></div>
         <input class="email" id="password2" type="password" placeholder="確認密碼">
-        <div class="vcode-msg" id="vcodeMsg"></div>
+        <div class="vcode-msg" id="pwd2Msg"></div>
         <a class="next-btn" id="confirmBtn" href="javascript:;">確認修改</a>
     </div>
 </body>

@@ -76,11 +76,13 @@ body {
 .reset-container .vcode-msg {
     height: 20px;
     color: #ef1300;
+    font-size: 14px;
     /*box-sizing: border-box;*/
 }
 
 .ecode-msg {
     height: 20px;
-    color: #3377ff;
+    color: #ef1300;
+    font-size: 14px;
     /*margin-bottom: 20px;*/
 }

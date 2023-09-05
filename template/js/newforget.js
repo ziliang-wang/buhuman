@@ -60,6 +60,7 @@ window.onload = () => {
         const vcode = $vcode.value.trim();
 
         $emailMsg.style.color = '#ef1300';
+        // $emailMsg.style.fontSize = '16px';
 
         if (username === '' && vcode === '') {
             $emailMsg.innerHTML = 'Email不得為空';
@@ -84,6 +85,7 @@ window.onload = () => {
                 $emailMsg.innerHTML = '此Email帳號不存在';
                 return false;
             } else {
+                $emailMsg.innerHTML = '';
                 $vcodeMsg.innerHTML = '';
                 $nextBtn.innerHTML = '正在發送Email驗證碼...';
                 // ecode
@@ -92,11 +94,14 @@ window.onload = () => {
                 }).then(res => {
                     if (res.data.status === 1000) {
                         $emailMsg.style.color = '#3377ff';
-                        $emailMsg.innerHTML = '系統已發送email驗證碼到您的email, 請查收email並修改密碼';
+                        $emailMsg.style.fontSize = '14px';
+                        $emailMsg.innerHTML = '系統已發送驗證碼到您的email, 請查收並修改密碼';
                         $nextBtn.innerHTML = '下一步';
+                        // $nextBtn.disabled = true;
                     } else {
                         $emailMsg.style.color = '#ef1300';
                         $emailMsg.innerHTML = '發送失敗，請再試一次';
+                        // $nextBtn.disabled = false;
                         $nextBtn.innerHTML = '下一步';
                     }
                 });

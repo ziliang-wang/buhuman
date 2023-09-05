@@ -5,6 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from app.config.config import config
 from app.settings import env
+import base64
 
 
 def gen_email_code():
@@ -36,7 +37,9 @@ def reset_send_email(email, email_code):
     sender = config[env].sender
     auth_code = config[env].auth_code
     msg_to = email
-    username = email.split('@')[0]
+    username = base64.encodebytes(email.encode('utf-8')).decode('utf-8')
+    print(username)
+    # username = email.split('@')[0]
     content = f'''
         Your Reset Password-validation code is <strong style="color: red;">{ email_code }</strong>
         <br>
