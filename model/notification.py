@@ -148,8 +148,10 @@ class Notification(Base):
                 data['uid'] = row.uid
                 data['nickname'] = User().find_by_uid(row.uid).nickname
                 data['avatar'] = User().find_by_uid(row.uid).avatar
-                data['article_avatar'] = Article().get_article_image(row.aid) or Article().get_article_image(row.caid)
-                data['aid'] = row.aid or row.caid
+                # data['article_avatar'] = Article().get_article_image(row.aid) or Article().get_article_image(row.caid)
+                data['article_avatar'] = Article().get_article_image(row.aid) if row.caid == 0 else Article().get_article_image(row.caid)
+                # data['aid'] = row.aid or row.caid
+                data['aid'] = row.aid if row.caid == 0 else row.caid
                 data['praised'] = row.praised
                 data['is_read'] = row.is_read
                 data['create_time'] = row.create_time
