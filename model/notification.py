@@ -117,7 +117,7 @@ class Notification(Base):
                 # print('fid:', fid)
                 notification = Notification(
                     uid=uid,
-                    tid=self.fid,
+                    tid=fid,
                     aid=0,
                     caid=caid,
                     collected=0,
