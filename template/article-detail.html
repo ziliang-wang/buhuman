@@ -235,10 +235,16 @@
                 <div class="detail-right-top">
                     <div class="author-info flex-r">
                         <div class="author-avatar">
-                            <img src="{{ user.avatar }}" alt="">
+                            <a href="/u?user={{ user.uid }}">
+                                <img src="{{ user.avatar }}" alt="">
+                            </a>
                         </div>
                         <div class="author-desc">
-                            <div class="author-name">{{ user.nickname }}</div>
+                            <div class="author-name">
+                                <a href="/u?user={{ user.uid }}" style="color: #6f4627">
+                                    {{ user.nickname }}
+                                </a>
+                            </div>
                             <div class="author-title">{{ user.slogan or '懶的寫個人簽名的說' }}</div>
                             <div class="author-gender">
                                 {% if user.gender == 'male' %}

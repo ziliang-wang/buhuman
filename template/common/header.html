@@ -20,18 +20,18 @@
             {% if session.get('is_login') == 'true' %}
             <div class="notification">
                 <i class="iconfont icon-tongzhi1 notification-icon">
-                    {% if notification_list %}
+                    {% if session.get('notification_list') %}
                         <i class="dot" id="reminder"></i>
                     {% endif %}
                 </i>
-                {% if notification_list %}
+                {% if session.get('notification_list') %}
                     <div class="notification-layout">
                 {% else %}
                     <div class="no-notification-layout">
                 {% endif %}
-                    {% if notification_list %}
+                    {% if session.get('notification_list') %}
                         <ul class="notification-list">
-                            {% for item in notification_list %}
+                            {% for item in session.get('notification_list') %}
                                 <li class="list-item flex-r">
                                     {% if item.type == 'fans' %}
                                         <a class="item-left"></a>
@@ -46,7 +46,11 @@
                                         </a>
                                     {% else %}
                                         <a class="item-left" href="/u?user={{ item.uid }}"><img class="img1" src="{{ item.avatar }}" alt=""></a>
-                                        <a href="/detail?aid={{ item.aid }}">
+                                        {% if item.type != 'concerned' %}
+                                            <a href="/detail?aid={{ item.aid }}">
+                                        {% else %}
+                                            <a href="/u?user={{ item.uid }}">
+                                        {% endif %}
                                             <div class="item-middle">
                                                 <div class="content flex-r">
                                                     <span>{{ item.nickname }}</span>

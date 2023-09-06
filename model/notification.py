@@ -105,28 +105,30 @@ class Notification(Base):
 
         db_session.commit()
 
-    fid = 0
+    # fid = 0
 
     def update_fans_notification(self, uid, caid):
         # concern = Concern()
-        row = db_session.query(Concern).filter_by(tid=uid, concerned=1, is_valid=1).first()
-        if row:
-            self.fid = row.fid
-            print('fid:', self.fid)
-            notification = Notification(
-                uid=uid,
-                tid=self.fid,
-                aid=0,
-                caid=caid,
-                collected=0,
-                praised=0,
-                comment=0,
-                concerned=0
-            )
+        # row = db_session.query(Concern).filter_by(tid=uid, concerned=1, is_valid=1).first()
+        rows = db_session.query(Concern).filter_by(tid=uid, concerned=1, is_valid=1).all()
+        if rows:
+            for row in rows:
+                fid = row.fid
+                # print('fid:', fid)
+                notification = Notification(
+                    uid=uid,
+                    tid=self.fid,
+                    aid=0,
+                    caid=caid,
+                    collected=0,
+                    praised=0,
+                    comment=0,
+                    concerned=0
+                )
 
-            db_session.add(notification)
-            db_session.commit()
-            return row
+                db_session.add(notification)
+                db_session.commit()
+            return rows
         return None
 
     def get_notification_list(self, uid):
