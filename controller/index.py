@@ -139,6 +139,7 @@ def home():
     notification = Notification()
     notification_list = notification.get_notification_list(curr_uid)
     session['notification_list'] = notification_list
+    print(notification_list)
 
     return render_template(
         'index.html',

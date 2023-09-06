@@ -117,7 +117,9 @@ class Article(Base):
 
     def get_article_image(self, aid):
         row = db_session.query(Article).filter_by(aid=aid, drafted=1, is_valid=1).first()
-        return row.article_image
+        if row:
+            return row.article_image or ''
+        return None
 
     # def get_relation_articles(self, label_name):
     #     result = db_session.query(Article).filter_by(label_name=label_name).order_by(

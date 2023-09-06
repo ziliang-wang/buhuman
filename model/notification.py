@@ -148,7 +148,16 @@ class Notification(Base):
                 data['uid'] = row.uid
                 data['nickname'] = User().find_by_uid(row.uid).nickname
                 data['avatar'] = User().find_by_uid(row.uid).avatar
-                data['article_avatar'] = Article().get_article_image(row.aid)
+                data['article_avatar'] = Article().get_article_image(row.aid) or ''
+                data['aid'] = row.aid
+                data['praised'] = row.praised
+                data['is_read'] = row.is_read
+                data['create_time'] = row.create_time
+            elif row.caid:
+                data['uid'] = row.uid
+                data['nickname'] = User().find_by_uid(row.uid).nickname
+                data['avatar'] = User().find_by_uid(row.uid).avatar
+                data['article_avatar'] = Article().get_article_image(row.caid) or ''
                 data['aid'] = row.aid
                 data['praised'] = row.praised
                 data['is_read'] = row.is_read
@@ -175,14 +184,38 @@ class Notification(Base):
 
             result_list.append(data)
         # fans
-        # fans_rows = db_session.query(Notification).filter_by(
-        #     tid=uid,
-        #     is_valid=1
+        # fans_rows = db_session.query(Notification).filter(
+        #     Notification.tid == self.fid,
+        #     # Notification.tid == uid,
+        #     Notification.caid != 0,
+        #     Notification.is_valid == 1
         # ).order_by(
         #     Notification.create_time.desc()
         # ).limit(10).all()
 
-
+        # for row in fans_rows:
+        #     # print('fans', row)
+        #     data = {}
+        #     data['uid'] = row.uid
+        #     data['nickname'] = User().find_by_uid(row.uid).nickname
+        #     data['avatar'] = User().find_by_uid(row.uid).avatar
+        #     data['aid'] = row.caid
+        #     data['praised'] = row.praised
+        #     data['is_read'] = row.is_read
+        #     data['create_time'] = row.create_time
+        #
+        #     if row.praised:
+        #         data['type'] = '讚'
+        #     elif row.collected:
+        #         data['type'] = '收藏'
+        #     elif row.comment:
+        #         data['type'] = '評論'
+        #     elif row.concerned:
+        #         data['type'] = 'concerned'
+        #     elif row.caid:
+        #         data['type'] = 'fans'
+        #
+        #     result_list.append(data)
 
         # print(result_list)
 
