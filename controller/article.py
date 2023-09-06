@@ -62,6 +62,11 @@ def article_detail():
     # 收藏數
     collection_obj = Collection()
     collected_num = collection_obj.calc_collected_num(aid)
+    uid = session.get('uid')
+    # 通知中心
+    notification = Notification()
+    notification_list = notification.get_notification_list(uid)
+    session['notification_list'] = notification_list
 
     return render_template(
         'article-detail.html',
