@@ -13,6 +13,7 @@ from app.settings import env
 from model.collection import Collection
 from model.comment import Comment
 from model.concern import Concern
+from model.notification import Notification
 from model.user import User
 
 article = Blueprint('article', __name__)
@@ -258,7 +259,6 @@ def upload_cover_image():
 
 @article.route('/article/upload/random', methods=['POST'])
 def upload_random_header_image():
-
     name = random.randint(1, 539)
     newname = str(name) + '.jpg'
 
@@ -293,3 +293,18 @@ def user_home():
                            user_info=user_info,
                            active=typename
                            )
+
+
+@article.route('/article/notification', methods=['POST'])
+def article_notification():
+    request_data = json.loads(request.data)
+    caid = request_data.get('aid')
+    tid = session.get('uid')
+    # 當drafted為1時，發佈了文章，通知其粉絲
+    notification = Notification()
+    result = notification.update_fans_notification(tid, caid)
+    if result:
+        return {
+            'status': 8000
+        }
+    return {}

@@ -536,8 +536,13 @@ window.onload = () => {
             article_type: window.article_type_name,
             article_tag: tagsResultList.join(',')
         }).then(res => {
-            // alert(res.data.data);
             if (drafted === 1) {
+                axios.post('/article/notification', {
+                    aid
+                }).then(res => {
+                    console.log(res.data);
+                });
+
                 setTimeout(() => {
                     location.href = `/detail?aid=${aid}`;
                 }, 1000);

@@ -4,6 +4,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from common.database import db_connect
 from app.config.config import config
 from app.settings import env
+from model.concern import Concern
 # from model.article import Article
 from model.user import User
 
@@ -103,6 +104,41 @@ class Notification(Base):
             notification_row.concerned = concerned
 
         db_session.commit()
+
+    def update_fans_notification(self, tid, caid):
+        # concern = Concern()
+        row = db_session.query(Concern).filter_by(tid=tid, concerned=1, is_valid=1).first()
+        if row:
+            fid = row.fid
+            # print('fid:', fid)
+            notification = Notification(
+                uid=fid,
+                tid=tid,
+                aid=0,
+                caid=caid,
+                collected=0,
+                praised=0,
+                comment=0,
+                concerned=0
+            )
+
+            db_session.add(notification)
+            db_session.commit()
+            return row
+        return None
+
+        # notification = Notification(
+        #     tid=uid,
+        #     aid=0,
+        #     caid=aid,
+        #     collected=0,
+        #     praised=0,
+        #     comment=0,
+        #     concerned=0
+        # )
+        #
+        # db_session.add(notification)
+        # db_session.commit()
 
     def get_notification_list(self, uid):
 
