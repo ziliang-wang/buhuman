@@ -299,10 +299,10 @@ def user_home():
 def article_notification():
     request_data = json.loads(request.data)
     caid = request_data.get('aid')
-    tid = session.get('uid')
+    uid = session.get('uid')
     # 當drafted為1時，發佈了文章，通知其粉絲
     notification = Notification()
-    result = notification.update_fans_notification(tid, caid)
+    result = notification.update_fans_notification(uid, caid)
     if result:
         return {
             'status': 8000
