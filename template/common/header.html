@@ -61,7 +61,7 @@
                                         </a>
                                         {% if item.type != 'concerned' %}
                                             <a href="/detail?aid={{ item.aid }}">
-                                                <img class="item-right img2" src="/images/article/header/518.jpg" alt="test">
+                                                <img class="item-right img2" src="{{ item.article_avatar }}" alt="test">
                                             </a>
                                         {% else %}
                                             <span class="item-right zhanwei"></span>
