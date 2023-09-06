@@ -29,6 +29,17 @@ def vcode():
     return response
 
 
+@user.route('/revcode')
+def re_vcode():
+    code, imbstring = ImageCode().get_code()
+    response = make_response(imbstring)
+    response.headers['Content-Type'] = 'image/jpeg'
+    # 存起來，暫存到session里
+    session['revcode'] = code.lower()
+    # print('圖片驗證碼', code.lower())
+    return response
+
+
 @user.route('/ecode', methods=['POST'])
 def email_code():
     # email = request.form.get('email')
@@ -202,7 +213,7 @@ def reset_next():
     username = request_data.get('username')
     vcode = request_data.get('vcode')
 
-    if vcode.lower() != session.get('vcode'):
+    if vcode.lower() != session.get('revcode'):
         return UserMessage.fail('vcodeErr')
 
     user = User()
