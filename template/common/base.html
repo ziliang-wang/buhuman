@@ -51,7 +51,16 @@
                             {% for item in notification_list %}
                                 <li class="list-item flex-r">
                                     {% if item.type == 'fans' %}
-                                        您關注的 <a href="/u?user={{ item.uid }}">{{ item.nickname }}</a> 發表了文章 <img src="{{ item.article_avatar }}">
+                                        <a class="item-left"></a>
+                                        <div class="item-middle">
+                                            <div class="content flex-r">
+                                                您關注的&nbsp;<a href="/u?user={{ item.uid }}" style="color: #6f4627">{{ item.nickname }}</a>&nbsp;發表了文章
+                                            </div>
+                                            <div class="datetime">{{ item.create_time }}</div>
+                                        </div>
+                                        <a href="/detail?aid={{ item.aid }}">
+                                            <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
+                                        </a>
                                     {% else %}
                                         <a class="item-left" href="/u?user={{ item.uid }}"><img class="img1" src="{{ item.avatar }}" alt=""></a>
                                         <a href="/detail?aid={{ item.aid }}">
