@@ -80,7 +80,8 @@ def article_detail():
         fans_num=fans_num,
         comment_list=comment_list,
         comment_num=comment_num,
-        collected_num=collected_num
+        collected_num=collected_num,
+        notification_list=notification_list
     )
 
 
