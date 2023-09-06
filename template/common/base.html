@@ -51,7 +51,7 @@
                             {% for item in notification_list %}
                                 <li class="list-item flex-r">
                                     {% if item.type == 'fans' %}
-                                        您關注的{{ item.nickname }}發表了文章
+                                        您關注的 <a href="/u?user={{ item.uid }}">{{ item.nickname }}</a> 發表了文章 <img src="{{ item.article_avatar }}">
                                     {% else %}
                                         <a class="item-left" href="/u?user={{ item.uid }}"><img class="img1" src="{{ item.avatar }}" alt=""></a>
                                         <a href="/detail?aid={{ item.aid }}">
