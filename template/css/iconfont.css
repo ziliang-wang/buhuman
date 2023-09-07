@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('../fonts/iconfont.ttf?t=1693487071262') format('truetype');
+  src: url('../fonts/iconfont.ttf?t=1694049174102') format('truetype');
 }
 
 .iconfont {
@@ -121,6 +121,10 @@
 
 .icon-line1:before {
   content: "\e6fb";
+}
+
+.icon-eform-fujianliebiao:before {
+  content: "\e63f";
 }
 
 .icon-tuite:before {
