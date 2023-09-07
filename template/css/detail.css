@@ -136,6 +136,11 @@ body {
     /*color: #4267b2;*/
 }
 
+.detail-container .detail-wrap .detail-path .share .hyperlink:active {
+    color: #6f4627;
+    font-weight: bold;
+}
+
 .detail-container .detail-wrap .detail-path .share .facebook {
     color: #4267b2;
 }
