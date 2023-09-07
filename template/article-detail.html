@@ -30,6 +30,7 @@
                     首頁&nbsp;&nbsp;>&nbsp;&nbsp;{{ article.label_name }}&nbsp;&nbsp;>&nbsp;&nbsp;{{ article.title }}
                 </span>
             <span class="share">
+                <i id="copyUrlBtn" class="iconfont icon-eform-fujianliebiao hyperlink" title="複製URL"></i>
                 <i class="iconfont icon-facebook facebook" title="分享到Facebook"></i>
                 <i class="iconfont icon-line line" title="分享到Line"></i>
                 <i class="iconfont icon-twitterB twitter" title="分享到Twitter"></i>
@@ -417,7 +418,9 @@
                             <div class="comment-item-right-action flex-r">
                                 <div class="action-praise"
                                      data-pid="{{ comment_item.id }}" data-isLogin="{{ session.get('is_login') }}">
-                                    <i id="praise{{ comment_item.id }}" class="iconfont icon-dianzan" data-pid="{{ comment_item.id }}" data-isLogin="{{ session.get('is_login') }}"></i>
+                                    <i id="praise{{ comment_item.id }}" class="iconfont icon-dianzan"
+                                       data-pid="{{ comment_item.id }}"
+                                       data-isLogin="{{ session.get('is_login') }}"></i>
                                     <span id="praiseNum{{ comment_item.id }}" class="dianzan-num"
                                           data-pid="{{ comment_item.id }}" data-isLogin="{{ session.get('is_login') }}">{{ comment_item.praised_num }}</span>
                                 </div>
@@ -816,6 +819,20 @@
                     }
                 });
             }
+        };
+    </script>
+    <script>
+        const $copyUrlBtn = document.getElementById('copyUrlBtn');
+
+        $copyUrlBtn.onclick = () => {
+            const url = location.href;
+            const textarea = document.createElement("textarea");
+            textarea.value = url;
+            textarea.style.position = "fixed";
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
         };
     </script>
 </section>
