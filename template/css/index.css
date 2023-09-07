@@ -141,10 +141,10 @@
 /*    opacity: 1;*/
 /*}*/
 
-.header-container .header .header-right .notification:hover > .no-notification-layout {
-    /*height: 50px;*/
-    opacity: 1;
-}
+/*.header-container .header .header-right .notification:hover > .no-notification-layout {*/
+/*    !*height: 50px;*!*/
+/*    opacity: 1;*/
+/*}*/
 
 .header-container .header .header-right .notification > .notification-layout .notification-list .list-item {
     height: 60px;

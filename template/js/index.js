@@ -83,19 +83,42 @@ window.onload = () => {
         const $notificationLayout = document.getElementById('notificationLayout');
 
         let reminderSwitch = false;
+        let notificationData = [];
+
+        axios.get('/notification').then(res => {
+            notificationData = res.data.data;
+            console.log(notificationData);
+        });
 
         if ($reminder) {
             $reminder.onclick = function (e) {
                 e.stopPropagation();
 
-                if (!reminderSwitch) {
-                    $notificationLayout.style.opacity = '1';
-                    $notificationLayout.style.height = '300px';
-                    reminderSwitch = !reminderSwitch;
+                if (notificationData.length !== 0) {
+                    if (!reminderSwitch) {
+                        $notificationLayout.style.opacity = '1';
+                        $notificationLayout.style.height = '300px';
+                        // $noneNotificationLayout.style.opacity = '1';
+                        reminderSwitch = !reminderSwitch;
+                    } else {
+                        $notificationLayout.style.opacity = '0';
+                        $notificationLayout.style.height = '0';
+                        // $noneNotificationLayout.style.opacity = '0';
+                        reminderSwitch = !reminderSwitch;
+                    }
                 } else {
-                     $notificationLayout.style.opacity = '0';
-                     $notificationLayout.style.height = '0';
-                     reminderSwitch = !reminderSwitch;
+                    const $noneNotificationLayout = document.getElementById('noneNotificationLayout');
+                    if (!reminderSwitch) {
+                        // $notificationLayout.style.opacity = '1';
+                        // $notificationLayout.style.height = '300px';
+                        $noneNotificationLayout.style.opacity = '1';
+                        reminderSwitch = !reminderSwitch;
+                    } else {
+                        // $notificationLayout.style.opacity = '0';
+                        // $notificationLayout.style.height = '0';
+                        $noneNotificationLayout.style.opacity = '0';
+                        reminderSwitch = !reminderSwitch;
+                    }
                 }
                 // setInterval(() => {
                 //     axios.get('/notification').then(res => {
@@ -654,4 +677,5 @@ window.onload = () => {
             item.style.width = '10%';
         }
     }
-};
+}
+;
