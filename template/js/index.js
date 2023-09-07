@@ -52,6 +52,7 @@ window.onload = () => {
     const $vcodeMsg = document.getElementById('vcodeMsg');
     const $keepLogin = document.getElementById('keepLogin');
     const $logout = document.getElementById('logout');
+    // const $notificationList = document.getElementById('notificationList');
     // const $resetPwdBtn = document.getElementById('resetPwdBtn');
 
 
@@ -74,9 +75,36 @@ window.onload = () => {
 
     const $top1AvatarList = document.getElementById('top1AvatarList');
 
-    // $resetPwdBtn.onclick = () => {
-    //     window.open('/newfoget');
-    // };
+    // 通知列表
+    // console.log($reminder);
+    //
+    if (window.isLogin === 'true') {
+        const $reminder = document.getElementById('reminder');
+        const $notificationLayout = document.getElementById('notificationLayout');
+
+        let reminderSwitch = false;
+
+        if ($reminder) {
+            $reminder.onclick = function () {
+
+                if (!reminderSwitch) {
+                    $notificationLayout.style.opacity = '1';
+                    $notificationLayout.style.height = '300px';
+                    reminderSwitch = !reminderSwitch;
+                } else {
+                     $notificationLayout.style.opacity = '0';
+                     $notificationLayout.style.height = '0';
+                     reminderSwitch = !reminderSwitch;
+                }
+                // setInterval(() => {
+                //     axios.get('/notification').then(res => {
+                //         console.log(res.data);
+                //     });
+                // }, 5000);
+            }
+        }
+    }
+
 
     // get top1 concerning avatar
     axios.get('/get/top1').then(res => {
@@ -87,7 +115,7 @@ window.onload = () => {
 
         if (res.data.status === 9000) {
             let avatarList = res.data.data;
-            for (let i =0; i < avatarList.length; i++) {
+            for (let i = 0; i < avatarList.length; i++) {
                 const img = document.createElement('img');
                 img.src = avatarList[i];
 

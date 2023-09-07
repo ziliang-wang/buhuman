@@ -136,10 +136,10 @@
     opacity: 0;
 }
 
-.header-container .header .header-right .notification:hover > .notification-layout {
-    height: 300px;
-    opacity: 1;
-}
+/*.header-container .header .header-right .notification:hover > .notification-layout {*/
+/*    height: 300px;*/
+/*    opacity: 1;*/
+/*}*/
 
 .header-container .header .header-right .notification:hover > .no-notification-layout {
     /*height: 50px;*/

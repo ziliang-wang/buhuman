@@ -175,3 +175,22 @@ def get_top1():
         'status': 9000,
         'data': concerning_list
     }
+
+
+@index.route('/notification')
+def notification_list():
+    uid = session.get('uid')
+    notification = Notification()
+    notification_list = notification.get_notification_list(uid)
+    # session['notification_list'] = notification_list
+    return {
+        'status': 9000,
+        'data': notification_list
+    }
+
+
+
+
+
+
+
