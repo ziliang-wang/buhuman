@@ -74,7 +74,39 @@ window.onload = () => {
     //     $writeArticle.setAttribute('data-isLogin', 'false');
     // };
 
-    // console.log(window.isLogin);
+    if (window.isLogin === 'true') {
+        const $reminder = document.getElementById('reminder');
+        const $notificationLayout = document.getElementById('notificationLayout');
+
+        let reminderSwitch = false;
+
+        if ($reminder) {
+            $reminder.onclick = function (e) {
+                e.stopPropagation();
+
+                if (!reminderSwitch) {
+                    $notificationLayout.style.opacity = '1';
+                    $notificationLayout.style.height = '300px';
+                    reminderSwitch = !reminderSwitch;
+                } else {
+                    $notificationLayout.style.opacity = '0';
+                    $notificationLayout.style.height = '0';
+                    reminderSwitch = !reminderSwitch;
+                }
+                // setInterval(() => {
+                //     axios.get('/notification').then(res => {
+                //         console.log(res.data);
+                //     });
+                // }, 5000);
+            }
+            document.onclick = () => {
+                $notificationLayout.style.opacity = '0';
+                $notificationLayout.style.height = '0';
+                reminderSwitch = false;
+            };
+        }
+
+    }
 
     if (window.isLogin === 'true') {
         const $avatar = document.querySelector('.avatar');

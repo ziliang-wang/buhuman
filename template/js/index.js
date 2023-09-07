@@ -85,7 +85,8 @@ window.onload = () => {
         let reminderSwitch = false;
 
         if ($reminder) {
-            $reminder.onclick = function () {
+            $reminder.onclick = function (e) {
+                e.stopPropagation();
 
                 if (!reminderSwitch) {
                     $notificationLayout.style.opacity = '1';
@@ -102,6 +103,11 @@ window.onload = () => {
                 //     });
                 // }, 5000);
             }
+            document.onclick = () => {
+                $notificationLayout.style.opacity = '0';
+                $notificationLayout.style.height = '0';
+                reminderSwitch = false;
+            };
         }
     }
 
