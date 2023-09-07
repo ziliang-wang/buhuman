@@ -52,6 +52,7 @@ window.onload = () => {
     const $vcodeMsg = document.getElementById('vcodeMsg');
     const $keepLogin = document.getElementById('keepLogin');
     const $logout = document.getElementById('logout');
+    const $notificationList = document.getElementById('notificationList');
 
     // 註冊/登入表單 正則表達式
     const emailReg = /^\w{2,}\@\w{2,}\.[a-zA-Z]{2,4}(\.[a-zA-Z]{2,4})?$/;
@@ -91,36 +92,42 @@ window.onload = () => {
                 e.stopPropagation();
 
                 if (notificationData.length !== 0) {
+
+                    const $notificationList = document.getElementById('notificationList');
+                    $notificationList.onclick = function (e) {
+                        const self = e.target;
+                        const fans = self.getAttribute('data-fans');
+                        const faid = self.getAttribute('data-faid');
+
+                        if (fans === 'fans') {
+                            location.href = `/detail?aid=${faid}`;
+                        }
+                    };
+
                     if (!reminderSwitch) {
                         $notificationLayout.style.opacity = '1';
                         $notificationLayout.style.height = '300px';
-                        // $noneNotificationLayout.style.opacity = '1';
                         reminderSwitch = !reminderSwitch;
                     } else {
                         $notificationLayout.style.opacity = '0';
                         $notificationLayout.style.height = '0';
-                        // $noneNotificationLayout.style.opacity = '0';
                         reminderSwitch = !reminderSwitch;
                     }
                 } else {
                     const $noneNotificationLayout = document.getElementById('noneNotificationLayout');
+
                     if (!reminderSwitch) {
-                        // $notificationLayout.style.opacity = '1';
-                        // $notificationLayout.style.height = '300px';
                         $noneNotificationLayout.style.opacity = '1';
                         reminderSwitch = !reminderSwitch;
                     } else {
-                        // $notificationLayout.style.opacity = '0';
-                        // $notificationLayout.style.height = '0';
                         $noneNotificationLayout.style.opacity = '0';
                         reminderSwitch = !reminderSwitch;
                     }
+                    document.onclick = () => {
+                        $noneNotificationLayout.style.opacity = '0';
+                        reminderSwitch = false;
+                    };
                 }
-                // setInterval(() => {
-                //     axios.get('/notification').then(res => {
-                //         console.log(res.data);
-                //     });
-                // }, 5000);
             }
             document.onclick = () => {
                 $notificationLayout.style.opacity = '0';

@@ -118,6 +118,7 @@
     transition: height 1s linear 0s;
     padding: 5px;
     opacity: 0;
+    box-shadow: 0 4px 8px 0 rgb(7 17 27 / 15%);
 }
 
 .header-container .header .header-right .notification > .no-notification-layout {
@@ -924,4 +925,5 @@
     font-size: 14px;
     position: relative;
     top: -15px;
+    /*box-shadow: 0 4px 8px 0 rgb(7 17 27 / 15%);*/
 }
