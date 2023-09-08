@@ -107,6 +107,20 @@ window.onload = () => {
                         }
                     };
 
+                    function parseDate(date) {
+                        // console.log(typeof date);
+                        const year = new Date(date).getFullYear();
+                        const month = (new Date(date).getMonth() + 1) < 10 ? '0' + (new Date(date).getMonth() + 1) : new Date(date).getMonth() + 1;
+                        const d = (new Date(date).getDate()) < 10 ? '0' + (new Date(date).getDate()) : new Date(date).getDate();
+                        const h = (new Date(date).getHours()) < 10 ? '0' + (new Date(date).getHours()) : new Date(date).getHours();
+                        const m = (new Date(date).getMinutes()) < 10 ? '0' + (new Date(date).getMinutes()) : new Date(date).getMinutes();
+                        const s = (new Date(date).getSeconds()) < 10 ? '0' + (new Date(date).getSeconds()) : new Date(date).getSeconds();
+
+                        const result = `${year}-${month}-${d} ${h}:${m}:${s}`
+                        console.log(result)
+                        return result;
+                    }
+
                     if (!reminderSwitch) {
                         axios.get('/notification').then(res => {
                             if (res.data.status === 9000) {
@@ -123,7 +137,7 @@ window.onload = () => {
                                                     <div class="content flex-r" data-fans="${item.type}" data-faid="${item.aid}">
                                                             您關注的&nbsp;<a href="/u?user=${item.uid }" style="color: #6f4627">${item.nickname}</a>&nbsp;發表了文章
                                                     </div>
-                                                    <div class="datetime" data-fans="${item.type}" data-faid="${item.aid}">${item.create_time}</div>
+                                                    <div class="datetime" data-fans="${item.type}" data-faid="${item.aid}">${parseDate(item.create_time)}</div>
                                                 </div>
                                                 <a href="/detail?aid=${item.aid}">
                                                     <img class="item-right img2" src="${item.article_avatar}" alt="">
@@ -140,7 +154,7 @@ window.onload = () => {
                                                         <span>${item.nickname}</span>
                                                         <span>關注</span>了您
                                                      </div>
-                                                     <div class="datetime">${item.create_time}</div>
+                                                     <div class="datetime">${parseDate(item.create_time)}</div>
                                                    </div>
                                                 </a>
                                                 <span class="item-right zhanwei"></span>
@@ -156,7 +170,7 @@ window.onload = () => {
                                                             <span>${item.nickname}</span>
                                                             <span>${item.type}</span>了您的文章
                                                         </div>
-                                                        <div class="datetime">${item.create_time}</div>
+                                                        <div class="datetime">${parseDate(item.create_time)}</div>
                                                     </div>
                                                 </a>
                                                 <a href="/detail?aid=${item.aid}">
