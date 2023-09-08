@@ -38,102 +38,106 @@
             <div class="notification" id="reminder">
                 <i class="iconfont icon-tongzhi1 notification-icon">
                     {% if notification_list %}
-                        <i class="dot"></i>
+                    <i class="dot"></i>
                     {% endif %}
                 </i>
                 {% if notification_list %}
-                    <div class="notification-layout" id="notificationLayout">
-                {% else %}
+                <div class="notification-layout" id="notificationLayout">
+                    {% else %}
                     <div class="no-notification-layout" id="noneNotificationLayout">
-                {% endif %}
-                    {% if notification_list %}
+                        {% endif %}
+                        {% if notification_list %}
                         <ul class="notification-list" id="notificationList">
                             {% for item in notification_list %}
-                                <li class="list-item flex-r" data-fans="{{ item.type }}" data-faid="{{ item.aid }}">
-                                    {% if item.type == 'fans' %}
-                                        <a class="item-left"></a>
-                                        <div class="item-middle" data-fans="{{ item.type }}" data-faid="{{ item.aid }}">
-                                            <div class="content flex-r" data-fans="{{ item.type }}" data-faid="{{ item.aid }}">
-                                                您關注的&nbsp;<a href="/u?user={{ item.uid }}" style="color: #6f4627">{{ item.nickname }}</a>&nbsp;發表了文章
-                                            </div>
-                                            <div class="datetime" data-fans="{{ item.type }}" data-faid="{{ item.aid }}">{{ item.create_time }}</div>
-                                        </div>
-                                        <a href="/detail?aid={{ item.aid }}">
-                                            <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
-                                        </a>
+                            <li class="list-item flex-r" data-fans="{{ item.type }}" data-faid="{{ item.aid }}">
+                                {% if item.type == 'fans' %}
+                                <a class="item-left"></a>
+                                <div class="item-middle" data-fans="{{ item.type }}" data-faid="{{ item.aid }}">
+                                    <div class="content flex-r" data-fans="{{ item.type }}" data-faid="{{ item.aid }}">
+                                        您關注的&nbsp;<a href="/u?user={{ item.uid }}" style="color: #6f4627">{{
+                                        item.nickname }}</a>&nbsp;發表了文章
+                                    </div>
+                                    <div class="datetime" data-fans="{{ item.type }}" data-faid="{{ item.aid }}">{{
+                                        item.create_time }}
+                                    </div>
+                                </div>
+                                <a href="/detail?aid={{ item.aid }}">
+                                    <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
+                                </a>
+                                {% else %}
+                                <a class="item-left" href="/u?user={{ item.uid }}"><img class="img1"
+                                                                                        src="{{ item.avatar }}" alt=""></a>
+                                {% if item.type != 'concerned' %}
+                                <a href="/detail?aid={{ item.aid }}">
                                     {% else %}
-                                        <a class="item-left" href="/u?user={{ item.uid }}"><img class="img1" src="{{ item.avatar }}" alt=""></a>
-                                        {% if item.type != 'concerned' %}
-                                            <a href="/detail?aid={{ item.aid }}">
-                                        {% else %}
-                                            <a href="/u?user={{ item.uid }}">
+                                    <a href="/u?user={{ item.uid }}">
                                         {% endif %}
-                                            <div class="item-middle">
-                                                <div class="content flex-r">
-                                                    <span>{{ item.nickname }}</span>
-                                                    {% if item.type == 'concerned' %}
-                                                        <span>關注</span>了您
-                                                    {% else %}
-                                                        <span>{{ item.type }}</span>了您的文章
-                                                    {% endif %}
-                                                </div>
-                                                <div class="datetime">{{ item.create_time }}</div>
+                                        <div class="item-middle">
+                                            <div class="content flex-r">
+                                                <span>{{ item.nickname }}</span>
+                                                {% if item.type == 'concerned' %}
+                                                <span>關注</span>了您
+                                                {% else %}
+                                                <span>{{ item.type }}</span>了您的文章
+                                                {% endif %}
                                             </div>
-                                        </a>
-                                        {% if item.type != 'concerned' %}
-                                            <a href="/detail?aid={{ item.aid }}">
-                                                <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
-                                            </a>
-                                        {% else %}
-                                            <span class="item-right zhanwei"></span>
-                                        {% endif %}
+                                            <div class="datetime">{{ item.create_time }}</div>
+                                        </div>
+                                    </a>
+                                    {% if item.type != 'concerned' %}
+                                    <a href="/detail?aid={{ item.aid }}">
+                                        <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
+                                    </a>
+                                    {% else %}
+                                    <span class="item-right zhanwei"></span>
                                     {% endif %}
-                                </li>
+                                    {% endif %}
+                            </li>
                             {% endfor %}
                         </ul>
-                    {% else %}
+                        {% else %}
                         <div class="no-notification" id="nonenotification">暫時沒有您的消息通知喔</div>
-                    {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-            {% endif %}
-            <button class="write" id="writeArticle" data-action="write" data-isLogin="session.get('is_login')">
-                創作者中心
-            </button>
-            {% if session.get('is_login') == 'true' %}
-            <div class="account">
+                {% endif %}
+                <button class="write" id="writeArticle" data-action="write" data-isLogin="session.get('is_login')">
+                    創作者中心
+                </button>
+                {% if session.get('is_login') == 'true' %}
+                <div class="account">
                     <span class="login nickname" id="nickname">
                         <a href="/personal">
                             {{ session.get('nickname') }}
                         </a>
                     </span>
-                <span class="avatar">
+                    <span class="avatar">
     <!--                    <img src="images/headers/1.jpg" alt="">-->
                         <img src="{{ session.get('avatar') }}" alt="">
                     </span>
-                <span class="register" id="logout">
+                    <span class="register" id="logout">
                         <a href="/logout">
                             登出
                         </a>
                     </span>
-            </div>
-            {% else %}
-            <div class="account">
+                </div>
+                {% else %}
+                <div class="account">
                     <span class="login" id="login">
                         <a href="javascript:;">
                             登入
                         </a>
                     </span>
-                <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                <span class="register" id="register">
+                    <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <span class="register" id="register">
                         <a href="javascript:;">
                             註冊
                         </a>
                     </span>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
-    </div>
 </header>
 {% block banner %}
 {% endblock %}
