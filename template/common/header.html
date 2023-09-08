@@ -31,48 +31,7 @@
                 {% endif %}
                     {% if session.get('notification_list') %}
                         <ul class="notification-list" id="notificationList">
-                            {% for item in session.get('notification_list') %}
-                                <li class="list-item flex-r" data-fans="{{ item.type }}" data-faid="{{ item.aid }}">
-                                    {% if item.type == 'fans' %}
-                                        <a class="item-left"></a>
-                                        <div class="item-middle" data-fans="{{ item.type }}" data-faid="{{ item.aid }}">
-                                            <div class="content flex-r" data-fans="{{ item.type }}" data-faid="{{ item.aid }}">
-                                                您關注的&nbsp;<a href="/u?user={{ item.uid }}" style="color: #6f4627">{{ item.nickname }}</a>&nbsp;發表了文章
-                                            </div>
-                                            <div class="datetime" data-fans="{{ item.type }}" data-faid="{{ item.aid }}">{{ item.create_time }}</div>
-                                        </div>
-                                        <a href="/detail?aid={{ item.aid }}">
-                                            <img class="item-right img2" src="{{ item.article_avatar }}" alt="">
-                                        </a>
-                                    {% else %}
-                                        <a class="item-left" href="/u?user={{ item.uid }}"><img class="img1" src="{{ item.avatar }}" alt=""></a>
-                                        {% if item.type != 'concerned' %}
-                                            <a href="/detail?aid={{ item.aid }}">
-                                        {% else %}
-                                            <a href="/u?user={{ item.uid }}">
-                                        {% endif %}
-                                            <div class="item-middle">
-                                                <div class="content flex-r">
-                                                    <span>{{ item.nickname }}</span>
-                                                    {% if item.type == 'concerned' %}
-                                                        <span>關注</span>了您
-                                                    {% else %}
-                                                        <span>{{ item.type }}</span>了您的文章
-                                                    {% endif %}
-                                                </div>
-                                                <div class="datetime">{{ item.create_time }}</div>
-                                            </div>
-                                        </a>
-                                        {% if item.type != 'concerned' %}
-                                            <a href="/detail?aid={{ item.aid }}">
-                                                <img class="item-right img2" src="{{ item.article_avatar }}" alt="test">
-                                            </a>
-                                        {% else %}
-                                            <span class="item-right zhanwei"></span>
-                                        {% endif %}
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
+
                         </ul>
                     {% else %}
                         <div class="no-notification">暫時沒有您的消息通知喔</div>

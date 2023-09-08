@@ -92,7 +92,6 @@ window.onload = () => {
                 e.stopPropagation();
 
                 if (notificationData.length !== 0) {
-
                     const $notificationList = document.getElementById('notificationList');
                     $notificationList.onclick = function (e) {
                         const self = e.target;
@@ -104,7 +103,84 @@ window.onload = () => {
                         }
                     };
 
+                    function parseDate(date) {
+                        // console.log(typeof date);
+                        const year = new Date(date).getFullYear();
+                        const month = (new Date(date).getMonth() + 1) < 10 ? '0' + (new Date(date).getMonth() + 1) : new Date(date).getMonth() + 1;
+                        const d = (new Date(date).getDate()) < 10 ? '0' + (new Date(date).getDate()) : new Date(date).getDate();
+                        const h = (new Date(date).getHours()) < 10 ? '0' + (new Date(date).getHours()) : new Date(date).getHours();
+                        const m = (new Date(date).getMinutes()) < 10 ? '0' + (new Date(date).getMinutes()) : new Date(date).getMinutes();
+                        const s = (new Date(date).getSeconds()) < 10 ? '0' + (new Date(date).getSeconds()) : new Date(date).getSeconds();
+
+                        const result = `${year}-${month}-${d} ${h}:${m}:${s}`
+                        console.log(result)
+                        return result;
+                    }
+
                     if (!reminderSwitch) {
+                        axios.get('/notification').then(res => {
+                            if (res.data.status === 9000) {
+                                notificationData = res.data.data;
+                                console.log(notificationData);
+                                $notificationList.innerHTML = '';
+                                for (const item of notificationData) {
+                                    let html = ``;
+                                    if (item.type === 'fans') {
+                                        html = `
+                                            <li class="list-item flex-r" data-fans="${item.type}" data-faid="${item.aid}">
+                                                <a class="item-left"></a>
+                                                <div class="item-middle" data-fans="${item.type}" data-faid="${item.aid}">
+                                                    <div class="content flex-r" data-fans="${item.type}" data-faid="${item.aid}">
+                                                            您關注的&nbsp;<a href="/u?user=${item.uid}" style="color: #6f4627">${item.nickname}</a>&nbsp;發表了文章
+                                                    </div>
+                                                    <div class="datetime" data-fans="${item.type}" data-faid="${item.aid}">${parseDate(item.create_time)}</div>
+                                                </div>
+                                                <a href="/detail?aid=${item.aid}">
+                                                    <img class="item-right img2" src="${item.article_avatar}" alt="">
+                                                </a>
+                                            </li>
+                                        `;
+                                    } else if (item.type === 'concerned') {
+                                        html = `
+                                            <li class="list-item flex-r"">
+                                                <a class="item-left" href="/u?user=${item.uid}"><img class="img1" src="${item.avatar}" alt=""></a>
+                                                <a href="/u?user=${item.uid}">
+                                                   <div class="item-middle">
+                                                     <div class="content flex-r">
+                                                        <span>${item.nickname}</span>
+                                                        <span>關注</span>了您
+                                                     </div>
+                                                     <div class="datetime">${parseDate(item.create_time)}</div>
+                                                   </div>
+                                                </a>
+                                                <span class="item-right zhanwei"></span>
+                                            </li>
+                                        `;
+                                    } else {
+                                        html = `
+                                            <li class="list-item flex-r"">
+                                                <a class="item-left" href="/u?user=${item.uid}"><img class="img1" src="${item.avatar}" alt=""></a>
+                                                <a href="/detail?aid=${item.aid}">
+                                                    <div class="item-middle">
+                                                        <div class="content flex-r">
+                                                            <span>${item.nickname}</span>
+                                                            <span>${item.type}</span>了您的文章
+                                                        </div>
+                                                        <div class="datetime">${parseDate(item.create_time)}</div>
+                                                    </div>
+                                                </a>
+                                                <a href="/detail?aid=${item.aid}">
+                                                    <img class="item-right img2" src="${item.article_avatar}" alt="">
+                                                </a>
+                                            </li>
+                                        `;
+                                    }
+                                    $notificationList.innerHTML += html;
+                                }
+                            } else {
+                                // error handler
+                            }
+                        });
                         $notificationLayout.style.opacity = '1';
                         $notificationLayout.style.height = '300px';
                         reminderSwitch = !reminderSwitch;
@@ -115,7 +191,6 @@ window.onload = () => {
                     }
                 } else {
                     const $noneNotificationLayout = document.getElementById('noneNotificationLayout');
-
                     if (!reminderSwitch) {
                         $noneNotificationLayout.style.opacity = '1';
                         reminderSwitch = !reminderSwitch;
@@ -129,6 +204,7 @@ window.onload = () => {
                     };
                 }
             }
+
             document.onclick = () => {
                 $notificationLayout.style.opacity = '0';
                 $notificationLayout.style.height = '0';
