@@ -119,9 +119,11 @@ def home():
         # tag formatter
         article.article_tag = article.article_tag.replace(',', ' · ')
         # the count of author's article
-        article.author_article_count = article.get_article_by_uid(article.uid)
+        # article.author_article_count = article.get_article_by_uid(article.uid)
         # author praised count number
-        article.author_praised_count = article.get_praise_article_by_uid(article.uid)
+        article.author_praised_count = article.get_praised_by_author(article.uid)
+
+        print(article.author_praised_count)
 
     # left menu category
     for k, v in label_types.items():

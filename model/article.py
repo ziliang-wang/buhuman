@@ -298,7 +298,7 @@ class Article(Base):
         return self.add_article_image_path(rows)
 
     def add_article_image_path(self, rows):
-        if not rows :
+        if not rows:
             return None
 
         for row in rows:
@@ -388,3 +388,15 @@ class Article(Base):
         ).limit(1).first()
 
         return row
+
+    def get_praised_by_author(self, uid):
+        praised_num = db_session.query(count(Article.uid)).join(
+            Praise, Article.aid == Praise.aid).filter(
+            Article.uid == uid,
+            Article.drafted == 1,
+            Article.is_valid == 1,
+            Praise.praised == 1,
+            Praise.is_valid == 1
+        ).first()
+
+        return praised_num[0] or 0
