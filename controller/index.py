@@ -118,6 +118,10 @@ def home():
         article.article_image = config[env].article_header_image_path + str(article.article_image)
         # tag formatter
         article.article_tag = article.article_tag.replace(',', ' · ')
+        # the count of author's article
+        article.author_article_count = article.get_article_by_uid(article.uid)
+        # author praised number
+        article.author_praised_count = article.get_praise_article_by_uid(article.uid)
 
     # left menu category
     for k, v in label_types.items():
