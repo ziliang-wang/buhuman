@@ -125,6 +125,7 @@ def home():
         # author info
         article.author_info = article.get_author_data(article.uid)
         # print(article.get_author_data(article.uid))
+        # print(article.get_author_data(article.uid))
 
     # left menu category
     for k, v in label_types.items():

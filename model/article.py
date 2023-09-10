@@ -415,12 +415,16 @@ class Article(Base):
         return len(rows)
 
     def get_author_data(self, uid):
-        row = db_session.query(User).join(
-            Article,
-            User.uid == Article.uid
-        ).filter(
-            User.uid == uid
-        ).distinct().first()
+        row = db_session.query(User).filter_by(
+            uid=uid,
+            is_valid=1
+        ).first()
+        # row = db_session.query(User).join(
+        #     Article,
+        #     User.uid == Article.uid
+        # ).filter(
+        #     User.uid == uid
+        # ).distinct().first()
 
         avatar = '/images/headers/' + row.avatar
         gender = row.gender
