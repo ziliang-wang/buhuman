@@ -120,7 +120,7 @@ def home():
         article.article_tag = article.article_tag.replace(',', ' · ')
         # the count of author's article
         article.author_article_count = article.get_article_by_uid(article.uid)
-        # author praised counter number
+        # author praised count number
         article.author_praised_count = article.get_praise_article_by_uid(article.uid)
 
     # left menu category
