@@ -122,6 +122,9 @@ def home():
         article.author_article_count = article.get_article_num_by_author(article.uid)
         # author praised count number
         article.author_praised_count = article.get_praised_by_author(article.uid)
+        # author info
+        article.author_info = article.get_author_data(article.uid)
+        # print(article.get_author_data(article.uid))
 
     # left menu category
     for k, v in label_types.items():

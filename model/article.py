@@ -1,4 +1,4 @@
-from sqlalchemy import Table, or_
+from sqlalchemy import Table, or_, distinct
 from common.database import db_connect
 from app.config.config import config
 from app.settings import env
@@ -413,3 +413,20 @@ class Article(Base):
             return 0
 
         return len(rows)
+
+    def get_author_data(self, uid):
+        row = db_session.query(User).join(
+            Article,
+            User.uid == Article.uid
+        ).filter(
+            User.uid == uid
+        ).distinct().first()
+
+        avatar = '/images/headers/' + row.avatar
+        gender = row.gender
+        job = row.job
+
+        return avatar, gender, job
+
+
+
