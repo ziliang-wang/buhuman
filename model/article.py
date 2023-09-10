@@ -425,8 +425,9 @@ class Article(Base):
         avatar = '/images/headers/' + row.avatar
         gender = row.gender
         job = row.job
+        slogan = row.slogan
 
-        return avatar, gender, job
+        return avatar, gender, job, slogan
 
 
 
