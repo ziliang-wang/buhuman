@@ -400,3 +400,16 @@ class Article(Base):
         ).first()
 
         return praised_num[0] or 0
+
+    def get_article_num_by_author(self, uid):
+        # 當前用戶寫的文章數
+        rows = db_session.query(Article).filter_by(
+            uid=uid,
+            drafted=1,
+            is_valid=1
+        ).all()
+
+        if not rows:
+            return 0
+
+        return len(rows)
