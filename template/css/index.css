@@ -376,6 +376,7 @@
 
 .content-wrapper .article-wrapper {
     width: 78%;
+    /*position: relative;*/
     /*height: calc(100vh - 115px);*/
     /* height: 1500px; */
     /*text-align: left;*/
@@ -503,6 +504,7 @@
     padding: 20px;
     background-color: #fff;
     border-radius: 0 0 5px 5px;
+    position: relative;
 }
 
 .content-wrapper .article-wrapper .article-list .article-row {
@@ -564,6 +566,7 @@
     font-size: 12px;
     color: #9199a1;
     margin-top: 5px;
+    /*position: relative;*/
 }
 
 .content-wrapper .article-wrapper .article-list .article-row .row-desc .article-info .label {
@@ -578,6 +581,8 @@
     font-size: 13px;
     color: #6f4627;
 }
+
+/*  0 12px 24px 0 rgba(0,0,0,0.24) */
 
 .content-wrapper .article-wrapper .article-list .article-row .row-desc .article-info span {
     margin-right: 16px;
@@ -926,4 +931,19 @@
     position: relative;
     top: -15px;
     /*box-shadow: 0 4px 8px 0 rgb(7 17 27 / 15%);*/
+}
+
+#concertModal {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    top: 0;
+    left: 0;
+    /*left: 50%;*/
+    margin-left: -170px;
+    margin-top: -68px;
+    background-color: blue;
+    display: none;
+    color: #fff;
+    /*cursor: pointer;*/
 }

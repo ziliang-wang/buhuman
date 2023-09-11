@@ -760,5 +760,26 @@ window.onload = () => {
             item.style.width = '10%';
         }
     }
-}
-;
+
+    // 首頁動態關注modal
+    const $concertModal = document.getElementById('concertModal');
+    // const $nicknamePosition = document.querySelector('.nickname-position');
+
+    $articleList.onmouseover = (e) => {
+        const self = e.target;
+        const mid = self.getAttribute('data-mid');
+
+        if (mid) {
+            const $nicknamePosition = document.getElementById(`nicknamePosition${mid}`);
+            console.log(mid);
+            const modalTop = $nicknamePosition.offsetTop;
+            const modalLeft = $nicknamePosition.offsetLeft;
+            console.log(modalTop, modalLeft);
+            $nicknamePosition.style.cursor = 'pointer';
+            $concertModal.style.top = (modalTop - 165) + 'px';
+            $concertModal.style.left = modalLeft + 'px';
+            $concertModal.style.display = 'block';
+            $concertModal.innerHTML = mid;
+        }
+    };
+};
