@@ -945,5 +945,7 @@
     background-color: blue;
     display: none;
     color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 12px 24px 0 rgba(0,0,0,0.24);
     /*cursor: pointer;*/
 }

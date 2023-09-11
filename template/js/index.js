@@ -764,6 +764,9 @@ window.onload = () => {
     // 首頁動態關注modal
     const $concertModal = document.getElementById('concertModal');
     // const $nicknamePosition = document.querySelector('.nickname-position');
+    $concertModal.onmouseout = (e) => {
+        e.target.style.display = 'none';
+    };
 
     $articleList.onmouseover = (e) => {
         const self = e.target;
