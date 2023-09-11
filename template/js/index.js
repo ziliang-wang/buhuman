@@ -779,10 +779,23 @@ window.onload = () => {
             const modalLeft = $nicknamePosition.offsetLeft;
             console.log(modalTop, modalLeft);
             $nicknamePosition.style.cursor = 'pointer';
-            $concertModal.style.top = (modalTop - 165) + 'px';
+            $concertModal.style.top = (modalTop - 150) + 'px';
             $concertModal.style.left = modalLeft + 'px';
             $concertModal.style.display = 'block';
             $concertModal.innerHTML = mid;
         }
     };
+
+    // $articleList.onmouseout = (e) => {
+    //     const self = e.target;
+    //     const mid = self.getAttribute('data-mid');
+    //
+    //     if (mid) {
+    //         // setTimeout(() => {
+    //         // }, 1000)
+    //         $concertModal.style.display = 'none';
+    //
+    //         // $concertModal.innerHTML = mid;
+    //     }
+    // };
 };

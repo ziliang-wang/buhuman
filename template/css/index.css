@@ -949,3 +949,17 @@
     box-shadow: 0 12px 24px 0 rgba(0,0,0,0.24);
     /*cursor: pointer;*/
 }
+
+.nickname-style {
+    /*padding-top: 10px;*/
+}
+/*#concertModal .inner-concert-modal {*/
+/*    position: absolute;*/
+/*    argin-left: -170px;*/
+/*    margin-top: -68px;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 300px;*/
+/*    height: 210px;*/
+/*    background-color: blue;*/
+/*}*/
