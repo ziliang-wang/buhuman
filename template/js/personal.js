@@ -342,6 +342,21 @@ window.onload = () => {
     };
 
     // line id
+
+    // line
+    axios.get('/alter/line').then(res => {
+        // console.log(res.data.data);
+        if (res.data.data) {
+            $lineOpen.checked = true;
+            // $lineClose.removeAttribute('checked');
+        } else {
+            $lineClose.checked = true;
+            // $lineClose.setAttribute('checked', 'checked');
+            // $lineOpen.removeAttribute('checked');
+        }
+    });
+
+
     const $lineClose = document.getElementById('lineClose');
     const $lineOpen = document.getElementById('lineOpen');
     const $lineBtn = document.getElementById('lineBtn');
@@ -378,6 +393,8 @@ window.onload = () => {
             isShowLine: isShowLine ? 1 : 0
         }).then(res => {
             if (res.data.status === 8800) {
+
+
                 // $lineInput.value = res.data.data[0];
                 // console.log(res.data.data[0]);
                 // console.log(res.data.data[1]);

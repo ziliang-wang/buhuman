@@ -247,6 +247,7 @@
                                 </a>
                             </div>
                             <div class="author-title">{{ user.slogan or '懶的寫個人簽名的說' }}</div>
+                            <div class="author-title">LINE ID: {{ '不公開' if not user.is_show_line else user.line_id }}</div>
                             <div class="author-gender">
                                 {% if user.gender == 'male' %}
                                 <i class="iconfont icon-sex_man"></i>

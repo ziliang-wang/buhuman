@@ -257,8 +257,9 @@ def alter_introduce():
         return {}
 
 
-@personal.route('/alter/line', methods=['POST'])
+@personal.route('/alter/line', methods=['GET', 'POST'])
 def alter_line():
+    # result = ()
     if request.method == 'POST':
         request_data = json.loads(request.data)
         is_show_line = request_data.get('isShowLine')
@@ -267,10 +268,15 @@ def alter_line():
         uid = session.get('uid')
 
         line_status_result = User().alter_line_status(uid, line_id, is_show_line)
+        # global result
+        # result = line_status_result
         # print(is_show_line)
         return {
             'status': 8800,
             'data': line_status_result
         }
     else:
-        return {}
+        uid = session.get('uid')
+        return {
+            'data': User().get_line_status(uid)
+        }
