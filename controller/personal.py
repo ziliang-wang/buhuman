@@ -262,10 +262,11 @@ def alter_line():
     if request.method == 'POST':
         request_data = json.loads(request.data)
         is_show_line = request_data.get('isShowLine')
+        line_id = request_data.get('lineId')
 
         uid = session.get('uid')
 
-        line_status_result = User().alter_line_status(uid, is_show_line)
+        line_status_result = User().alter_line_status(uid, line_id, is_show_line)
         # print(is_show_line)
         return {
             'status': 8800,

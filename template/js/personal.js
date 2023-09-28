@@ -345,9 +345,10 @@ window.onload = () => {
     const $lineClose = document.getElementById('lineClose');
     const $lineOpen = document.getElementById('lineOpen');
     const $lineBtn = document.getElementById('lineBtn');
+    const $lineInput = document.getElementById('lineInput');
     // const $headerGender = document.getElementById('headerGender');
 
-    let lineIdValue = '';
+    let lineId = '';
     let isShowLine = false;
 
     $lineClose.onclick = function () {
@@ -365,10 +366,21 @@ window.onload = () => {
     };
     //
     $lineBtn.onclick = () => {
+        lineId = $lineInput.value.trim()
+
+        if (lineId.length === 0 || lineId.length >= 120) {
+            alert('請輸入正確的Line ID');
+            return;
+        }
+
         axios.post('/alter/line', {
+            lineId: lineId,
             isShowLine: isShowLine ? 1 : 0
         }).then(res => {
             if (res.data.status === 8800) {
+                // $lineInput.value = res.data.data[0];
+                // console.log(res.data.data[0]);
+                // console.log(res.data.data[1]);
                 // if (res.data.data === 'female') {
                 //     $headerGender.innerHTML = '女';
                 // }
