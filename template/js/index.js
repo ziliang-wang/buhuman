@@ -765,37 +765,51 @@ window.onload = () => {
     const $concertModal = document.getElementById('concertModal');
     // const $nicknamePosition = document.querySelector('.nickname-position');
     $concertModal.onmouseout = (e) => {
+        // e.stopPropagation();
         e.target.style.display = 'none';
     };
 
     $articleList.onmouseover = (e) => {
+        // e.stopPropagation();
         const self = e.target;
         const mid = self.getAttribute('data-mid');
 
         if (mid) {
             const $nicknamePosition = document.getElementById(`nicknamePosition${mid}`);
-            console.log(mid);
             const modalTop = $nicknamePosition.offsetTop;
             const modalLeft = $nicknamePosition.offsetLeft;
-            console.log(modalTop, modalLeft);
-            $nicknamePosition.style.cursor = 'pointer';
+            // $nicknamePosition.style.cursor = 'pointer';
             $concertModal.style.top = (modalTop - 150) + 'px';
             $concertModal.style.left = modalLeft + 'px';
             $concertModal.style.display = 'block';
-            $concertModal.innerHTML = mid;
+            $onediv = $concertModal.querySelector('.ddiv');
+
+            axios.post('/index/focus', {
+                mid
+            }).then(res => {
+                // e.stopPropagation();
+                // e.preventDefault();
+                // console.log(res);
+                // $concertModal.innerHTML = '';
+                $onediv.innerHTML = `
+                   <img src="${res.data.data.avatar}">
+                `
+                // $concertModal.innerHTML = `
+                //    <img src="${res.data.data.avatar}">
+                // `
+            })
+            // $concertModal.innerHTML = mid;
         }
     };
 
     // $articleList.onmouseout = (e) => {
-    //     const self = e.target;
-    //     const mid = self.getAttribute('data-mid');
+    //     // const self = e.target;
+    //     $concertModal.style.display = 'none';
     //
-    //     if (mid) {
-    //         // setTimeout(() => {
-    //         // }, 1000)
-    //         $concertModal.style.display = 'none';
-    //
-    //         // $concertModal.innerHTML = mid;
-    //     }
+    //     // const row = self.getAttribute('data-row');
+    //     // console.log(row);
+    //     // if (row) {
+    //     //     $concertModal.style.display = 'none';
+    //     // }
     // };
 };

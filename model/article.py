@@ -433,5 +433,10 @@ class Article(Base):
 
         return avatar, gender, job, slogan
 
+    def get_uid_by_aid(self, aid):
+        row = db_session.query(Article).filter_by(
+            aid=aid
+        ).first()
 
+        return row.uid
 

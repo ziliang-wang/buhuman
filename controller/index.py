@@ -1,3 +1,5 @@
+import json
+
 from flask import Blueprint, render_template, request, session
 
 from common.utils import model_to_json
@@ -124,6 +126,7 @@ def home():
         article.author_praised_count = article.get_praised_by_author(article.uid)
         # author info
         article.author_info = article.get_author_data(article.uid)
+        print(article.author_info)
         # print(article.get_author_data(article.uid))
         # print(article.get_author_data(article.uid))
 
@@ -197,6 +200,20 @@ def notification_list():
     }
 
 
+@index.route('/index/focus', methods=['POST'])
+def index_focus():
+    request_data = json.loads(request.data)
+    aid = request_data.get('mid')
+    article = Article()
+    uid = article.get_uid_by_aid(aid)
+    article.author_info = article.get_author_data(uid)
+    avatar = article.author_info[0]
+    return {
+        'status': 9000,
+        'data': {
+            'avatar': avatar
+        }
+    }
 
 
 

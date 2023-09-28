@@ -942,16 +942,27 @@
     /*left: 50%;*/
     margin-left: -170px;
     margin-top: -68px;
-    background-color: blue;
+    background-color: #fff;
     display: none;
-    color: #fff;
+    color: #000;
     border-radius: 5px;
     box-shadow: 0 12px 24px 0 rgba(0,0,0,0.24);
+    padding: 10px;
     /*cursor: pointer;*/
 }
 
+.concert-modal img {
+    /*position: absolute;*/
+    /*top: 30px;*/
+    /*left: 30px;*/
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    /*z-index: 111;*/
+}
+
 .nickname-style {
-    /*padding-top: 10px;*/
+    padding-top: 10px;
 }
 /*#concertModal .inner-concert-modal {*/
 /*    position: absolute;*/

@@ -37,7 +37,7 @@
     <div class="article-list" id="articleList" data-isLogin="{{ session.get('is_login') }}">
         {% if result %}
         {% for article, nickname in result %}
-        <div class="article-row flex-r">
+        <div class="article-row flex-r" data-row="{{ article.aid }}">
             <div class="row-avatar">
                 <img src="{{ article.article_image }}" alt="">
             </div>
@@ -68,8 +68,9 @@
                                         </span>
                         <span class="nickname-style" data-mid="{{ article.aid }}" id="nicknamePosition{{ article.aid }}">
                                     {{ nickname }}
-                                <span id="concertModal">
-                                </span>
+<!--                                <div id="concertModal" class="concert-modal">-->
+<!--                                    <div class="ddiv"></div>-->
+<!--                                </div>-->
                                 </span>
                         <span>
                                     {{ article.article_tag }}
