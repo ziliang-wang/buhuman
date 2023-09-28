@@ -762,45 +762,45 @@ window.onload = () => {
     }
 
     // 首頁動態關注modal
-    const $concertModal = document.getElementById('concertModal');
+    // const $concertModal = document.getElementById('concertModal');
     // const $nicknamePosition = document.querySelector('.nickname-position');
-    $concertModal.onmouseout = (e) => {
-        // e.stopPropagation();
-        e.target.style.display = 'none';
-    };
+    // $concertModal.onmouseout = (e) => {
+    //     // e.stopPropagation();
+    //     e.target.style.display = 'none';
+    // };
 
-    $articleList.onmouseover = (e) => {
-        // e.stopPropagation();
-        const self = e.target;
-        const mid = self.getAttribute('data-mid');
-
-        if (mid) {
-            const $nicknamePosition = document.getElementById(`nicknamePosition${mid}`);
-            const modalTop = $nicknamePosition.offsetTop;
-            const modalLeft = $nicknamePosition.offsetLeft;
-            // $nicknamePosition.style.cursor = 'pointer';
-            $concertModal.style.top = (modalTop - 150) + 'px';
-            $concertModal.style.left = modalLeft + 'px';
-            $concertModal.style.display = 'block';
-            $onediv = $concertModal.querySelector('.ddiv');
-
-            axios.post('/index/focus', {
-                mid
-            }).then(res => {
-                // e.stopPropagation();
-                // e.preventDefault();
-                // console.log(res);
-                // $concertModal.innerHTML = '';
-                $onediv.innerHTML = `
-                   <img src="${res.data.data.avatar}">
-                `
-                // $concertModal.innerHTML = `
-                //    <img src="${res.data.data.avatar}">
-                // `
-            })
-            // $concertModal.innerHTML = mid;
-        }
-    };
+    // $articleList.onmouseover = (e) => {
+    //     // e.stopPropagation();
+    //     const self = e.target;
+    //     const mid = self.getAttribute('data-mid');
+    //
+    //     if (mid) {
+    //         const $nicknamePosition = document.getElementById(`nicknamePosition${mid}`);
+    //         const modalTop = $nicknamePosition.offsetTop;
+    //         const modalLeft = $nicknamePosition.offsetLeft;
+    //         // $nicknamePosition.style.cursor = 'pointer';
+    //         $concertModal.style.top = (modalTop - 150) + 'px';
+    //         $concertModal.style.left = modalLeft + 'px';
+    //         $concertModal.style.display = 'block';
+    //         $onediv = $concertModal.querySelector('.ddiv');
+    //
+    //         axios.post('/index/focus', {
+    //             mid
+    //         }).then(res => {
+    //             // e.stopPropagation();
+    //             // e.preventDefault();
+    //             // console.log(res);
+    //             // $concertModal.innerHTML = '';
+    //             $onediv.innerHTML = `
+    //                <img src="${res.data.data.avatar}">
+    //             `
+    //             // $concertModal.innerHTML = `
+    //             //    <img src="${res.data.data.avatar}">
+    //             // `
+    //         })
+    //         // $concertModal.innerHTML = mid;
+    //     }
+    // };
 
     // $articleList.onmouseout = (e) => {
     //     // const self = e.target;
