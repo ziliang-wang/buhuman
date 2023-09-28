@@ -100,6 +100,13 @@ class User(Base):
 
         return row.introduce
 
+    def alter_line_status(self, uid, is_show_line):
+        row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()
+        row.is_show_line = is_show_line
+        db_session.commit()
+
+        return row.is_show_line
+
     # def get_user_slogan(self, uid):
     #     row = db_session.query(User).filter_by(uid=uid, is_valid=1).first()
     #     return row.slogan

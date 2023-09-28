@@ -255,3 +255,21 @@ def alter_introduce():
         }
     else:
         return {}
+
+
+@personal.route('/alter/line', methods=['POST'])
+def alter_line():
+    if request.method == 'POST':
+        request_data = json.loads(request.data)
+        is_show_line = request_data.get('isShowLine')
+
+        uid = session.get('uid')
+
+        line_status_result = User().alter_line_status(uid, is_show_line)
+        # print(is_show_line)
+        return {
+            'status': 8800,
+            'data': line_status_result
+        }
+    else:
+        return {}

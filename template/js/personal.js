@@ -340,4 +340,58 @@ window.onload = () => {
         $selfBtn.style.backgroundColor = '#3a87ad';
         $selfBtn.style.cursor = 'pointer';
     };
+
+    // line id
+    const $lineClose = document.getElementById('lineClose');
+    const $lineOpen = document.getElementById('lineOpen');
+    const $lineBtn = document.getElementById('lineBtn');
+    // const $headerGender = document.getElementById('headerGender');
+
+    let lineIdValue = '';
+    let isShowLine = false;
+
+    $lineClose.onclick = function () {
+        if (this.checked) {
+            isShowLine = false;
+            // console.log(genderValue);
+        }
+    };
+    //
+    $lineOpen.onclick = function () {
+        if (this.checked) {
+            isShowLine = true;
+            // console.log(genderValue);
+        }
+    };
+    //
+    $lineBtn.onclick = () => {
+        axios.post('/alter/line', {
+            isShowLine: isShowLine ? 1 : 0
+        }).then(res => {
+            if (res.data.status === 8800) {
+                // if (res.data.data === 'female') {
+                //     $headerGender.innerHTML = '女';
+                // }
+                //
+                // if (res.data.data === 'male') {
+                //     $headerGender.innerHTML = '男';
+                // }
+                $successModal.style.display = 'block';
+                setTimeout(() => {
+                    $successModal.style.display = 'none';
+                    location.reload();
+                }, 1500);
+            } else {
+                $errorModal.style.display = 'block';
+                setTimeout(() => {
+                    $errorModal.style.display = 'none';
+                }, 1500);
+            }
+        }).catch(err => {
+            $errorModal.style.display = 'block';
+            setTimeout(() => {
+                $errorModal.style.display = 'none';
+            }, 1500);
+        });
+    };
 };
