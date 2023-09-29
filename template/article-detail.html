@@ -836,6 +836,30 @@
             document.body.removeChild(textarea);
         };
     </script>
+    <div class="back-to-top" id="backToTop">Up</div>
+    <script>
+        <!--  backtotop   -->
+        const $backToTop = document.getElementById('backToTop');
+        window.onscroll = () => {
+            if (document.documentElement.scrollTop > 100) {
+                $backToTop.style.display = 'block';
+            } else {
+                $backToTop.style.display = 'none';
+            }
+        }
+
+        let backToTopTimer = null;
+
+        $backToTop.onclick = () => {
+            clearInterval(backToTopTimer);
+            backToTopTimer = setInterval(() => {
+                document.documentElement.scrollTop -= 100;
+                if (document.documentElement.scrollTop <= 0) {
+                    clearInterval(backToTopTimer);
+                }
+            }, 20);
+        }
+    </script>
 </section>
 {% include 'common/modal.html' %}
 {% include 'common/footer.html' %}
